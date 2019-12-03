@@ -6,18 +6,19 @@
 		<artifactId>parent</artifactId>
 		<version>0.1.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>ig-us-rfed-parent</artifactId>
+	<groupId>com.ig.orchestrations.us.rfed</groupId>
+	<artifactId>parent</artifactId>
 	<description>parent for ig us rfed orchestration</description>
 	<name>${project.groupId}:${project.artifactId}</name>
-	<packaging>pom</packaging>]
+	<packaging>pom</packaging>
 	<dependencyManagement>
 		<dependencies>
 		</dependencies>
 	</dependencyManagement>
 	<modules>
 		<module>orchestration</module>
-<!-- 		<module>json-schema</module> -->
-<!-- 		<module>java-binding</module> -->
+		<module>json-schema</module>
+		<module>java-binding</module>
 	</modules>
 	<build>
 	</build>

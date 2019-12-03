@@ -2,11 +2,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.ig.orchestrations</groupId>
-		<artifactId>ig-us-rfed-parent</artifactId>
+		<groupId>com.ig.orchestrations.us.rfed</groupId>
+		<artifactId>parent</artifactId>
 		<version>0.1.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>ig-us-rfed</artifactId>
+	<artifactId>orchestration</artifactId>
 	<description>Generates humanly readable documentation of FIX standard versions</description>
 	<name>${project.groupId}:${project.artifactId}</name>
 	<dependencies>
@@ -15,9 +15,10 @@
 			<artifactId>docgen</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>io.fixprotocol.orchestrations</groupId>
-			<artifactId>fix-standard</artifactId>
-			<classifier>repository</classifier>
+				<groupId>io.fixprotocol.orchestrations</groupId>
+				<artifactId>fix-standard</artifactId>
+				<classifier>repository</classifier>
+				<type>zip</type>		
 		</dependency>
 	</dependencies>
 	<build>

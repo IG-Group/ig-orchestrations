@@ -1,0 +1,18 @@
+
+{ 
+	"title"                : "OrderQtyData",
+	"description"          : "JSON Schema for component OrderQtyData",
+	"type"                 : "object",
+	"properties"           : {
+		
+		"OrderQty": {  
+		
+			"type": "number"
+	
+		}
+	},
+	"required"             : [ 
+		
+	]
+}
+		

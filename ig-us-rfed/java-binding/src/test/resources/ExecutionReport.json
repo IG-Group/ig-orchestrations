@@ -1,0 +1,204 @@
+
+{ 
+	"$schema"              : "http://json-schema.org/draft-04/schema#",
+	"title"                : "ExecutionReport",
+	"description"          : "JSON Schema for message ExecutionReport",
+	"type"                 : "object",
+	"properties"           : {
+			
+		"Header" : {"$ref": "StandardHeader.json"},
+			
+		"OrderID": {  
+		
+			"type": "string"
+	
+		}, 
+		"SecondaryOrderID": {  
+		
+			"type": "string"
+	
+		}, 
+		"ClOrdID": {  
+		
+			"type": "string"
+	
+		}, 
+		"OrigClOrdID": {  
+		
+			"type": "string"
+	
+		}, 
+		"OrdStatusReqID": {  
+		
+			"type": "string"
+	
+		}, 
+		"MassStatusReqID": {  
+		
+			"type": "string"
+	
+		}, 
+		"LastRptRequested": {  
+		
+			"type": "boolean"
+	,
+			"enum": [
+			"N", "Y"
+			]
+		
+		}, 
+		"ListID": {  
+		
+			"type": "string"
+	
+		}, 
+		"ExecID": {  
+		
+			"type": "string"
+	
+		}, 
+		"ExecRefID": {  
+		
+			"type": "string"
+	
+		}, 
+		"ExecType": {  
+		
+			"type": "string"
+	,
+			"enum": [
+			"0", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"
+			]
+		
+		}, 
+		"OrdStatus": {  
+		
+			"type": "string"
+	,
+			"enum": [
+			"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E"
+			]
+		
+		}, 
+		"WorkingIndicator": {  
+		
+			"type": "boolean"
+	,
+			"enum": [
+			"N", "Y"
+			]
+		
+		}, 
+		"OrdRejReason": {  
+		
+			"type": "integer"
+	,
+			"enum": [
+			0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 99
+			]
+		
+		}, 
+		"Account": {  
+		
+			"type": "string"
+	
+		}, 
+		"Instrument" : {"$ref": "Instrument.json"}, 
+		"Side": {  
+		
+			"type": "string"
+	,
+			"enum": [
+			"1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G"
+			]
+		
+		}, 
+		"OrderQtyData" : {"$ref": "OrderQtyData.json"}, 
+		"OrdType": {  
+		
+			"type": "string"
+	,
+			"enum": [
+			"1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "P", "Q"
+			]
+		
+		}, 
+		"Price": {  
+		
+			"type": "number"
+	
+		}, 
+		"StopPx": {  
+		
+			"type": "number"
+	
+		}, 
+		"Currency":    {"$ref": "CurrencyField.json"}, 
+		"TimeInForce": {"$ref": "TimeInForce.json"},  
+		"ExpireTime": {  
+		
+			"type": "string"
+	,
+			"format": "date-time"
+		}, 
+		"LastQty": {  
+		
+			"type": "number"
+	
+		}, 
+		"LastPx": {  
+		
+			"type": "number"
+	
+		}, 
+		"LeavesQty": {  
+		
+			"type": "number"
+	
+		}, 
+		"CumQty": {  
+		
+			"type": "number"
+	
+		}, 
+		"AvgPx": {  
+		
+			"type": "number"
+	
+		}, 
+		"TransactTime": {  
+		
+			"type": "string"
+	,
+			"format": "date-time"
+		}, 
+		"RefOrderID": {  
+		
+			"type": "string"
+	
+		}, 
+		"RefOrderIDSource": {  
+		
+			"type": "string"
+	,
+			"enum": [
+			"0", "1", "2", "3", "4"
+			]
+		
+		}
+		}
+	},
+	"required"             : [ 
+			
+		"Header", 
+		"OrderID", 
+		"ExecID", 
+		"ExecType", 
+		"OrdStatus", 
+		"Instrument", 
+		"Side", 
+		"LeavesQty", 
+		"CumQty"
+	]
+}
+		
