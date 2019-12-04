@@ -1,5 +1,0 @@
-{ 
-	"title"                : "CurrencyField",
-	"description"          : "JSON Schema for component Currency",
-	"type"                 : "string"
-}

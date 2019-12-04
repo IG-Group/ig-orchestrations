@@ -61,6 +61,15 @@
 		          <transformationSets>
 		            <transformationSet>
 		              <dir>${project.build.directory}/dependency/repository</dir>
+		              <outputDir>${project.build.directory}/generated-resources/xml/xslt/appended</outputDir>
+		              <includes>
+		              	<include>FixRepository50SP2.xml</include>
+		              </includes>
+		              <stylesheet>${project.basedir}/src/main/xsl/addTypes.xsl</stylesheet>
+		            </transformationSet>
+		            <transformationSet>
+		              <dir>${project.build.directory}/generated-resources/xml/xslt/appended</dir>
+		              <outputDir>${project.build.directory}/generated-resources/xml/xslt/publish</outputDir>
 		              <includes>
 		              	<include>FixRepository50SP2.xml</include>
 		              </includes>
@@ -84,7 +93,7 @@
 				<configuration>
 					<mainClass>io.fixprotocol.orchestra.docgen.DocGenerator</mainClass>
 					<arguments>
-						<argument>${project.build.directory}/generated-resources/xml/xslt/FixRepository50SP2.xml</argument>
+						<argument>${project.build.directory}/generated-resources/xml/xslt/publish/FixRepository50SP2.xml</argument>
 						<argument>${project.build.directory}/doc/fix50sp2</argument>
 					</arguments>
 				</configuration>

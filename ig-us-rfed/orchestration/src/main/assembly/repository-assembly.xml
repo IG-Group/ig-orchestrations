@@ -13,7 +13,7 @@
   <includeBaseDirectory>false</includeBaseDirectory>  
   <fileSets>
     <fileSet>
-      <directory>${project.build.directory}/generated-resources/xml/xslt</directory>
+      <directory>${project.build.directory}/generated-resources/xml/xslt/publish</directory>
       <outputDirectory></outputDirectory>
       <lineEnding>unix</lineEnding>
       <filtered>false</filtered>

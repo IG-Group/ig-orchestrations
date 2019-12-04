@@ -48,9 +48,9 @@
 	                    <configuration>
 	                        <artifactItems>
 	                            <artifactItem>
-                                    <groupId>io.fixprotocol.json</groupId>
-                                    <artifactId>orchestra2json</artifactId>
-                                    <classifier>jsonschema</classifier>
+								    <groupId>com.ig.orchestrations.us.rfed</groupId>
+								    <artifactId>json-schema</artifactId>
+									<classifier>jsonschema</classifier>
 									<type>zip</type>
 	                                <outputDirectory>${project.build.directory}/json-schema</outputDirectory>
 	                            </artifactItem>            
@@ -64,11 +64,11 @@
                  <artifactId>jsonschema2pojo-maven-plugin</artifactId>
                  <configuration>
                      <sourceDirectory>${project.build.directory}/json-schema</sourceDirectory>
-                     <targetPackage>com.ig.rfed.fix</targetPackage>
+                     <targetPackage>${target-package}</targetPackage>
                  </configuration>
                  <executions>
 	                 <execution>
-	                    <phase>generate-sources</phase>
+	                    <phase>process-resources</phase>
 	                     <goals>
 	                         <goal>generate</goal>
 	                     </goals>

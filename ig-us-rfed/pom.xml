@@ -15,6 +15,10 @@
 		<dependencies>
 		</dependencies>
 	</dependencyManagement>
+	<properties>
+		<target-package>com.ig.orchestrations.us.rfed</target-package>
+	</properties>
+	
 	<modules>
 		<module>orchestration</module>
 		<module>json-schema</module>

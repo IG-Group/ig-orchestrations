@@ -1,6 +1,6 @@
 <xsl:stylesheet version="FIX.5.0SP2" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:functx="http://www.functx.com" xmlns:fixr="http://fixprotocol.io/2016/fixrepository" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <xsl:output method="xml"/>
-<xsl:strip-space elements="*"/>
+<!-- <xsl:strip-space elements="*"/> -->
 <xsl:output omit-xml-declaration="no" indent="yes"/>
 
 <xsl:template match="@* | node()">
@@ -8,7 +8,7 @@
     <xsl:apply-templates select="@* | node()"/>
   </xsl:copy>
 </xsl:template>
-
+	
 <xsl:template match="fixr:message[not(@msgType='8' or 
                                       @msgType='S' )]" /><!--  or 
                                       @msgType='R' or  
@@ -39,7 +39,8 @@
 
 <xsl:template match="fixr:message[@msgType='8']/fixr:structure/fixr:componentRef[not(@id='1024' or 
 		                                                                             @id='1003' or
-		                                                                             @id='1011')]" />
+		                                                                             @id='1011' or
+		                                                                             @id='1021')]" />
 
 <!-- filter out unneeded components -->
 <xsl:template match="fixr:components/fixr:component[not(@id='1024' or 
@@ -52,8 +53,7 @@
                                                                        @id='1011')]" />
                                                         
 <!-- filter out unneeded groups -->
-<xsl:template match="fixr:groups/fixr:group[not(@id='2071' or
-                                                @id='2066')]" />
+<xsl:template match="fixr:groups/fixr:group[not(@id='2071')]" />
 
 <!-- Header  -->
 <xsl:template match="fixr:components/fixr:component[@id='1024']/fixr:fieldRef[not(@id='35' or
@@ -81,11 +81,14 @@
 <!-- Instrument -->
 <!-- NB 152 would be appropriate for Spread Bet, 38 for CFD - see FIX ROE  -->                                                   
 <xsl:template match="fixr:components/fixr:component[@id='1003']/fixr:groupRef[not(@id='2071')]" />
-<xsl:template match="fixr:components/fixr:component[@id='1003']/fixr:componentRef[not(@id='99999')]" />
+<xsl:template match="fixr:components/fixr:component[@id='1003']/fixr:componentRef" />
 
 <!-- From any message exclude groups not in following -->
 <!--  UndInstrmtGrp -->
 <xsl:template match="fixr:message/fixr:structure/fixr:groupRef[not(@id='2066')]" />
+
+<!-- Execution Reports - no groups -->
+<xsl:template match="fixr:message[@msgType='8']/fixr:structure/fixr:groupRef"/>
 
 <xsl:template match="fixr:message[@msgType='8']/fixr:structure/fixr:componentRef[not(@id='1024' or 
 		                                                                             @id='1003' or
@@ -135,7 +138,7 @@
                                                                                  @id='1081')]"/>
 
 <!-- Quote - no groups -->
-<xsl:template match="fixr:message[@msgType='S']/fixr:structure/fixr:groupRef[not(@id='99999')]"/>
+<xsl:template match="fixr:message[@msgType='S']/fixr:structure/fixr:groupRef"/>
 <!-- Quote - only following fields -->
 <!-- exclude fields from ExecRpt -->
 <!-- @id='131'  QuoteReqID -->

@@ -9,6 +9,7 @@
 	<artifactId>json-schema</artifactId>
 	<packaging>pom</packaging>
 	<name>${project.groupId}:${project.artifactId}</name>
+	
 	<dependencies>
 		<dependency>
 			<groupId>com.ig.orchestrations.us.rfed</groupId>
@@ -59,7 +60,7 @@
                             <configuration>
                                 <artifactItems>
                                     <artifactItem>
-										<groupId>com.ig.orchestrations.us.rfed</groupId>
+										<groupId>${target-package}</groupId>
 										<artifactId>orchestration</artifactId>
 										<classifier>repository</classifier>
 										<type>zip</type>
@@ -113,7 +114,7 @@
 						                </parameter>
 										<parameter>
 						                  <name>javaPackageName</name>
-						                  <value>com.ig.rfed.fix</value>
+						                  <value>${target-package}</value>
 										</parameter>
 		              				</parameters>
 								</transformationSet>
