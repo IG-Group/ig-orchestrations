@@ -10,11 +10,12 @@
 	
 <xsl:template match="fixr:message[not(@msgType='8' or 
                                       @msgType='S' or 
-                                      @msgType='R') ]" />    
+                                      @msgType='R' or
+                                      @msgType='AG' or 
+                                      @msgType='D') ]" />    
 
                                   <!--@msgType='Z' or -->
  <!--                                 @msgType='9' or 
-                                      @msgType='D' or 
                                       @msgType='E' or 
                                       @msgType='F' or 
                                       @msgType='G' or 
@@ -29,7 +30,7 @@
                                       @msgType='x' or 
                                       @msgType='y' or 
                                       @msgType='AF' or 
-                                      @msgType='AG' or 
+                                       
                                       @msgType='AN' or 
                                       @msgType='AO' or 
                                       @msgType='AP' or 
@@ -48,11 +49,12 @@
                                                         
 <!-- filter out unneeded groups -->
 <xsl:template match="fixr:groups/fixr:group[not(@id='2071' or 
-                                                @id='2045')]" />
-<!-- filter out unneeded members of QuotReqGrp -->                                                
-<xsl:template match="fixr:groups/fixr:group[@id='2045']/fixr:componentRef[not(@id='1003')]" />
-<xsl:template match="fixr:groups/fixr:group[@id='2045']/fixr:fieldRef" />
-<xsl:template match="fixr:groups/fixr:group[@id='2045']/fixr:groupRef" />                                         
+                                                @id='2045' or
+                                                @id='2047')]" />
+<!-- filter out unneeded members of QuotReqGrp or QuotReqRjctGrp -->                                                
+<xsl:template match="fixr:groups/fixr:group[(@id='2045' or @id='2047')]/fixr:componentRef[not(@id='1003')]" />
+<xsl:template match="fixr:groups/fixr:group[(@id='2045' or @id='2047')]/fixr:fieldRef" />
+<xsl:template match="fixr:groups/fixr:group[(@id='2045' or @id='2047')]/fixr:groupRef" />                                         
 
 <!-- Header  -->
 <xsl:template match="fixr:components/fixr:component[@id='1024']/fixr:fieldRef[not(@id='35' or
@@ -163,7 +165,16 @@
 <xsl:template match="fixr:message[@msgType='R']/fixr:structure/fixr:fieldRef[not(@id='131')]"/> 
 <!-- Quote Request  -->
 <xsl:template match="fixr:message[@msgType='R']/fixr:structure/fixr:groupRef[not(@id='2045')]"/>
-<!-- Quote - only following components -->
-<xsl:template match="fixr:message[@msgType='R']/fixr:structure/fixr:componentRef[not(@id='1024')]"/> 
+<!-- Quote Request- only following components -->
+<xsl:template match="fixr:message[@msgType='R']/fixr:structure/fixr:componentRef[not(@id='1024')]"/>
+
+<!-- Quote Request Reject -->
+<xsl:template match="fixr:message[@msgType='AG']/fixr:structure/fixr:fieldRef[not(@id='131' or
+                                                                                  @id='658')]"/> 
+<!-- Quote Request Reject -->
+<xsl:template match="fixr:message[@msgType='R']/fixr:structure/fixr:groupRef[not(@id='2045')]"/>
+<!-- Quote Request Reject - only following components -->
+<xsl:template match="fixr:message[@msgType='R']/fixr:structure/fixr:componentRef[not(@id='1024')]"/>
+ 
 </xsl:stylesheet>
 
