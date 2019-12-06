@@ -66,13 +66,13 @@
 										<type>zip</type>
                                         <outputDirectory>${project.build.directory}/dependency/repository</outputDirectory>
                                     </artifactItem>            
-                                    <artifactItem>
-										<groupId>io.fixprotocol.json</groupId>
-										<artifactId>orchestra2json</artifactId>
-										<classifier>xslt</classifier>
-										<type>zip</type>
-                                        <outputDirectory>${project.build.directory}/dependency/xslt</outputDirectory>
-                                    </artifactItem>            
+<!--                                     <artifactItem> -->
+<!-- 										<groupId>io.fixprotocol.json</groupId> -->
+<!-- 										<artifactId>orchestra2json</artifactId> -->
+<!-- 										<classifier>xslt</classifier> -->
+<!-- 										<type>zip</type> -->
+<!--                                         <outputDirectory>${project.build.directory}/dependency/xslt</outputDirectory> -->
+<!--                                     </artifactItem>             -->
                                 </artifactItems>
                             </configuration>
                         </execution>
@@ -90,9 +90,9 @@
 						<configuration>
 							<transformationSets>
 								<transformationSet>
-									<dir>${project.build.directory}/dependency/repository</dir>
-<!-- 									<stylesheet>${project.build.directory}/dependency/xslt/AddJsonDatatypes.xslt</stylesheet> -->
-									<stylesheet>${project.basdir}/src/main/xsl/AddJsonDatatypes.xslt</stylesheet>
+								    <dir>${project.build.directory}/dependency/repository</dir>
+<!-- 								<stylesheet>${project.build.directory}/dependency/xslt/AddJsonDatatypes.xslt</stylesheet> -->
+									<stylesheet>${project.basedir}/src/main/xsl/AddJsonDatatypes.xslt</stylesheet>
  									<outputDir>${project.build.directory}/repositoryWithJsonDatatypes</outputDir>
 								</transformationSet>
 							</transformationSets>
@@ -107,7 +107,7 @@
 							<transformationSets>
 								<transformationSet>
 									<dir>${project.build.directory}/repositoryWithJsonDatatypes</dir>
-									<stylesheet>${project.basdir}/src/main/xsl/OrchestraToJSONSchema.xslt</stylesheet>
+									<stylesheet>${project.basedir}/src/main/xsl/OrchestraToJSONSchema.xslt</stylesheet>
 <!-- 									<stylesheet>${project.build.directory}/dependency/xslt/OrchestraToJSONSchema.xslt</stylesheet> -->
 									<parameters>
 						                <parameter>

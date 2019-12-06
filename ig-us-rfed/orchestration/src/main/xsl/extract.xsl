@@ -15,6 +15,8 @@
                                       @msgType='F' or
                                       @msgType='G' or 
                                       @msgType='D' or
+                                      @msgType='x' or
+                                      @msgType='y' or                                       
                                       @msgType='V' or
                                       @msgType='W' or
                                       @msgType='X' or
@@ -32,7 +34,6 @@
                                       @msgType='e' or 
                                       @msgType='f' or 
                                       @msgType='j' or 
-                                      @msgType='x' or 
                                       @msgType='y' or 
                                       @msgType='AF' or 
                                        
@@ -45,7 +46,9 @@
 <!-- filter out unneeded components -->
 <xsl:template match="fixr:components/fixr:component[not(@id='1024' or 
                                                         @id='1003' or 
+                                                        @id='1004' or 
                                                         @id='1011' or
+                                                        @id='1021' or
                                                         @id='1013')]" />
 <!-- filter out unneeded groups -->
 <xsl:template match="fixr:groups/fixr:group[not(@id='2071' or 
@@ -56,7 +59,20 @@
                                                 @id='2031' or
                                                 @id='2032' or                                                
                                                 @id='2033' or
-                                                @id='2022')]" />
+                                                @id='2022' or
+                                                @id='2055' or
+                                                @id='2066' or
+                                                @id='2073' or
+                                                @id='2074' )]" />
+
+<!-- filter out unneeded members of Sec List Grp --> 
+<xsl:template match="fixr:groups/fixr:group[(@id='2055')]/fixr:componentRef[not(@id='1003' or
+                                                                                @id='1004' 
+                                                                                )]" />
+<xsl:template match="fixr:groups/fixr:group[(@id='2055')]/fixr:groupRef[not(@id='2066')]" />
+<xsl:template match="fixr:groups/fixr:group[(@id='2055')]/fixr:fieldRef[not(@id='15' or
+																			@id='58'
+                                                                            )]" />
 
 <!-- filter out unneeded members of Instrument Market Data Req Grp --> 
 <xsl:template match="fixr:groups/fixr:group[(@id='2022')]/fixr:groupRef" />
@@ -64,6 +80,7 @@
 
 <!-- filter out unneeded members of Instrument Market Data Full  Grp -->
 <xsl:template match="fixr:groups/fixr:group[(@id='2031')]/fixr:groupRef" />
+<xsl:template match="fixr:groups/fixr:group[(@id='2031')]/fixr:componentRef" />
 <xsl:template match="fixr:groups/fixr:group[(@id='2031')]/fixr:fieldRef[not(@id='269' or
                                                                             @id='278' or
                                                                             @id='270' or
@@ -74,8 +91,9 @@
                                                                         )]" />
 
 <!-- filter out unneeded members of Instrument Market Data Incr  Grp -->
-<xsl:template match="fixr:groups/fixr:group[(@id='2031')]/fixr:groupRef" />
-<xsl:template match="fixr:groups/fixr:group[(@id='2031')]/fixr:fieldRef[not(@id='279' or
+<xsl:template match="fixr:groups/fixr:group[(@id='2032')]/fixr:groupRef" />
+<xsl:template match="fixr:groups/fixr:group[(@id='2032')]/fixr:componentRef" />
+<xsl:template match="fixr:groups/fixr:group[(@id='2032')]/fixr:fieldRef[not(@id='279' or
 																		    @id='269' or
                                                                             @id='278' or
                                                                             @id='270' or
@@ -84,8 +102,6 @@
                                                                             @id='1070' or
                                                                             @id='117'
                                                                         )]" />
-
-<!-- filter out unneeded members of Instrument Market Data incr  Grp -->
 
 <!-- filter out unneeded members of QuotReqGrp or QuotReqRjctGrp -->                                                
 <xsl:template match="fixr:groups/fixr:group[(@id='2045' or @id='2047')]/fixr:componentRef[not(@id='1003')]" />
@@ -104,6 +120,9 @@
 <!-- OrderQtyData Component -->
 <xsl:template match="fixr:components/fixr:component[@id='1011']/fixr:fieldRef[not(@id='38')]" />
 
+<!-- Instrument Extension Component -->
+<xsl:template match="fixr:components/fixr:component[@id='1004']/fixr:fieldRef" />
+
 <!-- Instrument -->
 <!-- NB 152 would be appropriate for Spread Bet, 38 for CFD - see FIX ROE  -->                                                   
 <xsl:template match="fixr:components/fixr:component[@id='1003']/fixr:fieldRef[not(@id='55' or
@@ -118,6 +137,16 @@
                                                                                  )]" />
 <xsl:template match="fixr:components/fixr:component[@id='1003']/fixr:groupRef[not(@id='2071')]" />
 <xsl:template match="fixr:components/fixr:component[@id='1003']/fixr:componentRef" />
+
+<!-- Underlying Instrument  -->
+<xsl:template match="fixr:components/fixr:component[@id='1021']/fixr:fieldRef[not(@id='311' or
+                                                                                 @id='309' or
+                                                                                 @id='305' or
+                                                                                 @id='318'
+                                                                                 )]" />
+<xsl:template match="fixr:components/fixr:component[@id='1021']/fixr:groupRef[not(@id='2073')]"/>
+<xsl:template match="fixr:components/fixr:component[@id='1021']/fixr:componentRef" />                                                                                                                                                                   
+                                                                                 
 
 <!-- New Order Single - only following components -->
 <xsl:template match="fixr:message[@msgType='D']/fixr:structure/fixr:componentRef[not(@id='1003' or
@@ -283,9 +312,41 @@
 <!-- Market Data Snapshot -->
 <xsl:template match="fixr:message[@msgType='W']/fixr:structure/fixr:fieldRef[not(@id='262')]"/> 
 <!-- Market Data Snapshot  -->
-<xsl:template match="fixr:message[@msgType='W']/fixr:structure/fixr:groupRef[not(@id='2031)]"/>
+<xsl:template match="fixr:message[@msgType='W']/fixr:structure/fixr:groupRef[not(@id='2031')]"/>
 <!-- Market Data Snapshot- only following components -->
 <xsl:template match="fixr:message[@msgType='W']/fixr:structure/fixr:componentRef[not(@id='1024')]"/>
+
+<!-- Market Data Incremental Refresh -->
+<xsl:template match="fixr:message[@msgType='X']/fixr:structure/fixr:fieldRef[not(@id='262')]"/> 
+<xsl:template match="fixr:message[@msgType='X']/fixr:structure/fixr:groupRef[not(@id='2032')]"/>
+<xsl:template match="fixr:message[@msgType='X']/fixr:structure/fixr:componentRef[not(@id='1024')]"/>
+
+<!-- Market Data Request Reject -->
+<xsl:template match="fixr:message[@msgType='Y']/fixr:structure/fixr:fieldRef[not(@id='262' or
+                                                                                 @id='281' or
+                                                                                 @id='58'                                                                                  
+                                                                                 )]"/> 
+<xsl:template match="fixr:message[@msgType='Y']/fixr:structure/fixr:groupRef"/>
+<xsl:template match="fixr:message[@msgType='Y']/fixr:structure/fixr:componentRef[not(@id='1024')]"/>
+
+<!-- Security List Request -->
+<xsl:template match="fixr:message[@msgType='x']/fixr:structure/fixr:fieldRef[not(@id='320' or
+                                                                                 @id='559' or
+                                                                                 @id='263' or
+																				 @id='1'
+                                                                                 )]"/> 
+<xsl:template match="fixr:message[@msgType='x']/fixr:structure/fixr:groupRef"/>
+<xsl:template match="fixr:message[@msgType='x']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                     @id='1003')]"/>
+
+<!-- Security List -->
+<xsl:template match="fixr:message[@msgType='y']/fixr:structure/fixr:fieldRef[not(@id='320' or
+                                                                                 @id='322' or
+                                                                                 @id='560' or
+                                                                                 @id='893' or
+                                                                                 @id='58')]"/> 
+<xsl:template match="fixr:message[@msgType='y']/fixr:structure/fixr:groupRef[not(@id='2055')]"/>
+<xsl:template match="fixr:message[@msgType='y']/fixr:structure/fixr:componentRef[not(@id='1024')]"/>
 
 
 </xsl:stylesheet>
