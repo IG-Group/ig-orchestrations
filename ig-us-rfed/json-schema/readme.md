@@ -1,7 +1,6 @@
-# orchestra2json
+# json-schema
 
-Process to generate JSON schemas for message structures defined in a FIX Orchestra file.
-
+Process to generate a JSON schema for message structures defined in a FIX Orchestra file.
 
 ## XSL Transforms
 
