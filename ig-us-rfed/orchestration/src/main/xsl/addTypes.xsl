@@ -11,23 +11,73 @@
       </fixr:documentation>
 			</fixr:annotation>
 		</fixr:field>	
+		<fixr:field added="FIX.5.0SP2" id="2593" name="NoOrderAttributes" type="NumInGroup" addedEP="222" abbrName="NoOrderAttributes" presence="optional" supported="supported">
+			<fixr:annotation supported="supported">
+				<fixr:documentation purpose="SYNOPSIS" supported="supported">
+        Number of order attribute entries.
+      </fixr:documentation>
+			</fixr:annotation>
+		</fixr:field>
+		<fixr:field added="FIX.5.0SP2" id="2594" name="OrderAttributeType" type="int" addedEP="222" abbrName="OrderAttributeType" presence="optional" supported="supported">
+			<fixr:annotation supported="supported">
+				<fixr:documentation purpose="SYNOPSIS" supported="supported">
+        The type of order attribute.
+      </fixr:documentation>
+			</fixr:annotation>
+		</fixr:field>
+		<fixr:field added="FIX.5.0SP2" id="2595" name="OrderAttributeValue" type="String`" addedEP="222" abbrName="OrderAttributeValue" presence="optional" supported="supported">
+			<fixr:annotation supported="supported">
+				<fixr:documentation purpose="SYNOPSIS" supported="supported">
+        The value associated with the order attribute type specified in OrderAttributeType(2594).
+      </fixr:documentation>
+			</fixr:annotation>
+		</fixr:field>			
+  </xsl:param>
+  
+  <xsl:param name="addGroups">
+	<fixr:group id="2152" added="FIX.5.0SP2" addedEP="222" name="OrderAttributeGroup" category="SingleGeneralOrderHandling" abbrName="OrderAttributeGrp">
+			<fixr:numInGroup id="2593"/>
+			<fixr:fieldRef id="2594" added="FIX.5.0SP2" addedEP="222">
+				<fixr:annotation>
+					<fixr:documentation/>
+				</fixr:annotation>
+			</fixr:fieldRef>
+			<fixr:fieldRef id="2595" added="FIX.5.0SP2" addedEP="222">
+				<fixr:annotation>
+					<fixr:documentation/>
+				</fixr:annotation>
+			</fixr:fieldRef>
+			<fixr:annotation>
+				<fixr:documentation/>
+			</fixr:annotation>
+	 </fixr:group>  
   </xsl:param>
 
   <xsl:param name="addFieldRefsToQuote">
-					<fixr:fieldRef id="390" name="BidID" added="FIX.4.2" presence="optional" supported="supported">
+					<fixr:fieldRef id="390" added="FIX.4.2">
 						<fixr:annotation supported="supported">
 							<fixr:documentation supported="supported">
          Required to relate the bid response
       </fixr:documentation>
 						</fixr:annotation>
 					</fixr:fieldRef>					
-					<fixr:fieldRef id="1867" name="OfferID" added="FIX.5.0SP2" addedEP="144" presence="optional" supported="supported">
+					<fixr:fieldRef id="1867" added="FIX.5.0SP2">
 						<fixr:annotation supported="supported">
 							<fixr:documentation supported="supported">
          Unique identifier for the ask side of the quote.
       </fixr:documentation>
 						</fixr:annotation>
 					</fixr:fieldRef>
+  </xsl:param>
+  
+    <xsl:param name="addGroupRefsToNewSingleOrder">
+					<fixr:groupRef id="2152" added="FIX.5.0SP2">
+						<fixr:annotation>
+							<fixr:documentation>
+		 Order Attribute Group
+						    </fixr:documentation>
+						</fixr:annotation>
+				    </fixr:groupRef>
   </xsl:param>
 
  <xsl:template match="node()|@*" name="identity">
@@ -41,9 +91,19 @@
 	<xsl:copy-of select="$addFields"/> 
  </xsl:template>
 
+ <xsl:template match="fixr:groups/fixr:group[position()=last()]">
+ 	<xsl:call-template name="identity"/>
+	<xsl:copy-of select="$addGroups"/> 
+ </xsl:template>
+
  <xsl:template match="fixr:messages/fixr:message[@msgType='S']/fixr:structure/fixr:fieldRef[position()=last()]">	
 	<xsl:call-template name="identity"/>
 	<xsl:copy-of select="$addFieldRefsToQuote"/>
+ </xsl:template>
+
+ <xsl:template match="fixr:messages/fixr:message[@msgType='D']/fixr:structure/fixr:groupRef[position()=last()]">	
+	<xsl:call-template name="identity"/>
+	<xsl:copy-of select="$addGroupRefsToNewSingleOrder"/>
  </xsl:template>
 	
 </xsl:stylesheet>
