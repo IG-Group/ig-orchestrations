@@ -69,8 +69,25 @@
 						</fixr:annotation>
 					</fixr:fieldRef>
   </xsl:param>
+
+  <xsl:param name="addFieldRefsToExecRpt">
+					<fixr:fieldRef id="1080" added="FIX.4.4">
+						<fixr:annotation supported="supported">
+							<fixr:documentation supported="supported">
+         The ID reference to the order being hit or taken.
+      </fixr:documentation>
+						</fixr:annotation>
+					</fixr:fieldRef>					
+					<fixr:fieldRef id="1081" added="FIX.4.4">
+						<fixr:annotation supported="supported">
+							<fixr:documentation supported="supported">
+		Used to specify what identifier, provided in order depth market data, to use when hitting (taking) a specific order
+      </fixr:documentation>
+						</fixr:annotation>
+					</fixr:fieldRef>
+  </xsl:param>
   
-    <xsl:param name="addGroupRefsToNewSingleOrder">
+    <xsl:param name="addOrderAttributeGroupRef">
 					<fixr:groupRef id="2152" added="FIX.5.0SP2">
 						<fixr:annotation>
 							<fixr:documentation>
@@ -101,9 +118,14 @@
 	<xsl:copy-of select="$addFieldRefsToQuote"/>
  </xsl:template>
 
- <xsl:template match="fixr:messages/fixr:message[@msgType='D']/fixr:structure/fixr:groupRef[position()=last()]">	
+ <xsl:template match="fixr:messages/fixr:message[@msgType='8']/fixr:structure/fixr:fieldRef[position()=last()]">	
 	<xsl:call-template name="identity"/>
-	<xsl:copy-of select="$addGroupRefsToNewSingleOrder"/>
+	<xsl:copy-of select="$addFieldRefsToExecRpt"/>
+ </xsl:template>
+
+ <xsl:template match="fixr:messages/fixr:message[(@msgType='D' or @msgType='G' or @msgType='8')]/fixr:structure/fixr:groupRef[position()=last()]">	
+	<xsl:call-template name="identity"/>
+	<xsl:copy-of select="$addOrderAttributeGroupRef"/>
  </xsl:template>
 	
 </xsl:stylesheet>
