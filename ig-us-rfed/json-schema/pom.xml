@@ -110,12 +110,12 @@
 									<parameters>
 						                <parameter>
 						                  <name>targetDirectory</name>
-						                  <value>file:/${basedir-with-forward-slash}/target/generated-resources/definitions</value>
+						                  <value>file:${basedir-with-forward-slash}/target/generated-resources/definitions</value>
 						                </parameter>
-										<parameter>
+										<!--<parameter>
 						                  <name>javaPackageName</name>
 						                  <value>${target-package}</value>
-										</parameter>
+										</parameter>-->
 		              				</parameters>
 								</transformationSet>
 							</transformationSets>
@@ -147,7 +147,43 @@
 	                        </configuration>
                     </execution>
                 </executions>
-            </plugin>    			
+            </plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.6.0</version>
+				<executions>
+					<execution>
+						<id>npm install (initialize)</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<phase>initialize</phase>
+						<configuration>
+                            <workingDirectory>${project.basedir}/json-schema-to-ts</workingDirectory>
+							<executable>npm</executable>
+							<arguments>
+								<argument>install</argument>
+							</arguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>npm start (compile)</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<phase>test</phase>
+						<configuration>
+                            <workingDirectory>${project.basedir}/json-schema-to-ts</workingDirectory>
+							<executable>npm</executable>
+							<arguments>
+								<argument>run</argument>
+								<argument>start</argument>
+							</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 </project>
