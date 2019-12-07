@@ -7,6 +7,7 @@
 	<xsl:output method="text" encoding="UTF-8"/>
 	<xsl:param name="targetDirectory">target/generated-resources/definitions</xsl:param>
 	<xsl:param name="javaPackageName"></xsl:param>
+	<xsl:param name="useCodeNameForEnum">true</xsl:param>
 	<xsl:variable name="forwardSlash">/</xsl:variable>
 	<xsl:variable name="fieldsDirectory">fields</xsl:variable>
 	<xsl:variable name="componentsDirectory">components</xsl:variable>
@@ -40,7 +41,14 @@
 	<xsl:if test="$javaPackageName">
 	"javaType" : "<xsl:value-of select="$javaPackageName"/>.<xsl:value-of select="$fieldsDirectory"/>.<xsl:value-of select="@name"/>",
 	</xsl:if>
-	<xsl:apply-templates select="/fixr:repository/fixr:datatypes/fixr:datatype[@name=$codesetType]/fixr:mappedDatatype[@standard='JSON']/@*"/> 
+	<xsl:choose>
+		<xsl:when test="$useCodeNameForEnum='true'">
+			"type": "string"
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:apply-templates select="/fixr:repository/fixr:datatypes/fixr:datatype[@name=$codesetType]/fixr:mappedDatatype[@standard='JSON']/@*"/> 
+		</xsl:otherwise>
+	</xsl:choose>
     <xsl:call-template name="enum"><xsl:with-param name="id" select="@id"/></xsl:call-template>
 }
 			</xsl:result-document>
@@ -189,10 +197,17 @@
 			"enum": [
 			<xsl:for-each select="/fixr:repository/fixr:codeSets/fixr:codeSet[@name=$fieldType]/fixr:code">
 				<xsl:choose>
-					<xsl:when test="$codesetType='int'"><xsl:value-of select="@value"/></xsl:when>
-					<xsl:when test="$codesetType='NumInGroup'"><xsl:value-of select="@value"/></xsl:when>
-					<xsl:otherwise>"<xsl:value-of select="@value"/>"</xsl:otherwise>
-			</xsl:choose>
+					<xsl:when test="$useCodeNameForEnum='true'">
+						"<xsl:value-of select="@name"/>"
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:choose>
+							<xsl:when test="$codesetType='int'"><xsl:value-of select="@value"/></xsl:when>
+							<xsl:when test="$codesetType='NumInGroup'"><xsl:value-of select="@value"/></xsl:when>
+							<xsl:otherwise>"<xsl:value-of select="@value"/>"</xsl:otherwise>
+					   </xsl:choose>
+				    </xsl:otherwise>
+			    </xsl:choose>
 		<xsl:if test="fn:position() != fn:last()">, </xsl:if>
 		</xsl:for-each>
 			]

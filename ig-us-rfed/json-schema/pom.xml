@@ -118,6 +118,10 @@
 						                  <name>javaPackageName</name>
 						                  <value>${target-package}</value>
 										</parameter>
+										<parameter>
+						                  <name>useCodeNameForEnum</name>
+						                  <value>true</value>
+						                </parameter>  
 		              				</parameters>
 								</transformationSet>
 							</transformationSets>
