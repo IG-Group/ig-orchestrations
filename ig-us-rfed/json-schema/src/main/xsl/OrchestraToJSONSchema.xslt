@@ -8,6 +8,7 @@
 	<xsl:param name="targetDirectory">target/generated-resources/definitions</xsl:param>
 	<xsl:param name="javaPackageName"></xsl:param>
 	<xsl:param name="useCodeNameForEnum">true</xsl:param>
+	<xsl:param name="normaliseComponents">false</xsl:param>
 	<xsl:variable name="forwardSlash">/</xsl:variable>
 	<xsl:variable name="fieldsDirectory">fields</xsl:variable>
 	<xsl:variable name="componentsDirectory">components</xsl:variable>
@@ -55,8 +56,9 @@
 		</xsl:if>		
 	</xsl:template>	
 	<xsl:template match="fixr:component">
-		<xsl:variable name="filename" select="fn:concat($targetDirectory, $forwardSlash, $componentsDirectory, $forwardSlash, @name, '.json')"/>
-		<xsl:result-document method="text" href="{$filename}">
+		<xsl:if test="$normaliseComponents='true'">
+			<xsl:variable name="filename" select="fn:concat($targetDirectory, $forwardSlash, $componentsDirectory, $forwardSlash, @name, '.json')"/>
+			<xsl:result-document method="text" href="{$filename}">
 { 
 	"title"                : "<xsl:value-of select="@name"/>",
 	"description"          : "JSON Schema for component <xsl:value-of select="@name"/>",
@@ -71,7 +73,8 @@
 		<xsl:apply-templates select="fixr:fieldRef[@presence='required']|fixr:groupRef[@presence='required']|fixr:componentRef[@presence='required']" mode="required"/>
 	]
 }
-		</xsl:result-document>
+			</xsl:result-document>
+		</xsl:if>
 	</xsl:template>
 	<xsl:template match="fixr:group">		<xsl:variable name="filename" select="fn:concat($targetDirectory, $forwardSlash, $groupsDirectory, $forwardSlash, @name, '.json')"/>
 		<xsl:result-document method="text" href="{$filename}">
@@ -114,7 +117,8 @@
 			<xsl:apply-templates select="fixr:structure/fixr:fieldRef|fixr:structure/fixr:groupRef|fixr:structure/fixr:componentRef" mode="properties"/>
 	},
 	"required"             : [ 
-			<xsl:apply-templates select="fixr:structure/fixr:fieldRef[@presence='required']|fixr:structure/fixr:groupRef[@presence='required']|fixr:structure/fixr:componentRef[@presence='required']" mode="required"/>
+			<xsl:apply-templates select="fixr:structure/fixr:componentRef[@presence='required']" mode="required"/>
+			<xsl:apply-templates select="fixr:structure/fixr:fieldRef[@presence='required']|fixr:structure/fixr:groupRef[@presence='required']" mode="required"/>
 	]
 }
 		</xsl:result-document>
@@ -140,10 +144,6 @@
 		<xsl:variable name="theId" select="@id"/>
 		"<xsl:value-of select="/fixr:repository/fixr:fields/fixr:field[@id=$theId]/@name"/>"<xsl:if test="fn:position() != fn:last()">, </xsl:if>
 	</xsl:template>
-	<xsl:template match="fixr:componentRef" mode="required">
-		<xsl:variable name="theId" select="@id"/>
-		"<xsl:value-of select="/fixr:repository/fixr:components/fixr:component[@id=$theId]/@name"/>"<xsl:if test="fn:position() != fn:last()">, </xsl:if>
-	</xsl:template>
 	<xsl:template match="fixr:groupRef" mode="required">
 		<xsl:variable name="theId" select="@id"/>
 		"<xsl:value-of select="/fixr:repository/fixr:groups/fixr:group[@id=$theId]/@name"/>"<xsl:if test="fn:position() != fn:last()">, </xsl:if>
@@ -156,7 +156,25 @@
 	<xsl:template match="fixr:componentRef" mode="properties">
 		<xsl:variable name="theId" select="@id"/>
 		<xsl:variable name="theName" select="/fixr:repository/fixr:components/fixr:component[@id=$theId]/@name"/>
+		<xsl:choose>
+			<xsl:when test="$normaliseComponents='true'">
 		"<xsl:value-of select="$theName"/>" : {"$ref": "../<xsl:value-of select="$componentsDirectory"/>/<xsl:value-of select="$theName"/>.json"}<xsl:if test="fn:position() != fn:last()">, </xsl:if>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:apply-templates select="/fixr:repository/fixr:components/fixr:component[@id=$theId]/fixr:fieldRef|fixr:groupRef|fixr:componentRef" mode="properties"/><xsl:if test="fn:position() != fn:last()">, </xsl:if>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	<xsl:template match="fixr:componentRef" mode="required">
+		<xsl:variable name="theId" select="@id"/>
+		<xsl:choose>
+			<xsl:when test="$normaliseComponents='true'">
+		"<xsl:value-of select="/fixr:repository/fixr:components/fixr:component[@id=$theId]/@name"/>"<xsl:if test="fn:position() != fn:last()">, </xsl:if>
+			</xsl:when>
+			<xsl:otherwise>
+         <xsl:apply-templates select="/fixr:repository/fixr:components/fixr:component[@id=$theId]/fixr:fieldRef[@presence='required']|fixr:groupRef[@presence='required']|fixr:componentRef[@presence='required']" mode="required"/><xsl:if test="fn:position() != fn:last()">, </xsl:if>			
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:template>
 	<xsl:template name="datatype">
 		<xsl:param name="id"/>

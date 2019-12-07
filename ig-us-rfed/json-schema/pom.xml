@@ -121,7 +121,11 @@
 										<parameter>
 						                  <name>useCodeNameForEnum</name>
 						                  <value>true</value>
-						                </parameter>  
+						                </parameter>
+						                <parameter>
+						                  <name>normaliseComponents</name>
+						                  <value>true</value>
+						                </parameter>
 		              				</parameters>
 								</transformationSet>
 							</transformationSets>
