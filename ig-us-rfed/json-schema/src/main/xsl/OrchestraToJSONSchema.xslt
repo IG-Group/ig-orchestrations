@@ -117,8 +117,7 @@
 			<xsl:apply-templates select="fixr:structure/fixr:fieldRef|fixr:structure/fixr:groupRef|fixr:structure/fixr:componentRef" mode="properties"/>
 	},
 	"required"             : [ 
-			<xsl:apply-templates select="fixr:structure/fixr:componentRef[@presence='required']" mode="required"/>
-			<xsl:apply-templates select="fixr:structure/fixr:fieldRef[@presence='required']|fixr:structure/fixr:groupRef[@presence='required']" mode="required"/>
+			<xsl:apply-templates select="fixr:structure/fixr:componentRef[@presence='required']|fixr:structure/fixr:fieldRef[@presence='required']|fixr:structure/fixr:groupRef[@presence='required']" mode="required"/>
 	]
 }
 		</xsl:result-document>
