@@ -51800,7 +51800,7 @@
                       category="Common"
                       added="FIX.4.3"
                       abbrName="Instrmt">
-         <fixr:fieldRef id="55" added="FIX.4.3">
+         <fixr:fieldRef id="55" added="FIX.4.3" presence="required">
             <fixr:annotation>
                <fixr:documentation>
          Common, "human understood" representation of the security. SecurityID value can be specified if no symbol exists (e.g. non-exchange traded Collective Investment Vehicles)
@@ -51902,7 +51902,7 @@
                       category="Common"
                       added="FIX.4.3"
                       abbrName="OrdQty">
-         <fixr:fieldRef id="38" added="FIX.4.3">
+         <fixr:fieldRef id="38" added="FIX.4.3" presence="required">
             <fixr:annotation>
                <fixr:documentation>
          One of CashOrderQty, OrderQty, or (for CIV only) OrderPercent is required. Note that unless otherwise specified, only one of CashOrderQty, OrderQty, or OrderPercent should be specified.
