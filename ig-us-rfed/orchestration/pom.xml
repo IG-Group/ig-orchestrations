@@ -69,8 +69,8 @@
 		              <stylesheet>${project.basedir}/src/main/xsl/addTypes.xsl</stylesheet>
 		            </transformationSet>
 		            <transformationSet>
-<!-- 		              <dir>${project.build.directory}/generated-resources/xml/xslt/appended</dir> -->
-					  <dir>${project.basedir}/src/main/resources/repository</dir>
+		              <dir>${project.build.directory}/generated-resources/xml/xslt/appended</dir>
+<!-- 					  <dir>${project.basedir}/src/main/resources/repository</dir> -->
 		              <outputDir>${project.build.directory}/generated-resources/xml/xslt/publish</outputDir>
 		              <includes>
 		              	<include>FixRepository50SP2.xml</include>

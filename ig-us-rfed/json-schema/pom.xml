@@ -105,8 +105,8 @@
 						<configuration>
 							<transformationSets>
 								<transformationSet>
-									<dir>${project.basedir}/src/test/resources</dir>
-<!-- 									<dir>${project.build.directory}/repositoryWithJsonDatatypes</dir> -->
+<!-- 									<dir>${project.basedir}/src/test/resources</dir> -->
+									<dir>${project.build.directory}/repositoryWithJsonDatatypes</dir>
 									<stylesheet>${project.basedir}/src/main/xsl/OrchestraToJSONSchema.xslt</stylesheet>
 <!-- 									<stylesheet>${project.build.directory}/dependency/xslt/OrchestraToJSONSchema.xslt</stylesheet> -->
 									<parameters>
@@ -128,8 +128,8 @@
 						                </parameter>
 						                <parameter>
 						                  <name>normaliseComponents</name>
-<!-- 						                  <value>false</value> -->
-						                  <value>true</value>
+						                  <value>false</value>
+<!-- 						                  <value>true</value> -->
 						                </parameter>
 		              				</parameters>
 								</transformationSet>

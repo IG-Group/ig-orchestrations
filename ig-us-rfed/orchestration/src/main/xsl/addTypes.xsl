@@ -127,6 +127,26 @@
 	<xsl:call-template name="identity"/>
 	<xsl:copy-of select="$addOrderAttributeGroupRef"/>
  </xsl:template>
+
+<xsl:template match="fixr:components/fixr:component[@id='1003']/fixr:fieldRef[@id='55']">
+	<xsl:copy>
+		<xsl:attribute name="presence">
+			<xsl:value-of select="'required'"/>
+		</xsl:attribute>
+		<xsl:apply-templates select="@*"/>
+		<xsl:apply-templates select="node()"/>
+	</xsl:copy>
+</xsl:template>
+
+<xsl:template match="fixr:components/fixr:component[@id='1011']/fixr:fieldRef[@id='38']">
+	<xsl:copy>
+		<xsl:attribute name="presence">
+			<xsl:value-of select="'required'"/>
+		</xsl:attribute>
+		<xsl:apply-templates select="@*"/>
+		<xsl:apply-templates select="node()"/>
+	</xsl:copy>
+</xsl:template>
 	
 </xsl:stylesheet>
 
