@@ -7,14 +7,20 @@ This project specialises the standard FIX orchestration to build IG Orchestratio
 
 ## How To
 
-origin is here https://git.iggroup.local/projects/IPFA/repos/ig-orchestrations/browse/pom.xml
+Artifacts on which this project depends are not available from public mvn repositories.
 
-upstream is here https://github.com/IG-Group/ig-orchestrations.git
+First, checkout and build locally the FIX Orchestrata Project.
 
+This will publish to the local mvn repository the FIX Standard Orchestration on which this project depends.
+```
+git clone https://github.com/FIXTradingCommunity/fix-orchestra.git
+cd fix-orchestra
+mvn clean install
+```
 Now you can build this project.
 ```
 
-git clone <see above>
+git clone https://github.com/IG-Group/ig-orchestrations.git
 cd ig-orchestrations
 mvn clean install
 ```
