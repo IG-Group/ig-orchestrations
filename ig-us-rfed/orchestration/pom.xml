@@ -1,3 +1,4 @@
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
@@ -9,6 +10,7 @@
 	<artifactId>orchestration</artifactId>
 	<description>Generates humanly readable documentation of FIX standard versions</description>
 	<name>${project.groupId}:${project.artifactId}</name>
+	<packaging>pom</packaging>
 	<dependencies>
 		<dependency>
 			<groupId>io.fixprotocol.orchestra</groupId>
@@ -100,28 +102,25 @@
 					</arguments>
 				</configuration>
 			</plugin>
-			<plugin>
-				<artifactId>maven-jar-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>default-jar</id>
-						<phase>package</phase>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<classesDirectory>${project.build.directory}/doc</classesDirectory>
-				</configuration>
-			</plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <executions>
+					<execution>
+	                    <id>doc-distribution</id>
+	                    <phase>package</phase>
+                        <goals>
+                          <goal>single</goal>
+                        </goals>
+                        <configuration>
+                          <descriptors>
+                            <descriptor>${project.basedir}/src/main/assembly/documents-assembly.xml</descriptor>
+                          </descriptors>
+                        </configuration>
+                    </execution>                
                     <execution>
-                    <id>create-distribution</id>
-                    <phase>package</phase>
+	                    <id>repository-distribution</id>
+	                    <phase>package</phase>
                         <goals>
                           <goal>single</goal>
                         </goals>
@@ -130,8 +129,8 @@
                             <descriptor>${project.basedir}/src/main/assembly/repository-assembly.xml</descriptor>
                           </descriptors>
                         </configuration>
-                      </execution>
-                    </executions>
+                    </execution>
+                </executions>
             </plugin>            
 		</plugins>
 	</build>
