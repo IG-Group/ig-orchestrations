@@ -116,7 +116,7 @@
 						                </parameter>									
 						                <parameter>
 						                  <name>targetDirectory</name>
-						                  <value>file:/${basedir-with-forward-slash}/target/generated-resources/definitions</value>
+						                  <value>file:///${basedir-with-forward-slash}/target/generated-resources/definitions</value>
 						                </parameter>
 										<parameter>
 						                  <name>javaPackageName</name>
