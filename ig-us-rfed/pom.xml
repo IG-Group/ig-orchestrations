@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.ig.orchestrations</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.1.0-SNAPSHOT</version>
+		<version>${revision}</version>
 	</parent>
 	<groupId>com.ig.orchestrations.us.rfed</groupId>
 	<artifactId>parent</artifactId>
@@ -21,6 +21,7 @@
 	
 	<modules>
 		<module>orchestration</module>
+<!-- 		<module>document</module> -->
 		<module>json-schema</module>
 		<module>java-binding</module>
 	</modules>
