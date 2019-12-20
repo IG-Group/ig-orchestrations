@@ -229,6 +229,7 @@ processing fixr:message  <xsl:value-of select="@name"/>
 		<xsl:apply-templates select="/fixr:repository/fixr:datatypes/fixr:datatype[@name=$type]/fixr:mappedDatatype[@standard='JSON']/@*"/> 
 	</xsl:template>
 	<xsl:template match="@base">
+			<xsl:if test="fn:current()='number' and $javaPackageName">"existingJavaType" : "java.math.BigDecimal",</xsl:if>
 			"type": "<xsl:value-of select="fn:current()"/>"
 	</xsl:template>
 	<xsl:template match="@parameter">,
