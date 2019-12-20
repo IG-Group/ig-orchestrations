@@ -62,6 +62,7 @@
 	processing fixr:component  <xsl:value-of select="@name"/>
 		    </xsl:message>
 	    </xsl:if>
+	    <!-- components are normalised, written to a distinct file,  if the flag is set to 'true'  -->
 		<xsl:if test="$normaliseComponents='true'">
 			<xsl:variable name="filename" select="fn:concat($targetDirectory, $forwardSlash, $componentsDirectory, $forwardSlash, @name, '.json')"/>
 			<xsl:result-document method="text" href="{$filename}">
@@ -82,7 +83,7 @@
 			</xsl:result-document>
 		</xsl:if>
 	</xsl:template>
-
+    <!--  groups are always normalised -->
 	<xsl:template match="fixr:group">		<xsl:variable name="filename" select="fn:concat($targetDirectory, $forwardSlash, $groupsDirectory, $forwardSlash, @name, '.json')"/>
 		<xsl:result-document method="text" href="{$filename}">
 		<xsl:if test="$debug='true'">
@@ -110,6 +111,7 @@
 }
 		</xsl:result-document>
 	</xsl:template>
+	<!-- a file is written for each message -->
 	<xsl:template match="fixr:messages">
 		<xsl:apply-templates/>	
 	</xsl:template>
@@ -140,6 +142,7 @@ processing fixr:message  <xsl:value-of select="@name"/>
 }
 		</xsl:result-document>
 	</xsl:template>
+	<!-- field refs result in references to distinct files or are an inline definition of the field -->
 	<xsl:template match="fixr:fieldRef" mode="properties">
 		<xsl:variable name="fieldId" select="@id"/>
 		<xsl:variable name="fieldName" select="/fixr:repository/fixr:fields/fixr:field[@id=$fieldId]/@name"/>
@@ -162,7 +165,7 @@ processing fixr:message  <xsl:value-of select="@name"/>
 		</xsl:choose>
 		}<xsl:if test="fn:position() != fn:last()">, </xsl:if>
 	</xsl:template>
-
+    <!-- the "required" mode is to list in the schema fields that are required according to the orchestration -->
 	<xsl:template match="fixr:fieldRef" mode="required">
 		<xsl:variable name="theId" select="@id"/>
 		"<xsl:value-of select="/fixr:repository/fixr:fields/fixr:field[@id=$theId]/@name"/>"<xsl:if test="fn:position() != fn:last()">, </xsl:if>
@@ -182,10 +185,12 @@ processing fixr:message  <xsl:value-of select="@name"/>
 	    	</xsl:message>
 	    </xsl:if>	
 	</xsl:template>
+	<!-- the "required" mode is to list in the schema groups that are required according to the orchestration -->
 	<xsl:template match="fixr:groupRef" mode="required">
 		<xsl:variable name="theId" select="@id"/>
 		"<xsl:value-of select="/fixr:repository/fixr:groups/fixr:group[@id=$theId]/@name"/>"<xsl:if test="fn:position() != fn:last()">, </xsl:if>
-	</xsl:template>	
+	</xsl:template>
+	<!-- components are defined in discrete files if "$normaliseComponents='true'" -->
 	<xsl:template match="fixr:componentRef" mode="properties">
 		<xsl:variable name="theId" select="@id"/>
 		<xsl:variable name="theName" select="/fixr:repository/fixr:components/fixr:component[@id=$theId]/@name"/>
@@ -208,6 +213,8 @@ processing fixr:message  <xsl:value-of select="@name"/>
 		    </xsl:message>
 		</xsl:if>
 	</xsl:template>
+	<!-- the "required" mode is to list in the schema component that are required according to the orchestration, 
+	     this cannot be described where the components are normalised -->
 	<xsl:template match="fixr:componentRef" mode="required">
 		<xsl:variable name="theId" select="@id"/>
 		<xsl:choose>
@@ -221,6 +228,7 @@ processing fixr:message  <xsl:value-of select="@name"/>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
+	<!-- datatypes are mapped to the json schema types -->
 	<xsl:template name="datatype">
 		<xsl:param name="id"/>
 		<xsl:variable name="fieldType" select="/fixr:repository/fixr:fields/fixr:field[@id=$id]/@type"/>
@@ -229,10 +237,14 @@ processing fixr:message  <xsl:value-of select="@name"/>
 		<xsl:apply-templates select="/fixr:repository/fixr:datatypes/fixr:datatype[@name=$type]/fixr:mappedDatatype[@standard='JSON']/@*"/> 
 	</xsl:template>
 	<xsl:template match="@base">
+			<!-- if the schema is intended to by used for a java binding via jsonschematopojo the Java Type can be specified
+			     BigDecimal is used for number -->
 			<xsl:if test="fn:current()='number' and $javaPackageName">"existingJavaType" : "java.math.BigDecimal",</xsl:if>
 			"type": "<xsl:value-of select="fn:current()"/>"
 	</xsl:template>
 	<xsl:template match="@parameter">,
+			<!-- if parameter contains "format":"date-time" then map the java type to java LocalDateTime, this is flawed as it can also be zoned time for FIX datatype TZTimestamp -->
+			<xsl:if test="fn:current()='&quot;format&quot;: &quot;date-time&quot;' and $javaPackageName">"existingJavaType" : "java.time.LocalDateTime",</xsl:if>
 			<xsl:value-of select="fn:current()"/>
 	</xsl:template>
 	<xsl:template match="@minInclusive">,
@@ -253,6 +265,7 @@ processing fixr:message  <xsl:value-of select="@name"/>
 	<xsl:template match="@implMaxOccurs">
 			"maxItems": <xsl:value-of select="fn:current()"/>,
 	</xsl:template>
+	<!-- enum template is used for codesets  -->
 	<xsl:template name="enum">
 		<xsl:param name="id"/>
 		<xsl:variable name="fieldType" select="/fixr:repository/fixr:fields/fixr:field[@id=$id]/@type"/>
