@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ig.orchestrations</groupId>
 	<artifactId>parent</artifactId>
-	<version>${revision}</version>
+	<version>0.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>Parent project for IG Group Orchestra implementations</description>
@@ -38,7 +38,6 @@
 	</modules>
 
 	<properties>
-		<revision>0.1.0-SNAPSHOT</revision>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<docgen.version>1.4.0-RC5-SNAPSHOT</docgen.version>
