@@ -244,7 +244,7 @@ processing fixr:message  <xsl:value-of select="@name"/>
 	</xsl:template>
 	<xsl:template match="@parameter">,
 			<!-- if parameter contains "format":"date-time" then map the java type to java LocalDateTime, this is flawed as it can also be zoned time for FIX datatype TZTimestamp -->
-			<xsl:if test="fn:current()='&quot;format&quot;: &quot;date-time&quot;' and $javaPackageName">"existingJavaType" : "java.time.LocalDateTime",</xsl:if>
+<!-- 			<xsl:if test="fn:current()='&quot;format&quot;: &quot;date-time&quot;' and $javaPackageName">"existingJavaType" : "java.time.LocalDateTime",</xsl:if> -->
 			<xsl:value-of select="fn:current()"/>
 	</xsl:template>
 	<xsl:template match="@minInclusive">,
