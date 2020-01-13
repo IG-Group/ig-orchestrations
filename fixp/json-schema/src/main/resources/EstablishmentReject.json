@@ -1,0 +1,23 @@
+{
+  "type" : "object",
+  "id" : "EstablishmentReject",
+  "properties" : {
+    "RequestTimestamp" : {
+      "type" : "integer"
+    },
+    "SessionId" : {
+      "type" : "string",
+      "format" : "uuid"
+    },
+    "Code" : {
+      "type" : "string",
+      "enum" : [ "Unnegotiated", "AlreadyEstablished", "SessionBlocked", "KeepaliveInterval", "Credentials", "Unspecified" ]
+    },
+    "Reason" : {
+      "type" : "string"
+    },
+    "MessageType" : {
+      "type" : "string"
+    }
+  }
+}

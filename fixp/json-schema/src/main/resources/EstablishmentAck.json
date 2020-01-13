@@ -1,0 +1,19 @@
+{
+  "type" : "object",
+  "id" : "EstablishmentAck",
+  "properties" : {
+    "KeepaliveInterval" : {
+      "type" : "integer"
+    },
+    "RequestTimestamp" : {
+      "type" : "integer"
+    },
+    "SessionId" : {
+      "type" : "string",
+      "format" : "uuid"
+    },
+    "MessageType" : {
+      "type" : "string"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type" : "object",
+  "id" : "Terminate",
+  "properties" : {
+    "SessionId" : {
+      "type" : "string",
+      "format" : "uuid"
+    },
+    "Code" : {
+      "type" : "string",
+      "enum" : [ "Finished", "UnspecifiedError", "ReRequestOutOfBounds", "ReRequestInProgress" ]
+    },
+    "Reason" : {
+      "type" : "string"
+    },
+    "MessageType" : {
+      "type" : "string"
+    }
+  }
+}

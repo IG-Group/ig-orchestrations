@@ -1,0 +1,23 @@
+{
+  "type" : "object",
+  "id" : "NegotiationReject",
+  "properties" : {
+    "Timestamp" : {
+      "type" : "integer"
+    },
+    "SessionId" : {
+      "type" : "string",
+      "format" : "uuid"
+    },
+    "Code" : {
+      "type" : "string",
+      "enum" : [ "Credentials", "Unspecified", "FlowTypeNotSupported", "DuplicateId" ]
+    },
+    "Reason" : {
+      "type" : "string"
+    },
+    "MessageType" : {
+      "type" : "string"
+    }
+  }
+}

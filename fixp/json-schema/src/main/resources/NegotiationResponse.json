@@ -1,0 +1,23 @@
+{
+  "type" : "object",
+  "id" : "NegotiationResponse",
+  "properties" : {
+    "RequestTimestamp" : {
+      "type" : "integer"
+    },
+    "ServerFlow" : {
+      "type" : "string",
+      "enum" : [ "Recoverable", "Unsequenced", "Idempotent", "None" ]
+    },
+    "SessionId" : {
+      "type" : "string",
+      "format" : "uuid"
+    },
+    "Credentials" : {
+      "type" : "any"
+    },
+    "MessageType" : {
+      "type" : "string"
+    }
+  }
+}

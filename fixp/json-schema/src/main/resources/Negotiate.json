@@ -1,0 +1,32 @@
+{
+  "type" : "object",
+  "id" : "Negotiate",
+  "properties" : {
+    "Timestamp" : {
+      "type" : "integer"
+    },
+    "SessionId" : {
+      "type" : "string",
+      "format" : "uuid"
+    },
+    "Credentials" : {
+      "type" : "object",
+      "id" : "IgExtensionCredentials",
+      "properties" : {
+        "CredentialsType" : {
+          "type" : "string"
+        },
+        "Token" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ClientFlow" : {
+      "type" : "string",
+      "enum" : [ "Recoverable", "Unsequenced", "Idempotent", "None" ]
+    },
+    "MessageType" : {
+      "type" : "string"
+    }
+  }
+}
