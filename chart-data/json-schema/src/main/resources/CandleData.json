@@ -1,0 +1,36 @@
+{
+  "type" : "object",
+  "id" : "CandleData",
+  "properties" : {
+    "StartDate" : {
+      "type" : "string"
+    },
+    "EndDate" : {
+      "type" : "string"
+    },
+    "First" : {
+      "type" : "object",
+      "id" : "CandlePrice",
+      "properties" : {
+        "Bid" : {
+          "type" : "number"
+        },
+        "Offer" : {
+          "type" : "number"
+        }
+      }
+    },
+    "Last" : {
+      "type" : "object",
+      "$ref" : "./CandlePrice.json"
+    },
+    "High" : {
+      "type" : "object",
+      "$ref" : "./CandlePrice.json"
+    },
+    "Low" : {
+      "type" : "object",
+      "$ref" : "./CandlePrice.json"
+    }
+  }
+}

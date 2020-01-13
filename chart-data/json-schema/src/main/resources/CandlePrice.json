@@ -1,0 +1,12 @@
+{
+  "type" : "object",
+  "id" : "CandlePrice",
+  "properties" : {
+    "Bid" : {
+      "type" : "number"
+    },
+    "Offer" : {
+      "type" : "number"
+    }
+  }
+}

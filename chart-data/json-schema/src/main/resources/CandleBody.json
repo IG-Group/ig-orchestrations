@@ -1,0 +1,86 @@
+{
+  "type" : "object",
+  "id" : "CandleBody",
+  "properties" : {
+    "MsgType" : {
+      "type" : "string"
+    },
+    "ApplVerID" : {
+      "type" : "string",
+      "enum" : [ "FIX27", "FIX30", "FIX40", "FIX41", "FIX42", "FIX43", "FIX44", "FIX50", "FIX50SP1", "FIX50SP2" ]
+    },
+    "CstmApplVerID" : {
+      "type" : "string"
+    },
+    "ReqID" : {
+      "type" : "string"
+    },
+    "Symbol" : {
+      "type" : "string"
+    },
+    "Interval" : {
+      "type" : "string",
+      "enum" : [ "HOUR", "DAY", "TICK" ]
+    },
+    "CandleData" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "id" : "CandleData",
+        "properties" : {
+          "StartDate" : {
+            "type" : "string"
+          },
+          "EndDate" : {
+            "type" : "string"
+          },
+          "First" : {
+            "type" : "object",
+            "id" : "CandlePrice",
+            "properties" : {
+              "Bid" : {
+                "type" : "number"
+              },
+              "Offer" : {
+                "type" : "number"
+              }
+            }
+          },
+          "Last" : {
+            "type" : "object",
+            "$ref" : "./CandlePrice.json"
+          },
+          "High" : {
+            "type" : "object",
+            "$ref" : "./CandlePrice.json"
+          },
+          "Low" : {
+            "type" : "object",
+            "$ref" : "./CandlePrice.json"
+          }
+        }
+      }
+    },
+    "LastMessage" : {
+      "type" : "boolean"
+    },
+    "Allowance" : {
+      "type" : "object",
+      "id" : "Allowance",
+      "properties" : {
+        "RemainingAllowance" : {
+          "type" : "integer"
+        },
+        "TotalAllowance" : {
+          "type" : "integer"
+        },
+        "AllowanceExpiry" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "SendingTime" : {
+      "type" : "string"
+    }
+  }
+}

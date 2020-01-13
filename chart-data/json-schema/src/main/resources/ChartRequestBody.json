@@ -1,0 +1,22 @@
+{
+  "type" : "object",
+  "id" : "ChartRequestBody",
+  "properties" : {
+    "NoRelatedSym" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "id" : "Symbol",
+        "properties" : {
+          "Symbol" : {
+            "type" : "string",
+            "required" : true
+          }
+        }
+      }
+    },
+    "QuoteReqID" : {
+      "type" : "string"
+    }
+  }
+}

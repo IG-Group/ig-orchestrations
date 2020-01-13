@@ -1,0 +1,35 @@
+{
+  "type" : "object",
+  "id" : "ChartSnapshotRequestBody",
+  "properties" : {
+    "MsgType" : {
+      "type" : "string"
+    },
+    "ApplVerID" : {
+      "type" : "string",
+      "enum" : [ "FIX27", "FIX30", "FIX40", "FIX41", "FIX42", "FIX43", "FIX44", "FIX50", "FIX50SP1", "FIX50SP2" ]
+    },
+    "CstmApplVerID" : {
+      "type" : "string"
+    },
+    "ReqID" : {
+      "type" : "string"
+    },
+    "Symbol" : {
+      "type" : "string"
+    },
+    "Interval" : {
+      "type" : "string",
+      "enum" : [ "HOUR", "DAY", "TICK" ]
+    },
+    "StartDate" : {
+      "type" : "string"
+    },
+    "EndDate" : {
+      "type" : "string"
+    },
+    "SendingTime" : {
+      "type" : "string"
+    }
+  }
+}
