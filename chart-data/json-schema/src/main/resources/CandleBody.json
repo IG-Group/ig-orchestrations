@@ -36,15 +36,7 @@
           },
           "First" : {
             "type" : "object",
-            "id" : "CandlePrice",
-            "properties" : {
-              "Bid" : {
-                "type" : "number"
-              },
-              "Offer" : {
-                "type" : "number"
-              }
-            }
+            "$ref" : "./CandlePrice.json"
           },
           "Last" : {
             "type" : "object",
