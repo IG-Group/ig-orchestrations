@@ -36,6 +36,8 @@
 
 	<modules>
 		<module>ig-us-rfed</module>
+		<module>fixp</module>
+		<module>chart-data</module>
 	</modules>
 
 	<properties>
