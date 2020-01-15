@@ -64,6 +64,7 @@
                  <configuration>
                      <sourceDirectory>${project.build.directory}/json-schema</sourceDirectory>
                      <targetPackage>${target-package}</targetPackage>
+                     <useBigDecimals>true</useBigDecimals>
                  </configuration>
                  <executions>
 	                 <execution>

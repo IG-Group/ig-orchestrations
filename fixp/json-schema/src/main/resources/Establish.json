@@ -2,15 +2,15 @@
   "type" : "object",
   "id" : "Establish",
   "properties" : {
+    "SessionId" : {
+      "type" : "string",
+      "format" : "uuid"
+    },
     "Timestamp" : {
       "type" : "integer"
     },
     "KeepaliveInterval" : {
       "type" : "integer"
-    },
-    "SessionId" : {
-      "type" : "string",
-      "format" : "uuid"
     },
     "MessageType" : {
       "type" : "string"

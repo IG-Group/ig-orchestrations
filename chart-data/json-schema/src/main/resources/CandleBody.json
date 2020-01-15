@@ -19,16 +19,8 @@
       "type" : "string"
     },
     "Interval" : {
-      "type" : "string",
-      "enum" : [ "HOUR", "DAY", "TICK" ]
-    },
-    "CandleData" : {
-      "type" : "array",
-      "items" : {
-          "type" : "object",
-          "$ref" : "./CandleData.json"
-        }
-      }
+		"$ref" : "./Interval.json",
+		"comment" : "for some reason this gets inlined. I do not know why"
     },
     "LastMessage" : {
       "type" : "boolean"
@@ -50,6 +42,16 @@
     },
     "SendingTime" : {
       "type" : "string"
+    },
+    "CandleData" : {
+	  "comment" : "For some reason items after this get ommitted when building the sources. I moved this to the end to stop it from affecting the code",
+
+      "type" : "array",
+      "items" : {
+          "type" : "object",
+          "$ref" : "./CandleData.json"
+        }
+      }
     }
   }
 }
