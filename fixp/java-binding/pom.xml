@@ -64,6 +64,8 @@
                  <configuration>
                      <sourceDirectory>${project.build.directory}/json-schema</sourceDirectory>
                      <targetPackage>${target-package}</targetPackage>
+                     <includeConstructors>true</includeConstructors>
+                     <useLongIntegers>true</useLongIntegers>
                  </configuration>
                  <executions>
 	                 <execution>

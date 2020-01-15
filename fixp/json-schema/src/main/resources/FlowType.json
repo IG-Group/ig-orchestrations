@@ -1,0 +1,6 @@
+{
+	"id":"FlowType",
+    "type" : "string",
+	"javaType" : "com.ig.orchestrations.fixp.FlowType",
+    "enum" : [ "Recoverable", "Unsequenced", "Idempotent", "None" ]
+}

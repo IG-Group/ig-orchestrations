@@ -2,12 +2,12 @@
   "type" : "object",
   "id" : "EstablishmentReject",
   "properties" : {
-    "RequestTimestamp" : {
-      "type" : "integer"
-    },
     "SessionId" : {
       "type" : "string",
       "format" : "uuid"
+    },
+    "RequestTimestamp" : {
+      "type" : "integer"
     },
     "Code" : {
       "type" : "string",
