@@ -1,5 +1,6 @@
 {
 	  "id": "Interval",
       "type" : "string",
+	  "javaType" : "com.ig.orchestrations.chart.data.Interval",
       "enum" : [ "HOUR", "DAY", "TICK" ]
 }
