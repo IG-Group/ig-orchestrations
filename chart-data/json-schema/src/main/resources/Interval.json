@@ -1,0 +1,5 @@
+{
+	  "id": "Interval",
+      "type" : "string",
+      "enum" : [ "HOUR", "DAY", "TICK" ]
+}
