@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.ig.orchestrations</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.1.11-SNAPSHOT</version>
+		<version>0.1.11</version>
 	</parent>
 	<groupId>com.ig.orchestrations.chart.data</groupId>
 	<artifactId>parent</artifactId>
