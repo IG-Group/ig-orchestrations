@@ -6,6 +6,9 @@
 	"type" : "string",
 	"required" : true
     },
+    "Interval" : {
+      "$ref" : "./Interval.json"
+    },
     "QuoteReqID" : {
       "type" : "string"
     }
