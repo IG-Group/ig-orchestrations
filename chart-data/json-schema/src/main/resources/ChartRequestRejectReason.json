@@ -1,0 +1,13 @@
+{
+  "id": "Interval",
+  "type": "string",
+  "javaType": "com.ig.orchestrations.chart.data.ChartRequestRejectReason",
+  "enum": [
+    "UnknownSymbol",
+    "RequestExceedsLimit",
+    "TooLateToEnter",
+    "NotAuthorizedToRequestData",
+    "DuplicateRequest",
+    "Other"
+  ]
+}
