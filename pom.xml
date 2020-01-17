@@ -43,7 +43,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
-		<docgen.version>1.4.0-RC5-SNAPSHOT</docgen.version>
+		<docgen.version>1.4.0-RC5</docgen.version>
 	</properties>
 	<dependencyManagement>
 			<dependencies>

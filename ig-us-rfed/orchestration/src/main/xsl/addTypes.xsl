@@ -68,6 +68,13 @@
       </fixr:documentation>
 						</fixr:annotation>
 					</fixr:fieldRef>
+					<fixr:fieldRef id="451">
+						<fixr:annotation supported="supported">
+							<fixr:documentation supported="supported">
+         Net Change added as IG Customisation
+      </fixr:documentation>
+						</fixr:annotation>
+					</fixr:fieldRef>					
   </xsl:param>
 
   <xsl:param name="addFieldRefsToExecRpt">
