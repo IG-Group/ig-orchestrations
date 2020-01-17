@@ -1,6 +1,6 @@
 {
   "type": "object",
-  "id": "ChartDataResponse",
+  "id": "ChartDataSubscriptionResponse",
   "properties": {
     "MsgType": {
       "type": "string"
