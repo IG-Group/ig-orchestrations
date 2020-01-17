@@ -1,6 +1,6 @@
 {
   "type" : "object",
-  "id" : "ChartRequestBody",
+  "id" : "HistoricCandleRequest",
   "properties" : {
     "MsgType" : {
       "type" : "string"
@@ -9,20 +9,25 @@
       "type" : "string",
       "enum" : [ "FIX27", "FIX30", "FIX40", "FIX41", "FIX42", "FIX43", "FIX44", "FIX50", "FIX50SP1", "FIX50SP2" ]
     },
-	"SendingTime" : {
-      "type" : "string"
-    },
     "CstmApplVerID" : {
       "type" : "string"
     },
+    "ReqID" : {
+      "type" : "string"
+    },
     "Symbol" : {
-	"type" : "string",
-	"required" : true
+      "type" : "string"
     },
     "Interval" : {
-      "$ref" : "./Interval.json"
+		"$ref" : "./Interval.json"
     },
-    "QuoteReqID" : {
+    "StartDate" : {
+      "type" : "string"
+    },
+    "EndDate" : {
+      "type" : "string"
+    },
+    "SendingTime" : {
       "type" : "string"
     }
   }
