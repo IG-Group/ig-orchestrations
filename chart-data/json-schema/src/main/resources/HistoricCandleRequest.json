@@ -1,6 +1,6 @@
 {
   "type" : "object",
-  "id" : "ChartSnapshotRequestBody",
+  "id" : "HistoricCandleRequest",
   "properties" : {
     "MsgType" : {
       "type" : "string"
@@ -19,8 +19,7 @@
       "type" : "string"
     },
     "Interval" : {
-      "type" : "string",
-      "enum" : [ "HOUR", "DAY", "TICK" ]
+		"$ref" : "./Interval.json"
     },
     "StartDate" : {
       "type" : "string"

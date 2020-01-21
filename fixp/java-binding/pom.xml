@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.ig.orchestrations.fixp</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.1.8-SNAPSHOT</version>
+		<version>0.1.15-SNAPSHOT</version>
 	</parent>	
 	<artifactId>fixp-java-binding</artifactId>
 	<packaging>jar</packaging>
@@ -64,6 +64,8 @@
                  <configuration>
                      <sourceDirectory>${project.build.directory}/json-schema</sourceDirectory>
                      <targetPackage>${target-package}</targetPackage>
+                     <includeConstructors>true</includeConstructors>
+                     <useLongIntegers>true</useLongIntegers>
                  </configuration>
                  <executions>
 	                 <execution>

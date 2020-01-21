@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ig.orchestrations</groupId>
 	<artifactId>parent</artifactId>
-	<version>0.1.8-SNAPSHOT</version>
+	<version>0.1.15-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>Parent project for IG Group Orchestra implementations</description>
@@ -43,7 +43,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
-		<docgen.version>1.4.0-RC5-SNAPSHOT</docgen.version>
+		<docgen.version>1.4.0-RC5</docgen.version>
 	</properties>
 	<dependencyManagement>
 			<dependencies>
@@ -55,9 +55,7 @@
 			<dependency>
 				<groupId>io.fixprotocol.orchestrations</groupId>
 				<artifactId>fix-standard</artifactId>
-				<classifier>repository</classifier>
-				<version>1.3.0-RC4</version>
-				<type>zip</type>		
+				<version>1.4.1-RC5-SNAPSHOT</version>
 			</dependency>
 	        <dependency>
 	            <groupId>org.apache.commons</groupId>

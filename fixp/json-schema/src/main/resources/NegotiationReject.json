@@ -2,12 +2,12 @@
   "type" : "object",
   "id" : "NegotiationReject",
   "properties" : {
-    "Timestamp" : {
-      "type" : "integer"
-    },
     "SessionId" : {
       "type" : "string",
       "format" : "uuid"
+    },
+    "Timestamp" : {
+      "type" : "integer"
     },
     "Code" : {
       "type" : "string",

@@ -2,28 +2,18 @@
   "type" : "object",
   "id" : "Negotiate",
   "properties" : {
-    "Timestamp" : {
-      "type" : "integer"
-    },
     "SessionId" : {
       "type" : "string",
       "format" : "uuid"
     },
-    "Credentials" : {
-      "type" : "object",
-      "id" : "IgExtensionCredentials",
-      "properties" : {
-        "CredentialsType" : {
-          "type" : "string"
-        },
-        "Token" : {
-          "type" : "string"
-        }
-      }
+    "Timestamp" : {
+      "type" : "integer"
     },
     "ClientFlow" : {
-      "type" : "string",
-      "enum" : [ "Recoverable", "Unsequenced", "Idempotent", "None" ]
+      "$ref" : "./FlowType.json"
+    },
+    "Credentials" : {
+		"$ref":"./IgExtensionCredentials.json"
     },
     "MessageType" : {
       "type" : "string"

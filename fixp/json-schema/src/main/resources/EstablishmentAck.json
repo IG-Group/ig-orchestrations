@@ -2,15 +2,15 @@
   "type" : "object",
   "id" : "EstablishmentAck",
   "properties" : {
-    "KeepaliveInterval" : {
-      "type" : "integer"
+    "SessionId" : {
+      "type" : "string",
+      "format" : "uuid"
     },
     "RequestTimestamp" : {
       "type" : "integer"
     },
-    "SessionId" : {
-      "type" : "string",
-      "format" : "uuid"
+    "KeepaliveInterval" : {
+      "type" : "integer"
     },
     "MessageType" : {
       "type" : "string"

@@ -2,16 +2,15 @@
   "type" : "object",
   "id" : "NegotiationResponse",
   "properties" : {
+    "SessionId" : {
+      "type" : "string",
+      "format" : "uuid"
+    },
     "RequestTimestamp" : {
       "type" : "integer"
     },
     "ServerFlow" : {
-      "type" : "string",
-      "enum" : [ "Recoverable", "Unsequenced", "Idempotent", "None" ]
-    },
-    "SessionId" : {
-      "type" : "string",
-      "format" : "uuid"
+       "$ref" : "./FlowType.json"
     },
     "Credentials" : {
       "type" : "any"

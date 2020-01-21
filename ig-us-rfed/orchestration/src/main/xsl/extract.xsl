@@ -272,12 +272,14 @@
 <!-- @id='537'  QuoteType -->
 <!-- @id='132'  BidPx -->
 <!-- @id='132'  OfferPx -->
+<!-- @id='451'  NetChgPrevDay -->
 <xsl:template match="fixr:message[@msgType='S']/fixr:structure/fixr:fieldRef[not(@id='131'  or 
                                                                                  @id='390'  or 
                                                                                  @id='1867' or
                                                                                  @id='537'  or
                                                                                  @id='132'  or
-                                                                                 @id='133' )]"/>
+                                                                                 @id='133' or
+                                                                                 @id='451')]"/>
 <!-- Quote - only following components -->
 <xsl:template match="fixr:message[@msgType='S']/fixr:structure/fixr:componentRef[not(@id='1024' or 
                                                                                      @id='1003')]"/>
