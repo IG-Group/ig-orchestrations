@@ -14,8 +14,6 @@
 		<dependency>
 				<groupId>io.fixprotocol.orchestrations</groupId>
 				<artifactId>fix-standard</artifactId>
-				<classifier>repository</classifier>
-				<type>zip</type>		
 		</dependency>
 	</dependencies>
 	<build>
@@ -35,8 +33,7 @@
                                 <artifactItem>
 									<groupId>io.fixprotocol.orchestrations</groupId>
 									<artifactId>fix-standard</artifactId>
-									<classifier>repository</classifier>
-									<type>zip</type>
+									<includes>**/Fix*.xml</includes>
                                     <outputDirectory>${project.build.directory}/dependency/repository</outputDirectory>
                                 </artifactItem>            
                             </artifactItems>
