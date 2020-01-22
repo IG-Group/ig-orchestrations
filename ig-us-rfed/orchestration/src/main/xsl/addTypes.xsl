@@ -77,6 +77,18 @@
 					</fixr:fieldRef>					
   </xsl:param>
 
+
+	<xsl:param name="addFieldRefsToQuoteRequest">
+		<fixr:fieldRef id="263">
+			<fixr:annotation supported="supported">
+				<fixr:documentation supported="supported">
+					SubscciptionRequestType added as IG customisation
+				</fixr:documentation>
+			</fixr:annotation>
+		</fixr:fieldRef>
+	</xsl:param>
+
+
   <xsl:param name="addFieldRefsToExecRpt">
 					<fixr:fieldRef id="1080" added="FIX.4.4">
 						<fixr:annotation supported="supported">
@@ -125,7 +137,13 @@
 	<xsl:copy-of select="$addFieldRefsToQuote"/>
  </xsl:template>
 
- <xsl:template match="fixr:messages/fixr:message[@msgType='8']/fixr:structure/fixr:fieldRef[position()=last()]">	
+ <xsl:template match="fixr:messages/fixr:message[@msgType='R']/fixr:structure/fixr:fieldRef[position()=last()]">
+	<xsl:call-template name="identity"/>
+	<xsl:copy-of select="$addFieldRefsToQuoteRequest"/>
+ </xsl:template>
+
+
+ <xsl:template match="fixr:messages/fixr:message[@msgType='8']/fixr:structure/fixr:fieldRef[position()=last()]">
 	<xsl:call-template name="identity"/>
 	<xsl:copy-of select="$addFieldRefsToExecRpt"/>
  </xsl:template>

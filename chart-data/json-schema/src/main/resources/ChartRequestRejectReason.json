@@ -8,6 +8,7 @@
     "TooLateToEnter",
     "NotAuthorizedToRequestData",
     "DuplicateRequest",
+    "UnsupportedSubscriptionRequestType",
     "Other"
   ]
 }

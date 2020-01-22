@@ -32,11 +32,11 @@
     "Symbol": {
       "type": "string"
     },
-    "ChartRequestRejectReason":{
+    "ChartRequestRejectReason": {
       "type": "./ChartRequestRejectReason.json"
+    },
+    "Text": {
+      "type": "string"
     }
-
-
-
   }
 }
