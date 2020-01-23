@@ -82,7 +82,7 @@
 		<fixr:fieldRef id="263">
 			<fixr:annotation supported="supported">
 				<fixr:documentation supported="supported">
-					SubscciptionRequestType added as IG customisation
+					SubscriptionRequestType added as IG customisation
 				</fixr:documentation>
 			</fixr:annotation>
 		</fixr:fieldRef>
