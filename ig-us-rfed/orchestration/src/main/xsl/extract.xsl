@@ -342,13 +342,13 @@
 <xsl:template match="fixr:message[@msgType='x']/fixr:structure/fixr:groupRef"/>
 <xsl:template match="fixr:message[@msgType='x']/fixr:structure/fixr:componentRef[not(@id='1024' or
                                                                                      @id='1003')]"/>
-
 <!-- Security List -->
 <xsl:template match="fixr:message[@msgType='y']/fixr:structure/fixr:fieldRef[not(@id='320' or
                                                                                  @id='322' or
                                                                                  @id='560' or
-                                                                                 @id='893' or
-                                                                                 @id='58')]"/>
+                                                                                 @id='393' or
+                                                                                 @id='893')]"/>
+
 <xsl:template match="fixr:message[@msgType='y']/fixr:structure/fixr:groupRef[not(@id='2055')]"/>
 <xsl:template match="fixr:message[@msgType='y']/fixr:structure/fixr:componentRef[not(@id='1024')]"/>
 
