@@ -30,6 +30,14 @@
       "type": "string",
       "required": true
     },
+    "SecurityID": {
+      "type": "string",
+      "required": true
+    },
+    "SecurityIDSource": {
+      "$ref" : "../fixp-schema/fields/SecurityIDSource.json",
+      "required": true
+    },
     "Interval": {
       "$ref": "./Interval.json"
     },
@@ -37,7 +45,7 @@
       "type": "string"
     },
     "SubscriptionRequestType": {
-      "$ref": "./ChartSubscriptionRequestType.json"
+      "$ref" : "../fixp-schema/fields/SubscriptionRequestType.json"
     }
   }
 }
