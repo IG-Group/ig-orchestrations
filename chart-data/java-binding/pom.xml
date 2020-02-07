@@ -20,6 +20,15 @@
 				<version>${project.version}</version>
 				<type>zip</type>		
 			</dependency>
+
+			<dependency>
+				<groupId>com.ig.orchestrations.us.rfed</groupId>
+				<artifactId>json-schema</artifactId>
+				<classifier>jsonschema</classifier>
+				<version>${project.version}</version>
+				<type>zip</type>
+			</dependency>
+
 		</dependencies>			
 	</dependencyManagement>
 	<dependencies>
@@ -52,7 +61,14 @@
 									<classifier>jsonschema</classifier>
 									<type>zip</type>
 	                                <outputDirectory>${project.build.directory}/json-schema</outputDirectory>
-	                            </artifactItem>            
+	                            </artifactItem>
+								<artifactItem>
+									<groupId>com.ig.orchestrations.us.rfed</groupId>
+									<artifactId>json-schema</artifactId>
+									<classifier>jsonschema</classifier>
+									<type>zip</type>
+									<outputDirectory>${project.build.directory}/fixp-schema</outputDirectory>
+								</artifactItem>
 	                        </artifactItems>
 	                    </configuration>
 	                </execution>
