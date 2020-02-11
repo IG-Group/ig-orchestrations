@@ -9,12 +9,16 @@
 </xsl:template>
 
 <xsl:template match="fixr:message[not(@msgType='8' or
+                                      @msgType='9' or
                                       @msgType='S' or 
                                       @msgType='R' or
                                       @msgType='AG' or
                                       @msgType='F' or
                                       @msgType='G' or 
                                       @msgType='D' or
+                                      @msgType='E' or
+                                      @msgType='j' or
+                                      @msgType='K' or
                                       @msgType='x' or
                                       @msgType='y' or                                       
                                       @msgType='V' or
@@ -22,21 +26,13 @@
                                       @msgType='X' or
                                       @msgType='Y') ]" />
                                   <!--@msgType='Z' or -->
- <!--                                 @msgType='9' or
-                                      @msgType='E' or
-                                      @msgType='F' or
-                                      @msgType='G' or
-                                      @msgType='H' or
-                                      @msgType='K' or
+ <!--                                 @msgType='H' or
                                       @msgType='Q' or
                                       @msgType='c' or
                                       @msgType='d' or
                                       @msgType='e' or
                                       @msgType='f' or
-                                      @msgType='j' or
-                                      @msgType='y' or
                                       @msgType='AF' or
-
                                       @msgType='AN' or
                                       @msgType='AO' or
                                       @msgType='AP' or
@@ -179,6 +175,7 @@
  		                                                                             @id='1003' or
  		                                                                             @id='1011' or
  		                                                                             @id='1021')]" />
+
 <!-- exclude fields from ExecRpt -->
 <xsl:template match="fixr:message[@msgType='8']/fixr:structure/fixr:fieldRef[not(@id='37' or
                                                                                  @id='198' or
@@ -221,6 +218,19 @@
                                                                                  @id='1385' or
                                                                                  @id='1080' or
                                                                                  @id='1081')]"/>
+
+<!-- Order Cancel Reject -->
+<xsl:template match="fixr:message[@msgType='9']/fixr:structure/fixr:groupRef"/>
+<xsl:template match="fixr:message[@msgType='9']/fixr:structure/fixr:componentRef[not(@id='1024')]"/>
+<xsl:template match="fixr:message[@msgType='9']/fixr:structure/fixr:fieldRef[not(@id='37' or
+                                                                                 @id='11' or
+                                                                                 @id='41' or
+                                                                                 @id='39' or
+                                                                                 @id='1' or
+                                                                                 @id='60' or
+                                                                                 @id='434' or
+                                                                                 @id='102' or
+                                                                                 @id='58')]"/>
 
 <!-- OCR -->
 <xsl:template match="fixr:message[@msgType='F']/fixr:structure/fixr:groupRef"/>
