@@ -47,7 +47,8 @@
                                                         @id='1021' or
                                                         @id='1013')]" />
 <!-- filter out unneeded groups -->
-<xsl:template match="fixr:groups/fixr:group[not(@id='2071' or
+<xsl:template match="fixr:groups/fixr:group[not(@id='1012' or
+												@id='2071' or
                                                 @id='2045' or
                                                 @id='2047' or
                                                 @id='2593' or
@@ -218,6 +219,22 @@
                                                                                  @id='1385' or
                                                                                  @id='1080' or
                                                                                  @id='1081')]"/>
+
+<!-- Business Message Reject -->
+<xsl:template match="fixr:message[@msgType='j']/fixr:structure/fixr:groupRef"/>
+<xsl:template match="fixr:message[@msgType='j']/fixr:structure/fixr:componentRef[not(@id='1024')]"/>
+<xsl:template match="fixr:message[@msgType='j']/fixr:structure/fixr:fieldRef[not(@id='372' or
+                                                                                 @id='379' or
+                                                                                 @id='380' or
+                                                                                 @id='58')]"/>
+
+<!-- List Cancel Request -->
+<xsl:template match="fixr:message[@msgType='K']/fixr:structure/fixr:groupRef[not(@id='1012')]"/>
+<xsl:template match="fixr:message[@msgType='K']/fixr:structure/fixr:componentRef[not(@id='1024')]"/>
+<xsl:template match="fixr:message[@msgType='K']/fixr:structure/fixr:fieldRef[not(@id='66' or
+                                                                                 @id='1' or
+                                                                                 @id='60' or
+                                                                                 @id='58')]"/>
 
 <!-- Order Cancel Reject -->
 <xsl:template match="fixr:message[@msgType='9']/fixr:structure/fixr:groupRef"/>

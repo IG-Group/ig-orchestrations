@@ -106,6 +106,16 @@
 					</fixr:fieldRef>
   </xsl:param>
   
+  	<xsl:param name="addFieldRefsToListCancel">
+		<fixr:fieldRef id="1">
+			<fixr:annotation supported="supported">
+				<fixr:documentation supported="supported">
+					Account added as IG customisation
+				</fixr:documentation>
+			</fixr:annotation>
+		</fixr:fieldRef>
+	</xsl:param>
+  
     <xsl:param name="addOrderAttributeGroupRef">
 					<fixr:groupRef id="2152" added="FIX.5.0SP2">
 						<fixr:annotation>
@@ -115,7 +125,7 @@
 						</fixr:annotation>
 				    </fixr:groupRef>
   </xsl:param>
-
+  
  <xsl:template match="node()|@*" name="identity">
  	<xsl:copy>
     	<xsl:apply-templates select="node()|@*"/>
@@ -137,6 +147,11 @@
 	<xsl:copy-of select="$addFieldRefsToQuote"/>
  </xsl:template>
 
+ <xsl:template match="fixr:messages/fixr:message[@msgType='K']/fixr:structure/fixr:fieldRef[position()=last()]">	
+	<xsl:call-template name="identity"/>
+	<xsl:copy-of select="$addFieldRefsToListCancel"/>
+ </xsl:template>
+
  <xsl:template match="fixr:messages/fixr:message[@msgType='R']/fixr:structure/fixr:fieldRef[position()=last()]">
 	<xsl:call-template name="identity"/>
 	<xsl:copy-of select="$addFieldRefsToQuoteRequest"/>
@@ -152,7 +167,7 @@
 	<xsl:call-template name="identity"/>
 	<xsl:copy-of select="$addOrderAttributeGroupRef"/>
  </xsl:template>
-
+ 
 <xsl:template match="fixr:components/fixr:component[@id='1003']/fixr:fieldRef[@id='55']">
 	<xsl:copy>
 		<xsl:attribute name="presence">
