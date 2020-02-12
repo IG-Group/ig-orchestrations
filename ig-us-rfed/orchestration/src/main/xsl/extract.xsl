@@ -19,6 +19,7 @@
                                       @msgType='E' or
                                       @msgType='j' or
                                       @msgType='K' or
+                                      @msgType='N' or
                                       @msgType='x' or
                                       @msgType='y' or                                       
                                       @msgType='V' or
@@ -56,6 +57,7 @@
                                                 @id='2031' or
                                                 @id='2032' or                                                
                                                 @id='2033' or
+                                                @id='2037' or
                                                 @id='2022' or
                                                 @id='2055' or
                                                 @id='2066' or
@@ -99,6 +101,18 @@
                                                                             @id='1070' or
                                                                             @id='117'
                                                                         )]" />
+
+<!-- filter out unneeded members of OrderListStatGrp -->
+<xsl:template match="fixr:groups/fixr:group[(@id='2037')]/fixr:groupRef" />
+<xsl:template match="fixr:groups/fixr:group[(@id='2037')]/fixr:componentRef" />
+<xsl:template match="fixr:groups/fixr:group[(@id='2037')]/fixr:fieldRef[not(@id='11' or
+																		    @id='14' or
+                                                                            @id='39' or
+                                                                            @id='151' or
+                                                                            @id='84' or
+                                                                            @id='6' or
+                                                                            @id='58'
+                                                                        )]" />                                                                        
 
 <!-- filter out unneeded members of QuotReqGrp or QuotReqRjctGrp -->
 <xsl:template match="fixr:groups/fixr:group[(@id='2045' or @id='2047')]/fixr:componentRef[not(@id='1003')]" />
@@ -235,6 +249,18 @@
                                                                                  @id='1' or
                                                                                  @id='60' or
                                                                                  @id='58')]"/>
+                                                                                 
+<!-- List Status -->
+<xsl:template match="fixr:message[@msgType='N']/fixr:structure/fixr:groupRef[not(@id='2037')]"/>
+<xsl:template match="fixr:message[@msgType='N']/fixr:structure/fixr:componentRef[not(@id='1024')]"/>
+<xsl:template match="fixr:message[@msgType='N']/fixr:structure/fixr:fieldRef[not(@id='66' or
+																				 @id='429' or
+																				 @id='82' or
+																				 @id='431' or
+																				 @id='83' or
+																				 @id='444' or
+                                                                                 @id='60' or
+																				 @id='68')]"/>                                                                                 
 
 <!-- Order Cancel Reject -->
 <xsl:template match="fixr:message[@msgType='9']/fixr:structure/fixr:groupRef"/>
