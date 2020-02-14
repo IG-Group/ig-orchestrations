@@ -101,7 +101,7 @@
 				</fixr:annotation>
 				</xsl:when>
 				<xsl:when test="@name='MonthYear'">
-				<fixr:mappedDatatype standard="JSON" base="xs:string" builtin="0" pattern="\d{4}(0|1)\d([0-3wW]\d)?"/>
+				<fixr:mappedDatatype standard="JSON" base="string" builtin="0" pattern="\d{4}(0|1)\d([0-3wW]\d)?"/>
 				</xsl:when>	
 				<xsl:when test="@name='UTCTimestamp'">
 				<fixr:mappedDatatype standard="JSON" base="string" parameter='"format": "date-time"' builtin="1"/>
