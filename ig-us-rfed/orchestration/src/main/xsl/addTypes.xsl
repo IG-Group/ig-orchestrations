@@ -129,6 +129,16 @@
   	<xsl:param name="addOrderAttributeGroupToGroup">
 					<fixr:groupRef id="2152" added="FIX.5.0SP2"/>
     </xsl:param>
+    
+    <xsl:param name="addClOrdIDtoRefOrderIDSource">
+	    <fixr:code name="ClOrdID" id="1081099" value="C" sort="5" added="IG">
+			<fixr:annotation>
+				<fixr:documentation purpose="SYNOPSIS">
+				         ClOrdID(11)
+				      </fixr:documentation>
+			</fixr:annotation>
+		</fixr:code>
+	</xsl:param>
   
  <xsl:template match="node()|@*" name="identity">
  	<xsl:copy>
@@ -176,6 +186,12 @@
  <xsl:template match="fixr:groups/fixr:group[(@id='2030')]/fixr:componentRef[position()=last()]">	
 	<xsl:call-template name="identity"/>
 	<xsl:copy-of select="$addOrderAttributeGroupToGroup"/>
+ </xsl:template>
+
+<!--  RefOrderIdSource customisation -->
+<xsl:template match="fixr:codeSets/fixr:codeSet[(@id='1081')]/fixr:code[position()=last()]">	
+	<xsl:call-template name="identity"/>
+	<xsl:copy-of select="$addClOrdIDtoRefOrderIDSource"/>
  </xsl:template>
  
 <xsl:template match="fixr:components/fixr:component[@id='1003']/fixr:fieldRef[@id='55']">
