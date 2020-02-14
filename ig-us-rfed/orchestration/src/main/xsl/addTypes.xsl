@@ -124,7 +124,11 @@
 						    </fixr:documentation>
 						</fixr:annotation>
 				    </fixr:groupRef>
-  </xsl:param>
+    </xsl:param>
+    
+  	<xsl:param name="addOrderAttributeGroupToGroup">
+					<fixr:groupRef id="2152" added="FIX.5.0SP2"/>
+    </xsl:param>
   
  <xsl:template match="node()|@*" name="identity">
  	<xsl:copy>
@@ -166,6 +170,12 @@
  <xsl:template match="fixr:messages/fixr:message[(@msgType='D' or @msgType='G' or @msgType='8')]/fixr:structure/fixr:groupRef[position()=last()]">	
 	<xsl:call-template name="identity"/>
 	<xsl:copy-of select="$addOrderAttributeGroupRef"/>
+ </xsl:template>
+ 
+ <!-- adding  OrderAttributeGroup, note that it is placed after last componentRef -->
+ <xsl:template match="fixr:groups/fixr:group[(@id='2030')]/fixr:componentRef[position()=last()]">	
+	<xsl:call-template name="identity"/>
+	<xsl:copy-of select="$addOrderAttributeGroupToGroup"/>
  </xsl:template>
  
 <xsl:template match="fixr:components/fixr:component[@id='1003']/fixr:fieldRef[@id='55']">
