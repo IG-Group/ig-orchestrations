@@ -13,6 +13,7 @@
                                       @msgType='S' or 
                                       @msgType='R' or
                                       @msgType='AG' or
+                                      @msgType='AP' or
                                       @msgType='F' or
                                       @msgType='G' or 
                                       @msgType='D' or
@@ -49,6 +50,8 @@
                                                         @id='1013')]" />
 <!-- filter out unneeded groups -->
 <xsl:template match="fixr:groups/fixr:group[not(@id='1012' or
+                                                @id='1014' or
+                                                @id='1015' or
                                                 @id='1031' or
 												@id='2071' or
                                                 @id='2045' or
@@ -74,7 +77,17 @@
                                                                                 @id='452'
                                                                                 )]" />
 
-<!-- filter out unneeded members of Root Parties Grp -->
+  <xsl:template match="fixr:groups/fixr:group[(@id='1015')]/fixr:groupRef"/>
+  <xsl:template match="fixr:groups/fixr:group[(@id='1015')]/fixr:fieldRef[not(@id='703' or
+																		    @id='704' or
+	                                                                        @id='705' or
+	                                                                        @id='706' or
+	                                                                        @id='20101' or
+	                                                                        @id='20102' or
+	                                                                        @id='20103' )]" />
+
+
+  <!-- filter out unneeded members of Root Parties Grp -->
 <xsl:template match="fixr:groups/fixr:group[(@id='1031')]/fixr:groupRef"/>
 <xsl:template match="fixr:groups/fixr:group[(@id='1031')]/fixr:componentRef[not(@id='1117' or
                                                                                 @id='1118' or
@@ -462,6 +475,47 @@
 <xsl:template match="fixr:message[@msgType='y']/fixr:structure/fixr:groupRef[not(@id='2055')]"/>
 <xsl:template match="fixr:message[@msgType='y']/fixr:structure/fixr:componentRef[not(@id='1024')]"/>
 
+
+
+
+
+<xsl:template match="fixr:message[@msgType='AP']/fixr:structure/fixr:fieldRef[not(@id='2618' or
+                                                                                 @id='721' or
+                                                                                 @id='710' or
+                                                                                 @id='724' or
+                                                                                 @id='727' or
+                                                                                 @id='728' or
+                                                                                 @id='325' or
+                                                                                 @id='715' or
+                                                                                 @id='1' or
+                                                                                 @id='120' or
+                                                                                 @id='1011' or
+                                                                                 @id='15' or
+                                                                                 @id='730' or
+                                                                                 @id='731' or
+                                                                                 @id='58' or
+                                                                                 @id='20101' or
+                                                                                 @id='20102' or
+                                                                                 @id='20103' or
+                                                                                 @id='20104' or
+                                                                                 @id='155' )]"/>
+
+<!-- PositionReport -->
+<!--  parties 1012-->
+<xsl:template match="fixr:message[@msgType='AP']/fixr:structure/fixr:groupRef[not( @id='1012' or
+                                                                                  @id='1014'  or
+                                                                                  @id='1015' )]"/>
+<!-- PositionReport - only following components -->
+<!--
+header 1024
+
+instrument 1003
+
+-->
+<xsl:template match="fixr:message[@msgType='AP']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                 @id='1003' )]"/>
+
+<!--  @id='1012' or-->
 
 </xsl:stylesheet>
 
