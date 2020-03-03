@@ -11,39 +11,36 @@
 	<name>${project.groupId}:${project.artifactId}</name>
 	<packaging>pom</packaging>
 	<dependencies>
-<!-- 		<dependency> -->
-<!-- 				<groupId>io.fixprotocol.orchestrations</groupId> -->
-<!-- 				<artifactId>fix-standard</artifactId> -->
-<!-- 				<classifier>repository</classifier> -->
-<!-- 				<type>zip</type>		 -->
-<!-- 		</dependency> -->
+		<dependency>
+				<groupId>io.fixprotocol.orchestrations</groupId>
+				<artifactId>fix-standard</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
-<!--             <plugin> -->
-<!--                 <groupId>org.apache.maven.plugins</groupId> -->
-<!--                 <artifactId>maven-dependency-plugin</artifactId> -->
-<!--                 <executions> -->
-<!--                     <execution> -->
-<!--                         <id>unpack-dependencies</id> -->
-<!--                         <phase>process-sources</phase> -->
-<!--                         <goals> -->
-<!--                             <goal>unpack</goal> -->
-<!--                         </goals> -->
-<!--                         <configuration> -->
-<!--                             <artifactItems> -->
-<!--                                 <artifactItem> -->
-<!-- 									<groupId>io.fixprotocol.orchestrations</groupId> -->
-<!-- 									<artifactId>fix-standard</artifactId> -->
-<!-- 									<classifier>repository</classifier> -->
-<!-- 									<type>zip</type> -->
-<!--                                     <outputDirectory>${project.build.directory}/dependency/repository</outputDirectory> -->
-<!--                                 </artifactItem>             -->
-<!--                             </artifactItems> -->
-<!--                         </configuration> -->
-<!--                     </execution> -->
-<!--                 </executions> -->
-<!--             </plugin>		 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack-dependencies</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+									<groupId>io.fixprotocol.orchestrations</groupId>
+									<artifactId>fix-standard</artifactId>
+									<includes>**/Fix*.xml</includes>
+                                    <outputDirectory>${project.build.directory}/dependency/repository</outputDirectory>
+                                </artifactItem>            
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>		
 			<plugin>
 		        <groupId>org.codehaus.mojo</groupId>
 		        <artifactId>xml-maven-plugin</artifactId>
@@ -57,8 +54,8 @@
 		        <configuration>
 		          <transformationSets>
 		            <transformationSet>
-<!-- 		              <dir>${project.build.directory}/dependency/repository</dir> -->
-					  <dir>${project.basedir}/src/main/resources/repository</dir>
+		              <dir>${project.build.directory}/dependency/repository</dir>
+<!-- 					  <dir>${project.basedir}/src/main/resources/repository</dir> -->
 		              <outputDir>${project.build.directory}/generated-resources/xml/xslt/appended</outputDir>
 		              <includes>
 		              	<include>FixRepository50SP2.xml</include>
@@ -67,7 +64,6 @@
 		            </transformationSet>
 		            <transformationSet>
 		              <dir>${project.build.directory}/generated-resources/xml/xslt/appended</dir>
-<!-- 					  <dir>${project.basedir}/src/main/resources/repository</dir> -->
 		              <outputDir>${project.build.directory}/generated-resources/xml/xslt/publish</outputDir>
 		              <includes>
 		              	<include>FixRepository50SP2.xml</include>
