@@ -32,11 +32,18 @@
     "Symbol": {
       "type": "string"
     },
-    "ChartRequestRejectReason":{
+    "SecurityID": {
+      "type": "string",
+      "required": true
+    },
+    "SecurityIDSource": {
+      "$ref" : "../fixp-schema/fields/SecurityIDSource.json"
+    },
+    "ChartRequestRejectReason": {
       "type": "./ChartRequestRejectReason.json"
+    },
+    "Text": {
+      "type": "string"
     }
-
-
-
   }
 }

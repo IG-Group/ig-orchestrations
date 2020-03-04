@@ -26,9 +26,6 @@
     "ReqID": {
       "type": "string"
     },
-    "Symbol": {
-      "type": "string"
-    },
     "Interval": {
       "$ref": "./Interval.json",
       "comment": "for some reason this gets inlined. I do not know why"
