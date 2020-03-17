@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.ig.orchestrations.us.rfed</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.1.15-SNAPSHOT</version>
+		<version>0.1.22-SNAPSHOT</version>
 	</parent>
 	<artifactId>orchestration</artifactId>
 	<description>Generates humanly readable documentation of FIX standard versions</description>
@@ -54,8 +54,8 @@
 		        <configuration>
 		          <transformationSets>
 		            <transformationSet>
-		              <dir>${project.build.directory}/dependency/repository</dir>
-<!-- 					  <dir>${project.basedir}/src/main/resources/repository</dir> -->
+<!-- 		              <dir>${project.build.directory}/dependency/repository</dir> -->
+					  <dir>${project.basedir}/src/main/resources/repository</dir>
 		              <outputDir>${project.build.directory}/generated-resources/xml/xslt/appended</outputDir>
 		              <includes>
 		              	<include>FixRepository50SP2.xml</include>

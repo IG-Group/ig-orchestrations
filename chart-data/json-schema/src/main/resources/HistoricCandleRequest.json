@@ -18,6 +18,14 @@
     "Symbol" : {
       "type" : "string"
     },
+    "SecurityID": {
+      "type": "string",
+      "required": true
+    },
+    "SecurityIDSource": {
+      "$ref" : "../fixp-schema/fields/SecurityIDSource.json",
+      "required": true
+    },
     "Interval" : {
 		"$ref" : "./Interval.json"
     },

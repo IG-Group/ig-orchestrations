@@ -29,10 +29,6 @@
     "ReqID": {
       "type": "string"
     },
-    "Symbol": {
-      "type": "string",
-      "required": true
-    },
     "Interval": {
       "$ref": "./Interval.json"
     },
