@@ -2,7 +2,7 @@ const jsonSchema = require('json-schema-to-typescript');
 const fs = require('fs');
 const path = require('path');
 
-const DEFINITION_DIR = 'target/generated-resources/definitions';
+const DEFINITION_DIR = 'json-schema/target/generated-resources/definitions';
 const DEFINITION_FIELDS_DIR = DEFINITION_DIR + '/fields';
 const DEFINITION_OUTPUT_DIR = 'fix.d/';
 const DEFINITION_FIELDS_OUTPUT_DIR = DEFINITION_OUTPUT_DIR + 'fields/';
@@ -11,11 +11,35 @@ const PARENT_FULL_DIR = () => {
   cwd.pop();
   return cwd.join(path.sep);
 }
+const FIXP_DEFINITION_DIR = './fixpJsonSchema';
+const CHARTS_DEFINITION_DIR = './chartJsonSchema';
 
 if (!fs.existsSync(DEFINITION_OUTPUT_DIR)){
   fs.mkdirSync(DEFINITION_OUTPUT_DIR);
   fs.mkdirSync(DEFINITION_FIELDS_OUTPUT_DIR);
+  fs.mkdirSync(DEFINITION_OUTPUT_DIR + 'fixp/');
+  fs.mkdirSync(DEFINITION_OUTPUT_DIR + 'charts/');
 }
+
+fs.readdir(FIXP_DEFINITION_DIR, async (err, items) => {
+  if (err) {
+    console.log(err);
+  } else {
+    items.forEach(async (i) => {
+      await generateSchema(i, PARENT_FULL_DIR() + '/ts-interface/fixpJsonSchema/' + i, DEFINITION_OUTPUT_DIR + 'fixp/');
+    });
+  }
+});
+
+fs.readdir(CHARTS_DEFINITION_DIR, async (err, items) => {
+  if (err) {
+    console.log(err);
+  } else {
+    items.forEach(async (i) => {
+      await generateSchema(i, PARENT_FULL_DIR() + '/ts-interface/chartJsonSchema/' + i, DEFINITION_OUTPUT_DIR + 'charts/', { cwd: PARENT_FULL_DIR() + '/ts-interface/chartJsonSchema', });
+    });
+  }
+});
 
 fs.readdir('../' + DEFINITION_DIR, async (err, items) => {
   if (err) {
