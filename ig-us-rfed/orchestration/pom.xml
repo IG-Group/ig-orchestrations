@@ -54,7 +54,7 @@
 		        <configuration>
 		          <transformationSets>
 		            <transformationSet>
-					  <dir>${project.basedir}/src/main/resources/repository</dir>
+		              <dir>${project.build.directory}/dependency/repository</dir>
 		              <outputDir>${project.build.directory}/generated-resources/xml/xslt/appended</outputDir>
 		              <includes>
 		              	<include>FixRepository50SP2.xml</include>
