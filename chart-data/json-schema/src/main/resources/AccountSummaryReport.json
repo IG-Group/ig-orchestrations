@@ -45,9 +45,6 @@
     "TransactTime": {
       "type": "string"
     },
-    "TransactTime": {
-      "type": "string"
-    },
     "UnsolicitedIndicator": {
       "$ref": "../fixp-schema/fields/UnsolicitedIndicator.json"
     },
