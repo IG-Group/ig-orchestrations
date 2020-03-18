@@ -1,0 +1,15 @@
+{
+  "type": "array",
+  "id": "MarginAmountGrp",
+  "items": {
+    "javaType": "com.ig.orchestrations.account.data.MarginAmountGrp",
+    "properties": {
+      "MarginAmt": {
+        "type": "string"
+      },
+      "MarginAmtType": {
+        "$ref": "./MarginAmtType.json"
+      }
+    }
+  }
+}

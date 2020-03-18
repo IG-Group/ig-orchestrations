@@ -1,0 +1,10 @@
+{
+  "id": "MarginAmtType",
+  "type": "string",
+  "javaType": "com.ig.orchestrations.account.data.MarginAmtType",
+  "enum": [
+    "TotalMargin",
+    "ControlledRiskMargin",
+    "NonControlledRiskMargin"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "type": "array",
+  "id" : "CollateralAmountGrp",
+  "items"                : {
+    "javaType": "com.ig.orchestrations.account.data.CollateralAmountGrp",
+    "properties": {
+      "CollateralType": {
+        "type": "string"
+      },
+      "CurrentCollateralAmount": {
+        "type": "string"
+      }
+    }
+  }
+}
