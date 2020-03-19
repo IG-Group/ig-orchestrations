@@ -5,10 +5,10 @@
     "javaType": "com.ig.orchestrations.account.data.CollateralAmountGrp",
     "properties": {
       "CollateralType": {
-        "type": "string"
+        "$ref": "./CollateralType.json"
       },
       "CurrentCollateralAmount": {
-        "type": "string"
+        "type": "number"
       }
     }
   }

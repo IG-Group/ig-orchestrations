@@ -5,7 +5,7 @@
     "javaType": "com.ig.orchestrations.account.data.MarginAmountGrp",
     "properties": {
       "MarginAmt": {
-        "type": "string"
+        "type": "number"
       },
       "MarginAmtType": {
         "$ref": "./MarginAmtType.json"
