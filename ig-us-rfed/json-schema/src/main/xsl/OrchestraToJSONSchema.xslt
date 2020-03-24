@@ -2,7 +2,7 @@
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
 	xmlns:fn="http://www.w3.org/2005/xpath-functions" 
-	xmlns:fixr="http://fixprotocol.io/2016/fixrepository"
+	xmlns:fixr="http://fixprotocol.io/2020/orchestra/repository"
 	xmlns:dcterms="http://purl.org/dc/terms/" exclude-result-prefixes="fn">
 	<xsl:output method="text" encoding="UTF-8"/>
 	<xsl:param name="debug">false</xsl:param>
@@ -217,14 +217,28 @@ processing fixr:message  <xsl:value-of select="@name"/>
 	     this cannot be described where the components are normalised -->
 	<xsl:template match="fixr:componentRef" mode="required">
 		<xsl:variable name="theId" select="@id"/>
+        <xsl:variable name="theName" select="/fixr:repository/fixr:components/fixr:component[@id=$theId]/@name"/>		
 		<xsl:choose>
 			<xsl:when test="$normaliseComponents='true'">
 		"<xsl:value-of select="/fixr:repository/fixr:components/fixr:component[@id=$theId]/@name"/>"<xsl:if test="fn:position() != fn:last()">, </xsl:if>
 			</xsl:when>
 			<xsl:otherwise>
+			<xsl:if test="$debug='true'">
+		    <xsl:message>
+		in required processing component ref  <xsl:value-of select="$theId"/> <xsl:value-of select="$theName"/>
+		    </xsl:message>
+		</xsl:if>
 				<xsl:if test="/fixr:repository/fixr:components/fixr:component[@id=$theId]/(fixr:fieldRef[@presence='required']|fixr:groupRef[@presence='required']|fixr:componentRef[@presence='required'])" >
-         <xsl:apply-templates select="/fixr:repository/fixr:components/fixr:component[@id=$theId]/(fixr:fieldRef[@presence='required']|fixr:groupRef[@presence='required']|fixr:componentRef[@presence='required'])" mode="required"/><xsl:if test="fn:position() != fn:last()">, </xsl:if>			
+         <xsl:apply-templates select="/fixr:repository/fixr:components/fixr:component[@id=$theId]/(fixr:fieldRef[@presence='required']|fixr:groupRef[@presence='required']|fixr:componentRef[@presence='required'])" mode="required"/><xsl:if test="fn:position() != fn:last()">,</xsl:if>			
 		        </xsl:if>
+		        <xsl:if test="$debug='true'">
+				    <xsl:message>
+		in required end processing component ref  <xsl:value-of select="$theId"/> <xsl:value-of select="$theName"/>
+				    </xsl:message>
+					<xsl:if test="fn:position() = fn:last()">
+						<xsl:message>in required, this was last</xsl:message>
+					</xsl:if>
+				</xsl:if>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
