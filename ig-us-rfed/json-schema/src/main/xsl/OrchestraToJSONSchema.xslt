@@ -77,7 +77,7 @@
 		<xsl:apply-templates select="fixr:fieldRef|fixr:groupRef|fixr:componentRef" mode="properties"/>
 	},
 	"required"             : [ 
-		<xsl:apply-templates select="fixr:fieldRef[@presence='required']|fixr:groupRef[@presence='required']|fixr:componentRef[@presence='required']" mode="required"/>
+<xsl:apply-templates select="fixr:fieldRef[@presence='required']|fixr:groupRef[@presence='required']|fixr:componentRef[@presence='required']" mode="required"/>
 	]
 }
 			</xsl:result-document>
@@ -105,7 +105,7 @@
 			<xsl:apply-templates select="fixr:fieldRef|fixr:groupRef|fixr:componentRef" mode="properties"/>
 		},
 		"required"             : [
-		    <xsl:apply-templates select="fixr:fieldRef[@presence='required']|fixr:groupRef[@presence='required']|fixr:componentRef[@presence='required']" mode="required"/>
+<xsl:apply-templates select="fixr:fieldRef[@presence='required']|fixr:groupRef[@presence='required']|fixr:componentRef[@presence='required']" mode="required"/>
 		]
 	}
 }
@@ -137,7 +137,7 @@ processing fixr:message  <xsl:value-of select="@name"/>
 			<xsl:apply-templates select="fixr:structure/fixr:fieldRef|fixr:structure/fixr:groupRef|fixr:structure/fixr:componentRef" mode="properties"/>
 	},
 	"required"             : [ 
-			<xsl:apply-templates select="fixr:structure/fixr:componentRef[@presence='required']|fixr:structure/fixr:fieldRef[@presence='required']|fixr:structure/fixr:groupRef[@presence='required']" mode="required"/>
+<xsl:apply-templates select="fixr:structure/fixr:componentRef[@presence='required']|fixr:structure/fixr:fieldRef[@presence='required']|fixr:structure/fixr:groupRef[@presence='required']" mode="required"/>
 	]
 }
 		</xsl:result-document>
@@ -168,7 +168,8 @@ processing fixr:message  <xsl:value-of select="@name"/>
     <!-- the "required" mode is to list in the schema fields that are required according to the orchestration -->
 	<xsl:template match="fixr:fieldRef" mode="required">
 		<xsl:variable name="theId" select="@id"/>
-		"<xsl:value-of select="/fixr:repository/fixr:fields/fixr:field[@id=$theId]/@name"/>"<xsl:if test="fn:position() != fn:last()">, </xsl:if>
+		<!-- test for first position not last due to case in which required components may not have any required fields (and be the last thing in selection ) -->
+		<xsl:if test="fn:position() != 1">,</xsl:if>"<xsl:value-of select="/fixr:repository/fixr:fields/fixr:field[@id=$theId]/@name"/>"
 	</xsl:template>
 	<xsl:template match="fixr:groupRef" mode="properties">
 		<xsl:variable name="theId" select="@id"/>
@@ -188,7 +189,8 @@ processing fixr:message  <xsl:value-of select="@name"/>
 	<!-- the "required" mode is to list in the schema groups that are required according to the orchestration -->
 	<xsl:template match="fixr:groupRef" mode="required">
 		<xsl:variable name="theId" select="@id"/>
-		"<xsl:value-of select="/fixr:repository/fixr:groups/fixr:group[@id=$theId]/@name"/>"<xsl:if test="fn:position() != fn:last()">, </xsl:if>
+		<!-- test for first position not last due to case in which required components may not have any required fields (and be the last thing in selection ) -->
+		<xsl:if test="fn:position() != 1">,</xsl:if>"<xsl:value-of select="/fixr:repository/fixr:groups/fixr:group[@id=$theId]/@name"/>"
 	</xsl:template>
 	<!-- components are defined in discrete files if "$normaliseComponents='true'" -->
 	<xsl:template match="fixr:componentRef" mode="properties">
@@ -204,7 +206,7 @@ processing fixr:message  <xsl:value-of select="@name"/>
 		"<xsl:value-of select="$theName"/>" : {"$ref": "../<xsl:value-of select="$componentsDirectory"/>/<xsl:value-of select="$theName"/>.json"}<xsl:if test="fn:position() != fn:last()">, </xsl:if>
 			</xsl:when>
 			<xsl:otherwise>
-				<xsl:apply-templates select="/fixr:repository/fixr:components/fixr:component[@id=$theId]/(fixr:fieldRef|fixr:groupRef|fixr:componentRef)" mode="properties"/><xsl:if test="fn:position() != fn:last()">, </xsl:if>
+				<xsl:apply-templates select="/fixr:repository/fixr:components/fixr:component[@id=$theId]/(fixr:fieldRef|fixr:groupRef|fixr:componentRef)" mode="properties"/>
 			</xsl:otherwise>
 		</xsl:choose>
 	    <xsl:if test="$debug='true'">
@@ -217,7 +219,7 @@ processing fixr:message  <xsl:value-of select="@name"/>
 	     this cannot be described where the components are normalised -->
 	<xsl:template match="fixr:componentRef" mode="required">
 		<xsl:variable name="theId" select="@id"/>
-        <xsl:variable name="theName" select="/fixr:repository/fixr:components/fixr:component[@id=$theId]/@name"/>		
+        <xsl:variable name="theName" select="/fixr:repository/fixr:components/fixr:component[@id=$theId]/@name"/>
 		<xsl:choose>
 			<xsl:when test="$normaliseComponents='true'">
 		"<xsl:value-of select="/fixr:repository/fixr:components/fixr:component[@id=$theId]/@name"/>"<xsl:if test="fn:position() != fn:last()">, </xsl:if>
@@ -229,7 +231,7 @@ processing fixr:message  <xsl:value-of select="@name"/>
 		    </xsl:message>
 		</xsl:if>
 				<xsl:if test="/fixr:repository/fixr:components/fixr:component[@id=$theId]/(fixr:fieldRef[@presence='required']|fixr:groupRef[@presence='required']|fixr:componentRef[@presence='required'])" >
-         <xsl:apply-templates select="/fixr:repository/fixr:components/fixr:component[@id=$theId]/(fixr:fieldRef[@presence='required']|fixr:groupRef[@presence='required']|fixr:componentRef[@presence='required'])" mode="required"/><xsl:if test="fn:position() != fn:last()">,</xsl:if>			
+         <xsl:apply-templates select="/fixr:repository/fixr:components/fixr:component[@id=$theId]/(fixr:fieldRef[@presence='required']|fixr:groupRef[@presence='required']|fixr:componentRef[@presence='required'])" mode="required"/>	
 		        </xsl:if>
 		        <xsl:if test="$debug='true'">
 				    <xsl:message>
