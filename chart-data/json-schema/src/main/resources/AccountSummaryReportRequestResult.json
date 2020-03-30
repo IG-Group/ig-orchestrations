@@ -1,0 +1,13 @@
+{
+  "id": "AccountSummaryReportRequestResult",
+  "type": "string",
+  "javaType": "com.ig.orchestrations.account.data.AccountSummaryReportRequestResult",
+  "enum": [
+    "Valid Request",
+    "InvalidOrUnsupportedRequest",
+    "UnknownAccount",
+    "Unauthorised",
+    "NotSupported",
+    "Other"
+  ]
+}

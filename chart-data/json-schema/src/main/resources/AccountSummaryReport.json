@@ -1,0 +1,67 @@
+{
+  "type": "object",
+  "id": "AccountSummaryReport",
+  "javaType": "com.ig.orchestrations.account.data.AccountSummaryReport",
+  "properties": {
+    "MsgType": {
+      "type": "string"
+    },
+    "ApplVerID": {
+      "type": "string",
+      "enum": [
+        "FIX27",
+        "FIX30",
+        "FIX40",
+        "FIX41",
+        "FIX42",
+        "FIX43",
+        "FIX44",
+        "FIX50",
+        "FIX50SP1",
+        "FIX50SP2"
+      ]
+    },
+    "CstmApplVerID": {
+      "type": "string"
+    },
+    "AccountSummaryReportID": {
+      "type": "string"
+    },
+    "AccountSummaryReportRequestID": {
+      "type": "string"
+    },
+    "AccountSummaryReportRequestResult": {
+      "$ref": "./AccountSummaryReportRequestResult.json"
+    },
+    "ClearingBusinessDate": {
+      "type": "string"
+    },
+    "Currency": {
+      "type": "string"
+    },
+    "TotalNetValue": {
+      "type": "number"
+    },
+    "TransactTime": {
+      "type": "string"
+    },
+    "UnsolicitedIndicator": {
+      "$ref": "../fixp-schema/fields/UnsolicitedIndicator.json"
+    },
+    "MarginAmount": {
+      "$ref": "./MarginAmountGrp.json"
+    },
+    "Parties": {
+      "$ref": "../fixp-schema/groups/Parties.json"
+    },
+    "CollateralAmountGrp": {
+      "$ref": "./CollateralAmountGrp.json"
+    },
+    "Text": {
+      "type": "string"
+    },
+    "SendingTime": {
+      "type": "string"
+    }
+  }
+}

@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.ig.orchestrations.us.rfed</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.1.22-SNAPSHOT</version>
+		<version>0.1.25-SNAPSHOT</version>
 	</parent>
 	<artifactId>orchestration</artifactId>
 	<description>Generates humanly readable documentation of FIX standard versions</description>
@@ -40,7 +40,7 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>		
+            </plugin>
 			<plugin>
 		        <groupId>org.codehaus.mojo</groupId>
 		        <artifactId>xml-maven-plugin</artifactId>
@@ -62,7 +62,7 @@
 		              <stylesheet>${project.basedir}/src/main/xsl/addTypes.xsl</stylesheet>
 		            </transformationSet>
 		            <transformationSet>
-		              <dir>${project.build.directory}/generated-resources/xml/xslt/appended</dir>
+                      <dir>${project.build.directory}/generated-resources/xml/xslt/appended</dir>
 		              <outputDir>${project.build.directory}/generated-resources/xml/xslt/publish</outputDir>
 		              <includes>
 		              	<include>FixRepository50SP2.xml</include>
