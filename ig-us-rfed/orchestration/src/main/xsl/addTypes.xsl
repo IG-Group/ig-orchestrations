@@ -204,6 +204,39 @@
         </fixr:code>
     </xsl:param>
 
+    <xsl:param name="addCustomMsgTypestoRefMsgType">
+		<fixr:code name="AccountSummaryReportRequest" id="35500" value="UA" sort="500">
+				<fixr:annotation>
+					<fixr:documentation purpose="SYNOPSIS">
+         AccountSummaryReportRequest
+      </fixr:documentation>
+					<fixr:documentation purpose="ELABORATION">
+         The Account Summary Report Request message is used to request Account Summary Report
+      </fixr:documentation>
+				</fixr:annotation>
+			</fixr:code>
+	   <fixr:code name="ChartDataSubscriptionRequest" id="35501" value="UB" sort="501">
+				<fixr:annotation>
+					<fixr:documentation purpose="SYNOPSIS">
+         ChartDataSubscriptionRequest
+      </fixr:documentation>
+					<fixr:documentation purpose="ELABORATION">
+         The Chart Data Subscription Request message is used to subscribe to chart data
+      </fixr:documentation>
+				</fixr:annotation>
+			</fixr:code>
+	   <fixr:code name="HistoricCandleRequest" id="35502" value="UC" sort="502">
+				<fixr:annotation>
+					<fixr:documentation purpose="SYNOPSIS">
+         HistoricCandleRequest
+      </fixr:documentation>
+					<fixr:documentation purpose="ELABORATION">
+         The Historic Candle Request message is used to request historic data
+      </fixr:documentation>
+				</fixr:annotation>
+			</fixr:code>
+    </xsl:param>
+
     <xsl:template match="node()|@*" name="identity">
         <xsl:copy>
             <xsl:apply-templates select="node()|@*"/>
@@ -215,12 +248,10 @@
         <xsl:copy-of select="$addFields"/>
     </xsl:template>
 
-
     <xsl:template match="fixr:fields/fixr:field[position()=last()]">
         <xsl:call-template name="identity"/>
         <xsl:copy-of select="$addFields"/>
     </xsl:template>
-
 
     <xsl:template match="fixr:groups/fixr:group[position()=last()]">
         <xsl:call-template name="identity"/>
@@ -265,6 +296,12 @@
         <xsl:call-template name="identity"/>
         <xsl:copy-of select="$addClOrdIDtoRefOrderIDSource"/>
     </xsl:template>
+
+ 	<!--  RefMsgType customisation -->
+    <xsl:template match="fixr:codeSets/fixr:codeSet[(@id='35')]/fixr:code[position()=last()]">
+        <xsl:call-template name="identity"/>
+        <xsl:copy-of select="$addCustomMsgTypestoRefMsgType"/>
+    </xsl:template>    
 
     <xsl:template match="fixr:components/fixr:component[@id='1003']/fixr:fieldRef[@id='55']">
         <xsl:copy>
@@ -341,7 +378,6 @@
         <xsl:call-template name="identity"/>
         <xsl:copy-of select="$addFieldRefsToPositionReport"/>
     </xsl:template>
-
 
 </xsl:stylesheet>
 
