@@ -206,7 +206,7 @@ processing fixr:message  <xsl:value-of select="@name"/>
 		"<xsl:value-of select="$theName"/>" : {"$ref": "../<xsl:value-of select="$componentsDirectory"/>/<xsl:value-of select="$theName"/>.json"}<xsl:if test="fn:position() != fn:last()">, </xsl:if>
 			</xsl:when>
 			<xsl:otherwise>
-				<xsl:apply-templates select="/fixr:repository/fixr:components/fixr:component[@id=$theId]/(fixr:fieldRef|fixr:groupRef|fixr:componentRef)" mode="properties"/>
+				<xsl:apply-templates select="/fixr:repository/fixr:components/fixr:component[@id=$theId]/(fixr:fieldRef|fixr:groupRef|fixr:componentRef)" mode="properties"/><xsl:if test="fn:position() != fn:last()">, </xsl:if>
 			</xsl:otherwise>
 		</xsl:choose>
 	    <xsl:if test="$debug='true'">
@@ -231,7 +231,7 @@ processing fixr:message  <xsl:value-of select="@name"/>
 		    </xsl:message>
 		</xsl:if>
 				<xsl:if test="/fixr:repository/fixr:components/fixr:component[@id=$theId]/(fixr:fieldRef[@presence='required']|fixr:groupRef[@presence='required']|fixr:componentRef[@presence='required'])" >
-         <xsl:apply-templates select="/fixr:repository/fixr:components/fixr:component[@id=$theId]/(fixr:fieldRef[@presence='required']|fixr:groupRef[@presence='required']|fixr:componentRef[@presence='required'])" mode="required"/>	
+         <xsl:if test="fn:position() != 1">,</xsl:if><xsl:apply-templates select="/fixr:repository/fixr:components/fixr:component[@id=$theId]/(fixr:fieldRef[@presence='required']|fixr:groupRef[@presence='required']|fixr:componentRef[@presence='required'])" mode="required"/>	
 		        </xsl:if>
 		        <xsl:if test="$debug='true'">
 				    <xsl:message>
