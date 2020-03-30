@@ -111,7 +111,7 @@
 									<parameters>
 						                <parameter>
 						                  <name>debug</name>
-						                  <value>true</value>
+						                  <value>false</value>
 						                </parameter>									
 						                <parameter>
 						                  <name>targetDirectory</name>
