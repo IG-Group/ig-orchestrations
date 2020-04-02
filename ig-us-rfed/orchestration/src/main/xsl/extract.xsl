@@ -58,7 +58,7 @@
                                                 @id='2045' or
                                                 @id='2047' or
                                                 @id='2593' or
-                                                @id='2152' or
+                                                @id='1073' or
                                                 @id='2030' or
                                                 @id='2031' or
                                                 @id='2032' or                                                
@@ -106,7 +106,7 @@
 	<xsl:template
 		match="fixr:groups/fixr:group[(@id='2030')]/fixr:componentRef[not(@id='1003' or @id='1011' or @id='1013')]" />
 	<xsl:template
-		match="fixr:groups/fixr:group[(@id='2030')]/fixr:groupRef[not(@id='2152')]" />
+		match="fixr:groups/fixr:group[(@id='2030')]/fixr:groupRef[not(@id='1073')]" />
 	<xsl:template
 		match="fixr:groups/fixr:group[(@id='2030')]/fixr:fieldRef[not(@id='11' or
 																		    @id='67' or
@@ -138,9 +138,13 @@
 
 	<!-- Instrument Market Data Req Grp, filter out unneeded members -->
 	<xsl:template
-		match="fixr:groups/fixr:group[(@id='2022')]/fixr:groupRef" />
+		match="fixr:groups/fixr:group[(@id='2022')]/fixr:componentRef[not(@id='1003' or
+		                                                                  @id='1004')]" />
 	<xsl:template
 		match="fixr:groups/fixr:group[(@id='2022')]/fixr:fieldRef" />
+	<xsl:template
+		match="fixr:groups/fixr:group[(@id='2022')]/fixr:groupRef[not(@id='2066')]" />
+
 
 	<!-- Instrument Market Data Full Grp, filter out unneeded members -->
 	<xsl:template
@@ -223,6 +227,10 @@
 	<!-- Instrument Extension Component -->
 	<xsl:template
 		match="fixr:components/fixr:component[@id='1004']/fixr:fieldRef" />
+	<xsl:template
+		match="fixr:components/fixr:component[@id='1004']/fixr:groupRef[not(@id='2074')]" />
+	<xsl:template
+		match="fixr:components/fixr:component[@id='1004']/fixr:componentRef" />
 
 	<!-- Instrument Component -->
 	<!-- NB 152 would be appropriate for Spread Bet, 38 for CFD - see FIX ROE -->
@@ -264,7 +272,7 @@
 	<xsl:template
 		match="fixr:message[@msgType='D']/fixr:structure/fixr:groupRef[not(@id='2045' or
                                                                                  @id='2593' or
-                                                                                 @id='2152')]" />
+                                                                                 @id='1073')]" />
 	<xsl:template
 		match="fixr:message[@msgType='D']/fixr:structure/fixr:fieldRef[not(@id='11' or
                                                                                  @id='1' or 
@@ -285,7 +293,7 @@
 
 	<!-- Execution Report -->
 	<xsl:template
-		match="fixr:message[@msgType='8']/fixr:structure/fixr:groupRef[not(@id='2152')]" />
+		match="fixr:message[@msgType='8']/fixr:structure/fixr:groupRef[not(@id='1073')]" />
 	<xsl:template
 		match="fixr:message[@msgType='8']/fixr:structure/fixr:componentRef[not(@id='1024' or
  		                                                                             @id='1003' or
@@ -420,7 +428,7 @@
 
 	<!-- Order Cancel Replace Request -->
 	<xsl:template
-		match="fixr:message[@msgType='G']/fixr:structure/fixr:groupRef[not(@id='2152')]" />
+		match="fixr:message[@msgType='G']/fixr:structure/fixr:groupRef[not(@id='1073')]" />
 	<xsl:template
 		match="fixr:message[@msgType='G']/fixr:structure/fixr:componentRef[not(@id='1024' or
 		                                                                             @id='1003')]" />

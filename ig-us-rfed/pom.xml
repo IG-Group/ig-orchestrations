@@ -16,8 +16,9 @@
 	</dependencyManagement>
 	<properties>
 		<target-package>com.ig.orchestrations.us.rfed</target-package>
+		<orchestra.file>OrchestraEP255.xml</orchestra.file>
 	</properties>
-	
+
 	<modules>
 		<module>orchestration</module>
 		<module>document-generation</module>

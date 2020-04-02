@@ -9,63 +9,7 @@
 	<xsl:output omit-xml-declaration="no" indent="yes" />
 
 	<xsl:param name="addFields">
-		<fixr:field added="FIX.5.0SP2" id="1867" name="OfferID"
-			type="String" addedEP="144" abbrName="OfrID" presence="optional"
-			supported="supported">
-			<fixr:annotation supported="supported">
-				<fixr:documentation purpose="SYNOPSIS"
-					supported="supported">
-					Unique identifier for the ask side of the quote assigned by the quote issuer.
-				</fixr:documentation>
-			</fixr:annotation>
-		</fixr:field>
-		<fixr:field added="FIX.5.0SP2" id="2593"
-			name="NoOrderAttributes" type="NumInGroup" addedEP="222"
-			abbrName="NoOrderAttributes" presence="optional"
-			supported="supported">
-			<fixr:annotation supported="supported">
-				<fixr:documentation purpose="SYNOPSIS"
-					supported="supported">
-					Number of order attribute entries.
-				</fixr:documentation>
-			</fixr:annotation>
-		</fixr:field>
-		<fixr:field added="FIX.5.0SP2" id="2594"
-			name="OrderAttributeType" type="int" addedEP="222"
-			abbrName="OrderAttributeType" presence="optional"
-			supported="supported">
-			<fixr:annotation supported="supported">
-				<fixr:documentation purpose="SYNOPSIS"
-					supported="supported">
-					The type of order attribute.
-				</fixr:documentation>
-			</fixr:annotation>
-		</fixr:field>
-		<fixr:field added="FIX.5.0SP2" id="2595"
-			name="OrderAttributeValue" type="String`" addedEP="222"
-			abbrName="OrderAttributeValue" presence="optional"
-			supported="supported">
-			<fixr:annotation supported="supported">
-				<fixr:documentation purpose="SYNOPSIS"
-					supported="supported">
-					The value associated with the order attribute type specified in OrderAttributeType(2594).
-				</fixr:documentation>
-			</fixr:annotation>
-		</fixr:field>
-
-		<fixr:field added="FIX.5.0SP2" id="2618" name="PositionID"
-			type="String" addedEP="199" abbrName="PositionID" presence="optional"
-			supported="supported">
-			<fixr:annotation supported="supported">
-				<fixr:documentation purpose="SYNOPSIS"
-					supported="supported">
-					Unique identifier for a position entity. Refer to PosMaintRptID(721) for a unique identifier of a position report message.
-				</fixr:documentation>
-			</fixr:annotation>
-		</fixr:field>
-
-
-		<fixr:field added="FIX.5.0SP2" id="20104" name="OpenPrice"
+		<fixr:field added="IG" id="20104" name="OpenPrice"
 			type="Price" addedEP="222" abbrName="OpenPrice" presence="optional"
 			supported="supported">
 			<fixr:annotation supported="supported">
@@ -76,7 +20,7 @@
 			</fixr:annotation>
 		</fixr:field>
 
-		<fixr:field added="FIX.5.0SP2" id="20101"
+		<fixr:field added="IG" id="20101"
 			name="OriginatingClientOrderRef" type="String"
 			abbrName="OriginatingClientOrderRef" presence="optional"
 			supported="supported">
@@ -90,7 +34,7 @@
 			</fixr:annotation>
 		</fixr:field>
 
-		<fixr:field added="FIX.5.0SP2" id="20102"
+		<fixr:field added="IG" id="20102"
 			name="OriginatingOrderIDRef" type="String"
 			abbrName="OriginatingClientOrderRef" presence="optional"
 			supported="supported">
@@ -103,7 +47,7 @@
 			</fixr:annotation>
 		</fixr:field>
 
-		<fixr:field added="FIX.5.0SP2" id="20103"
+		<fixr:field added="IG" id="20103"
 			name="ClosingOrderIDRef" type="String"
 			abbrName="OriginatingClientOrderRef" presence="optional"
 			supported="supported">
@@ -118,56 +62,17 @@
 	</xsl:param>
 
 	<xsl:param name="addGroups">
-		<fixr:group id="2152" added="FIX.5.0SP2" addedEP="222"
-			name="OrderAttributeGroup" category="SingleGeneralOrderHandling"
-			abbrName="OrderAttributeGrp">
-			<fixr:numInGroup id="2593" />
-			<fixr:fieldRef id="2594" added="FIX.5.0SP2"
-				addedEP="222">
-				<fixr:annotation>
-					<fixr:documentation />
-				</fixr:annotation>
-			</fixr:fieldRef>
-			<fixr:fieldRef id="2595" added="FIX.5.0SP2"
-				addedEP="222">
-				<fixr:annotation>
-					<fixr:documentation />
-				</fixr:annotation>
-			</fixr:fieldRef>
-			<fixr:annotation>
-				<fixr:documentation />
-			</fixr:annotation>
-		</fixr:group>
-
 	</xsl:param>
 
 	<xsl:param name="addFieldRefsToQuote">
-		<fixr:fieldRef id="390" added="FIX.4.2">
-			<fixr:annotation supported="supported">
-				<fixr:documentation supported="supported">
-					Required to relate
-					the bid response
-				</fixr:documentation>
-			</fixr:annotation>
-		</fixr:fieldRef>
-		<fixr:fieldRef id="1867" added="FIX.5.0SP2">
-			<fixr:annotation supported="supported">
-				<fixr:documentation supported="supported">
-					Unique identifier
-					for the ask side of the quote.
-				</fixr:documentation>
-			</fixr:annotation>
-		</fixr:fieldRef>
 		<fixr:fieldRef id="451">
 			<fixr:annotation supported="supported">
 				<fixr:documentation supported="supported">
-					Net Change added as
-					IG Customisation
+					Net Change added as IG Customisation
 				</fixr:documentation>
 			</fixr:annotation>
 		</fixr:fieldRef>
 	</xsl:param>
-
 
 	<xsl:param name="addFieldRefsToQuoteRequest">
 		<fixr:fieldRef id="263">
@@ -179,23 +84,7 @@
 		</fixr:fieldRef>
 	</xsl:param>
 
-
 	<xsl:param name="addFieldRefsToExecRpt">
-		<fixr:fieldRef id="1080" added="FIX.4.4">
-			<fixr:annotation supported="supported">
-				<fixr:documentation supported="supported">
-					The ID reference to
-					the order being hit or taken.
-				</fixr:documentation>
-			</fixr:annotation>
-		</fixr:fieldRef>
-		<fixr:fieldRef id="1081" added="FIX.4.4">
-			<fixr:annotation supported="supported">
-				<fixr:documentation supported="supported">
-					Used to specify what identifier, provided in order depth market data, to use when hitting (taking) a specific order.
-				</fixr:documentation>
-			</fixr:annotation>
-		</fixr:fieldRef>
 	</xsl:param>
 
 	<xsl:param name="addFieldRefsToListCancel">
@@ -209,17 +98,9 @@
 	</xsl:param>
 
 	<xsl:param name="addOrderAttributeGroupRef">
-		<fixr:groupRef id="2152" added="FIX.5.0SP2">
-			<fixr:annotation>
-				<fixr:documentation>
-					Order Attribute Group
-				</fixr:documentation>
-			</fixr:annotation>
-		</fixr:groupRef>
 	</xsl:param>
 
 	<xsl:param name="addOrderAttributeGroupToListOrdGrp">
-		<fixr:groupRef id="2152" added="FIX.5.0SP2" />
 	</xsl:param>
 
 	<xsl:param name="addClOrdIDtoRefOrderIDSource">
@@ -270,22 +151,21 @@
 	</xsl:param>
 
 	<xsl:param name="addFieldRefsToPositionReport">
-		<fixr:fieldRef id="155" added="FIX.4.2">
+		<fixr:fieldRef id="155" added="IG">
 			<fixr:annotation supported="supported">
 				<fixr:documentation supported="supported">
 					Settlement currency FX rate
 				</fixr:documentation>
 			</fixr:annotation>
 		</fixr:fieldRef>
-		<fixr:fieldRef id="2618" added="FIX.5.0SP2" />
-		<fixr:fieldRef id="20104" added="FIX.4.2">
+		<fixr:fieldRef id="20104" added="IG">
 			<fixr:annotation supported="supported">
 				<fixr:documentation supported="supported">
 					The price at which the Position was opened, will be reported in Currency.
 				</fixr:documentation>
 			</fixr:annotation>
 		</fixr:fieldRef>
-		<fixr:fieldRef id="20101" added="FIX.5.0SP2">
+		<fixr:fieldRef id="20101" added="IG">
 			<fixr:annotation supported="supported">
 				<fixr:documentation supported="supported">
 					IG uses the custom tag OriginatingClientOrderRef to represent:
@@ -294,7 +174,7 @@
 				</fixr:documentation>
 			</fixr:annotation>
 		</fixr:fieldRef>
-		<fixr:fieldRef id="20102" added="FIX.5.0SP2">
+		<fixr:fieldRef id="20102" added="IG">
 			<fixr:annotation supported="supported">
 				<fixr:documentation supported="supported">
 					IG uses the custom tag OriginatingOrderIDRef to identify the IG Order ID of an order which has resulted in opening the Position. 
@@ -303,7 +183,7 @@
 				</fixr:documentation>
 			</fixr:annotation>
 		</fixr:fieldRef>
-		<fixr:fieldRef id="20103" added="FIX.5.0SP2">
+		<fixr:fieldRef id="20103" added="IG">
 			<fixr:annotation supported="supported">
 				<fixr:documentation purpose="SYNOPSIS"
 					supported="supported">

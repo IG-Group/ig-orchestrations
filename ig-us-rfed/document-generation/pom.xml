@@ -64,7 +64,7 @@
 				<configuration>
 					<mainClass>io.fixprotocol.orchestra.docgen.DocGenerator</mainClass>
 					<arguments>
-						<argument>${project.build.directory}/dependency/repository/FixRepository50SP2.xml</argument>
+						<argument>${project.build.directory}/dependency/repository/${orchestra.file}</argument>
 						<argument>${project.build.directory}/doc/fix50sp2</argument>
 					</arguments>
 				</configuration>

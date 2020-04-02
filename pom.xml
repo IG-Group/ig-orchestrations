@@ -43,6 +43,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
+		<fix.orchestra.version>1.5.1</fix.orchestra.version>
 		<docgen.version>1.5.0</docgen.version>
 	</properties>
 	<dependencyManagement>
@@ -55,7 +56,7 @@
 			<dependency>
 				<groupId>io.fixprotocol.orchestrations</groupId>
 				<artifactId>fix-standard</artifactId>
-				<version>1.5.0</version>
+				<version>${fix.orchestra.version}</version>
 			</dependency>
 	        <dependency>
 	            <groupId>org.apache.commons</groupId>
