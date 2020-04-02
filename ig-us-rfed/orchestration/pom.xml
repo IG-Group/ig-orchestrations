@@ -33,7 +33,7 @@
                                 <artifactItem>
 									<groupId>io.fixprotocol.orchestrations</groupId>
 									<artifactId>fix-standard</artifactId>
-									<includes>**/Fix*.xml</includes>
+									<includes>**/Fix*.xml,**/Orchestra*.xml</includes>
                                     <outputDirectory>${project.build.directory}/dependency/repository</outputDirectory>
                                 </artifactItem>            
                             </artifactItems>
@@ -57,7 +57,7 @@
 		              <dir>${project.build.directory}/dependency/repository</dir>
 		              <outputDir>${project.build.directory}/generated-resources/xml/xslt/appended</outputDir>
 		              <includes>
-		              	<include>FixRepository50SP2.xml</include>
+		              	<include>${orchestra.file}</include>
 		              </includes>
 		              <stylesheet>${project.basedir}/src/main/xsl/addTypes.xsl</stylesheet>
 		            </transformationSet>
@@ -65,7 +65,7 @@
                       <dir>${project.build.directory}/generated-resources/xml/xslt/appended</dir>
 		              <outputDir>${project.build.directory}/generated-resources/xml/xslt/publish</outputDir>
 		              <includes>
-		              	<include>FixRepository50SP2.xml</include>
+		              	<include>${orchestra.file}</include>
 		              </includes>
 		              <stylesheet>${project.basedir}/src/main/xsl/extract.xsl</stylesheet>
 		            </transformationSet>
