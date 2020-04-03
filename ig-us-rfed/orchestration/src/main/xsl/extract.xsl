@@ -243,7 +243,8 @@
                                                                                  @id='541' or
                                                                                  @id='202' or
                                                                                  @id='231' or
-                                                                                 @id='107'
+                                                                                 @id='107' or
+                                                                                 @id='1687'
                                                                                  )]" />
 	<xsl:template
 		match="fixr:components/fixr:component[@id='1003']/fixr:groupRef[not(@id='2071')]" />
