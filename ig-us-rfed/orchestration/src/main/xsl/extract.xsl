@@ -20,6 +20,7 @@
                                       @msgType='9' or
                                       @msgType='S' or 
                                       @msgType='R' or
+                                      @msgType='AF' or
                                       @msgType='AG' or
                                       @msgType='AP' or
                                       @msgType='F' or
@@ -36,8 +37,8 @@
                                       @msgType='X' or
                                       @msgType='Z' or                                      
                                       @msgType='Y') ]" />
-	<!-- @msgType='H' or @msgType='Q' or @msgType='c' or @msgType='d' or @msgType='e' 
-		or @msgType='f' or @msgType='AF' or @msgType='AN' or @msgType='AO' or @msgType='AP' 
+	<!-- @msgType='H' or @msgType='Q' or @msgType='c' or @msgType='d' or @msgType='e'
+		or @msgType='f' or @msgType='AN' or @msgType='AO' or @msgType='AP'
 		or @msgType='BP' )]"/> -->
 
 	<!-- filter out unsupported codes -->
@@ -47,7 +48,7 @@
 		                                                             @id='871115' or
 		                                                             @id='871116' or
 		                                                             @id='871120')]"/>
-	
+
 	<!-- filter out unsupported components -->
 	<xsl:template
 		match="fixr:components/fixr:component[not(@id='1024' or
@@ -200,7 +201,7 @@
                                                                             @id='58'
                                                                         )]" />
 
-	<!-- QuotReqGrp or QuotReqRjctGrp or QuotCxlEntriesGrp, filter out unsupported 
+	<!-- QuotReqGrp or QuotReqRjctGrp or QuotCxlEntriesGrp, filter out unsupported
 		members -->
 	<xsl:template
 		match="fixr:groups/fixr:group[(@id='2041' or @id='2045' or @id='2047')]/fixr:componentRef[not(@id='1003')]" />
@@ -604,6 +605,16 @@
 	<xsl:template
 		match="fixr:message[@msgType='AP']/fixr:structure/fixr:componentRef[not(@id='1024' or
                                                                                  @id='1003' )]" />
+
+	<!--OrderMassStatusRequest-->
+	<xsl:template match="fixr:message[@msgType='AF']/fixr:structure/fixr:groupRef[not( @id='1012' )]"/>
+
+	<xsl:template match="fixr:message[@msgType='AF']/fixr:structure/fixr:fieldRef[not(@id='1' or
+	                                                                                 @id='584' or
+	                                                                                 @id='585' )]"/>
+
+	<xsl:template match="fixr:message[@msgType='AF']/fixr:structure/fixr:componentRef[not(@id='1003' or
+																						  @id='1024' )]" />
 
 </xsl:stylesheet>
 
