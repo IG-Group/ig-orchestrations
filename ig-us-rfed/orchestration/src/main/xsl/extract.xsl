@@ -22,6 +22,7 @@
                                       @msgType='R' or
                                       @msgType='AF' or
                                       @msgType='AG' or
+                                      @msgType='AN' or
                                       @msgType='AP' or
                                       @msgType='F' or
                                       @msgType='G' or 
@@ -38,7 +39,7 @@
                                       @msgType='Z' or                                      
                                       @msgType='Y') ]" />
 	<!-- @msgType='H' or @msgType='Q' or @msgType='c' or @msgType='d' or @msgType='e'
-		or @msgType='f' or @msgType='AN' or @msgType='AO' or @msgType='AP'
+		or @msgType='f' or @msgType='AO' or @msgType='AP'
 		or @msgType='BP' )]"/> -->
 
 	<!-- filter out unsupported codes -->
@@ -48,6 +49,10 @@
 		                                                             @id='871115' or
 		                                                             @id='871116' or
 		                                                             @id='871120')]"/>
+
+	<!-- PosReqType  -->
+	<xsl:template
+			match="fixr:codeSets/fixr:codeSet[(@id='724')]/fixr:code[not(@id='724001')]"/>
 
 	<!-- filter out unsupported components -->
 	<xsl:template
@@ -615,6 +620,19 @@
 
 	<xsl:template match="fixr:message[@msgType='AF']/fixr:structure/fixr:componentRef[not(@id='1003' or
 																						  @id='1024' )]" />
+
+	<!--RequestForPositions-->
+	<xsl:template match="fixr:message[@msgType='AN']/fixr:structure/fixr:groupRef[not( @id='1012' )]"/>
+
+	<xsl:template match="fixr:message[@msgType='AN']/fixr:structure/fixr:fieldRef[not(@id='1' or
+	                                                                                 @id='710' or
+	                                                                                 @id='715' or
+	                                                                                 @id='724' or
+	                                                                                 @id='60' )]"/>
+
+	<xsl:template match="fixr:message[@msgType='AN']/fixr:structure/fixr:componentRef[not(@id='1003' or
+																						  @id='1024' )]" />
+
 
 </xsl:stylesheet>
 
