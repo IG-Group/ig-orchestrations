@@ -194,10 +194,13 @@ OrderQty, LongQty and ShortQty decimal values are supported to a maximum of 2 de
 
 This group will be used to communicate additional attributes for the instrument definition.  
 For this purpose, IG has defined additional InstrAttribTypes :
-*	‘115’ – Used to list the dealable currencies for an instrument
-*	‘116’ – Used to indicate whether the instrument supports market orders.      InstrAttribValue will be ‘Y’ if market orders are supported.
-*	‘120’ – Used to indicate whether the instrument supports requests for market data.  InstrAttribValue will be ‘N’ if market data is not supported.
-*	‘27’ -  InstrumentPricePrecision. The arithmetic precision of the price, i.e the number of digits following the decimal point.
+
+|InstrAttribType|Description|IG Customisation?|
+|---|--|--|
+|"InstrumentPricePrecision"|The arithmetic precision of the price, i.e the number of digits following the decimal point.|N|
+|"DealableCurrencies"|Used to list the dealable currencies for an instrument|Y|
+|"MarketOrdersSupported"|Used to indicate whether the instrument supports market orders. InstrAttribValue will be ‘Y’ if market orders are supported.|Y|
+|"MarketDataSupported"|Used to indicate whether the instrument supports requests for market data. InstrAttribValue will be ‘N’ if market data is not supported|Y|
 
 |Field/Component Name|Required?|Comments|
 |---|---|---|

@@ -14,7 +14,7 @@
 		</xsl:copy>
 	</xsl:template>
 
-	<!-- filter out unneeded messages -->
+	<!-- filter out unsupported messages -->
 	<xsl:template
 		match="fixr:message[not(@msgType='8' or
                                       @msgType='9' or
@@ -40,7 +40,15 @@
 		or @msgType='f' or @msgType='AF' or @msgType='AN' or @msgType='AO' or @msgType='AP' 
 		or @msgType='BP' )]"/> -->
 
-	<!-- filter out unneeded components -->
+	<!-- filter out unsupported codes -->
+	<!-- InstrAttribTypeCodeSet  -->
+	<xsl:template
+		match="fixr:codeSets/fixr:codeSet[(@id='871')]/fixr:code[not(@id='871027' or
+		                                                             @id='871115' or
+		                                                             @id='871116' or
+		                                                             @id='871120')]"/>
+	
+	<!-- filter out unsupported components -->
 	<xsl:template
 		match="fixr:components/fixr:component[not(@id='1024' or
                                                         @id='1003' or 
@@ -48,7 +56,7 @@
                                                         @id='1011' or
                                                         @id='1021' or
                                                         @id='1013')]" />
-	<!-- filter out unneeded groups -->
+	<!-- filter out unsupported groups -->
 	<xsl:template
 		match="fixr:groups/fixr:group[not(@id='1012' or
                                                 @id='1014' or
@@ -71,7 +79,7 @@
                                                 @id='2073' or
                                                 @id='2074' )]" />
 
-	<!-- Parties Grp, filter out unneeded members -->
+	<!-- Parties Grp, filter out unsupported members -->
 	<xsl:template
 		match="fixr:groups/fixr:group[(@id='1012')]/fixr:groupRef" />
 	<xsl:template
@@ -80,7 +88,7 @@
                                                                                 @id='452'
                                                                                 )]" />
 
-	<!-- PositionQty Grp, filter out unneeded members -->
+	<!-- PositionQty Grp, filter out unsupported members -->
 	<xsl:template
 		match="fixr:groups/fixr:group[(@id='1015')]/fixr:groupRef" />
 	<xsl:template
@@ -93,7 +101,7 @@
 	                                                                        @id='20103' )]" />
 
 
-	<!-- Root Parties Grp, filter out unneeded members -->
+	<!-- Root Parties Grp, filter out unsupported members -->
 	<xsl:template
 		match="fixr:groups/fixr:group[(@id='1031')]/fixr:groupRef" />
 	<xsl:template
@@ -102,7 +110,7 @@
                                                                                 @id='1119'
                                                                                 )]" />
 
-	<!-- List Ord Grp, filter out unneeded members -->
+	<!-- List Ord Grp, filter out unsupported members -->
 	<xsl:template
 		match="fixr:groups/fixr:group[(@id='2030')]/fixr:componentRef[not(@id='1003' or @id='1011' or @id='1013')]" />
 	<xsl:template
@@ -124,7 +132,7 @@
 	                                                                        @id='126' or 
 	                                                                        @id='58')]" />
 
-	<!-- Sec List Grp, filter out unneeded members -->
+	<!-- Sec List Grp, filter out unsupported members -->
 	<xsl:template
 		match="fixr:groups/fixr:group[(@id='2055')]/fixr:componentRef[not(@id='1003' or
                                                                                 @id='1004' 
@@ -136,7 +144,7 @@
 																			@id='58'
                                                                             )]" />
 
-	<!-- Instrument Market Data Req Grp, filter out unneeded members -->
+	<!-- Instrument Market Data Req Grp, filter out unsupported members -->
 	<xsl:template
 		match="fixr:groups/fixr:group[(@id='2022')]/fixr:componentRef[not(@id='1003' or
 		                                                                  @id='1004')]" />
@@ -146,7 +154,7 @@
 		match="fixr:groups/fixr:group[(@id='2022')]/fixr:groupRef[not(@id='2066')]" />
 
 
-	<!-- Instrument Market Data Full Grp, filter out unneeded members -->
+	<!-- Instrument Market Data Full Grp, filter out unsupported members -->
 	<xsl:template
 		match="fixr:groups/fixr:group[(@id='2031')]/fixr:groupRef" />
 	<xsl:template
@@ -161,7 +169,7 @@
                                                                             @id='117'
                                                                         )]" />
 
-	<!-- Instrument Market Data Incr Grp, filter out unneeded members -->
+	<!-- Instrument Market Data Incr Grp, filter out unsupported members -->
 	<xsl:template
 		match="fixr:groups/fixr:group[(@id='2032')]/fixr:groupRef" />
 	<xsl:template
@@ -177,7 +185,7 @@
                                                                             @id='117'
                                                                         )]" />
 
-	<!-- OrderListStatGrp filter out unneeded members -->
+	<!-- OrderListStatGrp filter out unsupported members -->
 	<xsl:template
 		match="fixr:groups/fixr:group[(@id='2037')]/fixr:groupRef" />
 	<xsl:template
@@ -192,7 +200,7 @@
                                                                             @id='58'
                                                                         )]" />
 
-	<!-- QuotReqGrp or QuotReqRjctGrp or QuotCxlEntriesGrp, filter out unneeded 
+	<!-- QuotReqGrp or QuotReqRjctGrp or QuotCxlEntriesGrp, filter out unsupported 
 		members -->
 	<xsl:template
 		match="fixr:groups/fixr:group[(@id='2041' or @id='2045' or @id='2047')]/fixr:componentRef[not(@id='1003')]" />
@@ -243,7 +251,8 @@
                                                                                  @id='541' or
                                                                                  @id='202' or
                                                                                  @id='231' or
-                                                                                 @id='107'
+                                                                                 @id='107' or
+                                                                                 @id='1687'
                                                                                  )]" />
 	<xsl:template
 		match="fixr:components/fixr:component[@id='1003']/fixr:groupRef[not(@id='2071')]" />

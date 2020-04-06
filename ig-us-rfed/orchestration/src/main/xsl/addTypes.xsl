@@ -150,6 +150,39 @@
 		</fixr:code>
 	</xsl:param>
 
+	<xsl:param name="addCustomInstrAttribTypeToAttrbGrp">
+			<fixr:code name="DealableCurrencies" id="871115" value="115" sort="114" added="IG">
+				<fixr:annotation>
+					<fixr:documentation purpose="SYNOPSIS">
+						Dealable Currencies
+					</fixr:documentation>
+					<fixr:documentation purpose="ELABORATION">
+						List of the  currencies in which an instrument can be dealt
+					</fixr:documentation>
+				</fixr:annotation>
+			</fixr:code>
+			<fixr:code name="MarketOrdersSupported" id="871116" value="116" sort="115" added="IG">
+				<fixr:annotation>
+					<fixr:documentation purpose="SYNOPSIS">
+						Are Market orders supported
+					</fixr:documentation>
+					<fixr:documentation purpose="ELABORATION">
+						Used to indicate whether the instrument supports market orders. InstrAttribValue will be ‘Y’ if market orders are supported.
+					</fixr:documentation>
+				</fixr:annotation>
+			</fixr:code>	
+			<fixr:code name="MarketDataSupported" id="871120" value="120" sort="119" added="IG">
+				<fixr:annotation>
+					<fixr:documentation purpose="SYNOPSIS">
+						Are Market Data Requests supported
+					</fixr:documentation>
+					<fixr:documentation purpose="ELABORATION">
+						Used to indicate whether the requests for market data are supported for this instrument. InstrAttribValue will be ‘N’ if market data is not supported.
+					</fixr:documentation>
+				</fixr:annotation>
+			</fixr:code>	
+	</xsl:param>
+
 	<xsl:param name="addFieldRefsToPositionReport">
 		<fixr:fieldRef id="155" added="IG">
 			<fixr:annotation supported="supported">
@@ -262,6 +295,13 @@
 		<xsl:call-template name="identity" />
 		<xsl:copy-of select="$addCustomMsgTypestoRefMsgType" />
 	</xsl:template>
+
+	<!-- InstrAttribType customisation -->
+	<xsl:template
+		match="fixr:codeSets/fixr:codeSet[(@id='871')]/fixr:code[position()=last()]">
+		<xsl:call-template name="identity" />
+		<xsl:copy-of select="$addCustomInstrAttribTypeToAttrbGrp" />
+	</xsl:template>	
 
 	<xsl:template
 		match="fixr:components/fixr:component[@id='1003']/fixr:fieldRef[@id='55']">
