@@ -9,6 +9,8 @@ This project specialises the standard FIX orchestration to build an IG Orchestra
 
 You can build this project as follows:
 
+(you need jdk8 in the path)
+
 ```
 
 git clone https://github.com/IG-Group/ig-orchestrations.git
