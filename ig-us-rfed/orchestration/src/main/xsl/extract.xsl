@@ -18,7 +18,7 @@
 	<xsl:template
 		match="fixr:message[not(@msgType='8' or
                                       @msgType='9' or
-                                      @msgType='S' or 
+                                      @msgType='S' or
                                       @msgType='R' or
                                       @msgType='AF' or
                                       @msgType='AG' or
@@ -26,18 +26,18 @@
 									  @msgType='AO' or
                                       @msgType='AP' or
                                       @msgType='F' or
-                                      @msgType='G' or 
+                                      @msgType='G' or
                                       @msgType='D' or
                                       @msgType='E' or
                                       @msgType='j' or
                                       @msgType='K' or
                                       @msgType='N' or
                                       @msgType='x' or
-                                      @msgType='y' or                                       
+                                      @msgType='y' or
                                       @msgType='V' or
                                       @msgType='W' or
                                       @msgType='X' or
-                                      @msgType='Z' or                                      
+                                      @msgType='Z' or
                                       @msgType='Y') ]" />
 	<!-- @msgType='H' or @msgType='Q' or @msgType='c' or @msgType='d' or @msgType='e'
 		or @msgType='f' or @msgType='BP' )]"/> -->
@@ -57,8 +57,8 @@
 	<!-- filter out unsupported components -->
 	<xsl:template
 		match="fixr:components/fixr:component[not(@id='1024' or
-                                                        @id='1003' or 
-                                                        @id='1004' or 
+                                                        @id='1003' or
+                                                        @id='1004' or
                                                         @id='1011' or
                                                         @id='1021' or
                                                         @id='1013')]" />
@@ -75,7 +75,7 @@
                                                 @id='1073' or
                                                 @id='2030' or
                                                 @id='2031' or
-                                                @id='2032' or                                                
+                                                @id='2032' or
                                                 @id='2033' or
                                                 @id='2037' or
                                                 @id='2041' or
@@ -124,24 +124,24 @@
 	<xsl:template
 		match="fixr:groups/fixr:group[(@id='2030')]/fixr:fieldRef[not(@id='11' or
 																		    @id='67' or
-	                                                                        @id='1' or 
+	                                                                        @id='1' or
 	                                                                        @id='21' or
-	                                                                        @id='54' or 
-	                                                                        @id='60' or 
-	                                                                        @id='38' or 
-	                                                                        @id='40' or 
-	                                                                        @id='44' or 
-	                                                                        @id='99' or 
-	                                                                        @id='15' or 
-	                                                                        @id='117' or 
-	                                                                        @id='59' or 
-	                                                                        @id='126' or 
+	                                                                        @id='54' or
+	                                                                        @id='60' or
+	                                                                        @id='38' or
+	                                                                        @id='40' or
+	                                                                        @id='44' or
+	                                                                        @id='99' or
+	                                                                        @id='15' or
+	                                                                        @id='117' or
+	                                                                        @id='59' or
+	                                                                        @id='126' or
 	                                                                        @id='58')]" />
 
 	<!-- Sec List Grp, filter out unsupported members -->
 	<xsl:template
 		match="fixr:groups/fixr:group[(@id='2055')]/fixr:componentRef[not(@id='1003' or
-                                                                                @id='1004' 
+                                                                                @id='1004'
                                                                                 )]" />
 	<xsl:template
 		match="fixr:groups/fixr:group[(@id='2055')]/fixr:groupRef[not(@id='2066')]" />
@@ -231,7 +231,7 @@
 		match="fixr:components/fixr:component[@id='1013']/fixr:fieldRef[not(@id='211' or
                                                                                   @id='1094' or
                                                                                   @id='5008' or
-                                                                                  @id='5009'                                                                               
+                                                                                  @id='5009'
                                                                                   )]" />
 
 	<!-- OrderQtyData Component -->
@@ -290,19 +290,19 @@
                                                                                  @id='1073')]" />
 	<xsl:template
 		match="fixr:message[@msgType='D']/fixr:structure/fixr:fieldRef[not(@id='11' or
-                                                                                 @id='1' or 
+                                                                                 @id='1' or
                                                                                  @id='21' or
-                                                                                 @id='54' or 
-                                                                                 @id='60' or 
-                                                                                 @id='38' or 
-                                                                                 @id='40' or 
-                                                                                 @id='44' or 
-                                                                                 @id='99' or 
-                                                                                 @id='15' or 
-                                                                                 @id='117' or 
-                                                                                 @id='59' or 
-                                                                                 @id='126' or 
-                                                                                 @id='58' or                                                                                                                                                                   @id='21' or 
+                                                                                 @id='54' or
+                                                                                 @id='60' or
+                                                                                 @id='38' or
+                                                                                 @id='40' or
+                                                                                 @id='44' or
+                                                                                 @id='99' or
+                                                                                 @id='15' or
+                                                                                 @id='117' or
+                                                                                 @id='59' or
+                                                                                 @id='126' or
+                                                                                 @id='58' or                                                                                                                                                                   @id='21' or
                                                                                  @id='1080' or
                                                                                  @id='1081')]" />
 
@@ -352,7 +352,7 @@
                                                                                  @id='6' or
                                                                                  @id='60' or
                                                                                  @id='7' or
-                                                                                 @id='58' or 
+                                                                                 @id='58' or
                                                                                  @id='1385' or
                                                                                  @id='1080' or
                                                                                  @id='1081')]" />
@@ -479,7 +479,7 @@
 	<!-- @id='451' NetChgPrevDay -->
 	<xsl:template
 		match="fixr:message[@msgType='S']/fixr:structure/fixr:fieldRef[not(@id='131'  or
-                                                                                 @id='390'  or 
+                                                                                 @id='390'  or
                                                                                  @id='1867' or
                                                                                  @id='537'  or
                                                                                  @id='132'  or
@@ -550,7 +550,7 @@
 	<xsl:template
 		match="fixr:message[@msgType='Y']/fixr:structure/fixr:fieldRef[not(@id='262' or
                                                                                  @id='281' or
-                                                                                 @id='58'                                                                                  
+                                                                                 @id='58'
                                                                                  )]" />
 	<xsl:template
 		match="fixr:message[@msgType='Y']/fixr:structure/fixr:groupRef" />
@@ -625,6 +625,7 @@
 	<xsl:template match="fixr:message[@msgType='AN']/fixr:structure/fixr:groupRef[not( @id='1012' )]"/>
 
 	<xsl:template match="fixr:message[@msgType='AN']/fixr:structure/fixr:fieldRef[not(@id='1' or
+																					 @id='263' or
 	                                                                                 @id='710' or
 	                                                                                 @id='715' or
 	                                                                                 @id='724' or
