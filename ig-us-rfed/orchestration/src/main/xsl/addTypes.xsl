@@ -231,8 +231,9 @@
 		<fixr:fieldRef id="912" added="IG">
 			<fixr:annotation supported="supported">
 				<fixr:documentation supported="supported">
-					Settlement currency FX rate
-				</fixr:documentation>
+               LastRptRequested. Indicates whether this message is the last report message in response to a request message, e.g. OrderMassStatusRequest(35=AF),
+               TradeCaptureReportRequest(35=AD).
+            </fixr:documentation>
 			</fixr:annotation>
 		</fixr:fieldRef>
 	</xsl:param>
