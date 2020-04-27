@@ -170,7 +170,7 @@
 						Used to indicate whether the instrument supports market orders. InstrAttribValue will be ‘Y’ if market orders are supported.
 					</fixr:documentation>
 				</fixr:annotation>
-			</fixr:code>	
+			</fixr:code>
 			<fixr:code name="MarketDataSupported" id="871120" value="120" sort="119" added="IG">
 				<fixr:annotation>
 					<fixr:documentation purpose="SYNOPSIS">
@@ -180,7 +180,7 @@
 						Used to indicate whether the requests for market data are supported for this instrument. InstrAttribValue will be ‘N’ if market data is not supported.
 					</fixr:documentation>
 				</fixr:annotation>
-			</fixr:code>	
+			</fixr:code>
 	</xsl:param>
 
 	<xsl:param name="addFieldRefsToPositionReport">
@@ -210,7 +210,7 @@
 		<fixr:fieldRef id="20102" added="IG">
 			<fixr:annotation supported="supported">
 				<fixr:documentation supported="supported">
-					IG uses the custom tag OriginatingOrderIDRef to identify the IG Order ID of an order which has resulted in opening the Position. 
+					IG uses the custom tag OriginatingOrderIDRef to identify the IG Order ID of an order which has resulted in opening the Position.
 					The OriginatingOrderIDRef value corresponds to the value of OrderId (37)
 					on the Execution Report for the client order which resulted in opening the position.
 				</fixr:documentation>
@@ -220,8 +220,18 @@
 			<fixr:annotation supported="supported">
 				<fixr:documentation purpose="SYNOPSIS"
 					supported="supported">
-					IG uses the custom tag ClosingOrderIDRef to identify the IG Order ID of an order which has resulted in a close or part-close of a position. 
+					IG uses the custom tag ClosingOrderIDRef to identify the IG Order ID of an order which has resulted in a close or part-close of a position.
 					The ClosingOrderIDRef value corresponds to the value of OrderId (37) on the Execution Report for the client order which resulted in the position change.
+				</fixr:documentation>
+			</fixr:annotation>
+		</fixr:fieldRef>
+	</xsl:param>
+
+	<xsl:param name="addFieldRefsToRequestForPositionsAck">
+		<fixr:fieldRef id="912" added="IG">
+			<fixr:annotation supported="supported">
+				<fixr:documentation supported="supported">
+					Settlement currency FX rate
 				</fixr:documentation>
 			</fixr:annotation>
 		</fixr:fieldRef>
@@ -301,7 +311,7 @@
 		match="fixr:codeSets/fixr:codeSet[(@id='871')]/fixr:code[position()=last()]">
 		<xsl:call-template name="identity" />
 		<xsl:copy-of select="$addCustomInstrAttribTypeToAttrbGrp" />
-	</xsl:template>	
+	</xsl:template>
 
 	<xsl:template
 		match="fixr:components/fixr:component[@id='1003']/fixr:fieldRef[@id='55']">
@@ -331,5 +341,10 @@
 		<xsl:copy-of select="$addFieldRefsToPositionReport" />
 	</xsl:template>
 
+	<xsl:template
+			match="fixr:messages/fixr:message[@msgType='AO']/fixr:structure/fixr:fieldRef[position()=last()]">
+		<xsl:call-template name="identity" />
+		<xsl:copy-of select="$addFieldRefsToRequestForPositionsAck" />
+	</xsl:template>
 </xsl:stylesheet>
 

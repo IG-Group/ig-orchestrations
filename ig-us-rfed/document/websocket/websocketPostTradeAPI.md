@@ -124,9 +124,7 @@ SubscriptionRequestType is not evaluated, logged on trading sessions are implici
 |PosReqID|Y|Unique identifier for the request as assigned by the submitter.|
 |PosReqType|Y|Identifies the type of request. Must be "Position".|
 |SubscriptionRequestType|N|Used to subscribe/unsubscribe. Defaults to False.<ul><li>Snapshot</li><li>SnapshotAndUpdates</li><li>DisablePreviousSnapshot</li></ul>|
-|Parties|Y|Use if the request is being placed by a broker on behalf of an IG client|
 |Account|y|Account ID.|
-|Instrument|N|If present the Request for Positions responses will be limited to the received Instrument.|
 |ClearingBusinessDate|Y|The Clearing Business Date covered by this request – must be current date. Should follow the format YYYMMDD|
 |TransactTime|Y|Time this request was initiated/released by the trader or trading system. Millisecond resolution is optional. Outgoing messages from IG will include Milliseconds.|
 
@@ -144,9 +142,9 @@ The Request for Positions Ack message is returned by the holder of the position 
 |PosReqResult|Y||
 |PosReqStatus|Y||
 |ClearingBusinessDate|N|The Clearing Business Date covered by this request – must be current date. Should follow the format YYYMMDD|
-|Parties|Y||
 |Account|y|IG Account ID. Will always be provided by IG|
-|Instrument|N|Will be present if received on Request for Positions message|
+|TotalNumPosReports|Y| Total number of Position Reports being returned |
+|LastRptRequested|Y| Indicates whether this message is the last report message in response to a request message|                       
 
 ### PositionReport
 Position Report defines the state of a Position.
@@ -175,7 +173,6 @@ Note that field #OpenPrice is a custom field used by IG.
 |PosReqResult|N|Will be present in a response to a Request for Positions Request.|
 |UnsolicitedIndicator|N|Indicates whether or not message is being sent as a result of a subscription request or not.<ul><li>'N'	=	Message is being sent as a result of a prior request</li><li>'Y'	=	Message is being sent unsolicited</li></ul>|
 |ClearingBusinessDate|Y|The Clearing Business Date covered by this request. Should follow the format YYYMMDD|
-|Parties|N||
 |Account|y|Account ID|
 |SettlCurrency|N|Will be present on position closes|
 |MessageEventSource|N|Will be present to identify the event source for Position Changes. See MessageEventSource table below.|
@@ -191,6 +188,8 @@ Note that field #OpenPrice is a custom field used by IG.
 |OriginatingClientOrderRef|N|May be included in a Position Report to indicate the client reference of the originating order. The OriginatingClientOrderRef value may be: <ul><li>the ClOrdID from the client order which resulted in the position</li><li>a reference from another channel such as web trading</li></ul>Only present for PosType = "TOT"|
 |OriginatingOrderIDRef|N|May be included in Position Report to identify the IG Order ID of the order which has resulted in opening this position. The OriginatingOrderIDRef value corresponds to the value of OrderId on the Execution Report for the client order which resulted in opening the position.|
 |ClosingOrderIDRef|N|May be included in Position Report to identify the IG Order ID of the order which has resulted in a close or part-close of this position. The ClosingOrderIDRef value corresponds to:<ul><li>The value of SecondaryOrderID on the Execution Report for the client order which resulted in the position change where SecondaryOrderID is present.</li><li>the value of OrderId on the Execution Report for the client order which resulted in the position change.</li></ul>|
+
+|LastRptRequested|N| Indicates whether this message is the last report message in response to a request message|                       
 
 #### MessageEventSource
 

@@ -602,27 +602,26 @@
                                                                                  @id='20102' or
                                                                                  @id='20103' or
                                                                                  @id='20104' or
-                                                                                 @id='155' )]" />
+                                                                                 @id='155' or
+		                                                                           @id='912' )]" />
 	<xsl:template
-		match="fixr:message[@msgType='AP']/fixr:structure/fixr:groupRef[not( @id='1012' or
-                                                                                  @id='1014'  or
+		match="fixr:message[@msgType='AP']/fixr:structure/fixr:groupRef[not( @id='1014'  or
                                                                                   @id='1015' )]" />
 	<xsl:template
 		match="fixr:message[@msgType='AP']/fixr:structure/fixr:componentRef[not(@id='1024' or
                                                                                  @id='1003' )]" />
 
 	<!--OrderMassStatusRequest-->
-	<xsl:template match="fixr:message[@msgType='AF']/fixr:structure/fixr:groupRef[not( @id='1012' )]"/>
+	<xsl:template match="fixr:message[@msgType='AF']/fixr:structure/fixr:groupRef[not( @id='' )]"/>
 
 	<xsl:template match="fixr:message[@msgType='AF']/fixr:structure/fixr:fieldRef[not(@id='1' or
 	                                                                                 @id='584' or
 	                                                                                 @id='585' )]"/>
 
-	<xsl:template match="fixr:message[@msgType='AF']/fixr:structure/fixr:componentRef[not(@id='1003' or
-																						  @id='1024' )]" />
+	<xsl:template match="fixr:message[@msgType='AF']/fixr:structure/fixr:componentRef[not(@id='1024' )]" />
 
 	<!--RequestForPositions-->
-	<xsl:template match="fixr:message[@msgType='AN']/fixr:structure/fixr:groupRef[not( @id='1012' )]"/>
+	<xsl:template match="fixr:message[@msgType='AN']/fixr:structure/fixr:groupRef[not( @id='' )]"/>
 
 	<xsl:template match="fixr:message[@msgType='AN']/fixr:structure/fixr:fieldRef[not(@id='1' or
 																					 @id='263' or
@@ -631,11 +630,10 @@
 	                                                                                 @id='724' or
 	                                                                                 @id='60' )]"/>
 
-	<xsl:template match="fixr:message[@msgType='AN']/fixr:structure/fixr:componentRef[not(@id='1003' or
-																						  @id='1024' )]" />
+	<xsl:template match="fixr:message[@msgType='AN']/fixr:structure/fixr:componentRef[not(@id='1024' )]" />
 
 	<!--RequestForPositionsAck-->
-	<xsl:template match="fixr:message[@msgType='AO']/fixr:structure/fixr:groupRef[not( @id='1012' )]"/>
+	<xsl:template match="fixr:message[@msgType='AO']/fixr:structure/fixr:groupRef[not( @id='' )]"/>
 
 	<xsl:template match="fixr:message[@msgType='AO']/fixr:structure/fixr:fieldRef[not(@id='1' or
 	                                                                                 @id='710' or
@@ -643,10 +641,10 @@
 	                                                                                 @id='727' or
 	                                                                                 @id='728' or
 		                                                                             @id='729' or
-		                                                                             @id='715' )]"/>
+		                                                                             @id='715' or
+		                                                                             @id='912' )]"/>
 
-	<xsl:template match="fixr:message[@msgType='AO']/fixr:structure/fixr:componentRef[not(@id='1003' or
-																						  @id='1024' )]" />
+	<xsl:template match="fixr:message[@msgType='AO']/fixr:structure/fixr:componentRef[not(@id='1024' )]" />
 
 </xsl:stylesheet>
 
