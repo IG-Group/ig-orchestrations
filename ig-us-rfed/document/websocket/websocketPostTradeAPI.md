@@ -188,7 +188,6 @@ Note that field #OpenPrice is a custom field used by IG.
 |OriginatingClientOrderRef|N|May be included in a Position Report to indicate the client reference of the originating order. The OriginatingClientOrderRef value may be: <ul><li>the ClOrdID from the client order which resulted in the position</li><li>a reference from another channel such as web trading</li></ul>Only present for PosType = "TOT"|
 |OriginatingOrderIDRef|N|May be included in Position Report to identify the IG Order ID of the order which has resulted in opening this position. The OriginatingOrderIDRef value corresponds to the value of OrderId on the Execution Report for the client order which resulted in opening the position.|
 |ClosingOrderIDRef|N|May be included in Position Report to identify the IG Order ID of the order which has resulted in a close or part-close of this position. The ClosingOrderIDRef value corresponds to:<ul><li>The value of SecondaryOrderID on the Execution Report for the client order which resulted in the position change where SecondaryOrderID is present.</li><li>the value of OrderId on the Execution Report for the client order which resulted in the position change.</li></ul>|
-
 |LastRptRequested|N| Indicates whether this message is the last report message in response to a request message|                       
 
 #### MessageEventSource

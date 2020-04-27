@@ -302,9 +302,7 @@ ExecutionReports with ExecType (150) ="Order Status" are returned for all orders
 |Standard Header|Y|MsgType = "OrderMassStatusRequest"|
 |MassStatusReqID|Y|Unique ID of Mass Status Request.|
 |MassStatusReqType|Y|Specifies the scope of the Mass Status Request (AF). Must be: "StatusForOrdersForAPartyID" (Account is used for PartyID)|
-|Parties|c|Required if the request is being placed by a broker on behalf of an IG client.|
 |Account|y|IG Account ID.|
-|Instrument|N|Identification of the Instrument. If present the mass order status responses will be limited to the received Instrument.|
 
 Response: (See Execution Report)
 
