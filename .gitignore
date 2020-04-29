@@ -25,3 +25,5 @@ hs_err_pid*
 .settings/
 .project
 .classpath
+
+.sts4-cache/

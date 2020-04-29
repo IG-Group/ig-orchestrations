@@ -575,7 +575,8 @@
                                                                                  @id='322' or
                                                                                  @id='560' or
                                                                                  @id='393' or
-                                                                                 @id='893')]" />
+                                                                                 @id='893' or
+                                                                                 @id='1607')]" />
 	<xsl:template
 		match="fixr:message[@msgType='y']/fixr:structure/fixr:groupRef[not(@id='2055')]" />
 	<xsl:template

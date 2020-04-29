@@ -314,6 +314,19 @@
 		<xsl:copy-of select="$addCustomInstrAttribTypeToAttrbGrp" />
 	</xsl:template>
 
+	<!-- SecurityRequestResultCodeSet customization. -->
+	<xsl:template
+		match="fixr:codeSets/fixr:codeSet[(@id='560')]/fixr:code[position()=last()]">
+		<xsl:call-template name="identity" />
+		<fixr:code name="RequestQuotaExceeded" id="560100" value="100" sort="100" >
+			<fixr:annotation>
+				<fixr:documentation purpose="SYNOPSIS">
+         			A request quota has been exceeded. Try again later.
+     			</fixr:documentation>
+			</fixr:annotation>
+		</fixr:code>
+	</xsl:template>
+
 	<xsl:template
 		match="fixr:components/fixr:component[@id='1003']/fixr:fieldRef[@id='55']">
 		<xsl:copy>
@@ -348,4 +361,3 @@
 		<xsl:copy-of select="$addFieldRefsToRequestForPositionsAck" />
 	</xsl:template>
 </xsl:stylesheet>
-
