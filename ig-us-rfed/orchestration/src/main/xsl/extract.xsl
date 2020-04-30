@@ -636,6 +636,7 @@
 	<xsl:template match="fixr:message[@msgType='AO']/fixr:structure/fixr:groupRef[not( @id='' )]"/>
 
 	<xsl:template match="fixr:message[@msgType='AO']/fixr:structure/fixr:fieldRef[not(@id='1' or
+	                                                                                 @id='58' or
 	                                                                                 @id='710' or
 	                                                                                 @id='721' or
 	                                                                                 @id='727' or
