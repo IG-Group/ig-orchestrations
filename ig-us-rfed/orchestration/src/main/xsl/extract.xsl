@@ -282,8 +282,7 @@
 	<xsl:template
 		match="fixr:message[@msgType='D']/fixr:structure/fixr:componentRef[not(@id='1003' or
                                                                                      @id='1011' or
-                                                                                     @id='1024' or
-                                                                                     @id='1013')]" />
+                                                                                     @id='1024')]" />
 	<xsl:template
 		match="fixr:message[@msgType='D']/fixr:structure/fixr:groupRef[not(@id='2045' or
                                                                                  @id='2593' or
