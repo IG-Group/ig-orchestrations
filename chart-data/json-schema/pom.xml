@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.ig.orchestrations.chart.data</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.1.37-SNAPSHOT</version>
+		<version>0.1.37</version>
 	</parent>
 	<artifactId>chart-data-json-schema</artifactId>
 	<packaging>pom</packaging>
