@@ -94,54 +94,12 @@ The actual Price will depend on the price at which the order is filled.
 
 The New Order Single message type is used by institutions wishing to electronically submit orders to IG Group for execution. This submits a single order for a single instrument.
 
-#### Contingent Orders
-
-IG supports using New Order Single to place orders contingent on an existing order. This is a departure from the standard FIX specification in which only the New Order List is used for contingent orders. This section describes the usage for contingent orders.
-
-Only Order Type “Stop” and “Limit” are valid for contingent orders.
-To identify a contingent order the ContingencyType field must be populated. The value must be "OneTriggersTheOther"
-
-In this implementation PegInstructions are used in the contingent orders to define the offsets from the primary order or position price.
-
-See “Component PegInstructions”.
-
-Price and StopPx fields are not evaluated for Contingent Orders. They may be populated in the message for documentary purposes. The values will be logged.
-
-PegPriceType may be:
-<ul>
-  <li>PrimaryPeg</li>
-</ul>
-
-Tags RefOrderID and RefOrderIDSource are used to identify the relevant order.
-The Side on the contingent orders must be opposite the Side of the referenced order or position.
-The values for the following fields need to match (and will in fact be taken from) the order or position on which the new order is contingent.  The values on the message will not be evaluated for but should be populated in the message for documentary purposes. The values in the received message will be logged.
-<ul>
-  <li>Account</li>
-  <li>OrderQty</li>
-  <li>Currency</li>
-  <li>TimeInForce</li>
-</ul>
-
-The PegOffsetValue will be relative to the price (Price or StopPx) of the working order.
-
-The PegOffsetValue is expected to be the absolute value of the price offset requested.
-
-The IG Order Management System will determine the price based on the Side and the Order Type. See “The Effect of Side and Order Type”.
-
-RefOrderIDSource must be:
-<ul>
-  <li>"ClOrdID"</li>
-  <li>"OrderID"</li>
-</ul>
-
-When a working order is filled and a contingent order triggered, the PegOffsetValue will be calculated relative to the fill price (LastPx from the Execution Report). This is the opening price of the position. The contingent order or orders are then contingent on the new position.
-
 #### Orders "attached" to a Position
 
 New Order Single may be used to create an order attached to a position.
 Attaching Orders to a position is an IG specific usage and departs from the standard FIX specification. Orders that are attached to a position will be automatically cancelled if the position is closed.
 
-The SecurityID is used to identify the relevant position.
+SecurityID must be provided to identify the relevant position.
 
 Only Order Type “Stop” and “Limit” are valid for "attached" orders.
 
@@ -149,17 +107,18 @@ For attached orders Price or StopPx fields are used to specify the Limit or Stop
 
 TimeInForce must be “GoodTillCancel”.
 
+See "OrderAttributeGrp" to specify that the Order must be attached.
+
 |Field/Component Name|Required?|Comments|
 |---|---|---|
 |Standard Header|Y|MsgType = “NewOrderSingle”|
 |ClOrdID|Y|Unique identifier of the order as assigned by institution. The maximum size of ClOrdID is limited to 60 characters in this implementation.|
-|Parties|c|Required if the trade is being placed by a broker on behalf of an IG client.|
 |Account|y|IG Account ID. Required on all trading messages.|
 |ContingencyType|c|Required on contingent orders.Must be ‘OneTriggersTheOther’ = One Triggers the Other|
 |Instrument|y|SecurityID and SecurityIDSource are required by IG, Marketplace Assigned Identifier for the security as provided by IG. SecurityIDSource must be "MarketplaceAssignedIdentifier".|
 |Side|Y|Side of order. Valid Values are; <ul><li>"Buy"</li><li>"Sell"</li></ul> Other values will be rejected.|
 |TransactTime|Y|Time this order request was initiated/released by the trader or trading system. Millisecond resolution is optional. Outgoing messages from IG will include Milliseconds.|
-|OrderQty|y|Required by IG. Cash Qty per point for Spread Bets. Number of contracts for CFDs. Decimal quantities are supported (see implementation notes 3.14).|
+|OrderQty|y|Required by IG. Number of contracts. Decimal quantities are supported (see implementation notes 3.14). OrderQty is not evaluated for Orders to be attached to a Position.|
 |OrdType|Y|Type of Order. See “Order Types”|
 |Price|C|Required for “Limit” and “Previously Quoted” Order Types|
 |StopPx|C|Required for “Stop” order types.|
@@ -168,11 +127,8 @@ TimeInForce must be “GoodTillCancel”.
 |TimeInForce|y|Required by IG Group. See “Time In Force”|
 |ExpireTime|C|Required if TimeInForce = "GoodTillDate". Only format “YYYYMMDD-HH:MM:SS “ (whole seconds) is supported.|
 |Text|N|Free format text|
-|PegInstructions|N|See PegInstructions|
 |OrderAttributeGrp|N|Order Attribute Group, used to specify if this order will be attached to a position|
 |Contingency Type|c|IG customisation - present for contingent orders only. Must be ‘2’ = One Triggers the Other|
-|RefOrderID|c|Required By IG if this order is contingent on another order|
-|RefOrderIDSource|c|Required if RefOrderID is present. Identifies the source/type of the RefOrderID. Must be:<ul><li>"OrderID"</li><li>"ClOrdID"</li></ul>|
 
 #### OrderAttributeGrp
 
@@ -221,7 +177,6 @@ Please note the requirement for OrdType, RefOrderID and RefOrderIDSource where a
 |OrderID|c|Conditionally required if OrigClOrdID is not provided. Either OrderID or OrigClOrdID must be provided.|
 |ClOrdID|Y|Unique identifier of the order as assigned by institution. The maximum size of ClOrdID is limited to 60 characters in this implementation.|
 |Account|y|IG Account ID. Required on all trading messages.|
-|Parties|c|Required if the request is being placed by a broker on behalf of an IG client.|
 |Instrument|y|SecurityID and SecurityIDSource are required by IG, Marketplace Assigned Identifier for the security as provided by IG. SecurityIDSource must be "MarketplaceAssignedIdentifier".|
 |Side|Y|Side of order. Valid Values are; <ul><li>"Buy"</li><li>"Sell"</li></ul> Other values will be rejected.|
 |TransactTime|Y|Time this order request was initiated/released by the trader or trading system. Millisecond resolution is optional. Outgoing messages from IG will include Milliseconds.|
@@ -250,7 +205,6 @@ If the order being replaced is contingent on a Position or another Order then Pe
 |---|---|---|
 |Standard Header|Y|MsgType = "OrderCancelReplaceRequest"|
 |OrderID|c|Unique identifier of most recent order as assigned by broker. Required when OrigClOrdID cannot be provided, for example in the event that the order being replaced was submitted out of band.|
-|Parties|c|Required if the request is being placed by a broker on behalf of an IG client.|
 |OrigClOrdID|c|ClOrdID of the previous order (NOT the initial order of the day) when cancelling or replacing an order. Required when referring to orders that where electronically submitted over FIX.|
 |ClOrdID|Y|Unique identifier of replacement order as assigned by institution. Note that this identifier will be used in ClOrdID  field of the Cancel Reject message if the replacement request is rejected. The maximum size of ClOrdID is limited to 60 characters in this implementation.|
 |Account|y|IG Account ID. Required on all trading messages.|
@@ -281,7 +235,6 @@ If the order is not active or not found, an execution report response will be se
 |Standard Header|Y|MsgType = "OrderStatusRequest"|
 |OrderID|C|Conditionally required if ClOrdID is not provided. Either OrderID or ClOrdID must be provided.|
 |ClOrdID|C|Conditionally required if OrderID is not provided. Either OrderID or ClOrdID must be provided. |
-|Parties|c|Required if the request is being placed by a broker on behalf of an IG client.|
 |OrdStatusReqID|Y|Used to uniquely identify a specific Order Status Request message.|
 |Account|Y|IG Account ID.|
 |Instrument|Y|Identification of the Instrument|
@@ -442,7 +395,6 @@ This message cannot be used to attach Contingent Orders to an existing order. IG
 |BidType|Y|Must be "NoBiddingProcess"|
 |ContingencyType|y|IG requires this field as New Order List is only supported for the purpose of contingent orders. Must be "OneTriggersTheOther"|
 |TotalNoOrders|Y|TotalNumber of Orders in accross all messages. IG does not support fragmenting large list orders across multiple messages so TotNoOrders must equal the number of orders in the Orders Group.|
-|RootParties|c|Required if the trade is being placed by a broker on behalf of an IG client.|
 |ListOrdGrp|Y|Orders Repeating Group|
 
 #### Orders Group  (ListOrdGrp)
@@ -477,7 +429,6 @@ List Cancel Request is used by IG to support cancelling list orders including an
 |---|---|---|
 |Standard Header|Y|MsgType = "ListCancelRequest"|
 |ListID|Y|Must be unique, by customer, for the day. Must be the same as the CLOrdID of the primary order.|
-|Parties|c|Required if the trade is being placed by a broker on behalf of an IG client.|
 |Account|y|IG Account ID. Required on all trading messages.|
 |TransactTime|Y|Time this order request was initiated/released by the trader or trading system. Millisecond resolution is optional. Outgoing messages from IG will include Milliseconds.|
 |Text|N|Free format text|
@@ -529,7 +480,6 @@ ExecutionReports with ExecType (150) ="Order Status" are returned for all orders
 |Standard Header|Y|MsgType = "OrderMassStatusRequest"|
 |MassStatusReqID|Y|Unique ID of Mass Status Request.|
 |MassStatusReqType|Y|Specifies the scope of the Mass Status Request (AF). Must be: "StatusForOrdersForAPartyID" (Account is used for PartyID)|
-|Parties|c|Required if the trade is being placed by a broker on behalf of an IG client.|
 |Account|y|IG Account ID.|
 |Instrument|N|Identification of the Instrument. If present the mass order status responses will be limited to the received Instrument.|
 

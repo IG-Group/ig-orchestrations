@@ -24,6 +24,20 @@ SubscriptionRequestType can have the following values.
 |"SnapshotAndUpdates"|A snaphot of values is requested followed by updates (subscribe).|
 |"DisablePreviousSnapshot"|Disable previous Snapshot + Update Request (unsubscribe).|
 
+## Components
+
+### Security Trading Rules
+
+|Field/Component Name|Required?|Comments|
+|---|---|---|
+|BaseTradingRules|N|Component|
+
+### Base Trading Rules
+
+|Field/Component Name|Required?|Comments|
+|---|---|---|
+|RoundLot|N|This is used by IG to denote the value of one point of a quoted price in the denominated currency. This is a member of Component BaseTradingRules with SecurityTradingRules but these are omitted for in the interests of simplicity.|
+
 ## Application Messages
 ### Security List Request
 
@@ -60,7 +74,7 @@ A response with many instruments may be sent in multiple SecurityList fragments 
 |---|---|---|
 |Instrument|N||
 |InstrumentExtension|N||
-|RoundLot|N|This is used by IG to denote the value of one point of a quoted price in the denominated currency. This is a member of Component BaseTradingRules with SecurityTradingRules but these are omitted for in the interests of simplicity.|
+|SecurityTradingRules|N|Component|
 |UndInstrmtGrp|N|Underlying Instrument Repeating Group|
 |Currency|N||
 |Text|N||
@@ -107,13 +121,15 @@ Response: See Quote
 
 ### Quote
 
+The Quote message is used as the response to a Quote Request.
+
 |Field/Component Name|Required?|Comments|
 |---|---|---|
 |Standard Header|Y|MsgType = ‘Quote’|
 |QuoteReqID|Y|ID of the associated quote request|
 |QuoteType|y|Expect <ul><li>"Indicative"</li><li>"Tradeable"</li></ul>|
 |BidPx|y|Bid Price|
-|OfferPx|y|Bid Price|
+|OfferPx|y|Offer Price|
 |BidID|y|Unique identifier for the bid side of the quote.|
 |OfferID|y|Unique identifier for the offer side of the quote.|
 |NetChgPrevDay|n|Bid Price|

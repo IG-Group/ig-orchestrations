@@ -155,7 +155,7 @@ OrderQty, LongQty and ShortQty decimal values are supported to a maximum of 2 de
 |CFICode|N|Represents the Option Type.|
 |SecurityGroup|N|IG-specific name assigned to a group of related securities.|
 |MaturityMonthYear|c|Month and Year of Maturity. Conditionally required by IG for dated instruments. If MaturityMonthYear is specified in the Instrument Component of SecurityDefinition/Security List messages then it must be also be included in the Instrument Component of Order Messages |
-|MaturityDate|N|Specifies the full date of maturity. This field may be included by IG for information only and will not be evaluated on incoming orders. Specifies the Strike Price. |
+|MaturityDate|N|Specifies the full date of maturity. This field may be included by IG for information only and will not be evaluated on incoming orders.|
 |StrikePrice|N|Specifies the Strike Price|
 |ContractMultiplier|N|Specifies the ratio or multiply factor to convert from "nominal" units (e.g. contracts) to total units (e.g. shares) (e.g. 1.0, 100.0, 1000.0, etc).|
 |SecurityDesc|N|Provides an optional textual description for a financial instrument.|
