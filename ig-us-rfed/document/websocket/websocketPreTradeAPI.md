@@ -61,9 +61,9 @@ A response with many instruments may be sent in multiple SecurityList fragments 
 |Field/Component Name|Required?|Comments|
 |---|---|---|
 |Standard Header|Y|MsgType (35) = ‘SecurityList’|
-|SecurityReqID|y|ID of the associated request.|
-|SecurityResponseID|y|Unique ID of the response.|
-|SecurityListRequestResult|y|Result status for the corresponding security request.|
+|SecurityReqID|Y|ID of the associated request.|
+|SecurityResponseID|Y|Unique ID of the response.|
+|SecurityListRequestResult|Y|Result status for the corresponding security request.|
 |TotNoRelatedSym|N|Total Number of securities returned for this request, may be greater than the number returned in this individual message.  Will be present.|
 |LastFragment|N|Indicates whether this is the last fragment in a sequence of message fragments. |
 |SecListGrp|N|Security List Group|
@@ -127,11 +127,11 @@ The Quote message is used as the response to a Quote Request.
 |---|---|---|
 |Standard Header|Y|MsgType = ‘Quote’|
 |QuoteReqID|Y|ID of the associated quote request|
-|QuoteType|y|Expect <ul><li>"Indicative"</li><li>"Tradeable"</li></ul>|
-|BidPx|y|Bid Price|
-|OfferPx|y|Offer Price|
-|BidID|y|Unique identifier for the bid side of the quote.|
-|OfferID|y|Unique identifier for the offer side of the quote.|
+|QuoteType|Y|Expect <ul><li>"Indicative"</li><li>"Tradeable"</li></ul>|
+|BidPx|Y|Bid Price|
+|OfferPx|Y|Offer Price|
+|BidID|Y|Unique identifier for the bid side of the quote.|
+|OfferID|Y|Unique identifier for the offer side of the quote.|
 |NetChgPrevDay|n|Bid Price|
 
 Quote : The Quote message is used as the response to a Quote Request.

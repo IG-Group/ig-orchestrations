@@ -101,10 +101,6 @@ Fields, Components and Repeating Groups that are common to more than one API are
 
 The "Required?" column describes whether a field must be present on the message.
 
-In general, where the standard FIX Protocol requires a field, IG will also require the field. These cases will be identified by a capital "Y" in the "Required?" column. Where IG has a custom requirement for a field this will be identified by a lower case 'y'. This difference is to help us maintain these documents in line with the FIX Protocol. The reference used for the FIX Protocol is [FIXimate](https://fiximate.fixtrading.org/). The FIXimate document is read literally so errors or omissions in the standard are reflected in the use of case.
-
-In general, where the standard FIX Protocol conditionally requires a field, IG will also conditionally require the field. These cases will be identified by a capital "C" in the "Required?" column. Where IG has a custom conditional requirement for a field this will be identified by a lower case 'c'.
-
 ## Fields and Constraints
 ### Symbol
 
@@ -149,12 +145,12 @@ OrderQty, LongQty and ShortQty decimal values are supported to a maximum of 2 de
 |Field/Component Name|Required?|Comments|
 |---|---|---|
 |Symbol|N|Common, "human understood" representation of the security. This is provided by IG for display purposes and is not evaluated on messages received by IG. Use SecurityID, SecurityIDSource as follows. |
-|SecurityID|y|Required by IG, Marketplace Assigned Identifier for the security as provided by IG|
-|SecurityIDSource|y|Required by IG, distinguishes the source of the SecurityID. Must be "MarketplaceAssignedIdentifier".|
+|SecurityID|Y|Required by IG, Marketplace Assigned Identifier for the security as provided by IG|
+|SecurityIDSource|Y|Required by IG, distinguishes the source of the SecurityID. Must be "MarketplaceAssignedIdentifier".|
 |SecAltIDGrp|N|Security Alt ID Group. Alternate identifiers for the Security.|
 |CFICode|N|Represents the Option Type.|
 |SecurityGroup|N|IG-specific name assigned to a group of related securities.|
-|MaturityMonthYear|c|Month and Year of Maturity. Conditionally required by IG for dated instruments. If MaturityMonthYear is specified in the Instrument Component of SecurityDefinition/Security List messages then it must be also be included in the Instrument Component of Order Messages |
+|MaturityMonthYear|C|Month and Year of Maturity. Conditionally required by IG for dated instruments. If MaturityMonthYear is specified in the Instrument Component of SecurityDefinition/Security List messages then it must be also be included in the Instrument Component of Order Messages |
 |MaturityDate|N|Specifies the full date of maturity. This field may be included by IG for information only and will not be evaluated on incoming orders.|
 |StrikePrice|N|Specifies the Strike Price|
 |ContractMultiplier|N|Specifies the ratio or multiply factor to convert from "nominal" units (e.g. contracts) to total units (e.g. shares) (e.g. 1.0, 100.0, 1000.0, etc).|

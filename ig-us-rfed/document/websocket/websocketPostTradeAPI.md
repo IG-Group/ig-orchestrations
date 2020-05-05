@@ -36,15 +36,15 @@ IG uses the custom tag OpenPrice to report the price at which a Position is open
 
 |Field/Component Name|Required?|Comments|
 |---|---|---|
-|CollateralType|y|Will be "CASH"|
-|CurrentCollateralAmount|y||
+|CollateralType|Y|Will be "CASH"|
+|CurrentCollateralAmount|Y||
 
 ### Margin Amount Group (MarginAmount)
 
 |Field/Component Name|Required?|Comments|
 |---|---|---|
-|MarginAmt|y||
-|MarginAmtType|y|Will be one of: <ul><li>"TotalMargin"</li><li>"ControlledRiskMargin"</li><li>"NonControlledRiskMargin"</li></ul>|
+|MarginAmt|Y||
+|MarginAmtType|Y|Will be one of: <ul><li>"TotalMargin"</li><li>"ControlledRiskMargin"</li><li>"NonControlledRiskMargin"</li></ul>|
 
 
 ###	Position Quantity Group (PositionQty)
@@ -58,7 +58,7 @@ Two types of PosType are used by the IG implementation.
 
 |Field/Component Name|Required?|Comments|
 |---|---|---|
-|Pos Type|y|Will contain: <ul><li>"TOT" = Total Transaction Qty</li><li>"DLT" = Net Delta Qty</li></ul>|
+|Pos Type|Y|Will contain: <ul><li>"TOT" = Total Transaction Qty</li><li>"DLT" = Net Delta Qty</li></ul>|
 |LongQty|N|Decimal quantities are supported (see Quantities).|
 |ShortQty|N|Decimal quantities are supported (see Quantities).|
 |PosQtyStatus|N|Will be "Accepted"|
@@ -69,9 +69,9 @@ This component block is populated with the value of the closed part of the posit
 
 |Field/Component Name|Required?|Comments|
 |---|---|---|
-|PosAmtType|y|Will be “SETL” if present. Settlement Value|
-|PosAmt|y|Profit or Loss value of the closed part of the position.|
-|PositionCurrency|y|If present, the currency of the PosAmt, will be the same as SettlCurrency|
+|PosAmtType|Y|Will be “SETL” if present. Settlement Value|
+|PosAmt|Y|Profit or Loss value of the closed part of the position.|
+|PositionCurrency|Y|If present, the currency of the PosAmt, will be the same as SettlCurrency|
 
 ## Application messages
 
@@ -88,9 +88,9 @@ Account Summary Report Request messages must include client account details.  Th
 |Field/Component Name|Required?|Comments|
 |---|---|---|
 |Standard Header|Y|MsgType = "AccountSummaryReportRequest"|
-|AccountSummaryReportRequestID|y|Unique identifier of the request as assigned by institution.|
-|Parties Component Block|y|An entry with Party Role "CustomerAccount" must be present. The PartyID for this entry will be the IG Account ID.|
-|SubscriptionRequestType|y|<ul><li>"Snapshot" indicates that the requestor only wants a snapshot or the current status.</l1><li>"SnapshotAndUpdates" indicates that the requestor wants a snapshot (the current status) plus updates as the account balance changes.</li><li>"DisablePreviousSnapshot" indicates that the requestor wishes to cancel any pending snapshots or updates - this unsubscribes from account balance messages.</li></ul>|
+|AccountSummaryReportRequestID|Y|Unique identifier of the request as assigned by institution.|
+|Parties Component Block|Y|An entry with Party Role "CustomerAccount" must be present. The PartyID for this entry will be the IG Account ID.|
+|SubscriptionRequestType|Y|<ul><li>"Snapshot" indicates that the requestor only wants a snapshot or the current status.</l1><li>"SnapshotAndUpdates" indicates that the requestor wants a snapshot (the current status) plus updates as the account balance changes.</li><li>"DisablePreviousSnapshot" indicates that the requestor wishes to cancel any pending snapshots or updates - this unsubscribes from account balance messages.</li></ul>|
 
 ### AccountSummaryReport
 
@@ -101,12 +101,12 @@ The Account Summary Report message type is used by IG to provide account balance
 |Standard Header|Y|MsgType = "AccountSummaryReport"|
 |AccountSummaryReportID|Y|Unique identifier of the Account Summary Report.|
 |AccountSummaryReportRequestID|N|Unique identifier of the request if applicable.|
-|AccountSummaryReportRequestResult|y|<ul><li>"Valid Request"</li><li>"InvalidOrUnsupportedRequest"</li><li>"UnknownAccount"</li><li>"Unauthorised"</li><li>"NotSupported"</li><li>"Other"</li></ul>If "Other", Text field will be present.|
+|AccountSummaryReportRequestResult|Y|<ul><li>"Valid Request"</li><li>"InvalidOrUnsupportedRequest"</li><li>"UnknownAccount"</li><li>"Unauthorised"</li><li>"NotSupported"</li><li>"Other"</li></ul>If "Other", Text field will be present.|
 |ClearingBusinessDate|Y|The Clearing Business Date covered by this request – must be current date.|
-|Currency|y|Identifies the base reporting currency used in this report. Will be Account Base Currency.|
+|Currency|Y|Identifies the base reporting currency used in this report. Will be Account Base Currency.|
 |TotalNetValue|N|Used by IG to report Running Profit & Loss|
 |TransactTime|N|The time of summary report generation|
-|UnsolicitedIndicator|y|Set to 'Y' if message is sent as a result of a subscription request not a snapshot request|
+|UnsolicitedIndicator|Y|Set to 'Y' if message is sent as a result of a subscription request not a snapshot request|
 |MarginAmount|N||
 |Parties|Y||
 |CollateralAmountGrp|N||
@@ -124,7 +124,7 @@ SubscriptionRequestType is not evaluated, logged on trading sessions are implici
 |PosReqID|Y|Unique identifier for the request as assigned by the submitter.|
 |PosReqType|Y|Identifies the type of request. Must be "Position".|
 |SubscriptionRequestType|N|Used to subscribe/unsubscribe. Defaults to False.<ul><li>Snapshot</li><li>SnapshotAndUpdates</li><li>DisablePreviousSnapshot</li></ul>|
-|Account|y|Account ID.|
+|Account|Y|Account ID.|
 |ClearingBusinessDate|Y|The Clearing Business Date covered by this request – must be current date. Should follow the format YYYMMDD|
 |TransactTime|Y|Time this request was initiated/released by the trader or trading system. Millisecond resolution is optional. Outgoing messages from IG will include Milliseconds.|
 
@@ -142,7 +142,7 @@ The Request for Positions Ack message is returned by the holder of the position 
 |PosReqResult|Y||
 |PosReqStatus|Y||
 |ClearingBusinessDate|N|The Clearing Business Date covered by this request – must be current date. Should follow the format YYYMMDD|
-|Account|y|IG Account ID. Will always be provided by IG|
+|Account|Y|IG Account ID. Will always be provided by IG|
 |TotalNumPosReports|Y| Total number of Position Reports being returned |
 |LastRptRequested|Y| Indicates whether this message is the last report message in response to a request message|                       
 
@@ -173,7 +173,7 @@ Note that field #OpenPrice is a custom field used by IG.
 |PosReqResult|N|Will be present in a response to a Request for Positions Request.|
 |UnsolicitedIndicator|N|Indicates whether or not message is being sent as a result of a subscription request or not.<ul><li>'N'	=	Message is being sent as a result of a prior request</li><li>'Y'	=	Message is being sent unsolicited</li></ul>|
 |ClearingBusinessDate|Y|The Clearing Business Date covered by this request. Should follow the format YYYMMDD|
-|Account|y|Account ID|
+|Account|Y|Account ID|
 |SettlCurrency|N|Will be present on position closes|
 |MessageEventSource|N|Will be present to identify the event source for Position Changes. See MessageEventSource table below.|
 |SettlCurrFxRate|N|SettlCurrFxRate is the rate used to exchange Currency for SettlCurrency. Will be present on position closes.|
