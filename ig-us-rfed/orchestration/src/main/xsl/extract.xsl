@@ -652,7 +652,8 @@
 	<xsl:template match="fixr:message[@msgType='H']/fixr:structure/fixr:fieldRef[not(@id='1' or
 	                                                                                 @id='37' or
 	                                                                                 @id='11' or
-	                                                                                 @id='790' )]"/>
+	                                                                                 @id='790' or
+	                                                                                 @id='54' )]"/>
 	<xsl:template match="fixr:message[@msgType='H']/fixr:structure/fixr:componentRef[not(@id='1024' or
                                                                                  	 @id='1003' )]" />
 
