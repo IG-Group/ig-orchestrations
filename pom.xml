@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ig.orchestrations</groupId>
 	<artifactId>parent</artifactId>
-	<version>0.1.38</version>
+	<version>0.1.39-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>Parent project for IG Group Orchestra implementations</description>
@@ -27,7 +27,7 @@
 <!-- 		<url>https://github.com/IG-Group/ig-orchestrations.git</url> -->
 		<url>ssh://git.iggroup.local:7999/ipfa/ig-orchestrations.git</url>
         <connection>scm:git:ssh://git.iggroup.local:7999/ipfa/ig-orchestrations.git</connection>
-	  <tag>parent-0.1.38</tag>
+	  <tag>HEAD</tag>
   </scm>
 	<issueManagement>
 		<system>GitHub</system>
