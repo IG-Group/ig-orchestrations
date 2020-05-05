@@ -9,7 +9,7 @@ See also [ WebSocket API ](websocketAPI.md)
 
 ## Base WebSocket URL
 
-wss://otat.ig.com/trade
+wss://igustrade.ig.com/trade
 
 ## Fields and Constraints
 

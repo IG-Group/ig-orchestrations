@@ -9,7 +9,8 @@ See also [ WebSocket API ](websocketAPI.md)
 
 ## WebSocket URL
 
-wss://otac.ig.com/v1
+wss://iguschart.ig.com/chart
+
 ## Components
 ### CandleData
 

@@ -10,7 +10,7 @@ See also [ WebSocket API ](websocketAPI.md)
 
 ## WebSocket URL
 
-wss://otapr.ig.com/pretrade
+wss://iguspretrade.ig.com/pretrade
 
 ## Fields and Constraints
 
