@@ -194,7 +194,7 @@ For this purpose, IG has defined additional InstrAttribTypes :
 |InstrAttribType|Description|IG Customisation?|
 |---|--|--|
 |"InstrumentPricePrecision"|The arithmetic precision of the price, i.e the number of digits following the decimal point.|N|
-|"DealableCurrencies"|Used to list the dealable currencies for an instrument|Y|
+|"DealableCurrencies"|Used to provide a comma separated list of the dealable currencies for an instrument|Y|
 |"MarketOrdersSupported"|Used to indicate whether the instrument supports market orders. InstrAttribValue will be ‘Y’ if market orders are supported.|Y|
 |"MarketDataSupported"|Used to indicate whether the instrument supports requests for market data. InstrAttribValue will be ‘N’ if market data is not supported|Y|
 
