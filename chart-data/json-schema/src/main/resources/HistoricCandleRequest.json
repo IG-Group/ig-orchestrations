@@ -23,7 +23,7 @@
       "required": true
     },
     "SecurityIDSource": {
-      "$ref" : "../fixp-schema/fields/SecurityIDSource.json",
+      "$ref" : "./../../../../java-binding/target/fixp-schema/fields/SecurityIDSource.json",
       "required": true
     },
     "Interval" : {

@@ -1,5 +1,5 @@
 {
-  "id": "Interval",
+  "id": "ChartRequestRejectReason",
   "type": "string",
   "javaType": "com.ig.orchestrations.chart.data.ChartRequestRejectReason",
   "enum": [
