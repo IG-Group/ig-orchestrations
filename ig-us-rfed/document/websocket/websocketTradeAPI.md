@@ -39,16 +39,12 @@ In all cases the IG AccountID must be provided on trading messages. This must be
 ### ClOrdID (Client Order ID)
 The FIX 5.0 specification requires that ClOrdID be unique for a trading session. IG Group requires that the ClOrdID be unique per IG Client Identity across all trading sessions.
 
-###	PositionID
-IG uses the proposed FIX Tag PositionID. This field is used in Position message dialogues to uniquely identify discrete positions
-
 ###	RefOrderID and RefOrderIDSource
 IG supports the use of RefOrderID and RefOrderIDSource to identify Orders and Positions on which another Order may be contingent,
 Accordingly RefOrderIDSource may have the following values;
 
 * "OrderID"
 * "ClOrdID"
-* "PositionID"
 
 ###	TrailingStopIncrement
 A custom tag TrailingStopIncrement (5008) is used in the PegInstructions to define the increments by which the trailing stop is adjusted. This is mandatory for a Trailing Stop contingent order.
@@ -59,6 +55,12 @@ IG supports the ‘Previously Quoted’ order type (D) for new orders.  For orde
 Quote identifiers are provided to FIX clients in the QuoteID fields of Market Data Incremental Refresh and Market Data Snapshot Full Refresh messages. The use of QuoteID in Market Data messages is an IG Group customisation.
 
 ## Components
+
+### OrderQtyData
+
+|Field/Component Name|Required?|Comments|
+|---|---|---|
+|OrderQty|y|Required by IG. Number of contracts. Decimal quantities are supported (see implementation notes 3.14).|
 
 ### PegInstructions
 
@@ -118,7 +120,7 @@ See "OrderAttributeGrp" to specify that the Order must be attached.
 |Instrument|y|SecurityID and SecurityIDSource are required by IG, Marketplace Assigned Identifier for the security as provided by IG. SecurityIDSource must be "MarketplaceAssignedIdentifier".|
 |Side|Y|Side of order. Valid Values are; <ul><li>"Buy"</li><li>"Sell"</li></ul> Other values will be rejected.|
 |TransactTime|Y|Time this order request was initiated/released by the trader or trading system. Millisecond resolution is optional. Outgoing messages from IG will include Milliseconds.|
-|OrderQty|y|Required by IG. Number of contracts. Decimal quantities are supported (see implementation notes 3.14). OrderQty is not evaluated for Orders to be attached to a Position.|
+|OrderQtyData|y|Component. OrderQtyData not evaluated for Orders to be attached to a Position.|
 |OrdType|Y|Type of Order. See “Order Types”|
 |Price|C|Required for “Limit” and “Previously Quoted” Order Types|
 |StopPx|C|Required for “Stop” order types.|
@@ -180,7 +182,7 @@ Please note the requirement for OrdType, RefOrderID and RefOrderIDSource where a
 |Instrument|y|SecurityID and SecurityIDSource are required by IG, Marketplace Assigned Identifier for the security as provided by IG. SecurityIDSource must be "MarketplaceAssignedIdentifier".|
 |Side|Y|Side of order. Valid Values are; <ul><li>"Buy"</li><li>"Sell"</li></ul> Other values will be rejected.|
 |TransactTime|Y|Time this order request was initiated/released by the trader or trading system. Millisecond resolution is optional. Outgoing messages from IG will include Milliseconds.|
-|OrderQty|y|Required by IG. Cash Qty per point for Spread Bets. Number of contracts for CFDs. Decimal quantities are supported (see implementation notes 3.14).|
+|OrderQtyData|y|Component|
 |OrdType|c|Required By IG if this order is contingent on a discrete position or order. Type of Order. See “Order Types”|
 |Contingency Type|c|IG customisation - present for contingent orders only. Must be ‘2’ = One Triggers the Other|
 |RefOrderID|c|Required By IG if this order is contingent on a discrete position or order|
@@ -211,7 +213,7 @@ If the order being replaced is contingent on a Position or another Order then Pe
 |Instrument|y|SecurityID and SecurityIDSource are required by IG, Marketplace Assigned Identifier for the security as provided by IG. SecurityIDSource must be "MarketplaceAssignedIdentifier".|
 |Side|Y|Side of order. Valid Values are; <ul><li>"Buy"</li><li>"Sell"</li></ul> Other values will be rejected.|
 |TransactTime|Y|Time this order request was initiated/released by the trader or trading system. Millisecond resolution is optional. Outgoing messages from IG will include Milliseconds.|
-|OrderQty|y|IG Group does not support the modification of order quantity for an existing order.|
+|OrderQtyData|y|Component. IG Group does not support the modification of order quantity for an existing order.|
 |OrdType|Y|Type of Order. See “Order Types”|
 |Price |C|Required for “Limit” Order Types.|
 |StopPx |C|Required for "Stop" Order Types.|
@@ -291,7 +293,7 @@ These fields enable correlation between a contingent order and the order or posi
 |Account|y|IG Account ID.|
 |Instrument|Y|Instrument|
 |Side|Y|<ul><li>"Buy"</li><li>"Sell"</li></ul>|
-|OrderQty|y|Required by IG Group for CFD orders. Cash Qty per point for Spread Bets. Number of contracts for CFDs. Decimal quantities are supported (see implementation notes).|
+|OrderQtyData|y|Component|
 |OrdType|y|Order Type|
 |Price|c|Will be present for a Limit Order|
 |StopPx|c|Present if a stop order|
@@ -407,7 +409,7 @@ This message cannot be used to attach Contingent Orders to an existing order. IG
 |Instrument|y|SecurityID and SecurityIDSource are required by IG, Marketplace Assigned Identifier for the security as provided by IG. SecurityIDSource must be "MarketplaceAssignedIdentifier".|
 |Side|Y|Side of order. Valid Values are; <ul><li>"Buy"</li><li>"Sell"</li></ul> Other values will be rejected.|
 |TransactTime|y|Time this order request was initiated/released by the trader or trading system. Millisecond resolution is optional. Outgoing messages from IG will include Milliseconds.|
-|OrderQty|y|Required by IG. Cash Qty per point for Spread Bets. Number of contracts for CFDs. Decimal quantities are supported (see implementation notes).|
+|OrderQtyData|y|Component|
 |OrdType|y|Type of Order. See “Order Types”|
 |Price|C|Required for “Limit” and “Previously Quoted” Order Types. This field is only Evaluated on the Primary Order.|
 |StopPx|C|Required for “Stop” order types. This field is only Evaluated on the Primary Order.|
