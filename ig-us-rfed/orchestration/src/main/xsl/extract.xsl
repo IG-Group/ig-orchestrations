@@ -27,6 +27,7 @@
                                       @msgType='AP' or
                                       @msgType='F' or
                                       @msgType='G' or
+                                      @msgType='H' or
                                       @msgType='D' or
                                       @msgType='E' or
                                       @msgType='j' or
@@ -39,7 +40,7 @@
                                       @msgType='X' or
                                       @msgType='Z' or
                                       @msgType='Y') ]" />
-	<!-- @msgType='H' or @msgType='Q' or @msgType='c' or @msgType='d' or @msgType='e'
+	<!--or @msgType='Q' or @msgType='c' or @msgType='d' or @msgType='e'
 		or @msgType='f' or @msgType='BP' )]"/> -->
 
 	<!-- filter out unsupported codes -->
@@ -645,5 +646,14 @@
 		                                                                             @id='912' )]"/>
 
 	<xsl:template match="fixr:message[@msgType='AO']/fixr:structure/fixr:componentRef[not(@id='1024' )]" />
+
+	<!--OrderStatusRequest-->
+	<xsl:template match="fixr:message[@msgType='H']/fixr:structure/fixr:groupRef" />
+	<xsl:template match="fixr:message[@msgType='H']/fixr:structure/fixr:fieldRef[not(@id='1' or
+	                                                                                 @id='37' or
+	                                                                                 @id='11' or
+	                                                                                 @id='790' )]"/>
+	<xsl:template match="fixr:message[@msgType='H']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                 	 @id='1003' )]" />
 
 </xsl:stylesheet>
