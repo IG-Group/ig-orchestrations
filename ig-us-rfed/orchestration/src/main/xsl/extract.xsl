@@ -17,31 +17,56 @@
 	<!-- filter out unsupported messages -->
 	<xsl:template
 		match="fixr:message[not(@msgType='8' or
-                                      @msgType='9' or
-                                      @msgType='S' or
-                                      @msgType='R' or
-                                      @msgType='AF' or
-                                      @msgType='AG' or
-                                      @msgType='AN' or
-									  @msgType='AO' or
-                                      @msgType='AP' or
-                                      @msgType='F' or
-                                      @msgType='G' or
-                                      @msgType='H' or
-                                      @msgType='D' or
-                                      @msgType='E' or
-                                      @msgType='j' or
-                                      @msgType='K' or
-                                      @msgType='N' or
-                                      @msgType='x' or
-                                      @msgType='y' or
-                                      @msgType='V' or
-                                      @msgType='W' or
-                                      @msgType='X' or
-                                      @msgType='Z' or
-                                      @msgType='Y') ]" />
-	<!--or @msgType='Q' or @msgType='c' or @msgType='d' or @msgType='e'
-		or @msgType='f' or @msgType='BP' )]"/> -->
+                                @msgType='9' or
+                                @msgType='AF' or
+                                @msgType='AG' or
+                                @msgType='AN' or
+			                    @msgType='AO' or
+                                @msgType='AP' or
+                                @msgType='D' or
+                                @msgType='E' or
+                                @msgType='F' or
+                                @msgType='G' or
+                                @msgType='H' or
+                                @msgType='j' or
+                                @msgType='K' or
+                                @msgType='N' or
+                                @msgType='R' or
+                                @msgType='S' or
+                                @msgType='V' or
+                                @msgType='W' or
+                                @msgType='x' or
+                                @msgType='X' or
+                                @msgType='y' or
+                                @msgType='Y' or
+                                @msgType='Z') ]" />
+
+    <!-- filter out unsupported messages -->
+	<xsl:template
+		match="fixr:codeSets/fixr:codeSet[(@id='35')]/fixr:code[not(@value='8' or
+		                                                            @value='9' or
+		                                                            @value='AF' or
+		                                                            @value='AG' or
+                                                                    @value='AN' or
+                                                                    @value='AO' or
+                                                                    @value='AP' or
+                                                                    @value='D' or
+                                                                    @value='E' or
+                                                                    @value='F' or
+                                                                    @value='G' or
+                                                                    @value='H' or
+                                                                    @value='j' or
+                                                                    @value='K' or
+                                                                    @value='N' or
+		                                                            @value='R' or
+		                                                            @value='S' or
+                                                                    @value='V' or
+                                                                    @value='W' or
+                                                                    @value='x' or
+                                                                    @value='X' or
+                                                                    @value='y' or
+                                                                    @value='Y' or
+                                                                    @value='Z') ]"/>
 
 	<!-- filter out unsupported codes -->
 	<!-- InstrAttribTypeCodeSet  -->
