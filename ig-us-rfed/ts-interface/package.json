@@ -11,5 +11,9 @@
   "license": "ISC",
   "dependencies": {
     "json-schema-to-typescript": "^8.0.0"
+  },
+  "engines": {
+    "node": "10.14.0",
+    "npm": "6.4.1"
   }
 }
