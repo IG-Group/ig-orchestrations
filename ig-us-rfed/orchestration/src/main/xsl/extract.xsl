@@ -126,7 +126,6 @@
 		match="fixr:groups/fixr:group[(@id='2030')]/fixr:fieldRef[not(@id='11' or
 																		    @id='67' or
 	                                                                        @id='1' or
-	                                                                        @id='21' or
 	                                                                        @id='54' or
 	                                                                        @id='60' or
 	                                                                        @id='38' or
@@ -291,7 +290,6 @@
 	<xsl:template
 		match="fixr:message[@msgType='D']/fixr:structure/fixr:fieldRef[not(@id='11' or
                                                                                  @id='1' or
-                                                                                 @id='21' or
                                                                                  @id='54' or
                                                                                  @id='60' or
                                                                                  @id='38' or
@@ -302,7 +300,7 @@
                                                                                  @id='117' or
                                                                                  @id='59' or
                                                                                  @id='126' or
-                                                                                 @id='58' or                                                                                                                                                                   @id='21' or
+                                                                                 @id='58' or
                                                                                  @id='1080' or
                                                                                  @id='1081')]" />
 
