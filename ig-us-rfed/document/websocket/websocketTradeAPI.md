@@ -355,7 +355,7 @@ These fields enable correlation between a contingent order and the order or posi
 |PositionEffect|N|If present, must be; O=Open. In this implementation this will have the effect of opening a position even should it oppose an existing position for the same instrument. The default behaviour (in the absence of this tag) if there is an opposing position is to close (or part close) the opposing position.|
 |ContingencyType|c|IG customisation - present for contingent orders only. Must be "OneTriggersTheOther"|
 |OrderAttributeGrp|N|Order Attribute Group, used to specify if this order will be attached to a position|
-|RefOrderID|c|Will be present if this order is contingent  on a discrete position or order|
+|RefOrderID|c|Will be present if this order is contingent on an order|
 |RefOrderIDSource|c|IG customisation – will be present if RefOrderID is present. Identifies the source/type of the RefOrderID. Must be one of: "OrderID", "ClOrdID" |
 
 Examples of a “Execution Report” messages:
