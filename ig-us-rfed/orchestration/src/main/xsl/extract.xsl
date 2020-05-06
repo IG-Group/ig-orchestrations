@@ -362,15 +362,12 @@
 		match="fixr:message[@msgType='j']/fixr:structure/fixr:groupRef" />
 	<xsl:template
 		match="fixr:message[@msgType='j']/fixr:structure/fixr:componentRef[not(@id='1024')]" />
-	<!-- remove "presence" attribute to make RefMsgType optional -->
-    <xsl:template
-        match="fixr:message[@msgType='j']/fixr:structure/fixr:fieldRef[@id='372']/@presence" />
 	<xsl:template
 		match="fixr:message[@msgType='j']/fixr:structure/fixr:fieldRef[not(@id='372' or
                                                                                  @id='379' or
                                                                                  @id='380' or
                                                                                  @id='58')]" />
-                                                                                 
+
 	<!-- New Order List -->
 	<xsl:template
 		match="fixr:message[@msgType='E']/fixr:structure/fixr:groupRef[not(@id='2030'or @id='1031')]" />
