@@ -43,7 +43,7 @@ The FIX 5.0 specification requires that ClOrdID be unique for a trading session.
 IG uses the proposed FIX Tag PositionID. This field is used in Position message dialogues to uniquely identify discrete positions
 
 ###	RefOrderID and RefOrderIDSource
-IG supports the use of RefOrderID and RefOrderIDSource to identify Orders and Positions on which another Order may be contingent,
+IG supports the use of RefOrderID and RefOrderIDSource to identify Orders on which another Order may be contingent,
 Accordingly RefOrderIDSource may have the following values;
 
 * "OrderID"
