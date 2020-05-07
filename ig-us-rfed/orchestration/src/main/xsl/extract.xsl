@@ -488,6 +488,10 @@
                                                                                  @id='132'  or
                                                                                  @id='133' or
                                                                                  @id='451')]" />
+    <!-- remove "presence" attribute to make Instrument component optional -->
+    <xsl:template
+        match="fixr:message[@msgType='S']/fixr:structure/fixr:componentRef[@id='1003']/@presence" />
+
 	<xsl:template
 		match="fixr:message[@msgType='S']/fixr:structure/fixr:componentRef[not(@id='1024' or
                                                                                      @id='1003')]" />
