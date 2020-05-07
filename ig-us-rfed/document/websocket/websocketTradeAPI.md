@@ -414,7 +414,7 @@ This message cannot be used to attach Contingent Orders to an existing order. IG
 |PegInstructions|N|See PegInstructions|
 |OrderAttributeGrp|N|Order Attribute Group|
 
-Response: (see FIX list status/execution report)
+Response: (see FIX Execution Report)
 
 ### ListCancelRequest
 
@@ -429,38 +429,7 @@ List Cancel Request is used by IG to support cancelling list orders including an
 |Text|N|Free format text|
 |Account|Y|IG Account ID. Required on all trading messages.|
 
-Response: (see List Status/execution report)
-
-### ListStatus
-
-List Status is used by IG to report rejections of New Order List requests or acceptance/rejection of List Cancel Requests.
-
-See Execution Report for reporting of accepted New Order List messages.
-
-|Field/Component Name|Required?|Comments|
-|---|---|---|
-|Standard Header|Y|MsgType = "ListStatus"|
-|ListID|Y|Must be unique, by customer, for the day. Must be the same as the CLOrdID of the primary order.|
-|ListStatusType|Y|Will be"Ack"|
-|NoRpts|Y|Total number of messages required to status complete list. Will be 1.|
-|ListOrderStatus|Y|Will be : <ul><li>"Reject"</li><li>"AllDone"</li></ul>|
-|RptSeq|Y|Sequence number of this report message. Will be 1.|
-|ListStatusText|N|Free Format Text.|
-|TransactTime|N|Time this order request was initiated/released by the trader or trading system. Millisecond resolution is optional. Outgoing messages from IG will include Milliseconds.|
-|TotNoOrders|Y|Total number of list order entries across all messages. Should be the sum of all NoOrders (73) in each message that has repeating list order entries related to the same ListID (66). IG does not support fragmenting large list orders across multiple messages so TotNoOrders must equal NoOrders |
-|OrdListStatGrp|Y|The Orders. See List Status Orders Group.|
-
-#### List Status Orders Repeating Group (OrdListStatGrp)
-
-|Field/Component Name|Required?|Comments|
-|---|---|---|
-|ClOrdID|C|Unique identifier of the order as assigned by institution. Must be the first field in the Group. The maximum size of ClOrdID is limited to 60 characters in this implementation.|
-|CumQty|Y|Currently executed.|
-|OrderStatus|Y|Describes the current state of the chain of orders.|
-|LeavesQty|Y|Quantity open for further execution.|
-|CxlQty|Y|Total quantity cancelled for this order.|
-|AvgPx|Y|Calculated average price of all fills on this order.|
-|Text|N|Free format text|
+Response: (see Execution Report)
 
 ### OrderMassStatusRequest
 
