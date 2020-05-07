@@ -24,7 +24,6 @@
 		<module>document-generation</module>
 		<module>json-schema</module>
 		<module>java-binding</module>
-		<module>ts-interface</module>
 	</modules>
 	<build>
 	</build>
