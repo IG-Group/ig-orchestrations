@@ -40,8 +40,7 @@ In all cases the IG AccountID must be provided on trading messages. This must be
 The FIX 5.0 specification requires that ClOrdID be unique for a trading session. IG Group requires that the ClOrdID be unique per IG Client Identity across all trading sessions.
 
 ###	RefOrderID and RefOrderIDSource
-IG supports the use of RefOrderID and RefOrderIDSource to identify Orders and Positions on which another Order may be contingent,
-Accordingly RefOrderIDSource may have the following values;
+IG supports the use of RefOrderID and RefOrderIDSource to identify Orders on which another Order may be contingent, RefOrderIDSource may have the following values;
 
 * "OrderID"
 * "ClOrdID"
@@ -60,14 +59,16 @@ Quote identifiers are provided to FIX clients in the QuoteID fields of Market Da
 
 |Field/Component Name|Required?|Comments|
 |---|---|---|
-|OrderQty|Y|Required by IG. Number of contracts. Decimal quantities are supported (see implementation notes 3.14).|
+|OrderQty|Y|Required by IG. Number of contracts. Decimal quantities are supported.|
 
 ### PegInstructions
 
+PegInstructions may be used for contingent orders in New Order List.
+
 |Field/Component Name|Required?|Comments|
 |---|---|---|
-|PegOffsetValue|C|Required for New contingent orders. May be provided on OrderCancelReplaceRequests for contingent orders. PegOffsetValue is used to specify the price for contingent Stop or Limit orders. If the Stop or Limit order is contingent on another order the value notionally represents the offset from the primary order’s price. Once the primary order is filled the Stop or Limit order becomes contingent on the new position. The PegOffsetValue is then treated as the offset from the price at which the position was opened. If a New contingent order is attached to an existing position the PegOffsetValue is offset from the price at which the position was opened. The value may be negative or positive. The sign will be taken into account as described in “The Effect of Side and Order Type” to allow stops to be placed at the desired price.|
-|PegPriceType|C|Required on New contingent orders or Cancels for contingent orders. May be provided on OrderCancelReplaceRequests for contingent orders, see Note below. Must be "PrimaryPeg"|
+|PegOffsetValue|N|May be used for contingent orders in New Order List messages. PegOffsetValue is used to specify the price for contingent Stop or Limit orders. If the Stop or Limit order is contingent on another order the value notionally represents the offset from the primary order’s fill price. Once the primary order is filled the Stop or Limit order become working orders "attached" to the new position. The PegOffsetValue is therefore the offset from the price at which the position was opened. The value should be greater than zero.|
+|PegPriceType|N|If provided must be "PrimaryPeg".|
 
 #### The Effect of Side and Order Type
 
@@ -116,7 +117,6 @@ See "OrderAttributeGrp" to specify that the Order must be attached.
 |Standard Header|Y|MsgType = “NewOrderSingle”|
 |ClOrdID|Y|Unique identifier of the order as assigned by institution. The maximum size of ClOrdID is limited to 60 characters in this implementation.|
 |Account|Y|IG Account ID. Required on all trading messages.|
-|ContingencyType|C|Required on contingent orders.Must be ‘OneTriggersTheOther’ = One Triggers the Other|
 |Instrument|Y|SecurityID and SecurityIDSource are required by IG, Marketplace Assigned Identifier for the security as provided by IG. SecurityIDSource must be "MarketplaceAssignedIdentifier".|
 |Side|Y|Side of order. Valid Values are; <ul><li>"Buy"</li><li>"Sell"</li></ul> Other values will be rejected.|
 |TransactTime|Y|Time this order request was initiated/released by the trader or trading system. Millisecond resolution is optional. Outgoing messages from IG will include Milliseconds.|
@@ -130,7 +130,6 @@ See "OrderAttributeGrp" to specify that the Order must be attached.
 |ExpireTime|C|Required if TimeInForce = "GoodTillDate". Only format “YYYYMMDD-HH:MM:SS “ (whole seconds) is supported.|
 |Text|N|Free format text|
 |OrderAttributeGrp|N|Order Attribute Group, used to specify if this order will be attached to a position|
-|Contingency Type|C|IG customisation - present for contingent orders only. Must be ‘2’ = One Triggers the Other|
 
 #### OrderAttributeGrp
 
@@ -170,7 +169,8 @@ Response: (see Execution Report)
 
 The Order Cancel Request message requests the cancellation of all of the remaining quantity of an existing order. Note that the Order Cancel/Replace Request message should be used to partially cancel (reduce) an order.
 
-Please note the requirement for OrdType, RefOrderID and RefOrderIDSource where a discrete contingent order is being cancelled using this message. This is a requirement of IG Group’s implementation and is a departure from the standard FIX specification.
+Contingent Orders that are not yet working orders cannot be cancelled.
+They can be cancelled once they are working orders.
 
 |Field/Component Name|Required?|Comments|
 |---|---|---|
@@ -182,11 +182,6 @@ Please note the requirement for OrdType, RefOrderID and RefOrderIDSource where a
 |Instrument|Y|SecurityID and SecurityIDSource are required by IG, Marketplace Assigned Identifier for the security as provided by IG. SecurityIDSource must be "MarketplaceAssignedIdentifier".|
 |Side|Y|Side of order. Valid Values are; <ul><li>"Buy"</li><li>"Sell"</li></ul> Other values will be rejected.|
 |TransactTime|Y|Time this order request was initiated/released by the trader or trading system. Millisecond resolution is optional. Outgoing messages from IG will include Milliseconds.|
-|OrderQtyData|Y|Component|
-|OrdType|C|Required By IG if this order is contingent on a discrete position or order. Type of Order. See “Order Types”|
-|Contingency Type|C|IG customisation - present for contingent orders only. Must be ‘2’ = One Triggers the Other|
-|RefOrderID|C|Required By IG if this order is contingent on a discrete position or order|
-|RefOrderIDSource|C|Required if RefOrderID is present. Identifies the source/type of the RefOrderID. Must be;</ul><li>"OrderID"</li><li>"ClOrdID"</li></ul>|
 |Text|N|Free format text|
 
 Request:
@@ -200,8 +195,10 @@ Please note that the only Order parameters that can be changed are Price/StopPx 
 
 Field values described as “rejected” will result in rejection of the received message. The response will be an Order Cancel Reject with an appropriate CxlRejReason.
 
-If the order being replaced is contingent on a Position or another Order then PegInstructions and RefOrderID, RefOrderIDSource must be provided. In the case of contingent orders Account and OrderQty fields must have the same value as the primary order or position.
+Contingent Orders that are not yet working orders cannot be amended.
+They can be amended once they are working orders.
 
+If a working order is attached to a position the size of the order depends on the position size and cannot be amended with an OrderCancelReplaceRequest.
 
 |Field/Component Name|Required?|Comments|
 |---|---|---|
@@ -217,9 +214,6 @@ If the order being replaced is contingent on a Position or another Order then Pe
 |OrdType|Y|Type of Order. See “Order Types”|
 |Price |C|Required for “Limit” Order Types.|
 |StopPx |C|Required for "Stop" Order Types.|
-|ContingencyType|C|IG customisation - present for contingent orders only. Must be "OneTriggersTheOther"|
-|RefOrderID|C|Required By IG if this order is contingent on a discrete position or order. Must match original order.|
-|RefOrderIDSource|C|Required if RefOrderID is present. Identifies the source/type of the RefOrderID. Must be;<ul><li>"OrderID"</li><li>"ClOrdID"</li></ul>|
 |TimeInForce|C|If present, must match the original order. Conditionally required if the original order is GTD and the ExpireTime is to be changed.|
 |ExpireTime|C|Conditionally required if TimeInForce (59) = GTD. Only format “YYYYMMDD-HH:MM:SS“ (whole seconds) is supported.|
 |Text|N|Free format text|
@@ -270,8 +264,7 @@ In this implementation the execution report message is used to:
 *	relay fill information on working orders
 *	reject orders
 
-For contingent orders, the IG implementation of an execution report message includes additional fields, ContingencyType, RefOrderID and RefOrderIDSource.  These fields will not be assigned (will not be present) unless an execution is being reported for an order contingent on another order of position.
-These fields enable correlation between a contingent order and the order or position to which it is attached.
+For contingent orders, the IG implementation of an execution report message includes additional fields, ContingencyType, RefOrderID and RefOrderIDSource.  These fields will not be assigned (will not be present) unless an execution is being reported for an order contingent on another order.
 
 |Field/Component Name|Required?|Comments|
 |---|---|---|
@@ -310,8 +303,8 @@ These fields enable correlation between a contingent order and the order or posi
 |PositionEffect|N|If present, must be; O=Open. In this implementation this will have the effect of opening a position even should it oppose an existing position for the same instrument. The default behaviour (in the absence of this tag) if there is an opposing position is to close (or part close) the opposing position.|
 |ContingencyType|C|IG customisation - present for contingent orders only. Must be "OneTriggersTheOther"|
 |OrderAttributeGrp|N|Order Attribute Group, used to specify if this order will be attached to a position|
-|RefOrderID|C|Will be present if this order is contingent  on a discrete position or order|
-|RefOrderIDSource|C|IG customisation – will be present if RefOrderID is present. Identifies the source/type of the RefOrderID. Must be one of: "OrderID", "ClOrdID" |
+|RefOrderID|C|Will be present if this order is contingent on another order|
+|RefOrderIDSource|C|IG customisation – will be present if RefOrderID is present. Identifies the source/type of the RefOrderID. Must be;<ul><li>"OrderID"</li><li>"ClOrdID"</li></ul> |
 
 Examples of a “Execution Report” messages:
 
@@ -419,7 +412,7 @@ This message cannot be used to attach Contingent Orders to an existing order. IG
 |ExpireTime|C|Rquired if TimeInForce = "GoodTillDate". Only format “YYYYMMDD-HH:MM:SS “ (whole seconds) is supported.|
 |Text|N|Free format text|
 |PegInstructions|N|See PegInstructions|
-|OrderAttributeGrp|N|Order Attribute Group, used to specify if this order will be attached to a position|
+|OrderAttributeGrp|N|Order Attribute Group|
 
 Response: (see FIX list status/execution report)
 
