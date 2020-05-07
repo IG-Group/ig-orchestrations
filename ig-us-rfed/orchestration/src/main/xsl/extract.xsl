@@ -69,6 +69,11 @@
                                                                     @value='Z') ]"/>
 
 	<!-- filter out unsupported codes -->
+	<!-- RefOrderIDSourceCodeSet   -->
+	<xsl:template
+		match="fixr:codeSets/fixr:codeSet[(@id='1081')]/fixr:code[not(@name='OrderID' or
+		                                                             @name='ClOrdID')]"/>
+	
 	<!-- InstrAttribTypeCodeSet  -->
 	<xsl:template
 		match="fixr:codeSets/fixr:codeSet[(@id='871')]/fixr:code[not(@id='871027' or
