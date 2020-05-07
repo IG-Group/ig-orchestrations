@@ -17,32 +17,63 @@
 	<!-- filter out unsupported messages -->
 	<xsl:template
 		match="fixr:message[not(@msgType='8' or
-                                      @msgType='9' or
-                                      @msgType='S' or
-                                      @msgType='R' or
-                                      @msgType='AF' or
-                                      @msgType='AG' or
-                                      @msgType='AN' or
-									  @msgType='AO' or
-                                      @msgType='AP' or
-                                      @msgType='F' or
-                                      @msgType='G' or
-                                      @msgType='D' or
-                                      @msgType='E' or
-                                      @msgType='j' or
-                                      @msgType='K' or
-                                      @msgType='N' or
-                                      @msgType='x' or
-                                      @msgType='y' or
-                                      @msgType='V' or
-                                      @msgType='W' or
-                                      @msgType='X' or
-                                      @msgType='Z' or
-                                      @msgType='Y') ]" />
-	<!-- @msgType='H' or @msgType='Q' or @msgType='c' or @msgType='d' or @msgType='e'
-		or @msgType='f' or @msgType='BP' )]"/> -->
+                                @msgType='9' or
+                                @msgType='AF' or
+                                @msgType='AG' or
+                                @msgType='AN' or
+			                    @msgType='AO' or
+                                @msgType='AP' or
+                                @msgType='D' or
+                                @msgType='E' or
+                                @msgType='F' or
+                                @msgType='G' or
+                                @msgType='H' or
+                                @msgType='j' or
+                                @msgType='K' or
+                                @msgType='N' or
+                                @msgType='R' or
+                                @msgType='S' or
+                                @msgType='V' or
+                                @msgType='W' or
+                                @msgType='x' or
+                                @msgType='X' or
+                                @msgType='y' or
+                                @msgType='Y' or
+                                @msgType='Z') ]" />
+
+    <!-- filter out unsupported messages -->
+	<xsl:template
+		match="fixr:codeSets/fixr:codeSet[(@id='35')]/fixr:code[not(@value='8' or
+		                                                            @value='9' or
+		                                                            @value='AF' or
+		                                                            @value='AG' or
+                                                                    @value='AN' or
+                                                                    @value='AO' or
+                                                                    @value='AP' or
+                                                                    @value='D' or
+                                                                    @value='E' or
+                                                                    @value='F' or
+                                                                    @value='G' or
+                                                                    @value='H' or
+                                                                    @value='j' or
+                                                                    @value='K' or
+                                                                    @value='N' or
+		                                                            @value='R' or
+		                                                            @value='S' or
+                                                                    @value='V' or
+                                                                    @value='W' or
+                                                                    @value='x' or
+                                                                    @value='X' or
+                                                                    @value='y' or
+                                                                    @value='Y' or
+                                                                    @value='Z') ]"/>
 
 	<!-- filter out unsupported codes -->
+	<!-- RefOrderIDSourceCodeSet   -->
+	<xsl:template
+		match="fixr:codeSets/fixr:codeSet[(@id='1081')]/fixr:code[not(@name='OrderID' or
+		                                                             @name='ClOrdID')]"/>
+	
 	<!-- InstrAttribTypeCodeSet  -->
 	<xsl:template
 		match="fixr:codeSets/fixr:codeSet[(@id='871')]/fixr:code[not(@id='871027' or
@@ -125,7 +156,6 @@
 		match="fixr:groups/fixr:group[(@id='2030')]/fixr:fieldRef[not(@id='11' or
 																		    @id='67' or
 	                                                                        @id='1' or
-	                                                                        @id='21' or
 	                                                                        @id='54' or
 	                                                                        @id='60' or
 	                                                                        @id='38' or
@@ -290,7 +320,6 @@
 	<xsl:template
 		match="fixr:message[@msgType='D']/fixr:structure/fixr:fieldRef[not(@id='11' or
                                                                                  @id='1' or
-                                                                                 @id='21' or
                                                                                  @id='54' or
                                                                                  @id='60' or
                                                                                  @id='38' or
@@ -301,7 +330,7 @@
                                                                                  @id='117' or
                                                                                  @id='59' or
                                                                                  @id='126' or
-                                                                                 @id='58' or                                                                                                                                                                   @id='21' or
+                                                                                 @id='58' or
                                                                                  @id='1080' or
                                                                                  @id='1081')]" />
 
@@ -361,12 +390,15 @@
 		match="fixr:message[@msgType='j']/fixr:structure/fixr:groupRef" />
 	<xsl:template
 		match="fixr:message[@msgType='j']/fixr:structure/fixr:componentRef[not(@id='1024')]" />
+	<!-- remove "presence" attribute to make RefMsgType optional -->
+    <xsl:template
+        match="fixr:message[@msgType='j']/fixr:structure/fixr:fieldRef[@id='372']/@presence" />
 	<xsl:template
 		match="fixr:message[@msgType='j']/fixr:structure/fixr:fieldRef[not(@id='372' or
                                                                                  @id='379' or
                                                                                  @id='380' or
                                                                                  @id='58')]" />
-
+                                                                                 
 	<!-- New Order List -->
 	<xsl:template
 		match="fixr:message[@msgType='E']/fixr:structure/fixr:groupRef[not(@id='2030'or @id='1031')]" />
@@ -484,6 +516,10 @@
                                                                                  @id='132'  or
                                                                                  @id='133' or
                                                                                  @id='451')]" />
+    <!-- remove "presence" attribute to make Instrument component optional -->
+    <xsl:template
+        match="fixr:message[@msgType='S']/fixr:structure/fixr:componentRef[@id='1003']/@presence" />
+
 	<xsl:template
 		match="fixr:message[@msgType='S']/fixr:structure/fixr:componentRef[not(@id='1024' or
                                                                                      @id='1003')]" />
@@ -645,5 +681,15 @@
 		                                                                             @id='912' )]"/>
 
 	<xsl:template match="fixr:message[@msgType='AO']/fixr:structure/fixr:componentRef[not(@id='1024' )]" />
+
+	<!--OrderStatusRequest-->
+	<xsl:template match="fixr:message[@msgType='H']/fixr:structure/fixr:groupRef" />
+	<xsl:template match="fixr:message[@msgType='H']/fixr:structure/fixr:fieldRef[not(@id='1' or
+	                                                                                 @id='37' or
+	                                                                                 @id='11' or
+	                                                                                 @id='790' or
+	                                                                                 @id='54' )]"/>
+	<xsl:template match="fixr:message[@msgType='H']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                 	 @id='1003' )]" />
 
 </xsl:stylesheet>
