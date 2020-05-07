@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.ig.orchestrations</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.1.40</version>
+		<version>0.1.41-SNAPSHOT</version>
 	</parent>
 	<groupId>com.ig.orchestrations.fixp</groupId>
 	<artifactId>parent</artifactId>
