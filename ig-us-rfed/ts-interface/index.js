@@ -14,13 +14,18 @@ const PARENT_FULL_DIR = () => {
 };
 
 (async () => {
-  createOutputDirectories();
-  const items = await fs.readdir('../' + DEFINITION_DIR);
-  await generateFieldsInterfaces(items);
-  await generateFixInterfaces(items);
-  await generateFixPInterfaces(items);
-  await cleanAndImportDefs(DEFINITION_OUTPUT_DIR, './fields');
-  await generateChartsInterfaces();
+  try {
+    createOutputDirectories();
+    const items = await fs.readdir('../' + DEFINITION_DIR);
+    await generateFieldsInterfaces(items);
+    await generateFixInterfaces(items);
+    await generateFixPInterfaces(items);
+    await cleanAndImportDefs(DEFINITION_OUTPUT_DIR, './fields');
+    await generateChartsInterfaces();
+    console.log('Successfully generated TypeScript interfaces');
+  } catch(e) {
+    console.log('Failed to generate TypeScript interfaces');
+  }
 })();
 
 function createOutputDirectories() {
