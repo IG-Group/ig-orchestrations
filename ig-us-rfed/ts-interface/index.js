@@ -14,13 +14,20 @@ const PARENT_FULL_DIR = () => {
 };
 
 (async () => {
-  createOutputDirectories();
-  const items = await fs.readdir('../' + DEFINITION_DIR);
-  await generateFieldsInterfaces(items);
-  await generateFixInterfaces(items);
-  await generateFixPInterfaces(items);
-  await cleanAndImportDefs(DEFINITION_OUTPUT_DIR, './fields');
-  await generateChartsInterfaces();
+  try {
+    console.log('Starting TypeScript interface generation');
+    createOutputDirectories();
+    const items = await fs.readdir('../' + DEFINITION_DIR);
+    await generateFieldsInterfaces(items);
+    await generateFixInterfaces(items);
+    await generateFixPInterfaces(items);
+    await cleanAndImportDefs(DEFINITION_OUTPUT_DIR, './fields');
+    await generateChartsInterfaces();
+    console.log('Finished TypeScript interface generation');
+  } catch(e) {
+    console.log('Failed to convert TypeScript interfaces');
+  }
+
 })();
 
 function createOutputDirectories() {
@@ -55,7 +62,7 @@ async function generateFixInterfaces(items) {
       const input = `${inputDir}/${file}`;
       const outputDir = `${DEFINITION_OUTPUT_DIR}`;
       const cwd = `${PARENT_FULL_DIR()}/${DEFINITION_DIR}/${file}/`;
-      await generateSchema(file, input, outputDir, {cwd, declareExternallyReferenced: false});
+      await generateSchema(file, input, outputDir, { cwd, declareExternallyReferenced: false });
     }
   }
 }
@@ -72,8 +79,8 @@ async function generateFixPInterfaces() {
 }
 
 async function generateChartsInterfaces() {
-  const cwd = PARENT_FULL_DIR().replace('/ig-us-rfed', '/chart-data/json-schema/src/main/resources');
-  const chartSchemaFiles = await fs.readdir('../../chart-data/json-schema/src/main/resources');
+  const cwd = PARENT_FULL_DIR().replace('/ig-us-rfed', '/chart-data/java-binding/target/json-schema');
+  const chartSchemaFiles = await fs.readdir('../../chart-data/java-binding/target/json-schema');
   const generatedChartInterfaces = [];
   chartSchemaFiles.forEach((i) => {
     generatedChartInterfaces.push(generateSchema(i, `${cwd}/${i}`, `${DEFINITION_OUTPUT_DIR}charts/`, {

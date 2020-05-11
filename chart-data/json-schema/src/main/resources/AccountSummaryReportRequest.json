@@ -18,10 +18,10 @@
       "type" : "string"
     },
     "SubscriptionRequestType": {
-      "$ref" : "./../../../../java-binding/target/fixp-schema/fields/SubscriptionRequestType.json"
+      "$ref" : "../fixp-schema/fields/SubscriptionRequestType.json"
     },
     "Parties": {
-      "$ref" : "./../../../../java-binding/target/fixp-schema/groups/Parties.json"
+      "$ref" : "../fixp-schema/groups/Parties.json"
     },
     "SendingTime" : {
       "type" : "string"

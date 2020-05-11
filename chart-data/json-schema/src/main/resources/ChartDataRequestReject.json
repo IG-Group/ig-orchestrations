@@ -37,7 +37,7 @@
       "required": true
     },
     "SecurityIDSource": {
-      "$ref" : "./../../../../java-binding/target/fixp-schema/fields/SecurityIDSource.json"
+      "$ref" : "../fixp-schema/fields/SecurityIDSource.json"
     },
     "ChartRequestRejectReason": {
       "type": "./ChartRequestRejectReason.json"
