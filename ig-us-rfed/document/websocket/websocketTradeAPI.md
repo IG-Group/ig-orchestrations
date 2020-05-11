@@ -350,9 +350,9 @@ Only new orders with accompanying contingent orders are expected in New Order Li
 
 Once contingent orders have been accepted the individual orders can be updated using an Order Cancel Replace message. There is no replace list order message.
 
-A New Order List can be cancelled using a ListCancelRequest.
-
 In this implementation one Stop contingent order and/or one Limit contingent order may be specified. At least one Stop or one Limit order should be present if New Order List is used. If contingent orders are not required please use New Order Single.
+
+A Primary Order together with Contingent Orders can be cancelled using an OrderCancelRequest for the Primary Order.
 
 The following fields must have the same value on all the orders in the list;
 *	Account
@@ -415,21 +415,6 @@ This message cannot be used to attach Contingent Orders to an existing order. IG
 |OrderAttributeGrp|N|Order Attribute Group|
 
 Response: (see FIX Execution Report)
-
-### ListCancelRequest
-
-List Cancel Request is used by IG to support cancelling list orders including any contingent orders.
-
-|Field/Component Name|Required?|Comments|
-|---|---|---|
-|Standard Header|Y|MsgType = "ListCancelRequest"|
-|ListID|Y|Must be unique, by customer, for the day. Must be the same as the CLOrdID of the primary order.|
-|Account|Y|IG Account ID. Required on all trading messages.|
-|TransactTime|Y|Time this order request was initiated/released by the trader or trading system. Millisecond resolution is optional. Outgoing messages from IG will include Milliseconds.|
-|Text|N|Free format text|
-|Account|Y|IG Account ID. Required on all trading messages.|
-
-Response: (see Execution Report)
 
 ### OrderMassStatusRequest
 

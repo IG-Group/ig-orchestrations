@@ -29,16 +29,10 @@
                                 @msgType='G' or
                                 @msgType='H' or
                                 @msgType='j' or
-                                @msgType='K' or
-                                @msgType='N' or
                                 @msgType='R' or
                                 @msgType='S' or
-                                @msgType='V' or
-                                @msgType='W' or
                                 @msgType='x' or
-                                @msgType='X' or
                                 @msgType='y' or
-                                @msgType='Y' or
                                 @msgType='Z') ]" />
 
     <!-- filter out unsupported messages -->
