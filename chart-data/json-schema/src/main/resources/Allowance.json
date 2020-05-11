@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "id": "Allowance",
+  "properties": {
+    "RemainingAllowance": {
+      "type": "number"
+    },
+    "TotalAllowance": {
+      "type": "number"
+    },
+    "AllowanceExpiry": {
+      "type": "number"
+    }
+  }
+}

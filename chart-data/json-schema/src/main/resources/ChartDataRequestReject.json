@@ -1,0 +1,49 @@
+{
+  "type": "object",
+  "id": "ChartDataRequestReject",
+  "properties": {
+    "MsgType": {
+      "type": "string"
+    },
+    "ApplVerID": {
+      "type": "string",
+      "enum": [
+        "FIX27",
+        "FIX30",
+        "FIX40",
+        "FIX41",
+        "FIX42",
+        "FIX43",
+        "FIX44",
+        "FIX50",
+        "FIX50SP1",
+        "FIX50SP2"
+      ]
+    },
+    "SendingTime": {
+      "type": "string"
+    },
+    "CstmApplVerID": {
+      "type": "string"
+    },
+    "ReqID": {
+      "type": "string"
+    },
+    "Symbol": {
+      "type": "string"
+    },
+    "SecurityID": {
+      "type": "string",
+      "required": true
+    },
+    "SecurityIDSource": {
+      "$ref" : "../fixp-schema/fields/SecurityIDSource.json"
+    },
+    "ChartRequestRejectReason": {
+      "type": "./ChartRequestRejectReason.json"
+    },
+    "Text": {
+      "type": "string"
+    }
+  }
+}
