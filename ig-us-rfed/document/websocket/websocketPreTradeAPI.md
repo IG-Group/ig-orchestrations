@@ -47,7 +47,7 @@ Request for a List of Securities.
 |---|---|---|
 |Standard Header|Y|MsgType = ‘SecurityListRequest’|
 |SecurityReqID|Y|Must be unique ID|
-|SecurityListRequestType|Y|Security List Request Type. Accepted Values are:<ul><li>‘Symbol’ </li>(or SecurityID, SecurityAltID)</li><li>‘AllSecurities’</li></ul>|
+|SecurityListRequestType|Y|Security List Request Type. Accepted Values are:<ul><li>‘AllSecurities’</li></ul>|
 |SubscriptionRequestType|N|Subscription Request Type. Accepted Values are: <ul><li>‘Snapshot’</li></ul>|
 |Instrument|N||
 
