@@ -86,7 +86,9 @@
                                                         @id='1004' or
                                                         @id='1011' or
                                                         @id='1021' or
-                                                        @id='1013')]" />
+                                                        @id='1013' or
+                                                        @id='1058' or
+                                                        @id='2131')]" />
 	<!-- filter out unsupported groups -->
 	<xsl:template
 		match="fixr:groups/fixr:group[not(@id='1012' or
@@ -165,8 +167,9 @@
 	<!-- Sec List Grp, filter out unsupported members -->
 	<xsl:template
 		match="fixr:groups/fixr:group[(@id='2055')]/fixr:componentRef[not(@id='1003' or
-                                                                                @id='1004'
-                                                                                )]" />
+                                                                          @id='1004' or
+                                                                          @id='1058'
+                                                                          )]" />
 	<xsl:template
 		match="fixr:groups/fixr:group[(@id='2055')]/fixr:groupRef[not(@id='2066')]" />
 	<xsl:template
@@ -300,6 +303,19 @@
 		match="fixr:components/fixr:component[@id='1021']/fixr:groupRef[not(@id='2073')]" />
 	<xsl:template
 		match="fixr:components/fixr:component[@id='1021']/fixr:componentRef" />
+
+    <!-- only  BaseTradingRules in SecurityTradingRules  -->
+	<xsl:template
+		match="fixr:components/fixr:component[@id='1058']/fixr:componentRef[not(@id='2131')]" />
+	<xsl:template
+		match="fixr:components/fixr:component[@id='1058']/fixr:groupRef" />
+	<!-- BaseTradingRules -->
+	<xsl:template
+		match="fixr:components/fixr:component[@id='2131']/fixr:componentRef"/>
+	<xsl:template
+		match="fixr:components/fixr:component[@id='2131']/fixr:groupRef"/>
+	<xsl:template
+		match="fixr:components/fixr:component[@id='2131']/fixr:fieldRef[not(@id='561')]" />
 
 
 	<!-- New Order Single -->
