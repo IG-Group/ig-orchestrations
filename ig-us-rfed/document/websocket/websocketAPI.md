@@ -1,4 +1,4 @@
-# Proposed Web Socket API FIX/JSON
+# Web Socket API FIX/JSON
 ## Introduction
 
 This document specifies the Rules of Engagement for parties connecting to IG Group for the purpose of electronic trading/market data using the WebSocket APIs.

@@ -277,9 +277,9 @@ For contingent orders, the IG implementation of an execution report message incl
 |MassStatusReqID|C|Required if responding to an Order Mass Status Request. Echo back the value provided by the requester|
 |LastRptRequested|N|Can be used when responding to an Order Mass Status Request to indicate that this is the last Execution Reports which will be returned as a result of the request.|
 |ListID|C|Required for executions against orders that were submitted as part of a list.|
-|ExecID|Y|Unique identifier of execution message as assigned by IG Group |
+|ExecID|Y|Unique identifier of execution message as assigned by IG Group. Will be 0 (zero) for ExecType = "OrderStatus".|
 |ExecRefID|C|Will be present for ExecType of  “TradeCancel” or “TradeCorrect”|
-|ExecType|Y|Will be present. Describes the specific Execution Report  (i.e. “Pending Cancel”) while OrdStatus will always identify the current order status (i.e. “Partially Filled”)|
+|ExecType|Y|Will be present. Describes the specific Execution Report  (i.e. "New") while OrdStatus will always identify the current order status (i.e. “PartiallyFilled”)|
 |OrdStatus|Y|Describes the current state of a CHAIN of orders.|
 |WorkingIndicator|N|Indicates if the order is currently being worked. Applicable only for OrdStatus = "New". ‘N’ indicates that the order is a contingent order that is not yet being worked. Absence of Field should be interpreted as ‘Y’. |
 |OrdRejReason|N|May be present for ExecType “Rejected”. Order Reject Reason|
