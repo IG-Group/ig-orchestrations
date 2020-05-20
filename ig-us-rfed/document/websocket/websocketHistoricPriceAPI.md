@@ -9,7 +9,7 @@ See also [ WebSocket API ](websocketAPI.md)
 
 ## WebSocket URL
 
-wss://iguschart.ig.com/chart
+wss://iguspretrade.ig.com/chart
 
 ## Components
 ### CandleData
