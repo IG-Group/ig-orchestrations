@@ -54,6 +54,11 @@
 				<version>${docgen.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>io.fixprotocol.orchestra</groupId>
+				<artifactId>repository-quickfix</artifactId>
+				<version>${docgen.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>io.fixprotocol.orchestrations</groupId>
 				<artifactId>fix-standard</artifactId>
 				<version>${fix.orchestra.version}</version>
