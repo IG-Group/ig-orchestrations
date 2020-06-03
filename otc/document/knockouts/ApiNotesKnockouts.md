@@ -36,11 +36,40 @@ The PutOrCall field in the Instrument component can help identity Bull vs Bear K
 * Bull : PutOrCall = "Call"
 * Bear : PutOrCall = "Put"
 
+### MaturityMonthYear
+Knock-out CFDs have an expiry. The MaturityMonthYear field will be provided in the Instrument component of Security Definition messages and SecListGrp in Security List Messages.
+
 ### Strike Rules
 
 Strike Rules define the minimum and maximum permitted Strikes (Knock-out Levels) and the Strike Increment as illustrated in the following examples.
 
+The StartStrikePxRange is the Strike Price closest to the current Underlying market price.
+
+The EndStrikePxRange is the Strike Price furthest from the current Underlying market price.
+
+The StrikeIncrement is the value by which the strike price may be incremented within the specified price range.
+
 #### Bull Knock-out
+
+|Field Name|Value|
+|---|---|
+|StartStrikePxRange|1985|
+|EndStrikePxRange|1955|
+|StrikeIncrement|-5|
+
+Note that for Bull Knock-outs the StrikeIncrement is negative so the result of addition will be decrement.
+
+|Strike Value|Comment|
+|---|---|
+|1985|StartStrikePxRange|
+|1980|Prior Strike + StrikeIncrement|
+|1975|Prior Strike + StrikeIncrement|
+|1970|Prior Strike + StrikeIncrement|
+|1965|Prior Strike + StrikeIncrement|
+|1960|Prior Strike + StrikeIncrement|
+|1955|EndStrikePxRange|
+
+#### Bear Knock-out
 
 |Field Name|Value|
 |---|---|
@@ -58,24 +87,6 @@ Strike Rules define the minimum and maximum permitted Strikes (Knock-out Levels)
 |1235|Prior Strike + StrikeIncrement|
 |1240|EndStrikePxRange|
 
-#### Bear Knock-out
-
-|Field Name|Value|
-|---|---|
-|StartStrikePxRange|1985|
-|EndStrikePxRange|1955|
-|StrikeIncrement|5|
-
-|Strike Value|Comment|
-|---|---|
-|1985|StartStrikePxRange|
-|1980|Prior Strike - StrikeIncrement|
-|1975|Prior Strike - StrikeIncrement|
-|1970|Prior Strike - StrikeIncrement|
-|1965|Prior Strike - StrikeIncrement|
-|1960|Prior Strike - StrikeIncrement|
-|1955|EndStrikePxRange|
-
 ### Pricing Knock-outs
 
 The Knock-out Premium is available from the Security List message. It can be found in the Instrument Attribute Group.
@@ -90,6 +101,10 @@ The price to present for a given Knock-out level (strike) is:
   * Offer : (Knock-out level - IG Underlying Offer price) + Knock-out premium
 
 ## Trade
+
+### MaturityMonthYear
+
+The MaturityMonthYear must be specified in the Instrument component of orders for Knock-out CFDs.
 
 ### Strike Price
 
