@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.ig.orchestrations.fixp</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.1.50</version>
+		<version>0.1.51-SNAPSHOT</version>
 	</parent>	
 	<artifactId>fixp-java-binding</artifactId>
 	<packaging>jar</packaging>
