@@ -8,7 +8,7 @@ See the "General introduction to [Knock Outs](./knockOuts.md)" for product infor
 
 See IG's FIX OTC API Rules of Engagement document for details of the supported and required Message and Fields.
 
-IG provides pricing on the Underlying Instrument for the Knock-out. The price used for trading at a specific Barrier Price (Knock-out Level) must be derived using the Strike Price and Underlying Price as described in the [PreTrade](#PreTrade) section of this document.
+IG provides pricing on the Underlying Instrument for the Knock-out. The price used for trading at a specific Barrier Price (Knock-out Level) must be derived using the Barrier Price and Underlying Price as described in the [PreTrade](#PreTrade) section of this document.
 
 The applicable Barrier and Strike Prices are defined in the ComplexEvents group in the Instrument component of Security Definition messages. This is described in [PreTrade](#PreTrade). For Knock-out CFDs the Strike Price and the Barrier Price are identical.
 
