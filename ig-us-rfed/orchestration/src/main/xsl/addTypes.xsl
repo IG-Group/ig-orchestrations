@@ -103,6 +103,25 @@
 	<xsl:param name="addOrderAttributeGroupToListOrdGrp">
 	</xsl:param>
 
+
+
+	<xsl:param name="addToOrderAttributeType">
+		<fixr:code name="AttachedOrder" id="AttachedOrder" value="AttachedOrder"  added="IG">
+			<fixr:annotation>
+				<fixr:documentation purpose="SYNOPSIS">
+					AttachedOrder
+				</fixr:documentation>
+			</fixr:annotation>
+		</fixr:code>
+	</xsl:param>
+
+	<xsl:template
+			match="fixr:codeSets/fixr:codeSet[(@id='2594')]/fixr:code[position()=last()]">
+		<xsl:call-template name="identity" />
+		<xsl:copy-of select="$addToOrderAttributeType" />
+	</xsl:template>
+
+
 	<xsl:param name="addClOrdIDtoRefOrderIDSource">
 		<fixr:code name="ClOrdID" id="1081099" value="C" sort="5"
 			added="IG">
