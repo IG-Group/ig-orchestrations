@@ -47,7 +47,9 @@ Complex Events define the permitted sets of Barrier prices (Knock-out Levels) an
 
 #### ComplexEventType
 
-The ComplexEventType will be "KnockOutDown(6)".
+The ComplexEventType will be :
+* "KnockOutUp" (5) for a Bear Knock-out.
+* "KnockOutDown" (6) for a Bull Knock-out
 
 #### ComplexEventPrice
 
@@ -78,7 +80,7 @@ The MaturityMonthYear must be specified in the Instrument component of orders fo
 
 ### ComplexEvents
 
-The Complex Event group in the Instrument component must be included on Orders to specify the requested Barrier price (in field ComplexEventPrice) and Strike price (in field ComplexEventStrikePrice). The Barrier and Strike price must both be present and be equal. The ComplexEventType must be "KnockOutDown(6)". Only one entry is permitted per Order.
+The Complex Event group in the Instrument component must be included on Orders to specify the requested Barrier price (in field ComplexEventPrice) and Strike price (in field ComplexEventStrikePrice). The Barrier and Strike price must both be present and be equal. The ComplexEventType must be provided. Only one entry is permitted per Order.
 
 ### Order Types
 
