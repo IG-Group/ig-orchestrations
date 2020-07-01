@@ -39,12 +39,11 @@ This document is for those involved in integration, conformance testing and othe
 
 For queries about accounts, orders or positions please contact Trading Services.
 Contact Phone Numbers
-*	0800 409 6789
-*	+44 (0)207 896 0079
+*	+1 312 981 0498
 
 |Department|Contact Email / Twitter|
 |---|---|
-|HelpDesk|helpdesk.uk@ig.com, Twitter @IGClientHelp|
+|HelpDesk|<ul><li>helpdesk.us@ig.com</li><li>Twitter @IGClientHelp</li></ul>|
 |FIX Technical Support (Live environment only)|FIXSupport@ig.com|
 |FIX  Development and Support during on-boarding|FIXDevelopment@ig.com|
 
