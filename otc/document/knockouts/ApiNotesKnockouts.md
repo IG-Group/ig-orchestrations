@@ -12,7 +12,7 @@ IG provides pricing on the Underlying Instrument for the Knock-out. The price us
 
 The applicable Barrier and Strike Prices are defined in the ComplexEvents group in the Instrument component of Security Definition messages. This is described in [PreTrade](#PreTrade). For Knock-out CFDs the Strike Price and the Barrier Price are identical.
 
-In trading messages the Strike field and PutOrCall field must be provided along with the ComplexEvents Group. This is described in [Trade](#Trade).
+In trading messages the ComplexEvents Group must be provided for Knock-outs. This is described in [Trade](#Trade).
 
 ## PreTrade
 
@@ -61,16 +61,17 @@ The ComplexEventStrikePrice is the Strike Price. This will be identical to the C
 
 ### Pricing Knock-out CFDs
 
-The Knock-out Premium is available from the Security List message. It can be found in the Instrument Attribute Group.
-
 The price to present for a given Barrier Price (Knock-out level) is:
 
 * Bull
-  * Bid   : (IG Underlying Bid price - Barrier Price) + Knock-out premium
-  * Offer : (IG Underlying Offer price - Barrier Price) + Knock-out premium
+  * Bid     : (IG Underlying Bid price - Barrier Price)
+  * Offer   : (IG Underlying Offer price - Barrier Price)
 * Bear
-  * Bid (Barrier Price - IG Underlying bid price) + Knock-out premium
-  * Offer : (Barrier Price - IG Underlying Offer price) + Knock-out premium
+  * Bid     : (Barrier Price - IG Underlying bid price)
+  * Offer   : (Barrier Price - IG Underlying Offer price)
+  
+The Knock-out Premium is available from the Security List and Security Definition message. It can be found in the Instrument Attribute Group. 
+However the Knock-out Premium is already incorporated into the Underlying Instrument for the Knock-out. 
 
 ## Trade
 
@@ -89,6 +90,10 @@ The following Order Types are supported for Knock-outs:
 * Market
 * Previously Quoted
 
+Some Knock-out instruments do not permit Market order types. In these cases a Previously Quoted can be used. 
+Market Order type support is indicated within the component block Instrument Extension on Security List and Security Definition messages.
+An InstrAttribType of '116' and InstrAttribValue of 'Y' indicates the instrument supports market orders.
+                  
 ### Time In Force
 
 The following Time In Force are supported for Knock-outs:
@@ -111,4 +116,8 @@ The following messages are applicable for working orders attached to an open Kno
 
 ## Post Trade
 
+PositionReport messages will contain the the Complex Event group in the Instrument component for Knock-out positions.
+
 Open Knock-out Positions can be closed using a Position Maintenance Request. Closing the Position will cancel any attached Stop and/or Limit Orders.
+
+If the Knock-out instrument does not support the Market Order type, then the Position Maintenance Request cannot be used. Instead an opposing order can be used with the same Barrier Price (Knock-out level) as the Position. If there are multiple Knock-out positions with the same Barrier Price, the positions will be closed FIFO.
