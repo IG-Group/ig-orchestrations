@@ -71,7 +71,7 @@ The price to present for a given Barrier Price (Knock-out level) is:
   * Offer   : (Barrier Price - IG Underlying Offer price)
   
 The Knock-out Premium is available from the Security List and Security Definition message. It can be found in the Instrument Attribute Group. 
-However the Knock-out Premium is already incorporated into the Underlying Instrument for the Knock-out. 
+The Knock-out Premium is incorporated into the Underlying Price for Knock-out CFDs.
 
 ## Trade
 
@@ -91,8 +91,8 @@ The following Order Types are supported for Knock-outs:
 * Previously Quoted
 
 Some Knock-out instruments do not permit Market order types. In these cases a Previously Quoted can be used. 
-Market Order type support is indicated within the component block Instrument Extension on Security List and Security Definition messages.
-An InstrAttribType of '116' and InstrAttribValue of 'Y' indicates the instrument supports market orders.
+Support for Market Orders is indicated within the component block Instrument Extension on Security List and Security Definition messages.
+An InstrAttribType of '116' and InstrAttribValue of 'Y' indicates the instrument supports Market Orders.
                   
 ### Time In Force
 
@@ -116,8 +116,8 @@ The following messages are applicable for working orders attached to an open Kno
 
 ## Post Trade
 
-PositionReport messages will contain the the Complex Event group in the Instrument component for Knock-out positions.
+PositionReport messages for Knock-out positions will contain the the Complex Event group in the Instrument component.
 
 Open Knock-out Positions can be closed using a Position Maintenance Request. Closing the Position will cancel any attached Stop and/or Limit Orders.
 
-If the Knock-out instrument does not support the Market Order type, then the Position Maintenance Request cannot be used. Instead an opposing order can be used with the same Barrier Price (Knock-out level) as the Position. If there are multiple Knock-out positions with the same Barrier Price, the positions will be closed FIFO.
+If the Knock-out instrument does not support the Market Order type, then the Position Maintenance Request cannot be used. Instead an opposing order can be used with the same Barrier Price (Knock-out level) as the Position. If there are multiple Knock-out positions with the same Barrier Price, the positions will be closed in FIFO order.
