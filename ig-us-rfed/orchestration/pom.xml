@@ -69,6 +69,14 @@
 		              </includes>
 		              <stylesheet>${project.basedir}/src/main/xsl/extract.xsl</stylesheet>
 		            </transformationSet>
+					<transformationSet>
+                      <dir>${project.build.directory}/generated-resources/xml/xslt/publish</dir>
+		              <outputDir>${project.build.directory}/generated-resources/xml/xslt/publishOnlyApplicationMessages</outputDir>
+		              <includes>
+		              	<include>${orchestra.file}</include>
+		              </includes>
+		              <stylesheet>${project.basedir}/src/main/xsl/extractOnlyApplicationMessages.xsl</stylesheet>
+		            </transformationSet>		            
 		          </transformationSets>
 		        </configuration>
 		      </plugin>		
@@ -85,6 +93,18 @@
                         <configuration>
                           <descriptors>
                             <descriptor>${project.basedir}/src/main/assembly/repository-assembly.xml</descriptor>
+                          </descriptors>
+                        </configuration>
+                    </execution>
+                    <execution>
+	                    <id>repository-distribution2</id>
+	                    <phase>package</phase>
+                        <goals>
+                          <goal>single</goal>
+                        </goals>
+                        <configuration>
+                          <descriptors>
+                            <descriptor>${project.basedir}/src/main/assembly/repository-assembly-application-messages-only.xml</descriptor>
                           </descriptors>
                         </configuration>
                     </execution>

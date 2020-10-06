@@ -40,7 +40,7 @@
                                 <artifactItem>
 									<groupId>com.ig.orchestrations.us.rfed</groupId>
 									<artifactId>orchestration</artifactId>		
-									<classifier>repository</classifier>
+									<classifier>repository-application-messages-only</classifier>
 									<type>zip</type>
                                     <outputDirectory>${project.build.directory}/dependency/repository</outputDirectory>
                                 </artifactItem>            

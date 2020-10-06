@@ -14,32 +14,6 @@
         </xsl:copy>
     </xsl:template>
 
-    <!-- filter out deprecated codes -->
-    <!-- this is added to remove duplicates with differing case as these cause a problem with QFJ code generation"
-         only remove this specific deprecated case to avoid problems with QuickFIX/J test compilation
-         ..fixr:codeSet name="BenchmarkCurveNameCodeSet" id="221" type="String"..    -->
-    <xsl:template
-        match="fixr:codeSet[@id='221']/fixr:code[@deprecated]"/>
-    <!-- remove bug -->
-    <xsl:template
-        match="fixr:codeSet[@name='NoStreamAssetAttributesCodeSet']"/>
-
-    <!-- replace incorrect type -->
-    <xsl:template match="fixr:fields/fixr:field/@type">
-        <xsl:attribute name="type">
-            <xsl:choose>
-                <xsl:when test=". = 'NoStreamAssetAttributesCodeSet'">
-                    <xsl:attribute name="type">
-                        <xsl:text>NumInGroup</xsl:text>
-                    </xsl:attribute>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="." />
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:attribute>
-    </xsl:template>
-
     <!-- filter out unsupported messages -->
     <xsl:template
         match="fixr:message[not(@msgType='8' or

@@ -13,7 +13,7 @@
 		<dependency>
 			<groupId>com.ig.orchestrations.us.rfed</groupId>
 			<artifactId>orchestration</artifactId>
-			<classifier>repository</classifier>
+			<classifier>repository-application-messages-only</classifier>
 			<version>${project.version}</version>
 			<type>zip</type>		
 		</dependency>
@@ -61,8 +61,8 @@
                                     <artifactItem>
 										<groupId>${target-package}</groupId>
 										<artifactId>orchestration</artifactId>
-										<classifier>repository</classifier>
 										<type>zip</type>
+										<classifier>repository-application-messages-only</classifier>
                                         <outputDirectory>${project.build.directory}/dependency/repository</outputDirectory>
                                     </artifactItem>            
 <!--                                     <artifactItem> -->
