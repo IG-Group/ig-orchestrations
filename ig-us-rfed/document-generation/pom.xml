@@ -19,7 +19,7 @@
 			<groupId>com.ig.orchestrations.us.rfed</groupId>
 			<artifactId>orchestration</artifactId>
 			<classifier>repository</classifier>
-			<type>zip</type>		
+			<type>zip</type>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>

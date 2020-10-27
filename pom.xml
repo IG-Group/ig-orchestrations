@@ -44,20 +44,20 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<fix.orchestra.version>1.5.1</fix.orchestra.version>
-		<docgen.version>1.5.0</docgen.version>
+		<repoconverter.version>1.5.0</repoconverter.version>
 	</properties>
 	<dependencyManagement>
 			<dependencies>
 			<dependency>
 				<groupId>io.fixprotocol.orchestra</groupId>
-				<artifactId>docgen</artifactId>
-				<version>${docgen.version}</version>
+				<artifactId>repository-quickfix</artifactId>
+				<version>${repoconverter.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>io.fixprotocol.orchestra</groupId>
-				<artifactId>repository-quickfix</artifactId>
-				<version>${docgen.version}</version>
-			</dependency>
+				<artifactId>docgen</artifactId>
+				<version>${repoconverter.version}</version>
+			</dependency>			
 			<dependency>
 				<groupId>io.fixprotocol.orchestrations</groupId>
 				<artifactId>fix-standard</artifactId>

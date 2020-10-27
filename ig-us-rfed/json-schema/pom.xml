@@ -61,8 +61,8 @@
                                     <artifactItem>
 										<groupId>${target-package}</groupId>
 										<artifactId>orchestration</artifactId>
-										<classifier>repository</classifier>
 										<type>zip</type>
+										<classifier>repository</classifier>
                                         <outputDirectory>${project.build.directory}/dependency/repository</outputDirectory>
                                     </artifactItem>            
 <!--                                     <artifactItem> -->
