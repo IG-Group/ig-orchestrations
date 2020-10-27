@@ -15,9 +15,7 @@
     </xsl:template>
 
     <!-- filter out deprecated codes -->
-    <!-- this is added to remove duplicates with differing case as these cause a problem with QFJ code generation"
-         only remove this specific deprecated case to avoid problems with QuickFIX/J test compilation
-         ..fixr:codeSet name="BenchmarkCurveNameCodeSet" id="221" type="String"..    -->
+    <!-- this is added to remove duplicates with differing case   -->
     <xsl:template
         match="fixr:codeSet[@id='221']/fixr:code[@deprecated]"/>
     <!-- remove bug -->

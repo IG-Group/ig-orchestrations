@@ -70,12 +70,12 @@
 		              <stylesheet>${project.basedir}/src/main/xsl/extract.xsl</stylesheet>
 		            </transformationSet>
 					<transformationSet>
-                      <dir>${project.build.directory}/generated-resources/xml/xslt/publish</dir>
-		              <outputDir>${project.build.directory}/generated-resources/xml/xslt/publishOnlyApplicationMessages</outputDir>
+                      <dir>${project.build.directory}/generated-resources/xml/xslt/appended</dir>
+		              <outputDir>${project.build.directory}/generated-resources/xml/xslt/publishForQFJ</outputDir>
 		              <includes>
 		              	<include>${orchestra.file}</include>
 		              </includes>
-		              <stylesheet>${project.basedir}/src/main/xsl/extractOnlyApplicationMessages.xsl</stylesheet>
+		              <stylesheet>${project.basedir}/src/main/xsl/extractForQuickFIXJ.xsl</stylesheet>
 		            </transformationSet>		            
 		          </transformationSets>
 		        </configuration>
@@ -104,7 +104,7 @@
                         </goals>
                         <configuration>
                           <descriptors>
-                            <descriptor>${project.basedir}/src/main/assembly/repository-assembly-application-messages-only.xml</descriptor>
+                            <descriptor>${project.basedir}/src/main/assembly/repository-assembly-qfj.xml</descriptor>
                           </descriptors>
                         </configuration>
                     </execution>

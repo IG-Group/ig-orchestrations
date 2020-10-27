@@ -6,14 +6,14 @@
     http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2
       http://maven.apache.org/xsd/assembly-1.1.2.xsd"
 >
-  <id>repository-application-messages-only</id>
+  <id>repository-qfj</id>
   <formats>
     <format>zip</format>
   </formats>
   <includeBaseDirectory>false</includeBaseDirectory>  
   <fileSets>
     <fileSet>
-      <directory>${project.build.directory}/generated-resources/xml/xslt/publishOnlyApplicationMessages</directory>
+      <directory>${project.build.directory}/generated-resources/xml/xslt/publishForQFJ</directory>
       <outputDirectory></outputDirectory>
       <lineEnding>unix</lineEnding>
       <filtered>false</filtered>

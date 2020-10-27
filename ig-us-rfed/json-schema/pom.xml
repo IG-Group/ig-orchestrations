@@ -62,7 +62,7 @@
 										<groupId>${target-package}</groupId>
 										<artifactId>orchestration</artifactId>
 										<type>zip</type>
-										<classifier>repository-application-messages-only</classifier>
+										<classifier>repository</classifier>
                                         <outputDirectory>${project.build.directory}/dependency/repository</outputDirectory>
                                     </artifactItem>            
 <!--                                     <artifactItem> -->
