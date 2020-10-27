@@ -13,7 +13,7 @@
 		<dependency>
 			<groupId>com.ig.orchestrations.us.rfed</groupId>
 			<artifactId>orchestration</artifactId>
-			<classifier>repository-application-messages-only</classifier>
+			<classifier>repository</classifier>
 			<version>${project.version}</version>
 			<type>zip</type>		
 		</dependency>
