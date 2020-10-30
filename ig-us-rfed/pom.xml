@@ -25,6 +25,7 @@
 		<module>json-schema</module>
 		<module>java-binding</module>
 		<module>quickfix-dictionary</module>
+		<module>sbe</module>
 	</modules>
 	<build>
 	</build>
