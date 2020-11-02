@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.ig.orchestrations.us.rfed</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.1.54-SNAPSHOT</version>
+		<version>0.1.56-SNAPSHOT</version>
 	</parent>
 	<artifactId>json-schema</artifactId>
 	<packaging>pom</packaging>
@@ -61,8 +61,8 @@
                                     <artifactItem>
 										<groupId>${target-package}</groupId>
 										<artifactId>orchestration</artifactId>
-										<classifier>repository</classifier>
 										<type>zip</type>
+										<classifier>repository</classifier>
                                         <outputDirectory>${project.build.directory}/dependency/repository</outputDirectory>
                                     </artifactItem>            
 <!--                                     <artifactItem> -->

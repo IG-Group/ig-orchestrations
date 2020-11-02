@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ig.orchestrations</groupId>
 	<artifactId>parent</artifactId>
-	<version>0.1.54-SNAPSHOT</version>
+	<version>0.1.56-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>Parent project for IG Group Orchestra implementations</description>
@@ -43,25 +43,25 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
-		<fix.orchestra.version>1.5.1</fix.orchestra.version>
-		<docgen.version>1.5.0</docgen.version>
+		<fix-orchestration-repository.version>1.5.1</fix-orchestration-repository.version><!-- the standard FIX orchestra repository -->
+		<fix-orchestra.version>1.6.7</fix-orchestra.version><!-- the FIX orchestra tools and utilities -->
 	</properties>
 	<dependencyManagement>
 			<dependencies>
 			<dependency>
 				<groupId>io.fixprotocol.orchestra</groupId>
-				<artifactId>docgen</artifactId>
-				<version>${docgen.version}</version>
+				<artifactId>repository-quickfix</artifactId>
+				<version>${fix-orchestra.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>io.fixprotocol.orchestra</groupId>
-				<artifactId>repository-quickfix</artifactId>
-				<version>${docgen.version}</version>
-			</dependency>
+				<artifactId>docgen</artifactId>
+				<version>${fix-orchestra.version}</version>
+			</dependency>			
 			<dependency>
 				<groupId>io.fixprotocol.orchestrations</groupId>
 				<artifactId>fix-standard</artifactId>
-				<version>${fix.orchestra.version}</version>
+				<version>${fix-orchestration-repository.version}</version>
 			</dependency>
 	        <dependency>
 	            <groupId>org.apache.commons</groupId>
