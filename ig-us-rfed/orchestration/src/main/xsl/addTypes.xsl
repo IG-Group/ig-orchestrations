@@ -103,8 +103,6 @@
 	<xsl:param name="addOrderAttributeGroupToListOrdGrp">
 	</xsl:param>
 
-
-
 	<xsl:param name="addToOrderAttributeType">
 		<fixr:code name="AttachedOrder" id="2594016" value="1000"  added="IG">
 			<fixr:annotation>
@@ -120,7 +118,6 @@
 		<xsl:call-template name="identity" />
 		<xsl:copy-of select="$addToOrderAttributeType" />
 	</xsl:template>
-
 
 	<xsl:param name="addClOrdIDtoRefOrderIDSource">
 		<fixr:code name="ClOrdID" id="1081099" value="C" sort="5"
@@ -197,6 +194,29 @@
 					</fixr:documentation>
 					<fixr:documentation purpose="ELABORATION">
 						Used to indicate whether the requests for market data are supported for this instrument. InstrAttribValue will be ‘N’ if market data is not supported.
+					</fixr:documentation>
+				</fixr:annotation>
+			</fixr:code>
+	</xsl:param>
+	
+	<xsl:param name="addCustomMarginAmtType">
+			<fixr:code name="MarginControlled" id="900000" value="100" sort="100" added="IG">
+				<fixr:annotation>
+					<fixr:documentation purpose="SYNOPSIS">
+						Margin Controlled
+					</fixr:documentation>
+					<fixr:documentation purpose="ELABORATION">
+						Margin Controlled
+					</fixr:documentation>
+				</fixr:annotation>
+			</fixr:code>
+			<fixr:code name="MarginNonControlled" id="900001" value="101" sort="101" added="IG">
+				<fixr:annotation>
+					<fixr:documentation purpose="SYNOPSIS">
+						Margin Non Controlled
+					</fixr:documentation>
+					<fixr:documentation purpose="ELABORATION">
+						Margin Non Controlled
 					</fixr:documentation>
 				</fixr:annotation>
 			</fixr:code>
@@ -331,6 +351,13 @@
 		match="fixr:codeSets/fixr:codeSet[(@id='871')]/fixr:code[position()=last()]">
 		<xsl:call-template name="identity" />
 		<xsl:copy-of select="$addCustomInstrAttribTypeToAttrbGrp" />
+	</xsl:template>
+	
+	<!-- MarginAmtType customisation -->
+	<xsl:template
+		match="fixr:codeSets/fixr:codeSet[(@id='1644')]/fixr:code[position()=last()]">
+		<xsl:call-template name="identity" />
+		<xsl:copy-of select="$addCustomMarginAmtType" />
 	</xsl:template>
 
 	<!-- SecurityRequestResultCodeSet customization. -->
