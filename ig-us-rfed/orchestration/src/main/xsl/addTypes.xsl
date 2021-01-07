@@ -9,16 +9,6 @@
 	<xsl:output omit-xml-declaration="no" indent="yes" />
 
 	<xsl:param name="addFields">
-		<fixr:field added="IG" id="20104" name="OpenPrice"
-			type="Price" addedEP="222" abbrName="OpenPrice" presence="optional"
-			supported="supported">
-			<fixr:annotation supported="supported">
-				<fixr:documentation purpose="SYNOPSIS"
-					supported="supported">
-					The price at which the Position was opened, will be reported in Currency (15)
-				</fixr:documentation>
-			</fixr:annotation>
-		</fixr:field>
 
 		<fixr:field added="IG" id="20101"
 			name="OriginatingClientOrderRef" type="String"
@@ -56,6 +46,29 @@
 					supported="supported">
 					IG uses the custom tag ClosingOrderIDRef to identify the IG Order ID of an order which has resulted in a close or part-close of a position.
 					The ClosingOrderIDRef value corresponds to the value of OrderId (37) on the Execution Report for the client order which resulted in the position change.
+				</fixr:documentation>
+			</fixr:annotation>
+		</fixr:field>
+
+		<fixr:field added="IG" id="20104" name="OpenPrice"
+			type="Price" addedEP="222" abbrName="OpenPrice" presence="optional"
+			supported="supported">
+			<fixr:annotation supported="supported">
+				<fixr:documentation purpose="SYNOPSIS"
+					supported="supported">
+					The price at which the Position was opened, will be reported in Currency (15)
+				</fixr:documentation>
+			</fixr:annotation>
+		</fixr:field>
+		
+		<fixr:field added="IG" id="20105"
+			name="AccountSummaryReportRequestID" type="String"
+			abbrName="AccountSummaryReportRequestID" presence="required"
+			supported="supported">
+			<fixr:annotation supported="supported">
+				<fixr:documentation purpose="SYNOPSIS"
+					supported="supported">
+					Used in the custom message AccountSummaryReportRequest
 				</fixr:documentation>
 			</fixr:annotation>
 		</fixr:field>
@@ -293,6 +306,62 @@
 		match="fixr:groups/fixr:group[position()=last()]">
 		<xsl:call-template name="identity" />
 		<xsl:copy-of select="$addGroups" />
+	</xsl:template>
+
+	<xsl:param name="addMessages">
+	<!-- TODO: check with dave how to make it clear this is acustom field -->
+<fixr:message name="AccountSummaryReportRequest" id="10127" msgType="UA" category="AccountReporting" added="FIX.5.0SP2" addedEP="117" updated="FIX.5.0SP2" updatedEP="162" abbrName="AcctSumRptReq">
+			<fixr:structure>
+				<!-- header -->
+				<fixr:componentRef id="1024" presence="required" added="FIX.5.0SP2" addedEP="117">
+					<fixr:annotation>
+						<fixr:documentation>
+         MsgType = UA
+      </fixr:documentation>
+					</fixr:annotation>
+				</fixr:componentRef>
+				<!-- AccountSummaryReportRequestID -->
+				<fixr:fieldRef id="20105" presence="required" added="IG">
+					<fixr:annotation>
+						<fixr:documentation/>
+					</fixr:annotation>
+				</fixr:fieldRef>
+				<!-- SubscriptionRequestType  -->
+				<fixr:fieldRef id="263" presence="required" added="IG">
+					<fixr:annotation>
+						<fixr:documentation/>
+					</fixr:annotation>
+				</fixr:fieldRef>
+				<!-- <fixr:group id="1012" added="FIX.4.3" name="Parties" category="Common" abbrName="Pty"> -->
+				<fixr:groupRef id="1012" added="FIX.4.4">
+					<fixr:annotation>
+					<fixr:documentation>
+					         Insert here the set of "Parties" (firm identification) fields defined in "Common Components of Application Messages".
+					      </fixr:documentation>
+					</fixr:annotation>
+				</fixr:groupRef>
+				<!-- trailer -->
+				<fixr:componentRef id="1025" added="FIX.5.0SP2" addedEP="117">
+					<fixr:annotation>
+						<fixr:documentation/>
+					</fixr:annotation>
+				</fixr:componentRef>
+			</fixr:structure>
+			<fixr:annotation>
+				<fixr:documentation purpose="SYNOPSIS">
+				used to request an AccountSummaryReport
+      </fixr:documentation>
+				<fixr:documentation purpose="ELABORATION">
+				used to request an AccountSummaryReport. It can request a snapshot or a streaming update.
+      </fixr:documentation>
+			</fixr:annotation>
+		</fixr:message>		
+	</xsl:param>
+
+	<xsl:template
+		match="fixr:messages/fixr:message[position()=last()]">
+		<xsl:call-template name="identity" />
+		<xsl:copy-of select="$addMessages" />
 	</xsl:template>
 
 	<xsl:template

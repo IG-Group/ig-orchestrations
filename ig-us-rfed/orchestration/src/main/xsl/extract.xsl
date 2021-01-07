@@ -57,7 +57,9 @@
                                 @msgType='S' or
                                 @msgType='x' or
                                 @msgType='y' or
-                                @msgType='Z') ]" />
+                                @msgType='Z' or
+                                @msgType='CQ' or
+                                @msgType='UA' ) ]" />
 
     <!-- filter out unsupported codeSets -->
     <xsl:template
@@ -84,14 +86,16 @@
                                                                     @value='X' or
                                                                     @value='y' or
                                                                     @value='Y' or
-                                                                    @value='Z') ]"/>
+                                                                    @value='Z' or
+                                                                    @value='CQ' or
+                                                                    @value='UA' ) ]"/>
 
     <!-- filter out unsupported codes -->
     <!-- RefOrderIDSourceCodeSet   -->
     <xsl:template
         match="fixr:codeSets/fixr:codeSet[(@id='1081')]/fixr:code[not(@name='OrderID' or
                                                                      @name='ClOrdID')]"/>
-    
+
     <!-- InstrAttribTypeCodeSet  -->
     <xsl:template
         match="fixr:codeSets/fixr:codeSet[(@id='871')]/fixr:code[not(@id='871027' or
@@ -432,7 +436,7 @@
                                                                                  @id='379' or
                                                                                  @id='380' or
                                                                                  @id='58')]" />
-                                                                                 
+
     <!-- New Order List -->
     <xsl:template
         match="fixr:message[@msgType='E']/fixr:structure/fixr:groupRef[not(@id='2030'or @id='1031')]" />
@@ -725,5 +729,16 @@
                                                                                      @id='54' )]"/>
     <xsl:template match="fixr:message[@msgType='H']/fixr:structure/fixr:componentRef[not(@id='1024' or
                                                                                      @id='1003' )]" />
+   <!--AccountSummaryReport-->
+   <xsl:template match="fixr:message[@msgType='CQ']/fixr:structure/fixr:groupRef" />
+   <xsl:template match="fixr:message[@msgType='CQ']/fixr:structure/fixr:fieldRef"/>
+   <xsl:template match="fixr:message[@msgType='CQ']/fixr:structure/fixr:componentRef" />
+
+   <!--AccountSummaryReportRequest-->
+   <xsl:template match="fixr:message[@msgType='UA']/fixr:structure/fixr:groupRef[not(@id='1012')]" />
+   <xsl:template match="fixr:message[@msgType='UA']/fixr:structure/fixr:fieldRef[not( @id='20105' or
+   																					  @id='263' )]"/>
+   <xsl:template match="fixr:message[@msgType='UA']/fixr:structure/fixr:componentRef[not(@id='1024')]" />
+   
 
 </xsl:stylesheet>
