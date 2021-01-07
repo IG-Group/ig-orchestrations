@@ -98,6 +98,9 @@
                                                                      @id='871115' or
                                                                      @id='871116' or
                                                                      @id='871120')]"/>
+    <!-- SecurityIdSource Codeset restriction -->                                                            
+    <xsl:template
+        match="fixr:codeSets/fixr:codeSet[(@id='22')]/fixr:code[not(@id='22022')]"/>
 
     <!-- PosReqType  -->
     <xsl:template
