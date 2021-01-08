@@ -138,7 +138,9 @@
                                                 @id='2055' or
                                                 @id='2066' or
                                                 @id='2073' or
-                                                @id='2074' )]" />
+                                                @id='2074' or
+                                                @id='2177' or
+                                                @id='2191' )]" />
 
     <!-- Parties Grp, filter out unsupported members -->
     <xsl:template
@@ -269,6 +271,25 @@
         match="fixr:groups/fixr:group[(@id='2041' or @id='2045' or @id='2047')]/fixr:fieldRef" />
     <xsl:template
         match="fixr:groups/fixr:group[(@id='2041' or @id='2045' or @id='2047')]/fixr:groupRef" />
+
+    <!-- CollateralAmountGrp -->
+    <xsl:template
+        match="fixr:groups/fixr:group[(@id='2191')]/fixr:componentRef" />
+    <xsl:template
+        match="fixr:groups/fixr:group[(@id='2191')]/fixr:fieldRef[not( @id='1704'
+        															or @id='1706' )]" />
+    <xsl:template
+        match="fixr:groups/fixr:group[(@id='2191')]/fixr:groupRef" />
+
+	<!-- MarginAmountGrp -->
+    <xsl:template
+        match="fixr:groups/fixr:group[(@id='2177')]/fixr:componentRef" />
+    <xsl:template
+        match="fixr:groups/fixr:group[(@id='2177')]/fixr:fieldRef[not( @id='1645'
+        															or @id='1644' )]" />
+    <xsl:template
+        match="fixr:groups/fixr:group[(@id='2177')]/fixr:groupRef" />
+
 
     <!-- Header -->
     <xsl:template
@@ -730,9 +751,19 @@
     <xsl:template match="fixr:message[@msgType='H']/fixr:structure/fixr:componentRef[not(@id='1024' or
                                                                                      @id='1003' )]" />
    <!--AccountSummaryReport-->
-   <xsl:template match="fixr:message[@msgType='CQ']/fixr:structure/fixr:groupRef" />
-   <xsl:template match="fixr:message[@msgType='CQ']/fixr:structure/fixr:fieldRef"/>
-   <xsl:template match="fixr:message[@msgType='CQ']/fixr:structure/fixr:componentRef" />
+   <xsl:template match="fixr:message[@msgType='CQ']/fixr:structure/fixr:groupRef[not( @id='2177'
+																					  or @id='1012'	
+																					  or @id='2191' )]" />
+   <xsl:template match="fixr:message[@msgType='CQ']/fixr:structure/fixr:fieldRef[not( @id='1699'
+   																					  or @id='20105' 
+   																					  or @id='20106'
+   																					  or @id='715'
+   																					  or @id='15'
+   																					  or @id='900'
+   																					  or @id='60'
+   																					  or @id='325'
+   																					  or @id='58' )]"/>
+   <xsl:template match="fixr:message[@msgType='CQ']/fixr:structure/fixr:componentRef[not(@id='1024')]" />
 
    <!--AccountSummaryReportRequest-->
    <xsl:template match="fixr:message[@msgType='UA']/fixr:structure/fixr:groupRef[not(@id='1012')]" />

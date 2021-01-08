@@ -72,6 +72,17 @@
 				</fixr:documentation>
 			</fixr:annotation>
 		</fixr:field>
+		<fixr:field added="IG" id="20106" 
+			name="AccountSummaryReportRequestResult" 
+			type="AccountSummaryReportRequestResultCodeSet" 
+		 	abbrName="AccountSummaryReportRequestResult" presence="required"
+			supported="supported">
+			<fixr:annotation>
+				<fixr:documentation purpose="SYNOPSIS">
+         			the result of an AccountSummaryReportRequest
+      			</fixr:documentation>
+			</fixr:annotation>
+		</fixr:field>		
 	</xsl:param>
 
 	<xsl:param name="addGroups">
@@ -290,6 +301,37 @@
 		</fixr:fieldRef>
 	</xsl:param>
 
+	<xsl:param name="addFieldRefsToAccountSummaryReport">
+		<fixr:fieldRef id="20105" added="IG">
+			<fixr:annotation supported="supported">
+				<fixr:documentation supported="supported">
+				AccountSummaryReportRequestID: the id of the request causing this AccountSummaryReport
+            </fixr:documentation>
+			</fixr:annotation>
+		</fixr:fieldRef>
+		<fixr:fieldRef id="20106" added="IG">
+			<fixr:annotation supported="supported">
+				<fixr:documentation supported="supported">
+				AccountSummaryReportRequestResult
+            </fixr:documentation>
+			</fixr:annotation>
+		</fixr:fieldRef>
+		<fixr:fieldRef id="325" added="IG">
+			<fixr:annotation supported="supported">
+				<fixr:documentation supported="supported">
+				UnsolicitedIndicator
+            </fixr:documentation>
+			</fixr:annotation>
+		</fixr:fieldRef>
+		<fixr:fieldRef id="58" added="IG">
+			<fixr:annotation supported="supported">
+				<fixr:documentation supported="supported">
+				Text: reason for rejection
+            </fixr:documentation>
+			</fixr:annotation>
+		</fixr:fieldRef>
+	</xsl:param>
+
 	<xsl:template match="node()|@*" name="identity">
 		<xsl:copy>
 			<xsl:apply-templates select="node()|@*" />
@@ -306,6 +348,72 @@
 		match="fixr:groups/fixr:group[position()=last()]">
 		<xsl:call-template name="identity" />
 		<xsl:copy-of select="$addGroups" />
+	</xsl:template>
+
+	<xsl:param name="addCodeSets">
+		<!-- TODO: check with dave how to make it clear this is acustom field -->
+		<fixr:codeSet name="AccountSummaryReportRequestResultCodeSet" id="10001" type="int">
+			<fixr:code name="Valid Request" id="10001001" value="0" sort="0" added="IG">
+				<fixr:annotation>
+					<fixr:documentation purpose="SYNOPSIS">
+					         Valid request
+					      </fixr:documentation>
+					<fixr:documentation purpose="ELABORATION">
+	      			</fixr:documentation>
+				</fixr:annotation>
+			</fixr:code>
+			<fixr:code name="InvalidOrUnsupportedRequest" id="10001002" value="1" sort="1" added="IG">
+				<fixr:annotation>
+					<fixr:documentation purpose="SYNOPSIS">
+					         InvalidOrUnsupportedRequest
+					      </fixr:documentation>
+					<fixr:documentation purpose="ELABORATION">
+	      			</fixr:documentation>
+				</fixr:annotation>
+			</fixr:code>
+			<fixr:code name="UnknownAccount" id="10001003" value="2" sort="2" added="IG">
+				<fixr:annotation>
+					<fixr:documentation purpose="SYNOPSIS">
+					         UnknownAccount
+					      </fixr:documentation>
+					<fixr:documentation purpose="ELABORATION">
+	      			</fixr:documentation>
+				</fixr:annotation>
+			</fixr:code>
+			<fixr:code name="Unauthorised" id="10001004" value="3" sort="3" added="IG">
+				<fixr:annotation>
+					<fixr:documentation purpose="SYNOPSIS">
+					         Unauthorised
+					      </fixr:documentation>
+					<fixr:documentation purpose="ELABORATION">
+	      			</fixr:documentation>
+				</fixr:annotation>
+			</fixr:code>
+			<fixr:code name="NotSupported" id="10001005" value="4" sort="4" added="IG">
+				<fixr:annotation>
+					<fixr:documentation purpose="SYNOPSIS">
+					         NotSupported
+					      </fixr:documentation>
+					<fixr:documentation purpose="ELABORATION">
+	      			</fixr:documentation>
+				</fixr:annotation>
+			</fixr:code>
+			<fixr:code name="Other" id="10001006" value="5" sort="5" added="IG">
+				<fixr:annotation>
+					<fixr:documentation purpose="SYNOPSIS">
+					         Other error
+					      </fixr:documentation>
+					<fixr:documentation purpose="ELABORATION">
+	      			</fixr:documentation>
+				</fixr:annotation>
+			</fixr:code>
+		</fixr:codeSet>
+	</xsl:param>
+
+	<xsl:template
+		match="fixr:codeSets/fixr:codeSet[position()=last()]">
+		<xsl:call-template name="identity" />
+		<xsl:copy-of select="$addCodeSets" />
 	</xsl:template>
 
 	<xsl:param name="addMessages">
@@ -475,4 +583,12 @@
 		<xsl:call-template name="identity" />
 		<xsl:copy-of select="$addFieldRefsToRequestForPositionsAck" />
 	</xsl:template>
+	
+	<!-- AccountSummaryReport customization -->
+	<xsl:template
+			match="fixr:messages/fixr:message[@msgType='CQ']/fixr:structure/fixr:fieldRef[position()=last()]">
+		<xsl:call-template name="identity" />
+		<xsl:copy-of select="$addFieldRefsToAccountSummaryReport" />
+	</xsl:template>
+	
 </xsl:stylesheet>
