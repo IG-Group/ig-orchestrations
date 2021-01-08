@@ -1,8 +1,0 @@
-{
-  "id": "CollateralType",
-  "type": "string",
-  "javaType": "com.ig.orchestrations.account.data.CollateralType",
-  "enum": [
-    "Cash"
-  ]
-}
