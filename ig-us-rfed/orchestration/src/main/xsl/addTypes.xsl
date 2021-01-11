@@ -224,26 +224,20 @@
 	</xsl:param>
 	
 	<xsl:param name="addCustomMarginAmtType">
-			<fixr:code name="MarginControlled" id="900000" value="100" sort="100" added="IG">
-				<fixr:annotation>
-					<fixr:documentation purpose="SYNOPSIS">
-						Margin Controlled
-					</fixr:documentation>
-					<fixr:documentation purpose="ELABORATION">
-						Margin Controlled
-					</fixr:documentation>
-				</fixr:annotation>
-			</fixr:code>
-			<fixr:code name="MarginNonControlled" id="900001" value="101" sort="101" added="IG">
-				<fixr:annotation>
-					<fixr:documentation purpose="SYNOPSIS">
-						Margin Non Controlled
-					</fixr:documentation>
-					<fixr:documentation purpose="ELABORATION">
-						Margin Non Controlled
-					</fixr:documentation>
-				</fixr:annotation>
-			</fixr:code>
+		<fixr:code name="ControlledRiskMargin" id="1644100" value="100" sort="100"  added="IG">
+			<fixr:annotation>
+				<fixr:documentation purpose="SYNOPSIS">
+					ControlledRiskMargin
+				</fixr:documentation>
+			</fixr:annotation>
+		</fixr:code>
+		<fixr:code name="NonControlledRiskMargin" id="1644101" value="101" sort="101" added="IG">
+			<fixr:annotation>
+				<fixr:documentation purpose="SYNOPSIS">
+					NonControlledRiskMargin
+				</fixr:documentation>
+			</fixr:annotation>
+		</fixr:code>
 	</xsl:param>
 
 	<xsl:param name="addFieldRefsToPositionReport">
