@@ -345,8 +345,7 @@
 	</xsl:template>
 
 	<xsl:param name="addCodeSets">
-		<!-- TODO: check with dave how to make it clear this is acustom field -->
-		<fixr:codeSet name="AccountSummaryReportRequestResultCodeSet" id="10001" type="int">
+		<fixr:codeSet name="AccountSummaryReportRequestResultCodeSet" id="10001" type="int" added="IG">
 			<fixr:code name="Valid Request" id="10001001" value="0" sort="0" added="IG">
 				<fixr:annotation>
 					<fixr:documentation purpose="SYNOPSIS">
@@ -411,11 +410,10 @@
 	</xsl:template>
 
 	<xsl:param name="addMessages">
-	<!-- TODO: check with dave how to make it clear this is acustom field -->
-<fixr:message name="AccountSummaryReportRequest" id="10127" msgType="UA" category="AccountReporting" added="FIX.5.0SP2" addedEP="117" updated="FIX.5.0SP2" updatedEP="162" abbrName="AcctSumRptReq">
+	<fixr:message name="AccountSummaryReportRequest" id="10127" msgType="UA" category="AccountReporting" added="IG" abbrName="AcctSumRptReq">
 			<fixr:structure>
 				<!-- header -->
-				<fixr:componentRef id="1024" presence="required" added="FIX.5.0SP2" addedEP="117">
+				<fixr:componentRef id="1024" presence="required" added="IG" >
 					<fixr:annotation>
 						<fixr:documentation>
          MsgType = UA
@@ -435,7 +433,7 @@
 					</fixr:annotation>
 				</fixr:fieldRef>
 				<!-- <fixr:group id="1012" added="FIX.4.3" name="Parties" category="Common" abbrName="Pty"> -->
-				<fixr:groupRef id="1012" added="FIX.4.4">
+				<fixr:groupRef id="1012" added="IG">
 					<fixr:annotation>
 					<fixr:documentation>
 					         Insert here the set of "Parties" (firm identification) fields defined in "Common Components of Application Messages".
@@ -443,7 +441,7 @@
 					</fixr:annotation>
 				</fixr:groupRef>
 				<!-- trailer -->
-				<fixr:componentRef id="1025" added="FIX.5.0SP2" addedEP="117">
+				<fixr:componentRef id="1025" added="IG">
 					<fixr:annotation>
 						<fixr:documentation/>
 					</fixr:annotation>
