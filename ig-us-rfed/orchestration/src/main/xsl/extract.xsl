@@ -88,7 +88,9 @@
                                                                     @value='Y' or
                                                                     @value='Z' or
                                                                     @value='CQ' or
-                                                                    @value='UA' ) ]"/>
+                                                                    @value='UA' or
+                                                                    @value='UB' or
+                                                                    @value='UC' ) ]"/>
 
     <!-- filter out unsupported codes -->
     <!-- RefOrderIDSourceCodeSet   -->
