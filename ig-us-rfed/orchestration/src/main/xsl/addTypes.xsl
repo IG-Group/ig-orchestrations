@@ -310,13 +310,6 @@
             </fixr:documentation>
 			</fixr:annotation>
 		</fixr:fieldRef>
-		<fixr:fieldRef id="325" added="IG">
-			<fixr:annotation supported="supported">
-				<fixr:documentation supported="supported">
-				UnsolicitedIndicator
-            </fixr:documentation>
-			</fixr:annotation>
-		</fixr:fieldRef>
 		<fixr:fieldRef id="58" added="IG">
 			<fixr:annotation supported="supported">
 				<fixr:documentation supported="supported">

@@ -766,7 +766,6 @@
    																					  or @id='15'
    																					  or @id='900'
    																					  or @id='60'
-   																					  or @id='325'
    																					  or @id='58' )]"/>
    <xsl:template match="fixr:message[@msgType='CQ']/fixr:structure/fixr:componentRef[not(@id='1024')]" />
 
