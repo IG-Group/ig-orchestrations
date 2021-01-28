@@ -38,6 +38,13 @@
         </xsl:attribute>
     </xsl:template>
 
+    <!-- Set ClearingBusinessDate field within AccountSummaryReport as optional -->
+    <xsl:template match="fixr:message[@msgType='CQ']/fixr:structure/fixr:fieldRef[@id='715']/@presence">
+        <xsl:attribute name="presence">
+            <xsl:value-of select="'optional'"/>
+        </xsl:attribute>
+    </xsl:template>
+
     <!-- filter out unsupported messages -->
     <xsl:template
         match="fixr:message[not(@msgType='8' or
@@ -774,6 +781,6 @@
    <xsl:template match="fixr:message[@msgType='UA']/fixr:structure/fixr:fieldRef[not( @id='20105' or
    																					  @id='263' )]"/>
    <xsl:template match="fixr:message[@msgType='UA']/fixr:structure/fixr:componentRef[not(@id='1024')]" />
-   
+
 
 </xsl:stylesheet>
