@@ -128,10 +128,10 @@
 	</xsl:param>
 
 	<xsl:param name="addToOrderAttributeType">
-		<fixr:code name="AttachedOrder" id="2594016" value="1000"  added="IG">
+		<fixr:code name="AttachedOrder" id="2594016" value="1001"  added="IG">
 			<fixr:annotation>
 				<fixr:documentation purpose="SYNOPSIS">
-					AttachedOrder
+					Indicates that the order is attached (or to be attached) to an existing position
 				</fixr:documentation>
 			</fixr:annotation>
 		</fixr:code>
