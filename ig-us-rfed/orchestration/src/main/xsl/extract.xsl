@@ -170,10 +170,7 @@
         match="fixr:groups/fixr:group[(@id='1015')]/fixr:fieldRef[not(@id='703' or
                                                                             @id='704' or
                                                                             @id='705' or
-                                                                            @id='706' or
-                                                                            @id='20101' or
-                                                                            @id='20102' or
-                                                                            @id='20103' )]" />
+                                                                            @id='706' )]" />
 
 
     <!-- Root Parties Grp, filter out unsupported members -->
@@ -704,9 +701,6 @@
                                                                                  @id='730' or
                                                                                  @id='731' or
                                                                                  @id='58' or
-                                                                                 @id='20101' or
-                                                                                 @id='20102' or
-                                                                                 @id='20103' or
                                                                                  @id='20104' or
                                                                                  @id='155' or
                                                                                    @id='912' )]" />
