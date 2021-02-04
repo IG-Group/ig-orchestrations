@@ -10,6 +10,46 @@
 
 	<xsl:param name="addFields">
 
+		<fixr:field added="IG" id="20101"
+			name="OriginatingClientOrderRef" type="String"
+			abbrName="OriginatingClientOrderRef" presence="optional"
+			supported="supported">
+			<fixr:annotation supported="supported">
+				<fixr:documentation purpose="SYNOPSIS"
+					supported="supported">
+					IG uses the custom tag OriginatingClientOrderRef to represent:
+					the ClOrdID(11) from the client order which resulted in	the position,
+					a reference from another channel such as web trade
+				</fixr:documentation>
+			</fixr:annotation>
+		</fixr:field>
+
+		<fixr:field added="IG" id="20102"
+			name="OriginatingOrderIDRef" type="String"
+			abbrName="OriginatingClientOrderRef" presence="optional"
+			supported="supported">
+			<fixr:annotation supported="supported">
+				<fixr:documentation purpose="SYNOPSIS"
+					supported="supported">
+					IG uses the custom tag OriginatingOrderIDRef to identify the IG Order ID of an order which has resulted in opening the
+					Position. The OriginatingOrderIDRef value corresponds to the value ofOrderId (37) on the Execution Report for the client order which resulted in opening the position
+				</fixr:documentation>
+			</fixr:annotation>
+		</fixr:field>
+
+		<fixr:field added="IG" id="20103"
+			name="ClosingOrderIDRef" type="String"
+			abbrName="OriginatingClientOrderRef" presence="optional"
+			supported="supported">
+			<fixr:annotation supported="supported">
+				<fixr:documentation purpose="SYNOPSIS"
+					supported="supported">
+					IG uses the custom tag ClosingOrderIDRef to identify the IG Order ID of an order which has resulted in a close or part-close of a position.
+					The ClosingOrderIDRef value corresponds to the value of OrderId (37) on the Execution Report for the client order which resulted in the position change.
+				</fixr:documentation>
+			</fixr:annotation>
+		</fixr:field>
+
 		<fixr:field added="IG" id="20104" name="OpenPrice"
 			type="Price" addedEP="222" abbrName="OpenPrice" presence="optional"
 			supported="supported">
@@ -212,6 +252,33 @@
 			<fixr:annotation supported="supported">
 				<fixr:documentation supported="supported">
 					The price at which the Position was opened, will be reported in Currency.
+				</fixr:documentation>
+			</fixr:annotation>
+		</fixr:fieldRef>
+		<fixr:fieldRef id="20101" added="IG">
+			<fixr:annotation supported="supported">
+				<fixr:documentation supported="supported">
+					IG uses the custom tag OriginatingClientOrderRef to represent:
+					the ClOrdID(11) from the client order which resulted in the position,
+					a reference from another channel such as web trade
+				</fixr:documentation>
+			</fixr:annotation>
+		</fixr:fieldRef>
+		<fixr:fieldRef id="20102" added="IG">
+			<fixr:annotation supported="supported">
+				<fixr:documentation supported="supported">
+					IG uses the custom tag OriginatingOrderIDRef to identify the IG Order ID of an order which has resulted in opening the Position.
+					The OriginatingOrderIDRef value corresponds to the value of OrderId (37)
+					on the Execution Report for the client order which resulted in opening the position.
+				</fixr:documentation>
+			</fixr:annotation>
+		</fixr:fieldRef>
+		<fixr:fieldRef id="20103" added="IG">
+			<fixr:annotation supported="supported">
+				<fixr:documentation purpose="SYNOPSIS"
+					supported="supported">
+					IG uses the custom tag ClosingOrderIDRef to identify the IG Order ID of an order which has resulted in a close or part-close of a position.
+					The ClosingOrderIDRef value corresponds to the value of OrderId (37) on the Execution Report for the client order which resulted in the position change.
 				</fixr:documentation>
 			</fixr:annotation>
 		</fixr:fieldRef>
