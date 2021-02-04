@@ -240,6 +240,38 @@
 		</fixr:code>
 	</xsl:param>
 
+	<xsl:param name="addToExecRestatementReason">
+		<fixr:code name="SystemStopLossSizeAdjustment" id="378019" value="1000"  added="IG">
+			<fixr:annotation>
+				<fixr:documentation purpose="SYNOPSIS">
+					When there is a change in an account's aggregate position of an instrument then an existing stop loss order is restated with its OrdQty updated by the system.
+				</fixr:documentation>
+			</fixr:annotation>
+		</fixr:code>
+		<fixr:code name="SystemTakeProfitSizeAdjustment" id="378020" value="1001"  added="IG">
+			<fixr:annotation>
+				<fixr:documentation purpose="SYNOPSIS">
+					When there is a change in an account's aggregate position of an instrument then an existing Take Profit order is restated with its OrdQty updated by the system.
+				</fixr:documentation>
+			</fixr:annotation>
+		</fixr:code>
+		<fixr:code name="SystemTrailingStopAdjustment" id="378021" value="1002"  added="IG">
+			<fixr:annotation>
+				<fixr:documentation purpose="SYNOPSIS">
+					In the event of a trailing stop price being updated by the system when pegged to a market price.
+				</fixr:documentation>
+			</fixr:annotation>
+		</fixr:code>
+		<fixr:code name="SystemOTOContingentAdjustment" id="378022" value="1003"  added="IG">
+			<fixr:annotation>
+				<fixr:documentation purpose="SYNOPSIS">
+					In the event of a contingent order being restated due to the associated OTO order executing.
+					For example a resting order executes and its contingent stop order becomes working and is then restated.
+				</fixr:documentation>
+			</fixr:annotation>
+		</fixr:code>
+	</xsl:param>
+
 	<xsl:param name="addFieldRefsToPositionReport">
 		<fixr:fieldRef id="155" added="IG">
 			<fixr:annotation supported="supported">
@@ -522,7 +554,14 @@
 		<xsl:copy-of select="$addCustomMarginAmtType" />
 	</xsl:template>
 
-	<!-- SecurityRequestResultCodeSet customization. -->
+	<!-- ExecRestatementReason customisation -->
+	<xsl:template
+			match="fixr:codeSets/fixr:codeSet[(@id='378')]/fixr:code[position()=last()]">
+		<xsl:call-template name="identity" />
+		<xsl:copy-of select="$addToExecRestatementReason" />
+	</xsl:template>
+
+	<!-- SecurityRequestResultCodeSet customisation. -->
 	<xsl:template
 		match="fixr:codeSets/fixr:codeSet[(@id='560')]/fixr:code[position()=last()]">
 		<xsl:call-template name="identity" />
