@@ -241,28 +241,28 @@
 	</xsl:param>
 
 	<xsl:param name="addToExecRestatementReason">
-		<fixr:code name="SystemStopLossSizeAdjustment" id="378019" value="1000"  added="IG">
+		<fixr:code name="SystemStopLossSizeAdjustment" id="378019" value="100"  added="IG">
 			<fixr:annotation>
 				<fixr:documentation purpose="SYNOPSIS">
 					When there is a change in an account's aggregate position of an instrument then an existing stop loss order is restated with its OrdQty updated by the system.
 				</fixr:documentation>
 			</fixr:annotation>
 		</fixr:code>
-		<fixr:code name="SystemTakeProfitSizeAdjustment" id="378020" value="1001"  added="IG">
+		<fixr:code name="SystemTakeProfitSizeAdjustment" id="378020" value="101"  added="IG">
 			<fixr:annotation>
 				<fixr:documentation purpose="SYNOPSIS">
 					When there is a change in an account's aggregate position of an instrument then an existing Take Profit order is restated with its OrdQty updated by the system.
 				</fixr:documentation>
 			</fixr:annotation>
 		</fixr:code>
-		<fixr:code name="SystemTrailingStopAdjustment" id="378021" value="1002"  added="IG">
+		<fixr:code name="SystemTrailingStopAdjustment" id="378021" value="102"  added="IG">
 			<fixr:annotation>
 				<fixr:documentation purpose="SYNOPSIS">
 					In the event of a trailing stop price being updated by the system when pegged to a market price.
 				</fixr:documentation>
 			</fixr:annotation>
 		</fixr:code>
-		<fixr:code name="SystemOTOContingentAdjustment" id="378022" value="1003"  added="IG">
+		<fixr:code name="SystemOTOContingentAdjustment" id="378022" value="103"  added="IG">
 			<fixr:annotation>
 				<fixr:documentation purpose="SYNOPSIS">
 					In the event of a contingent order being restated due to the associated OTO order executing.
