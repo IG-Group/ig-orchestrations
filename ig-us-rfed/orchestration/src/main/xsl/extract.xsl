@@ -451,7 +451,8 @@
                                                                                  @id='58' or
                                                                                  @id='1385' or
                                                                                  @id='1080' or
-                                                                                 @id='1081')]" />
+                                                                                 @id='1081'or
+                                                                                 @id='378')]" />
 
     <!-- Business Message Reject -->
     <xsl:template
