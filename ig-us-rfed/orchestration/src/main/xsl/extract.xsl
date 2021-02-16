@@ -51,6 +51,13 @@
             <xsl:value-of select="'optional'"/>
         </xsl:attribute>
     </xsl:template>
+    
+    <!-- Set Currency field within Execution Report as optional -->
+    <xsl:template match="fixr:message[@msgType='8']/fixr:structure/fixr:fieldRef[@id='15']/@presence">
+        <xsl:attribute name="presence">
+            <xsl:value-of select="'optional'"/>
+        </xsl:attribute>
+    </xsl:template>
 
     <!-- filter out unsupported messages -->
     <xsl:template
