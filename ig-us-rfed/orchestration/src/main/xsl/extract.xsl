@@ -44,6 +44,13 @@
             <xsl:value-of select="'optional'"/>
         </xsl:attribute>
     </xsl:template>
+    
+    <!-- Set Side field within OrderStatusRequest as optional -->
+    <xsl:template match="fixr:message[@msgType='H']/fixr:structure/fixr:fieldRef[@id='54']/@presence">
+        <xsl:attribute name="presence">
+            <xsl:value-of select="'optional'"/>
+        </xsl:attribute>
+    </xsl:template>
 
     <!-- filter out unsupported messages -->
     <xsl:template
