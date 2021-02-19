@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.ig.orchestrations.fixp</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.2.7-SNAPSHOT</version>
+		<version>0.2.7</version>
 	</parent>
 	<artifactId>fixp-json-schema</artifactId>
 	<packaging>pom</packaging>
