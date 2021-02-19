@@ -55,6 +55,22 @@
 		          <transformationSets>
 		            <transformationSet>
 		              <dir>${project.build.directory}/dependency/repository</dir>
+		              <outputDir>${project.build.directory}/generated-resources/xml/xslt/normalised</outputDir>
+		              <includes>
+		              	<include>${orchestra.file}</include>
+		              </includes>
+		              <stylesheet>${project.basedir}/src/main/xsl/normalise.xsl</stylesheet>
+		            </transformationSet>
+		            <transformationSet>
+		              <dir>${project.build.directory}/generated-resources/xml/xslt/normalised</dir>
+		              <outputDir>${project.build.directory}/generated-resources/xml/xslt/modified</outputDir>
+		              <includes>
+		              	<include>${orchestra.file}</include>
+		              </includes>
+		              <stylesheet>${project.basedir}/src/main/xsl/modify.xsl</stylesheet>
+		            </transformationSet>
+		            <transformationSet>
+		              <dir>${project.build.directory}/generated-resources/xml/xslt/modified</dir>
 		              <outputDir>${project.build.directory}/generated-resources/xml/xslt/appended</outputDir>
 		              <includes>
 		              	<include>${orchestra.file}</include>
