@@ -30,8 +30,17 @@
 
 
 	<!-- Override message descriptions/documentation -->
-	<xsl:template match="fixr:message[@name='QuoteRequest']/fixr:annotation/fixr:documentation/text()">
+	<xsl:template match="fixr:message[@name='QuoteRequest']/fixr:annotation/fixr:documentation[@purpose='SYNOPSIS']/text()">
 		<xsl:text>The message to request Quotes for an instrument. This message is commonly referred to as an Request For Quote (RFQ)</xsl:text>
+	</xsl:template>
+	<xsl:template match="fixr:message[@name='AccountSummaryReport']/fixr:annotation/fixr:documentation[@purpose='SYNOPSIS']/text()">
+		<xsl:text>The AccountSummaryReport message contains account information including balance, margin and running profit and loss. This message will be the response to a AccountSummaryReportRequest.</xsl:text>
+	</xsl:template>
+	<xsl:template match="fixr:message[@name='AccountSummaryReport']/fixr:annotation/fixr:documentation[@purpose='ELABORATION']/text()">
+		<xsl:text></xsl:text>
+	</xsl:template>
+	<xsl:template match="fixr:message[@name='NewOrderList']/fixr:annotation/fixr:documentation[@purpose='SYNOPSIS']/text()">
+		<xsl:text>New Order List is used by IG to support placing a new order with contingent orders.</xsl:text>
 	</xsl:template>
 
 	<!-- Overrides field descriptions that are applicable on a per message basis-->

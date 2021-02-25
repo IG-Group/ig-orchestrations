@@ -474,11 +474,8 @@
 			</fixr:structure>
 			<fixr:annotation>
 				<fixr:documentation purpose="SYNOPSIS">
-				used to request an AccountSummaryReport
-      </fixr:documentation>
-				<fixr:documentation purpose="ELABORATION">
-				used to request an AccountSummaryReport. It can request a snapshot or a streaming update.
-      </fixr:documentation>
+					Used to request AccountSummaryReport(s) for account information. It can request a snapshot or a streaming update.
+      		</fixr:documentation>
 			</fixr:annotation>
 		</fixr:message>		
 	</xsl:param>
