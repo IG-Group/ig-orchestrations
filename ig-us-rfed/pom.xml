@@ -21,7 +21,7 @@
 
 	<modules>
 		<module>orchestration</module>
-		<module>document-generation</module>
+		<module>document-html</module>
 		<module>json-schema</module>
 		<module>java-binding</module>
 		<module>quickfix-dictionary</module>
