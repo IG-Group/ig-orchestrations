@@ -12,6 +12,27 @@
 	<packaging>pom</packaging>
 	<dependencyManagement>
 		<dependencies>
+			<!-- supporting java 11 build as fix orchestra/qfj has dependencies on java 1.8 EE xml packages -->
+			<dependency>
+				<groupId>javax.xml.bind</groupId>
+				<artifactId>jaxb-api</artifactId>
+				<version>2.3.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.jaxb</groupId>
+				<artifactId>jaxb-runtime</artifactId>
+				<version>2.2.11</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.xml.bind</groupId>
+				<artifactId>jaxb-core</artifactId>
+				<version>2.2.11</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.xml.bind</groupId>
+				<artifactId>jaxb-impl</artifactId>
+				<version>2.3.1</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<properties>
