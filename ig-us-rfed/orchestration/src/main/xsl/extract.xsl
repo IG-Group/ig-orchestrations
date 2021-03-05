@@ -14,6 +14,17 @@
         </xsl:copy>
     </xsl:template>
 
+    <!-- filter unused categories -->
+    <xsl:template
+            match="fixr:categories/fixr:category[not(@name='BusinessReject' or
+                                                     @name='AccountReporting' or
+                                                     @name='PositionMaintenance' or
+                                                     @name='QuotationNegotiation' or
+                                                     @name='SecuritiesReferenceData' or
+                                                     @name='OrderMassHandling' or
+                                                     @name='ProgramTrading' or
+                                                     @name='SingleGeneralOrderHandling')]"/>
+
     <!-- filter out deprecated codes -->
     <!-- this is added to remove duplicates with differing case   -->
     <xsl:template
