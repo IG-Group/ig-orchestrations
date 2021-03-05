@@ -460,6 +460,10 @@
     <xsl:template
         match="fixr:codeSets/fixr:codeSet[(@name='TimeInForceCodeSet')]/fixr:code[not(@name='GoodTillCancel' or
         																		@name='Day' or
+        																		@name='AtTheClose' or
+																				@name='DayAllSessions' or
+																				@name='GoodTillCrossing' or
+																				@name='AtTheOpening' or
         																		@name='ImmediateOrCancel' or
         																		@name='FillOrKill' or
         																		@name='GoodTillDate')]"/>
