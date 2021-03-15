@@ -44,7 +44,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>11</java.version>
 		<fix-orchestration-repository.version>1.5.1</fix-orchestration-repository.version><!-- the standard FIX orchestra repository -->
-		<fix-orchestra.version>1.6.9</fix-orchestra.version><!-- the FIX orchestra tools and utilities -->
+		<fix-orchestra.version>1.6.10</fix-orchestra.version><!-- the FIX orchestra tools and utilities -->
 	</properties>
 	<dependencyManagement>
 			<dependencies>
