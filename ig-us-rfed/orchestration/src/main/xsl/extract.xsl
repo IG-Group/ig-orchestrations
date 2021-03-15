@@ -32,16 +32,21 @@
     <!-- remove bug -->
     <xsl:template
         match="fixr:codeSet[@name='NoStreamAssetAttributesCodeSet']"/>
-	
-	<!-- filter out fields not referenced by the rest of the code 
-		I generate this list through: (in ig-orchestrations/ig-us-rfed/orchestration/target/generated-resources/xml/xslt)
-		
-		fieldRef : direct reference to a field,
-		numInGroup: implied reference to the repeating group count field
-		
-		grep -e fixr:fieldRef -e fixr:numInGroup publish/OrchestraEP255.xml  |grep id |perl -ne '($id)=/id=\"(.*?)\"/; print "$id\n";'|sort -nu|while read field;do echo "or @id='$field'"; done
-		
-	-->
+
+    <!-- Remove non-required MultipleCharValue data type, the pattern attribute includes Undefined control sequence '\s which is problematic for pandoc' -->
+    <xsl:template
+            match="fixr:datatypes/fixr:datatype[@name='MultipleCharValue'
+                                              or @name='MultipleStringValue']"/>
+
+    <!-- filter out fields not referenced by the rest of the code
+        I generate this list through: (in ig-orchestrations/ig-us-rfed/orchestration/target/generated-resources/xml/xslt)
+
+        fieldRef : direct reference to a field,
+        numInGroup: implied reference to the repeating group count field
+
+        grep -e fixr:fieldRef -e fixr:numInGroup publish/OrchestraEP255.xml  |grep id |perl -ne '($id)=/id=\"(.*?)\"/; print "$id\n";'|sort -nu|while read field;do echo "or @id='$field'"; done
+
+    -->
 	<xsl:template match="fixr:fields/fixr:field[not(
 										   @id='1'
                                             or @id='6'

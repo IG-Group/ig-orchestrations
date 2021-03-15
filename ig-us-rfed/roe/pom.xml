@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.ig.orchestrations.us.rfed</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.2.8-SNAPSHOT</version>
+		<version>0.2.12-SNAPSHOT</version>
     </parent>
 	<artifactId>roe</artifactId>
 	<description>Generates Rules of Engagement (RoE) documentation</description>
@@ -71,22 +71,42 @@
 				<artifactId>exec-maven-plugin</artifactId>
 				<executions>
 					<execution>
+						<id>orchestra-md-generation</id>
 						<phase>prepare-package</phase>
 						<goals>
 							<goal>java</goal>
 						</goals>
-						<id>orchestra-md-generation</id>
+						<configuration>
+							<mainClass>io.fixprotocol.orchestra2md.Orchestra2md</mainClass>
+							<arguments>
+								<argument>${project.build.directory}/dependency/repository/${orchestra.file}</argument>
+								<argument>-o</argument>
+								<argument>${project.build.directory}/roe/generated-roe.md</argument>
+							</arguments>
+							<cleanupDaemonThreads>false</cleanupDaemonThreads>
+						</configuration>
+					</execution>
+					<execution>
+						<id>pandoc</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<executable>cmd</executable>
+							<workingDirectory></workingDirectory>
+							<arguments>
+								<argument>/c</argument>
+								<argument>pandoc</argument>
+								<argument>${project.build.directory}//roe//generated-roe.md</argument>
+								<argument>--variable</argument>
+								<argument>fontsize=10pt</argument>
+								<argument>--toc</argument>
+								<argument>-o</argument>
+								<argument>${project.build.directory}//roe//roe.docx</argument>
+							</arguments>
+						</configuration>
 					</execution>
 				</executions>
-				<configuration>
-					<mainClass>io.fixprotocol.orchestra2md.Orchestra2md</mainClass>
-					<arguments>
-						<argument>${project.build.directory}/dependency/repository/${orchestra.file}</argument>
-						<argument>-o</argument>
-						<argument>${project.build.directory}/roe/generated-roe.md</argument>
-					</arguments>
-					<cleanupDaemonThreads>false</cleanupDaemonThreads>
-				</configuration>
 			</plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
