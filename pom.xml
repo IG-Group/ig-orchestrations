@@ -23,10 +23,9 @@
 		</license>
 	</licenses>
 	<scm>
-<!-- 		<developerConnection>scm:git:ssh://git@github.com/IG-Group/ig-orchestrations.git</developerConnection> -->
-<!-- 		<url>https://github.com/IG-Group/ig-orchestrations.git</url> -->
-		<url>ssh://git.iggroup.local:7999/ipfa/ig-orchestrations.git</url>
-        <connection>scm:git:ssh://git.iggroup.local:7999/ipfa/ig-orchestrations.git</connection>
+ 		<developerConnection>scm:git:ssh://git@github.com/IG-Group/ig-orchestrations.git</developerConnection> 
+ 		<url>https://github.com/IG-Group/ig-orchestrations.git</url> 
+                <connection>scm:git:git://git@github.com/IG-Group/ig-orchestrations.git</connection>
 	  <tag>HEAD</tag>
   </scm>
 	<issueManagement>
