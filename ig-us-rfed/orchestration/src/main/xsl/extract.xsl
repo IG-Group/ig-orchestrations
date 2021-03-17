@@ -21,6 +21,168 @@
     <!-- remove bug -->
     <xsl:template
         match="fixr:codeSet[@name='NoStreamAssetAttributesCodeSet']"/>
+	
+	<!-- filter out fields not referenced by the rest of the code 
+		I generate this list through: (in ig-orchestrations/ig-us-rfed/orchestration/target/generated-resources/xml/xslt)
+		
+		fieldRef : direct reference to a field,
+		numInGroup: implied reference to the repeating group count field
+		
+		grep -e fixr:fieldRef -e fixr:numInGroup publish/OrchestraEP255.xml  |grep id |perl -ne '($id)=/id=\"(.*?)\"/; print "$id\n";'|sort -nu|while read field;do echo "or @id='$field'"; done
+		
+	-->
+	<xsl:template match="fixr:fields/fixr:field[not(
+										   @id='1'
+                                            or @id='6'
+                                            or @id='11'
+                                            or @id='14'
+                                            or @id='15'
+                                            or @id='17'
+                                            or @id='19'
+                                            or @id='22'
+                                            or @id='31'
+                                            or @id='32'
+                                            or @id='35'
+                                            or @id='37'
+                                            or @id='38'
+                                            or @id='39'
+                                            or @id='40'
+                                            or @id='41'
+                                            or @id='44'
+                                            or @id='48'
+                                            or @id='52'
+                                            or @id='54'
+                                            or @id='55'
+                                            or @id='58'
+                                            or @id='59'
+                                            or @id='60'
+                                            or @id='66'
+                                            or @id='67'
+                                            or @id='68'
+                                            or @id='73'
+                                            or @id='84'
+                                            or @id='99'
+                                            or @id='102'
+                                            or @id='103'
+                                            or @id='107'
+                                            or @id='117'
+                                            or @id='120'
+                                            or @id='126'
+                                            or @id='131'
+                                            or @id='132'
+                                            or @id='133'
+                                            or @id='146'
+                                            or @id='150'
+                                            or @id='151'
+                                            or @id='155'
+                                            or @id='198'
+                                            or @id='200'
+                                            or @id='202'
+                                            or @id='211'
+                                            or @id='231'
+                                            or @id='263'
+                                            or @id='295'
+                                            or @id='305'
+                                            or @id='309'
+                                            or @id='311'
+                                            or @id='318'
+                                            or @id='320'
+                                            or @id='322'
+                                            or @id='325'
+                                            or @id='372'
+                                            or @id='378'
+                                            or @id='379'
+                                            or @id='380'
+                                            or @id='390'
+                                            or @id='393'
+                                            or @id='394'
+                                            or @id='434'
+                                            or @id='447'
+                                            or @id='448'
+                                            or @id='451'
+                                            or @id='452'
+                                            or @id='453'
+                                            or @id='454'
+                                            or @id='455'
+                                            or @id='456'
+                                            or @id='457'
+                                            or @id='458'
+                                            or @id='459'
+                                            or @id='537'
+                                            or @id='541'
+                                            or @id='559'
+                                            or @id='560'
+                                            or @id='561'
+                                            or @id='584'
+                                            or @id='585'
+                                            or @id='636'
+                                            or @id='658'
+                                            or @id='702'
+                                            or @id='703'
+                                            or @id='704'
+                                            or @id='705'
+                                            or @id='706'
+                                            or @id='707'
+                                            or @id='708'
+                                            or @id='710'
+                                            or @id='711'
+                                            or @id='715'
+                                            or @id='721'
+                                            or @id='724'
+                                            or @id='727'
+                                            or @id='728'
+                                            or @id='729'
+                                            or @id='730'
+                                            or @id='731'
+                                            or @id='753'
+                                            or @id='790'
+                                            or @id='870'
+                                            or @id='871'
+                                            or @id='872'
+                                            or @id='893'
+                                            or @id='900'
+                                            or @id='912'
+                                            or @id='1011'
+                                            or @id='1055'
+                                            or @id='1080'
+                                            or @id='1081'
+                                            or @id='1094'
+                                            or @id='1116'
+                                            or @id='1117'
+                                            or @id='1118'
+                                            or @id='1119'
+                                            or @id='1128'
+                                            or @id='1129'
+                                            or @id='1151'
+                                            or @id='1385'
+                                            or @id='1585'
+                                            or @id='1643'
+                                            or @id='1644'
+                                            or @id='1645'
+                                            or @id='1687'
+                                            or @id='1699'
+                                            or @id='1703'
+                                            or @id='1704'
+                                            or @id='1706'
+                                            or @id='1867'
+                                            or @id='2096'
+                                            or @id='2097'
+                                            or @id='2098'
+                                            or @id='2099'
+                                            or @id='2100'
+                                            or @id='2376'
+                                            or @id='2388'
+                                            or @id='2593'
+                                            or @id='2594'
+                                            or @id='2595'
+                                            or @id='2618'
+                                            or @id='2876'
+                                            or @id='2877'
+                                            or @id='20104'
+                                            or @id='20105'
+                                            or @id='20106'
+												)]">
+    </xsl:template>
 
     <!-- replace incorrect type -->
     <xsl:template match="fixr:fields/fixr:field/@type">
@@ -35,6 +197,27 @@
                     <xsl:value-of select="." />
                 </xsl:otherwise>
             </xsl:choose>
+        </xsl:attribute>
+    </xsl:template>
+
+    <!-- Set ClearingBusinessDate field within AccountSummaryReport as optional -->
+    <xsl:template match="fixr:message[@msgType='CQ']/fixr:structure/fixr:fieldRef[@id='715']/@presence">
+        <xsl:attribute name="presence">
+            <xsl:value-of select="'optional'"/>
+        </xsl:attribute>
+    </xsl:template>
+    
+    <!-- Set Side field within OrderStatusRequest as optional -->
+    <xsl:template match="fixr:message[@msgType='H']/fixr:structure/fixr:fieldRef[@id='54']/@presence">
+        <xsl:attribute name="presence">
+            <xsl:value-of select="'optional'"/>
+        </xsl:attribute>
+    </xsl:template>
+    
+    <!-- Set Currency field within Execution Report as optional -->
+    <xsl:template match="fixr:message[@msgType='8']/fixr:structure/fixr:fieldRef[@id='15']/@presence">
+        <xsl:attribute name="presence">
+            <xsl:value-of select="'optional'"/>
         </xsl:attribute>
     </xsl:template>
 
@@ -57,9 +240,68 @@
                                 @msgType='S' or
                                 @msgType='x' or
                                 @msgType='y' or
-                                @msgType='Z') ]" />
+                                @msgType='Z' or
+                                @msgType='CQ' or
+                                @msgType='UA' ) ]" />
 
-    <!-- filter out unsupported codeSets -->
+    <!-- filter out unsupported codeSets 
+    	I get the list by going in ig-orchestrations/ig-us-rfed/orchestration/target/generated-resources/xml/xslt
+    	
+    	and running 
+    	
+    	grep fixr:codeSet publish/OrchestraEP255.xml |grep id|grep -f <(grep fixr:field publish/OrchestraEP255.xml|grep type|perl -ne '($type)=/ type="(.*?)"/; print "name=\"$type\"\n"'|grep Set) | perl -ne '($id)=/id="(.*?)"/; print "or \@id='\''$id'\''\n"'
+    	
+    	after I have filtered out (or in) the fields I have excluded 
+    	
+
+    -->
+    <xsl:template
+        match="fixr:codeSets/fixr:codeSet[not(
+										@id='22'
+                                        or @id='35'
+                                        or @id='39'
+                                        or @id='40'
+                                        or @id='54'
+                                        or @id='59'
+                                        or @id='102'
+                                        or @id='103'
+                                        or @id='150'
+                                        or @id='263'
+                                        or @id='325'
+                                        or @id='378'
+                                        or @id='380'
+                                        or @id='394'
+                                        or @id='423'
+                                        or @id='434'
+                                        or @id='452'
+                                        or @id='537'
+                                        or @id='559'
+                                        or @id='560'
+                                        or @id='585'
+                                        or @id='636'
+                                        or @id='658'
+                                        or @id='703'
+                                        or @id='706'
+                                        or @id='707'
+                                        or @id='724'
+                                        or @id='728'
+                                        or @id='729'
+                                        or @id='731'
+                                        or @id='871'
+                                        or @id='893'
+                                        or @id='912'
+                                        or @id='1046'
+                                        or @id='1081'
+                                        or @id='1094'
+                                        or @id='1128'
+                                        or @id='1385'
+                                        or @id='1644'
+                                        or @id='1687'
+                                        or @id='2594'
+                                        or @id='10001'
+        									)]">
+	</xsl:template>       
+    <!-- filter out unsupported codes -->
     <xsl:template
         match="fixr:codeSets/fixr:codeSet[(@id='35')]/fixr:code[not(@value='8' or
                                                                     @value='9' or
@@ -84,20 +326,156 @@
                                                                     @value='X' or
                                                                     @value='y' or
                                                                     @value='Y' or
-                                                                    @value='Z') ]"/>
+                                                                    @value='Z' or
+                                                                    @value='CQ' or
+                                                                    @value='UA' or
+                                                                    @value='UB' or
+                                                                    @value='UC' ) ]"/>
 
     <!-- filter out unsupported codes -->
     <!-- RefOrderIDSourceCodeSet   -->
     <xsl:template
         match="fixr:codeSets/fixr:codeSet[(@id='1081')]/fixr:code[not(@name='OrderID' or
                                                                      @name='ClOrdID')]"/>
+    <!-- BidTypeCodeSet -->
+    <xsl:template
+        match="fixr:codeSets/fixr:codeSet[(@name='BidTypeCodeSet')]/fixr:code[not(@name='NoBiddingProcess')]"/>                                                                  
+        
+    <!-- ContingencyTypeCodeSet -->
+    <xsl:template
+        match="fixr:codeSets/fixr:codeSet[(@name='ContingencyTypeCodeSet')]/fixr:code[not(@name='OneTriggersTheOther')]"/>
+        
+    <!-- CxlRejReasonCodeSet -->
+    <xsl:template
+        match="fixr:codeSets/fixr:codeSet[(@name='CxlRejReasonCodeSet')]/fixr:code[not(@name='Other')]"/>  
+        
+    <!-- ExecRestatementReasonCodeSet -->
+    <xsl:template
+        match="fixr:codeSets/fixr:codeSet[(@name='ExecRestatementReasonCodeSet')]/fixr:code[not(@name='SystemStopLossSizeAdjustment' or
+                                                                      							@name='SystemTakeProfitSizeAdjustment' or
+                                                                      							@name='SystemTrailingStopAdjustment' or
+                                                                      							@name='SystemOTOContingentAdjustment' or
+                                                                      							@name='Other')]"/>
+        
+    <!-- ExecTypeCodeSet -->
+    <xsl:template
+        match="fixr:codeSets/fixr:codeSet[(@name='ExecTypeCodeSet')]/fixr:code[not(@name='New' or
+         																			@name='Canceled' or 
+         																			@name='Replaced' or 
+         																			@name='Rejected' or 
+        																			@name='Trade' or 
+         																			@name='Rejected' or 
+         																			@name='PendingCancel' or 
+         																			@name='PendingReplace' or
+         																			@name='Expired' or
+         																			@name='OrderStatus' or
+         																			@name='DoneForDay')]"/> 
+        
+    <!-- MarginAmtTypeCodeSet  -->
+    <xsl:template
+        match="fixr:codeSets/fixr:codeSet[(@name='MarginAmtTypeCodeSet')]/fixr:code[not(@name='ControlledRiskMargin' or
+        															  @name='TotalMargin' or
+                                                                      @name='NonControlledRiskMargin')]"/>
+                                                                     
+    <!-- MassStatusReqTypeCodeSet  -->
+    <xsl:template
+        match="fixr:codeSets/fixr:codeSet[(@name='MassStatusReqTypeCodeSet')]/fixr:code[not(@name='StatusForOrdersForAPartyID')]"/>
+        
+    <!-- OrdRejReasonCodeSet  -->
+    <xsl:template
+        match="fixr:codeSets/fixr:codeSet[(@name='OrdRejReasonCodeSet')]/fixr:code[not(@name='OrderExceedsLimit' or
+        																					@name='UnknownOrder' or
+        																					@name='Other')]"/>
+        																					
+        																					
+    <!-- OrdStatusCodeSet  -->
+    <xsl:template
+        match="fixr:codeSets/fixr:codeSet[(@name='OrdStatusCodeSet')]/fixr:code[not(@name='New' or
+        																					@name='PartiallyFilled' or
+        																					@name='Filled' or
+        																					@name='Replaced' or
+        																					@name='PendingCancel' or
+        																					@name='Rejected' or
+        																					@name='PendingNew' or
+        																					@name='PendingReplace' or
+        																					@name='Expired' or
+        																					@name='Canceled')]"/>
+        																					
+    <!-- OrdTypeCodeSet  -->
+    <xsl:template
+        match="fixr:codeSets/fixr:codeSet[(@name='OrdTypeCodeSet')]/fixr:code[not(@name='Market' or
+        																					@name='Limit' or
+        																					@name='Stop' or
+        																					@name='PreviouslyQuoted')]"/>
+        																					
+    <!-- OrderAttributeTypeCodeSet  -->
+    <xsl:template
+        match="fixr:codeSets/fixr:codeSet[(@name='OrderAttributeTypeCodeSet')]/fixr:code[not(@name='AttachedOrder')]"/>
+         
+    <!-- PartyRoleCodeSet  -->
+    <xsl:template
+        match="fixr:codeSets/fixr:codeSet[(@name='PartyRoleCodeSet')]/fixr:code[not(@name='CustomerAccount')]"/>
+        
+    <!-- PegPriceTypeCodeSet  -->
+    <xsl:template
+        match="fixr:codeSets/fixr:codeSet[(@name='PegPriceTypeCodeSet')]/fixr:code[not(@name='PrimaryPeg')]"/>
+        
+    <!-- PosAmtTypeCodeSet  -->
+    <xsl:template
+        match="fixr:codeSets/fixr:codeSet[(@name='PosAmtTypeCodeSet')]/fixr:code[not(@name='SettlementValue')]"/>
+        
+    <!-- PosReqStatusCodeSet  -->
+    <xsl:template
+        match="fixr:codeSets/fixr:codeSet[(@name='PosReqStatusCodeSet')]/fixr:code[not(@name='Completed' or
+        																				@name='Rejected')]"/>	
     
+    <!-- PosTypeCodeSet  -->
+    <xsl:template
+        match="fixr:codeSets/fixr:codeSet[(@name='PosTypeCodeSet')]/fixr:code[not(@name='TotalTransactionQty' or
+        																				@name='NetDeltaQty')]"/>
+        																				
+    <!-- QuoteRequestRejectReasonCodeSet  -->
+    <xsl:template
+        match="fixr:codeSets/fixr:codeSet[(@name='QuoteRequestRejectReasonCodeSet')]/fixr:code[not(@name='UnknownSymbol' or
+        																							@name='Other' or
+        																							@name='NotAuthorizedToRequestQuote' or
+        																							@name='QuoteRequestExceedsLimit')]"/>
+        																							
+    <!-- QuoteTypeCodeSet  -->
+    <xsl:template
+        match="fixr:codeSets/fixr:codeSet[(@name='QuoteTypeCodeSet')]/fixr:code[not(@name='Indicative' or
+        																							@name='Tradeable')]"/>
+        																							
+    <!-- SecurityListRequestTypeCodeSet  -->
+    <xsl:template
+        match="fixr:codeSets/fixr:codeSet[(@name='SecurityListRequestTypeCodeSet')]/fixr:code[not(@name='AllSecurities')]"/>
+        
+    <!-- SideCodeSet  -->
+    <xsl:template
+        match="fixr:codeSets/fixr:codeSet[(@name='SideCodeSet')]/fixr:code[not(@name='Buy' or
+        																		@name='Undisclosed' or
+        																		@name='Sell')]"/>
+        																		
+    <!-- TimeInForceCodeSet  -->
+    <xsl:template
+        match="fixr:codeSets/fixr:codeSet[(@name='TimeInForceCodeSet')]/fixr:code[not(@name='GoodTillCancel' or
+        																		@name='Day' or
+        																		@name='AtTheClose' or
+																				@name='GoodTillCrossing' or
+																				@name='AtTheOpening' or
+        																		@name='ImmediateOrCancel' or
+        																		@name='FillOrKill' or
+        																		@name='GoodTillDate')]"/>
+
     <!-- InstrAttribTypeCodeSet  -->
     <xsl:template
         match="fixr:codeSets/fixr:codeSet[(@id='871')]/fixr:code[not(@id='871027' or
                                                                      @id='871115' or
                                                                      @id='871116' or
                                                                      @id='871120')]"/>
+    <!-- SecurityIdSource Codeset restriction -->                                                            
+    <xsl:template
+        match="fixr:codeSets/fixr:codeSet[(@id='22')]/fixr:code[not(@id='22022')]"/>
 
     <!-- PosReqType  -->
     <xsl:template
@@ -125,16 +503,15 @@
                                                 @id='2593' or
                                                 @id='1073' or
                                                 @id='2030' or
-                                                @id='2031' or
-                                                @id='2032' or
-                                                @id='2033' or
                                                 @id='2037' or
                                                 @id='2041' or
                                                 @id='2022' or
                                                 @id='2055' or
                                                 @id='2066' or
                                                 @id='2073' or
-                                                @id='2074' )]" />
+                                                @id='2074' or
+                                                @id='2177' or
+                                                @id='2191' )]" />
 
     <!-- Parties Grp, filter out unsupported members -->
     <xsl:template
@@ -152,10 +529,7 @@
         match="fixr:groups/fixr:group[(@id='1015')]/fixr:fieldRef[not(@id='703' or
                                                                             @id='704' or
                                                                             @id='705' or
-                                                                            @id='706' or
-                                                                            @id='20101' or
-                                                                            @id='20102' or
-                                                                            @id='20103' )]" />
+                                                                            @id='706' )]" />
 
 
     <!-- Root Parties Grp, filter out unsupported members -->
@@ -265,6 +639,25 @@
         match="fixr:groups/fixr:group[(@id='2041' or @id='2045' or @id='2047')]/fixr:fieldRef" />
     <xsl:template
         match="fixr:groups/fixr:group[(@id='2041' or @id='2045' or @id='2047')]/fixr:groupRef" />
+
+    <!-- CollateralAmountGrp -->
+    <xsl:template
+        match="fixr:groups/fixr:group[(@id='2191')]/fixr:componentRef" />
+    <xsl:template
+        match="fixr:groups/fixr:group[(@id='2191')]/fixr:fieldRef[not( @id='1704'
+        															or @id='1706' )]" />
+    <xsl:template
+        match="fixr:groups/fixr:group[(@id='2191')]/fixr:groupRef" />
+
+	<!-- MarginAmountGrp -->
+    <xsl:template
+        match="fixr:groups/fixr:group[(@id='2177')]/fixr:componentRef" />
+    <xsl:template
+        match="fixr:groups/fixr:group[(@id='2177')]/fixr:fieldRef[not( @id='1645'
+        															or @id='1644' )]" />
+    <xsl:template
+        match="fixr:groups/fixr:group[(@id='2177')]/fixr:groupRef" />
+
 
     <!-- Header -->
     <xsl:template
@@ -417,7 +810,8 @@
                                                                                  @id='58' or
                                                                                  @id='1385' or
                                                                                  @id='1080' or
-                                                                                 @id='1081')]" />
+                                                                                 @id='1081'or
+                                                                                 @id='378')]" />
 
     <!-- Business Message Reject -->
     <xsl:template
@@ -432,7 +826,7 @@
                                                                                  @id='379' or
                                                                                  @id='380' or
                                                                                  @id='58')]" />
-                                                                                 
+
     <!-- New Order List -->
     <xsl:template
         match="fixr:message[@msgType='E']/fixr:structure/fixr:groupRef[not(@id='2030'or @id='1031')]" />
@@ -583,8 +977,7 @@
     <xsl:template
         match="fixr:message[@msgType='Z']/fixr:structure/fixr:groupRef[not(@id='2041')]" />
     <xsl:template
-        match="fixr:message[@msgType='Z']/fixr:structure/fixr:fieldRef[not(@id='131' or
-                                                                                 @id='298')]" />
+        match="fixr:message[@msgType='Z']/fixr:structure/fixr:fieldRef[not(@id='131')]" />
 
     <!-- Market Data Request -->
     <xsl:template
@@ -667,9 +1060,6 @@
                                                                                  @id='730' or
                                                                                  @id='731' or
                                                                                  @id='58' or
-                                                                                 @id='20101' or
-                                                                                 @id='20102' or
-                                                                                 @id='20103' or
                                                                                  @id='20104' or
                                                                                  @id='155' or
                                                                                    @id='912' )]" />
@@ -725,5 +1115,25 @@
                                                                                      @id='54' )]"/>
     <xsl:template match="fixr:message[@msgType='H']/fixr:structure/fixr:componentRef[not(@id='1024' or
                                                                                      @id='1003' )]" />
+   <!--AccountSummaryReport-->
+   <xsl:template match="fixr:message[@msgType='CQ']/fixr:structure/fixr:groupRef[not( @id='2177'
+																					  or @id='1012'	
+																					  or @id='2191' )]" />
+   <xsl:template match="fixr:message[@msgType='CQ']/fixr:structure/fixr:fieldRef[not( @id='1699'
+   																					  or @id='20105' 
+   																					  or @id='20106'
+   																					  or @id='715'
+   																					  or @id='15'
+   																					  or @id='900'
+   																					  or @id='60'
+   																					  or @id='58' )]"/>
+   <xsl:template match="fixr:message[@msgType='CQ']/fixr:structure/fixr:componentRef[not(@id='1024')]" />
+
+   <!--AccountSummaryReportRequest-->
+   <xsl:template match="fixr:message[@msgType='UA']/fixr:structure/fixr:groupRef[not(@id='1012')]" />
+   <xsl:template match="fixr:message[@msgType='UA']/fixr:structure/fixr:fieldRef[not( @id='20105' or
+   																					  @id='263' )]"/>
+   <xsl:template match="fixr:message[@msgType='UA']/fixr:structure/fixr:componentRef[not(@id='1024')]" />
+
 
 </xsl:stylesheet>
