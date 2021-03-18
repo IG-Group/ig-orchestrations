@@ -22,6 +22,13 @@
 			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
 		</license>
 	</licenses>
+	<url>https://github.com/IG-Group/ig-orchestrations</url>
+	<developers>
+		<developer>
+			<name>FIX API Team</name>
+			<email>fixdevelopment@ig.com</email>
+		</developer>
+	</developers>
 	<scm>
  		<developerConnection>scm:git:ssh://git@github.com/IG-Group/ig-orchestrations.git</developerConnection> 
  		<url>https://github.com/IG-Group/ig-orchestrations.git</url> 
@@ -45,6 +52,31 @@
 		<fix-orchestration-repository.version>1.5.1</fix-orchestration-repository.version><!-- the standard FIX orchestra repository -->
 		<fix-orchestra.version>1.6.8</fix-orchestra.version><!-- the FIX orchestra tools and utilities -->
 	</properties>
+	
+	<profiles>
+		<profile>
+			<id>sonatype-oss-release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.1</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	
 	<dependencyManagement>
 			<dependencies>
 			<dependency>
@@ -77,6 +109,16 @@
     <build>
         <pluginManagement>
             <plugins>
+	            <plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>2.1</version>
+					<configuration>
+						<mavenExecutorId>forked-path</mavenExecutorId>
+						<useReleaseProfile>false</useReleaseProfile>
+						<arguments>-Psonatype-oss-release</arguments>
+					</configuration>
+				</plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-assembly-plugin</artifactId>
