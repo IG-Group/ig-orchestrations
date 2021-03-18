@@ -16,7 +16,8 @@
 
     <!-- filter unused categories -->
     <xsl:template
-            match="fixr:categories/fixr:category[not(@name='BusinessReject' or
+            match="fixr:categories/fixr:category[not(@name='Session' or
+                                                     @name='BusinessReject' or
                                                      @name='AccountReporting' or
                                                      @name='PositionMaintenance' or
                                                      @name='QuotationNegotiation' or
@@ -39,36 +40,48 @@
                                               or @name='MultipleStringValue']"/>
 
     <!-- filter out fields not referenced by the rest of the code
-        I generate this list through: (in ig-orchestrations/ig-us-rfed/orchestration/target/generated-resources/xml/xslt)
+        I generate this list through: (in ig-orchestrations/ig-us-rfed/orchestration/)
 
         fieldRef : direct reference to a field,
         numInGroup: implied reference to the repeating group count field
 
-        grep -e fixr:fieldRef -e fixr:numInGroup publish/OrchestraEP255.xml  |grep id |perl -ne '($id)=/id=\"(.*?)\"/; print "$id\n";'|sort -nu|while read field;do echo "or @id='$field'"; done
+        grep -e fixr:fieldRef -e fixr:numInGroup target/generated-resources/xml/xslt/publishWithSessionLayer/OrchestraEP255.xml  |grep id |perl -ne '($id)=/id=\"(.*?)\"/; print "$id\n";'|sort -nu|while read field;do echo "or @id='$field'"; done
+
+    	(Another filter of fields will be required to remove Session Layer fields if the session layer is subsequently extracted.)
 
     -->
 	<xsl:template match="fixr:fields/fixr:field[not(
 										   @id='1'
                                             or @id='6'
+                                            or @id='7'
+                                            or @id='8'
+                                            or @id='9'
+                                            or @id='10'
                                             or @id='11'
                                             or @id='14'
                                             or @id='15'
+                                            or @id='16'
                                             or @id='17'
                                             or @id='19'
                                             or @id='22'
                                             or @id='31'
                                             or @id='32'
                                             or @id='35'
+                                            or @id='36'
                                             or @id='37'
                                             or @id='38'
                                             or @id='39'
                                             or @id='40'
                                             or @id='41'
+                                            or @id='43'
                                             or @id='44'
+                                            or @id='45'
                                             or @id='48'
+                                            or @id='49'
                                             or @id='52'
                                             or @id='54'
                                             or @id='55'
+                                            or @id='56'
                                             or @id='58'
                                             or @id='59'
                                             or @id='60'
@@ -77,16 +90,23 @@
                                             or @id='68'
                                             or @id='73'
                                             or @id='84'
+                                            or @id='91'
+                                            or @id='98'
                                             or @id='99'
                                             or @id='102'
                                             or @id='103'
                                             or @id='107'
+                                            or @id='108'
+                                            or @id='112'
                                             or @id='117'
                                             or @id='120'
+                                            or @id='122'
+                                            or @id='123'
                                             or @id='126'
                                             or @id='131'
                                             or @id='132'
                                             or @id='133'
+                                            or @id='141'
                                             or @id='146'
                                             or @id='150'
                                             or @id='151'
@@ -105,7 +125,11 @@
                                             or @id='320'
                                             or @id='322'
                                             or @id='325'
+                                            or @id='354'
+                                            or @id='355'
+                                            or @id='371'
                                             or @id='372'
+                                            or @id='373'
                                             or @id='378'
                                             or @id='379'
                                             or @id='380'
@@ -169,8 +193,13 @@
                                             or @id='1119'
                                             or @id='1128'
                                             or @id='1129'
+                                            or @id='1130'
+                                            or @id='1131'
+                                            or @id='1137'
                                             or @id='1151'
                                             or @id='1385'
+                                            or @id='1406'
+                                            or @id='1409'
                                             or @id='1585'
                                             or @id='1643'
                                             or @id='1644'
@@ -196,8 +225,7 @@
                                             or @id='2877'
                                             or @id='20104'
                                             or @id='20105'
-                                            or @id='20106'
-												)]">
+                                            or @id='20106')]">
     </xsl:template>
 
     <!-- replace incorrect type -->
@@ -239,7 +267,14 @@
 
     <!-- filter out unsupported messages -->
     <xsl:template
-        match="fixr:message[not(@msgType='8' or
+        match="fixr:message[not(@msgType='0' or
+                                @msgType='1' or
+                                @msgType='2' or
+                                @msgType='3' or
+                                @msgType='4' or
+                                @msgType='5' or
+                                @msgType='A' or
+                                @msgType='8' or
                                 @msgType='9' or
                                 @msgType='AF' or
                                 @msgType='AG' or
@@ -265,10 +300,11 @@
     	
     	and running 
     	
-    	grep fixr:codeSet publish/OrchestraEP255.xml |grep id|grep -f <(grep fixr:field publish/OrchestraEP255.xml|grep type|perl -ne '($type)=/ type="(.*?)"/; print "name=\"$type\"\n"'|grep Set) | perl -ne '($id)=/id="(.*?)"/; print "or \@id='\''$id'\''\n"'
+    	grep fixr:codeSet target/generated-resources/xml/xslt/publishWithSessionLayer/OrchestraEP255.xml |grep id|grep -f <(grep fixr:field target/generated-resources/xml/xslt/publishWithSessionLayer/OrchestraEP255.xml|grep type|perl -ne '($type)=/ type="(.*?)"/; print "name=\"$type\"\n"'|grep Set) | perl -ne '($id)=/id="(.*?)"/; print "or \@id='\''$id'\''\n"'
     	
     	after I have filtered out (or in) the fields I have excluded 
-    	
+
+    	Another filtering of codeset will be required to remove Session Layer message code sets if the session layer is subsequently extracted.
 
     -->
     <xsl:template
@@ -289,6 +325,7 @@
                                         or @id='394'
                                         or @id='423'
                                         or @id='434'
+                                        or @id='447'
                                         or @id='452'
                                         or @id='537'
                                         or @id='559'
@@ -312,14 +349,21 @@
                                         or @id='1128'
                                         or @id='1385'
                                         or @id='1644'
+                                        or @id='1674'
+                                        or @id='1585'
                                         or @id='1687'
                                         or @id='2594'
-                                        or @id='10001'
-        									)]">
-	</xsl:template>       
-    <!-- filter out unsupported codes -->
+                                        or @id='10001')]">
+	</xsl:template>
+    <!-- filter out unsupported codes for message types-->
     <xsl:template
-        match="fixr:codeSets/fixr:codeSet[(@id='35')]/fixr:code[not(@value='8' or
+        match="fixr:codeSets/fixr:codeSet[(@id='35')]/fixr:code[not(@value='0' or
+                                                                    @value='1' or
+                                                                    @value='2' or
+                                                                    @value='3' or
+                                                                    @value='4' or
+                                                                    @value='5' or
+                                                                    @value='8' or
                                                                     @value='9' or
                                                                     @value='AF' or
                                                                     @value='AG' or
@@ -500,6 +544,7 @@
     <!-- filter out unsupported components -->
     <xsl:template
         match="fixr:components/fixr:component[not(@id='1024' or
+                                                        @id='1025' or
                                                         @id='1003' or
                                                         @id='1004' or
                                                         @id='1011' or
@@ -677,11 +722,18 @@
 
     <!-- Header -->
     <xsl:template
-        match="fixr:components/fixr:component[@id='1024']/fixr:fieldRef[not(@id='35' or
+            match="fixr:components/fixr:component[@id='1024']/fixr:fieldRef[not(@id='8' or
+                                                                                 @id='9' or
+                                                                                 @id='35' or
                                                                                  @id='1128' or
                                                                                  @id='1129' or
-                                                                                 @id='52'
-                                                                                 )]" />
+                                                                                 @id='43' or
+                                                                                 @id='49' or
+                                                                                 @id='52' or
+                                                                                 @id='56' or
+                                                                                 @id='91' or
+                                                                                 @id='122' )]" />
+
     <!-- Header exclude HopGrp -->
     <xsl:template
         match="fixr:components/fixr:component[@id='1024']/fixr:groupRef[(@id='2085')]" />
@@ -755,7 +807,8 @@
     <xsl:template
         match="fixr:message[@msgType='D']/fixr:structure/fixr:componentRef[not(@id='1003' or
                                                                                      @id='1011' or
-                                                                                     @id='1024')]" />
+                                                                                     @id='1024' or
+                                                                                     @id='1025')]" />
     <xsl:template
         match="fixr:message[@msgType='D']/fixr:structure/fixr:groupRef[not(@id='2045' or
                                                                                  @id='2593' or
@@ -782,6 +835,7 @@
         match="fixr:message[@msgType='8']/fixr:structure/fixr:groupRef[not(@id='1073')]" />
     <xsl:template
         match="fixr:message[@msgType='8']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                     @id='1025' or
                                                                                      @id='1003' or
                                                                                      @id='1011' or
                                                                                      @id='1021')]" />
@@ -833,7 +887,8 @@
     <xsl:template
         match="fixr:message[@msgType='j']/fixr:structure/fixr:groupRef" />
     <xsl:template
-        match="fixr:message[@msgType='j']/fixr:structure/fixr:componentRef[not(@id='1024')]" />
+        match="fixr:message[@msgType='j']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                               @id='1025')]" />
     <!-- remove "presence" attribute to make RefMsgType optional -->
     <xsl:template
         match="fixr:message[@msgType='j']/fixr:structure/fixr:fieldRef[@id='372']/@presence" />
@@ -847,7 +902,8 @@
     <xsl:template
         match="fixr:message[@msgType='E']/fixr:structure/fixr:groupRef[not(@id='2030'or @id='1031')]" />
     <xsl:template
-        match="fixr:message[@msgType='E']/fixr:structure/fixr:componentRef[not(@id='1024')]" />
+        match="fixr:message[@msgType='E']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                     @id='1025')]" />
     <xsl:template
         match="fixr:message[@msgType='E']/fixr:structure/fixr:fieldRef[not(@id='66' or
                                                                                  @id='394' or
@@ -858,7 +914,8 @@
     <xsl:template
         match="fixr:message[@msgType='K']/fixr:structure/fixr:groupRef[not(@id='1012')]" />
     <xsl:template
-        match="fixr:message[@msgType='K']/fixr:structure/fixr:componentRef[not(@id='1024')]" />
+        match="fixr:message[@msgType='K']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                     @id='1025')]" />
     <xsl:template
         match="fixr:message[@msgType='K']/fixr:structure/fixr:fieldRef[not(@id='66' or
                                                                                  @id='1' or
@@ -869,7 +926,8 @@
     <xsl:template
         match="fixr:message[@msgType='N']/fixr:structure/fixr:groupRef[not(@id='2037')]" />
     <xsl:template
-        match="fixr:message[@msgType='N']/fixr:structure/fixr:componentRef[not(@id='1024')]" />
+        match="fixr:message[@msgType='N']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                     @id='1025')]" />
     <xsl:template
         match="fixr:message[@msgType='N']/fixr:structure/fixr:fieldRef[not(@id='66' or
                                                                                  @id='429' or
@@ -884,7 +942,8 @@
     <xsl:template
         match="fixr:message[@msgType='9']/fixr:structure/fixr:groupRef" />
     <xsl:template
-        match="fixr:message[@msgType='9']/fixr:structure/fixr:componentRef[not(@id='1024')]" />
+        match="fixr:message[@msgType='9']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                     @id='1025')]" />
     <xsl:template
         match="fixr:message[@msgType='9']/fixr:structure/fixr:fieldRef[not(@id='37' or
                                                                                  @id='11' or
@@ -913,6 +972,7 @@
         match="fixr:message[@msgType='F']/fixr:structure/fixr:groupRef" />
     <xsl:template
         match="fixr:message[@msgType='F']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                     @id='1025' or
                                                                                      @id='1011' or
                                                                                      @id='1003')]" />
 
@@ -921,6 +981,7 @@
         match="fixr:message[@msgType='G']/fixr:structure/fixr:groupRef[not(@id='1073')]" />
     <xsl:template
         match="fixr:message[@msgType='G']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                     @id='1025' or
                                                                                      @id='1003')]" />
     <xsl:template
         match="fixr:message[@msgType='G']/fixr:structure/fixr:fieldRef[not(@id='37' or
@@ -966,6 +1027,7 @@
 
     <xsl:template
         match="fixr:message[@msgType='S']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                     @id='1025' or
                                                                                      @id='1003')]" />
 
     <!-- Quote Request -->
@@ -975,7 +1037,8 @@
     <xsl:template
         match="fixr:message[@msgType='R']/fixr:structure/fixr:groupRef[not(@id='2045')]" />
     <xsl:template
-        match="fixr:message[@msgType='R']/fixr:structure/fixr:componentRef[not(@id='1024')]" />
+        match="fixr:message[@msgType='R']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                     @id='1025')]" />
 
     <!-- Quote Request Reject -->
     <xsl:template
@@ -985,11 +1048,13 @@
     <xsl:template
         match="fixr:message[@msgType='AG']/fixr:structure/fixr:groupRef[not(@id='2047')]" />
     <xsl:template
-        match="fixr:message[@msgType='AG']/fixr:structure/fixr:componentRef[not(@id='1024')]" />
+        match="fixr:message[@msgType='AG']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                     @id='1025')]" />
 
     <!-- Quote Cancel -->
     <xsl:template
-        match="fixr:message[@msgType='Z']/fixr:structure/fixr:componentRef[not(@id='1024')]" />
+        match="fixr:message[@msgType='Z']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                     @id='1025')]" />
     <xsl:template
         match="fixr:message[@msgType='Z']/fixr:structure/fixr:groupRef[not(@id='2041')]" />
     <xsl:template
@@ -1006,7 +1071,8 @@
         match="fixr:message[@msgType='V']/fixr:structure/fixr:groupRef[not(@id='2033' or
                                                                                  @id='2022')]" />
     <xsl:template
-        match="fixr:message[@msgType='V']/fixr:structure/fixr:componentRef[not(@id='1024')]" />
+        match="fixr:message[@msgType='V']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                     @id='1025')]" />
 
     <!-- Market Data Snapshot -->
     <xsl:template
@@ -1014,7 +1080,8 @@
     <xsl:template
         match="fixr:message[@msgType='W']/fixr:structure/fixr:groupRef[not(@id='2031')]" />
     <xsl:template
-        match="fixr:message[@msgType='W']/fixr:structure/fixr:componentRef[not(@id='1024')]" />
+        match="fixr:message[@msgType='W']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                     @id='1025')]" />
 
     <!-- Market Data Incremental Refresh -->
     <xsl:template
@@ -1022,7 +1089,8 @@
     <xsl:template
         match="fixr:message[@msgType='X']/fixr:structure/fixr:groupRef[not(@id='2032')]" />
     <xsl:template
-        match="fixr:message[@msgType='X']/fixr:structure/fixr:componentRef[not(@id='1024')]" />
+        match="fixr:message[@msgType='X']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                     @id='1025')]" />
 
     <!-- Market Data Request Reject -->
     <xsl:template
@@ -1033,7 +1101,8 @@
     <xsl:template
         match="fixr:message[@msgType='Y']/fixr:structure/fixr:groupRef" />
     <xsl:template
-        match="fixr:message[@msgType='Y']/fixr:structure/fixr:componentRef[not(@id='1024')]" />
+        match="fixr:message[@msgType='Y']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                     @id='1025')]" />
 
     <!-- Security List Request -->
     <xsl:template
@@ -1046,6 +1115,7 @@
         match="fixr:message[@msgType='x']/fixr:structure/fixr:groupRef" />
     <xsl:template
         match="fixr:message[@msgType='x']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                     @id='1025' or
                                                                                      @id='1003')]" />
     <!-- Security List -->
     <xsl:template
@@ -1057,7 +1127,8 @@
     <xsl:template
         match="fixr:message[@msgType='y']/fixr:structure/fixr:groupRef[not(@id='2055')]" />
     <xsl:template
-        match="fixr:message[@msgType='y']/fixr:structure/fixr:componentRef[not(@id='1024')]" />
+        match="fixr:message[@msgType='y']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                     @id='1025')]" />
 
     <!-- PositionReport -->
     <xsl:template
@@ -1084,6 +1155,7 @@
                                                                                   @id='1015' )]" />
     <xsl:template
         match="fixr:message[@msgType='AP']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                 @id='1025' or
                                                                                  @id='1003' )]" />
 
     <!--OrderMassStatusRequest-->
@@ -1093,7 +1165,8 @@
                                                                                      @id='584' or
                                                                                      @id='585' )]"/>
 
-    <xsl:template match="fixr:message[@msgType='AF']/fixr:structure/fixr:componentRef[not(@id='1024' )]" />
+    <xsl:template match="fixr:message[@msgType='AF']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                     @id='1025' )]" />
 
     <!--RequestForPositions-->
     <xsl:template match="fixr:message[@msgType='AN']/fixr:structure/fixr:groupRef[not( @id='' )]"/>
@@ -1105,7 +1178,8 @@
                                                                                      @id='724' or
                                                                                      @id='60' )]"/>
 
-    <xsl:template match="fixr:message[@msgType='AN']/fixr:structure/fixr:componentRef[not(@id='1024' )]" />
+    <xsl:template match="fixr:message[@msgType='AN']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                     @id='1025' )]" />
 
     <!--RequestForPositionsAck-->
     <xsl:template match="fixr:message[@msgType='AO']/fixr:structure/fixr:groupRef[not( @id='' )]"/>
@@ -1120,7 +1194,8 @@
                                                                                      @id='715' or
                                                                                      @id='912' )]"/>
 
-    <xsl:template match="fixr:message[@msgType='AO']/fixr:structure/fixr:componentRef[not(@id='1024' )]" />
+    <xsl:template match="fixr:message[@msgType='AO']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                     @id='1025' )]" />
 
     <!--OrderStatusRequest-->
     <xsl:template match="fixr:message[@msgType='H']/fixr:structure/fixr:groupRef" />
@@ -1130,6 +1205,7 @@
                                                                                      @id='790' or
                                                                                      @id='54' )]"/>
     <xsl:template match="fixr:message[@msgType='H']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                     @id='1025' or
                                                                                      @id='1003' )]" />
    <!--AccountSummaryReport-->
    <xsl:template match="fixr:message[@msgType='CQ']/fixr:structure/fixr:groupRef[not( @id='2177'
@@ -1143,13 +1219,15 @@
    																					  or @id='900'
    																					  or @id='60'
    																					  or @id='58' )]"/>
-   <xsl:template match="fixr:message[@msgType='CQ']/fixr:structure/fixr:componentRef[not(@id='1024')]" />
+   <xsl:template match="fixr:message[@msgType='CQ']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                     @id='1025')]" />
 
    <!--AccountSummaryReportRequest-->
    <xsl:template match="fixr:message[@msgType='UA']/fixr:structure/fixr:groupRef[not(@id='1012')]" />
    <xsl:template match="fixr:message[@msgType='UA']/fixr:structure/fixr:fieldRef[not( @id='20105' or
    																					  @id='263' )]"/>
-   <xsl:template match="fixr:message[@msgType='UA']/fixr:structure/fixr:componentRef[not(@id='1024')]" />
+   <xsl:template match="fixr:message[@msgType='UA']/fixr:structure/fixr:componentRef[not(@id='1024' or
+                                                                                     @id='1025')]" />
 
 
 </xsl:stylesheet>

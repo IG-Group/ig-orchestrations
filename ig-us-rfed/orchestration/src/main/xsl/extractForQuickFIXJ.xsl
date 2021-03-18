@@ -55,9 +55,8 @@
         </xsl:attribute>
     </xsl:template>
 
-    <!-- filter out session layer messages -->
     <xsl:template
-        match="fixr:message[(@msgType='0' or
+            match="fixr:message[(@msgType='0' or
                              @msgType='1' or
                              @msgType='2' or
                              @msgType='3' or

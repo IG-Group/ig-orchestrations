@@ -77,23 +77,47 @@
 		              </includes>
 		              <stylesheet>${project.basedir}/src/main/xsl/addTypes.xsl</stylesheet>
 		            </transformationSet>
+					  <transformationSet>
+						  <dir>${project.build.directory}/generated-resources/xml/xslt/appended</dir>
+						  <outputDir>${project.build.directory}/generated-resources/xml/xslt/session-layer-unattached</outputDir>
+						  <includes>
+							  <include>${orchestra.file}</include>
+						  </includes>
+						  <stylesheet>${project.basedir}/src/main/xsl/extractSessionLayer.xsl</stylesheet>
+					  </transformationSet>
 		            <transformationSet>
-                      <dir>${project.build.directory}/generated-resources/xml/xslt/appended</dir>
+                      <dir>${project.build.directory}/generated-resources/xml/xslt/session-layer-unattached</dir>
 		              <outputDir>${project.build.directory}/generated-resources/xml/xslt/publish</outputDir>
 		              <includes>
 		              	<include>${orchestra.file}</include>
 		              </includes>
 		              <stylesheet>${project.basedir}/src/main/xsl/extract.xsl</stylesheet>
-		            </transformationSet>
-					<transformationSet>
-                      <dir>${project.build.directory}/generated-resources/xml/xslt/appended</dir>
-		              <outputDir>${project.build.directory}/generated-resources/xml/xslt/publishForQFJ</outputDir>
-		              <includes>
-		              	<include>${orchestra.file}</include>
-		              </includes>
-		              <stylesheet>${project.basedir}/src/main/xsl/extractForQuickFIXJ.xsl</stylesheet>
-		            </transformationSet>		            
-		          </transformationSets>
+					</transformationSet>
+					  <transformationSet>
+						  <dir>${project.build.directory}/generated-resources/xml/xslt/appended</dir>
+						  <outputDir>${project.build.directory}/generated-resources/xml/xslt/session-layer-attached</outputDir>
+						  <includes>
+							  <include>${orchestra.file}</include>
+						  </includes>
+						  <stylesheet>${project.basedir}/src/main/xsl/extract.xsl</stylesheet>
+					  </transformationSet>
+					  <transformationSet>
+						  <dir>${project.build.directory}/generated-resources/xml/xslt/session-layer-attached</dir>
+						  <outputDir>${project.build.directory}/generated-resources/xml/xslt/publishWithSessionLayer</outputDir>
+						  <includes>
+							  <include>${orchestra.file}</include>
+						  </includes>
+						  <stylesheet>${project.basedir}/src/main/xsl/extractFromSessionMessages.xsl</stylesheet>
+					  </transformationSet>
+					  <transformationSet>
+						  <dir>${project.build.directory}/generated-resources/xml/xslt/publishWithSessionLayer</dir>
+						  <outputDir>${project.build.directory}/generated-resources/xml/xslt/publishForQFJ</outputDir>
+						  <includes>
+							  <include>${orchestra.file}</include>
+						  </includes>
+						  <stylesheet>${project.basedir}/src/main/xsl/extractForQuickFIXJ.xsl</stylesheet>
+					  </transformationSet>
+				  </transformationSets>
 		        </configuration>
 		      </plugin>		
             <plugin>
@@ -120,10 +144,22 @@
                         </goals>
                         <configuration>
                           <descriptors>
-                            <descriptor>${project.basedir}/src/main/assembly/repository-assembly-qfj.xml</descriptor>
+                            <descriptor>${project.basedir}/src/main/assembly/repository-plus-session-layer-assembly.xml</descriptor>
                           </descriptors>
                         </configuration>
                     </execution>
+					<execution>
+						<id>repository-distribution3</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptors>
+								<descriptor>${project.basedir}src/main/assembly/repository-qfj-assembly.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
                 </executions>
             </plugin>            
 		</plugins>
