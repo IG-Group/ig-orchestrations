@@ -96,8 +96,8 @@ The actual Price will depend on the price at which the order is filled.
 |Sell|Buy|100|Stop order to stop losses|15|100 + 15 = 115|
 |Sell|Buy|100|Limit order to take profit|25|100 – 25 = 75|
 
-### Order Restatement
-In some scenarios an order Restatement may be issued using an ExecutionReport.
+### Execution Restatement
+In some scenarios an Execution Restatement may be issued using an ExecutionReport.
 
 An open position may have one attached order representing a StopLoss or TakeProfit order for the security at any one time.
 

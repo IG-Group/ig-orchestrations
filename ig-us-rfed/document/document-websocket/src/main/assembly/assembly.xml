@@ -12,12 +12,22 @@
   <includeBaseDirectory>false</includeBaseDirectory>  
   <fileSets>
     <fileSet>
-      <directory>${project.build.directory}/roe</directory>
+      <directory>${project.build.directory}/html</directory>
+      <outputDirectory>html</outputDirectory>
+      <lineEnding>unix</lineEnding>
+      <filtered>false</filtered>
+    </fileSet>
+    <fileSet>
+      <directory>${project.build.directory}/generated-md</directory>
+      <outputDirectory></outputDirectory>
+      <lineEnding>unix</lineEnding>
+      <filtered>false</filtered>
+    </fileSet>
+    <fileSet>
+      <directory>markdown</directory>
       <outputDirectory></outputDirectory>
       <lineEnding>unix</lineEnding>
       <filtered>false</filtered>
     </fileSet>
   </fileSets>
-  <dependencySets>
-  </dependencySets>
 </assembly>

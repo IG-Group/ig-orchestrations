@@ -42,8 +42,7 @@
 
 	<modules>
 		<module>orchestration</module>
-		<module>document-html</module>
-		<module>roe</module>
+		<module>document</module>
 		<module>json-schema</module>
 		<module>java-binding</module>
 		<module>quickfix-dictionary</module>

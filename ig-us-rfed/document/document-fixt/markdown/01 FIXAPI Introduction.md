@@ -111,20 +111,38 @@ The TargetCompID will depend on the API you connect to. This should be
 | Trade |IGUSTRADE | 
 
 ## Authentication
-Authorisation to access and trade on an account as well as to obtain pre trade data depends on user credentials for an IG client supplied on the Logon message (35=A).
+Authentication and authorisation to access and trade on an account as well as to obtain pre trade data depends on user credentials for an IG client supplied on the Logon message (35=A).
 
 Failure to provide correct credentials for a IG account will result in a failure to establish the FIX session connection.
 
 Each client account will need to be enabled for FIX access by IG in order for the Logon to succeed. 
 
 ## Standard Request Header
+Each administrative or application message is preceded by a standard header. 
+The header identifies the message type, length, destination, sequence number, origination point and time. 
 
-|Field Name|Required?|Comments|
-|---         |---|---|
-|MsgType     |Y  |Defines the message type|
-|ApplVerID|N|Specifies the service pack release being applied at message level. Enumerated field with values assigned at time of service pack release|
-|CstmApplVerID|N| Specifies a custom extension to a message being applied at the message level. Enumerated field|
-|SendingTime |Y|Time request is sent|
+|Tag |Field Name|Required?|Comments|
+|--- |--- |---|---|
+|8 |BeginString| Y | “FIXT.1.1” |
+|9 |BodyLength| Y| |
+|35 |MsgType     |Y  |Defines the message type|
+|1128 |ApplVerID | C  |‘9’ = “FIX.5.0SP2” Required in logon message|
+|1129 |CstmApplVerID|N| Specifies a custom extension to a message being applied at the message level. Enumerated field|
+|43 |PossDupFlag    |N  | Used for retransmitted messages, prompted either by the sending system or as the result of a resend request.|
+|49 |SenderCompID     |Y  |Identifies the party sending the message.|
+|52 |SendingTime |Y|Time request is sent|
+|56 |TargetCompID     |Y  |Identifies the intended recipient of the message.|
+|91 |PossResend     |N  |Required when message may be duplicate of another message sent under a different sequence number.|
+|122 |OrigSendingTime     |C  |Required for message resent as a result of a Resend Request. |
+
+## Standard FIX Message Trailer
+Each message, administrative or application, is terminated by a standard trailer. 
+The trailer is used to segregate messages and contains the three digit character representation of the Checksum value.
+
+|Tag |Field Name|Required?|Comments|
+|--- |--- |---|---|
+|10 |CheckSum| Y | |
+
 
 ## Common Fields and Constraints
 ### SecurityID and SecurityIDSource

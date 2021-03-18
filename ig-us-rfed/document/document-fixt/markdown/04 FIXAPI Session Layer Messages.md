@@ -1,12 +1,12 @@
-### Administrative Messages
-The following Administrative FIX messages are supported;
+### Session Layer Messages
+The following Session Layer FIX messages are supported;
 *	Logon
 *	Heartbeat
 *	Test Request
-*	Resend Request
 *	Session-level Reject
-*	Sequence Reset (Gap Fill)
 *	Logout
+*	Resend Request 
+*	Sequence Reset (Gap Fill)
 
 ## Logon
 The Logon message authenticates a user establishing a connection to a remote system. The Logon
