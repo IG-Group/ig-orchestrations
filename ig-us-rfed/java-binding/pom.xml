@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.ig.orchestrations.us.rfed</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.2.12-SNAPSHOT</version>
+		<version>0.3.0</version>
 	</parent>	
 	<artifactId>java-binding</artifactId>
 	<packaging>jar</packaging>
