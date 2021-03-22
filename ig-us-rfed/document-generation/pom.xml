@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.ig.orchestrations.us.rfed</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.3.2</version>
+		<version>0.3.3-SNAPSHOT</version>
     </parent>
 	<artifactId>document</artifactId>
 	<description>Generates humanly readable documentation of FIX standard versions</description>
