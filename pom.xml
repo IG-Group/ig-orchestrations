@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ig.orchestrations</groupId>
 	<artifactId>parent</artifactId>
-	<version>0.3.5-SNAPSHOT</version>
+	<version>0.3.6-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>Parent project for IG Group Orchestra implementations</description>
@@ -30,7 +30,8 @@
 		</developer>
 	</developers>
 	<scm>
- 		<developerConnection>scm:git:ssh://git@github.com/IG-Group/ig-orchestrations.git</developerConnection> 
+		<!-- developerConnection has to be https otherwise the github action cannot push during a release-->
+ 		<developerConnection>scm:git:https://github.com/IG-Group/ig-orchestrations</developerConnection> 
  		<url>https://github.com/IG-Group/ig-orchestrations.git</url> 
                 <connection>scm:git:git://git@github.com/IG-Group/ig-orchestrations.git</connection>
 	  <tag>HEAD</tag>
@@ -136,6 +137,7 @@
 						<mavenExecutorId>forked-path</mavenExecutorId>
 						<useReleaseProfile>false</useReleaseProfile>
 						<arguments>-Psonatype-oss-release ${arguments}</arguments>
+						<tagNameFormat>release-@{project.version}</tagNameFormat>
 					</configuration>
 				</plugin>
                 <plugin>
