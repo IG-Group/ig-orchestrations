@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.ig.orchestrations.us.rfed</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.3.4</version>
+		<version>0.3.5-SNAPSHOT</version>
     </parent>
 	<artifactId>quickfix-dictionary</artifactId>
 	<description>Generates QuickFIX dictionary</description>
