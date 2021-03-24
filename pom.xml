@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ig.orchestrations</groupId>
 	<artifactId>parent</artifactId>
-	<version>0.3.7-SNAPSHOT</version>
+	<version>0.3.10-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>Parent project for IG Group Orchestra implementations</description>
@@ -123,7 +123,7 @@
 			      <configuration>
 			        <serverId>ossrh</serverId>
 			        <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-			        <autoReleaseAfterClose>true</autoReleaseAfterClose>
+			        <autoReleaseAfterClose>false</autoReleaseAfterClose>
 			      </configuration>
 			    </plugin>
     	</plugins>
@@ -136,7 +136,7 @@
 					<configuration>
 						<mavenExecutorId>forked-path</mavenExecutorId>
 						<useReleaseProfile>false</useReleaseProfile>
-						<arguments>-Psonatype-oss-release ${arguments}</arguments>
+						<arguments>-Psonatype-oss-release</arguments>
 						<tagNameFormat>release-@{project.version}</tagNameFormat>
 					</configuration>
 				</plugin>
