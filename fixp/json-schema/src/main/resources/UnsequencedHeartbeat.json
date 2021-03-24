@@ -1,9 +1,0 @@
-{
-  "type" : "object",
-  "id" : "UnsequencedHeartbeat",
-  "properties" : {
-    "MessageType" : {
-      "type" : "string"
-    }
-  }
-}
