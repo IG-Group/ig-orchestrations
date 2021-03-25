@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.ig.orchestrations.us.rfed</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.4.1-SNAPSHOT</version>
+		<version>0.4.1</version>
     </parent>
 	<artifactId>document</artifactId>
 	<description>Documentation module</description>
