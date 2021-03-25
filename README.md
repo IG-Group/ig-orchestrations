@@ -16,16 +16,12 @@ Aka (bitbucket:IG Public FIX API/ig-orchestrations/master)
 
 Empty with README.md explaining that you have to use github
 
-## github-mirror
-
-Aka (bitbucket:IG Public FIX API/ig-orchestrations/github-mirror)
-
-Bamboo build pulls changes once a day github --ff-only and is used as an onsite backup of github.
-
 ## github-staging
 
 Aka (bitbucket:IG Public FIX API/ig-orchestrations/github-staging)
 
-We merge changes there and then push to github (manually for now).
+A [Bamboo](https://bamboo5.iggroup.local/browse/PFA-IOMG) build pulls changes once a day github --ff-only and is used as an onsite backup of github.
+
+We merge changes there and then push to github via a [Bamboo build](https://bamboo5.iggroup.local/browse/PFA-IOPTG).
 
 This is done so that we can use familiar change process tools for this project.
