@@ -4,21 +4,30 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="
     http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2
-      http://maven.apache.org/xsd/assembly-1.1.2.xsd"
->
-  <id>documents</id>
+      http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+  <id>roe</id>
   <formats>
     <format>zip</format>
   </formats>
   <includeBaseDirectory>false</includeBaseDirectory>  
   <fileSets>
     <fileSet>
-      <directory>${project.build.directory}/doc</directory>
+      <directory>${project.build.directory}/html</directory>
+      <outputDirectory>html</outputDirectory>
+      <lineEnding>unix</lineEnding>
+      <filtered>false</filtered>
+    </fileSet>
+    <fileSet>
+      <directory>${project.build.directory}/generated-md</directory>
+      <outputDirectory></outputDirectory>
+      <lineEnding>unix</lineEnding>
+      <filtered>false</filtered>
+    </fileSet>
+    <fileSet>
+      <directory>markdown</directory>
       <outputDirectory></outputDirectory>
       <lineEnding>unix</lineEnding>
       <filtered>false</filtered>
     </fileSet>
   </fileSets>
-  <dependencySets>
-  </dependencySets>
 </assembly>

@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ig.orchestrations</groupId>
 	<artifactId>parent</artifactId>
-	<version>0.3.10-SNAPSHOT</version>
+	<version>0.4.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>Parent project for IG Group Orchestra implementations</description>
@@ -49,9 +49,9 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
 		<fix-orchestration-repository.version>1.5.1</fix-orchestration-repository.version><!-- the standard FIX orchestra repository -->
-		<fix-orchestra.version>1.6.8</fix-orchestra.version><!-- the FIX orchestra tools and utilities -->
+		<fix-orchestra.version>1.6.10</fix-orchestra.version><!-- the FIX orchestra tools and utilities -->
 	</properties>
 	
 	<profiles>
@@ -93,7 +93,7 @@
 			</dependency>
 			<dependency>
 				<groupId>io.fixprotocol.orchestra</groupId>
-				<artifactId>docgen</artifactId>
+				<artifactId>orchestra2doc</artifactId>
 				<version>${fix-orchestra.version}</version>
 			</dependency>			
 			<dependency>

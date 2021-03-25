@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.ig.orchestrations.us.rfed</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.3.10-SNAPSHOT</version>
+		<version>0.4.0-SNAPSHOT</version>
     </parent>
 	<artifactId>quickfix-dictionary</artifactId>
 	<description>Generates QuickFIX dictionary</description>
@@ -14,6 +14,10 @@
 		<dependency>
 			<groupId>io.fixprotocol.orchestra</groupId>
 			<artifactId>repository-quickfix</artifactId>
+			<!-- Temporary downgrade orchestra version -->
+			<!-- qfj dependency has been moved to a new repo https://github.com/FIXTradingCommunity/fix-orchestra-quickfix -->
+			<!-- but there is no built artifact for this yet, work is still WIP  -->
+			<version>1.6.8</version>
 		</dependency>
 		<dependency>
 			<groupId>com.ig.orchestrations.us.rfed</groupId>
@@ -21,6 +25,22 @@
 			<classifier>repository</classifier>
 			<type>zip</type>		
 			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
 		</dependency>
 	</dependencies>
 	<build>

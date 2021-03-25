@@ -1,27 +1,27 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.ig.orchestrations</groupId>
+		<groupId>com.ig.orchestrations.us.rfed</groupId>
 		<artifactId>parent</artifactId>
 		<version>0.4.0-SNAPSHOT</version>
-	</parent>
-	<groupId>com.ig.orchestrations.chart.data</groupId>
-	<artifactId>parent</artifactId>
-	<description>parent for FIXP artefacts</description>
+    </parent>
+	<artifactId>document</artifactId>
+	<description>Documentation module</description>
 	<name>${project.groupId}:${project.artifactId}</name>
 	<packaging>pom</packaging>
+
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>io.fixprotocol.tablature</groupId>
+				<artifactId>orchestra2md</artifactId>
+				<version>0.4.2</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	<properties>
-		<target-package>com.ig.orchestrations.chart.data</target-package>
-	</properties>
-	
+
 	<modules>
-		<module>json-schema</module>
-		<module>java-binding</module>
+		<module>document-fixt</module>
+		<module>document-websocket</module>
 	</modules>
-	<build>
-	</build>
 </project>

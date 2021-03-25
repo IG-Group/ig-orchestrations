@@ -10,8 +10,9 @@ The published orchestration will omit many messages, components and groups that 
 
 This is to reduce the "surface area" of IG's "Rules of Engagement". The generated documents will be easier to understand when only cases in use are present.
 
-Two artifacts are published with different classifiers:
+Three artifacts are published with different classifiers:
 * repository - this artifact includes only application messages and is used for JSON, SBE and document generation
+* repository-plus-session-layer - this artifact contains the application messages and Session Layer FIX messages required for FIXT.
 * repository-qfj - this artifact is processed to improve compatibility with quickfix/quickfixj. At time of writing there are some defects in the official FIX orchestration and some workaround for QFJ are also needed.
 
 ## QuickFIX/J Dictionary

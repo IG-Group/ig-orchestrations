@@ -4,16 +4,15 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="
     http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2
-      http://maven.apache.org/xsd/assembly-1.1.2.xsd"
->
-  <id>repository-qfj</id>
+      http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+  <id>repository-plus-session-layer</id>
   <formats>
     <format>zip</format>
   </formats>
   <includeBaseDirectory>false</includeBaseDirectory>  
   <fileSets>
     <fileSet>
-      <directory>${project.build.directory}/generated-resources/xml/xslt/publishForQFJ</directory>
+      <directory>${project.build.directory}/generated-resources/xml/xslt/publishWithSessionLayer</directory>
       <outputDirectory></outputDirectory>
       <lineEnding>unix</lineEnding>
       <filtered>false</filtered>
