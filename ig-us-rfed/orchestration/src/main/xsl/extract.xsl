@@ -428,6 +428,7 @@
          																			@name='PendingCancel' or 
          																			@name='PendingReplace' or
          																			@name='Expired' or
+       																			    @name='Restated' or
          																			@name='OrderStatus' or
          																			@name='DoneForDay')]"/> 
         
