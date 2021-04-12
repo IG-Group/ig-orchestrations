@@ -51,6 +51,20 @@ Request for a List of Securities.
 |SubscriptionRequestType|N|Subscription Request Type. Accepted Values are: <ul><li>‘Snapshot’</li></ul>|
 |Instrument|N||
 
+
+Example Security Request
+```
+{
+    "MsgType":"SecurityListRequest"
+    "SendingTime":"2021-03-25T15:53:40.996",
+    "SecurityReqID":"listReq+1616687620989",
+    "SubscriptionRequestType":"Snapshot",
+    "ApplVerID":"FIX50SP2",
+    "SecAltIDGrp":[],
+    "SecurityListRequestType":"AllSecurities",
+}
+```
+
 Response: (see Security List)
 
 ### SecurityList
@@ -67,6 +81,77 @@ A response with many instruments may be sent in multiple SecurityList fragments 
 |TotNoRelatedSym|N|Total Number of securities returned for this request, may be greater than the number returned in this individual message.  Will be present.|
 |LastFragment|N|Indicates whether this is the last fragment in a sequence of message fragments. |
 |SecListGrp|N|Security List Group|
+
+Example Security List response message:
+```
+{
+  "MsgType": "SecurityList",
+  "ApplVerID": "FIX50SP2",
+  "SendingTime": "2021-03-25T15:53:41.000",
+  "SecurityReqID": "secListReq+12345",
+  "SecurityResponseID": "listReq+12345~1",
+  "SecurityRequestResult": "ValidRequest",
+  "TotNoRelatedSym": 3,
+  "LastFragment": "LastMessage",
+  "SecListGrp": [
+    {
+      "Symbol": "USD/CAD",
+      "SecurityID": "CS.D.USDCAD.CZD.IP",
+      "SecurityIDSource": "MarketplaceAssignedIdentifier",
+      "SecAltIDGrp": [],
+      "SecurityGroup": "CURRENCIES",
+      "ContractMultiplier": 1E+5,
+      "SecurityDesc": "USD100,000 Contract",
+      "ShortSaleRestriction": "NoRestrictions",
+      "AttrbGrp": [
+        {
+          "InstrAttribType": "DealableCurrencies",
+          "InstrAttribValue": "CAD"
+        }
+      ],
+      "UndInstrmtGrp": [],
+      "Currency": "CAD"
+    },
+    {
+      "Symbol": "GBP/USD",
+      "SecurityID": "CS.D.GBPUSD.CZD.IP",
+      "SecurityIDSource": "MarketplaceAssignedIdentifier",
+      "SecAltIDGrp": [],
+      "SecurityGroup": "CURRENCIES",
+      "ContractMultiplier": 1E+5,
+      "SecurityDesc": "GBP100,000 Contract",
+      "ShortSaleRestriction": "NoRestrictions",
+      "AttrbGrp": [
+        {
+          "InstrAttribType": "DealableCurrencies",
+          "InstrAttribValue": "USD"
+        }
+      ],
+      "UndInstrmtGrp": [],
+      "Currency": "USD"
+    },
+    {
+      "Symbol": "USD/JPY",
+      "SecurityID": "CS.D.USDJPY.CZD.IP",
+      "SecurityIDSource": "MarketplaceAssignedIdentifier",
+      "SecAltIDGrp": [],
+      "SecurityGroup": "CURRENCIES",
+      "ContractMultiplier": 1E+5,
+      "SecurityDesc": "USD100,000 Contract",
+      "ShortSaleRestriction": "NoRestrictions",
+      "AttrbGrp": [
+        {
+          "InstrAttribType": "DealableCurrencies",
+          "InstrAttribValue": "JPY"
+        }
+      ],
+      "UndInstrmtGrp": [],
+      "Currency": "JPY"
+    }
+  ]
+}
+```
+* The typical Security response will contain around 100 securities not just 3.
 
 #### Security List Group (SecListGrp)
 
@@ -104,7 +189,7 @@ Example for a Quote Request message:
   "MsgType": "QuoteRequest",
   "ApplVerID":"FIX50SP2",
   "CstmApplVerID": "IGUS/PreTrade/V1",
-  "SendingTime": "20190802-21:14:38.717",
+  "SendingTime": "2021-03-25T15:44:52.644",
   "QuoteReqID":"12345",
   "SubscriptionRequestType":"SnapshotAndUpdates",
   "QuotReqGrp" : [
@@ -116,6 +201,26 @@ Example for a Quote Request message:
   ]
 }
 ```
+
+Example of unsubscription from receiving Quotes using the Quote Request message:
+```json
+{
+  "MsgType": "QuoteRequest",
+  "ApplVerID":"FIX50SP2",
+  "CstmApplVerID": "IGUS/PreTrade/V1",
+  "SendingTime": "2021-03-25T17:44:52.644",
+  "QuoteReqID":"12345",
+  "SubscriptionRequestType":"DisablePreviousSnapshot",
+  "QuotReqGrp" : [
+    {
+        "Symbol":"GBPUSD",
+    	"SecurityID":"CS.D.GBPUSD.CZD.IP",
+    	"SecurityIDSource":"MarketplaceAssignedIdentifier"
+    }
+  ]
+}
+```
+
 
 Response: See Quote
 
@@ -141,14 +246,14 @@ Quote : The Quote message is used as the response to a Quote Request.
   "MsgType": "Quote",
   "ApplVerID":"FIX50SP2",
   "CstmApplVerID": "IGUS/PreTrade/V1",
-  "SendingTime": "20190802-21:14:38.718",
+  "SendingTime": "2021-03-25T15:44:52.937",
   "QuoteReqID":"12345",
   "QuoteType":"Tradeable",
-  "BidPx":"34.444",
-  "OfferPx":"34.446",
+  "BidPx":"1.37236",
+  "OfferPx":"1.37246",
   "BidID":"78910",
   "OfferID":"78911",
-  "NetChgPrevDay":"-93.3"
+  "NetChgPrevDay":"0.00379"
 }
 ```
 ### QuoteCancel
@@ -176,7 +281,7 @@ Message Example :
   "MsgType": "QuoteCancel",
   "ApplVerID":"FIX50SP2",
   "CstmApplVerID": "IGUS/PreTrade/V1",
-  "SendingTime": "20190802-21:14:38.717",
+  "SendingTime": "2021-03-25T16:44:52.937",
   "QuoteReqID":"12345",
   "QuoteCancelType":"CancelForOneOrMoreSecurities",
   "NoRelatedSym":[

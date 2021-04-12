@@ -11,10 +11,7 @@ The following Session Layer FIX messages are supported;
 ## Logon
 The Logon message authenticates a user establishing a connection to a remote system. The Logon
 message must be the first message sent by the application requesting to initiate a FIX session
-Sample message
-````
-8=FIXT.1.1 | 9=83 | 35=A | 34=1 | 49=ClientUserName | 52=20210312-22:01:00.000 | 56=IGUSTRADE | 1128=9 | 98=0 | 108=10 | 1137=9 | 10=031
-````
+
 |Tag |Field Name | Required? | Comments |
 |--- |--- | --- |--- |
 Standard Header | | Y |MsgType (35) = ‘A’ |
@@ -24,6 +21,22 @@ Standard Header | | Y |MsgType (35) = ‘A’ |
 |141 | ResetSeqNumFlag | N |Default of ‘N’; if not sent, sequence numbers will not be reset| 
 |Standard Trailer | | Y|
 
+Sample client Logon messages:
+
+PreTrade
+```
+8=FIXT.1.1 | 9=12 | 35=A | 34=1 | 49=ClientUserName | 52=20210325-17:13:42.993 | 56=IGUS | 98=0 | 108=120 | 141=Y | 553=ClientUserName | 554=ClientPassword | 1137=9 | 10=110 |
+```
+```
+8=FIXT.1.1 | 9=90 | 35=A | 34=1 | 49=IGUS | 52=20210325-17:13:44.106 | 56=ClientUserName | 98=0 | 108=120 | 141=Y | 1137=9 | 10=198 |
+```
+Trade:
+```
+8=FIXT.1.1 | 9=12 | 35=A | 34=1 | 49=ClientUserName | 52=20210325-17:13:42.993 | 56=IGUS | 98=0 | 108=120 | 553=ClientUserName | 554=ClientPassword | 1137=9 | 10=110 |
+```
+```
+8=FIXT.1.1 | 9=90 | 35=A | 34=1 | 49=IGUSTRADE | 52=20210325-17:13:44.106 | 56=ClientUserName | 98=0 | 108=120 | 1137=9 | 10=198 |
+```
 
 ## Heartbeat
 The Heartbeat monitors the status of the communication link and identifies when the last of a string of
