@@ -10,6 +10,10 @@ See also [ WebSocket API ](websocketAPI.md)
 
 ## WebSocket URL
 
+### Demo
+wss://demo-iguspretrade.ig.com/pretrade
+
+### Production
 wss://iguspretrade.ig.com/pretrade
 
 ## Fields and Constraints

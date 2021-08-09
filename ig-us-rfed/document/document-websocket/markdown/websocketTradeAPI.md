@@ -7,8 +7,12 @@ This document specifies the Rules of Engagement for Trading with IG.
 
 See also [ WebSocket API ](websocketAPI.md)
 
-## Base WebSocket URL
+## WebSocket URL
 
+### Demo
+wss://demo-igustrade.ig.com/trade
+
+### Production
 wss://igustrade.ig.com/trade
 
 ## Fields and Constraints

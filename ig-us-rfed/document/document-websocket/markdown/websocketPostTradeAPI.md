@@ -7,9 +7,13 @@ This document specifies the Rules of Engagement for the PostTrade websocket API.
 
 See also [ WebSocket API ](websocketAPI.md)
 
-## Base WebSocket URL
+## WebSocket URL
 
-wss://igustrade.ig.com/posttrade
+### Demo
+wss://demo-igustrade.ig.com/trade
+
+### Production
+wss://igustrade.ig.com/trade
 
 ## Fields and Constraints
 
