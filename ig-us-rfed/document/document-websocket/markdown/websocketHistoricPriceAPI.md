@@ -20,8 +20,8 @@ wss://iguspretrade.ig.com/pretrade
 
 |Field/Component Name|Required?|Comments|
 |---|---|---|
-|StartDate|y|Start Date of the reported interval|
-|EndDate|c|End Date of the reported interval, present on Historic Candles|
+|StartDate|y|Start Date of the reported interval. In format yyyyMMdd-HH:mm:ss.SSS in London/Europe timezone|
+|EndDate|c|End Date of the reported interval, present on Historic Candles. In format yyyyMMdd-HH:mm:ss.SSS in London/Europe timezone|
 |First|y|First Price in the reported interval|
 |Last|y|Last Price in the reported interval|
 |High|y|Highest Price in the reported interval|
@@ -37,7 +37,23 @@ wss://iguspretrade.ig.com/pretrade
 |ReqID|y|Unique ID for the request|
 |SecurityID|y|Required by IG, Marketplace Assigned Identifier for the security as provided by IG|
 |SecurityIDSource|y|Required by IG, distinguishes the source of the SecurityID. Must be "MarketplaceAssignedIdentifier".|
-|Interval|y|The requested interval for the candle data. Valid intervals are: <ul><li>TICK</li></ul>|
+|Interval|y|The requested interval for the candle data. Valid intervals are: <ul><li>SECOND</li><li>FIVE_MIN</li><li>FIFTEEN_MIN</li><li>HOUR</li><li>DAY</li></ul>|
+
+Example Message
+```json
+{
+  "MsgType":"ChartDataSubscriptionRequest",
+  "ApplVerID":"FIX50SP2",
+  "CstmApplVerID":"IGUS/PreTrade/V1",
+  "SendingTime":"2021-08-09T17:26:57.042",
+  "ReqID":"2",
+  "SubscriptionRequestType":"SnapshotAndUpdates",
+  "SecurityID":"CS.D.GBPUSD.CZD.IP",
+  "SecurityIDSource":"MarketplaceAssignedIdentifier",
+  "Interval":"FIVE_MIN"
+}
+```
+
 
 ### Chart Data Subscription Response
 
@@ -48,6 +64,36 @@ wss://iguspretrade.ig.com/pretrade
 |SubscriptionRequestType|Y|Expect <ul><li>"SnapshotAndUpdates"</li><li>"DisablePreviousSnapshot"</li></ul>|
 |Interval|y|The interval for the candle data. Valid intervals are: <ul><li>SECOND</li><li>FIVE_MIN</li><li>FIFTEEN_MIN</li><li>HOUR</li><li>DAY</li></ul>|
 |CandleData|y|The Chart Data|
+
+Example Message
+```json
+{
+  "MsgType": "ChartDataSubscriptionResponse",
+  "ApplVerID": "FIX50SP2",
+  "SendingTime": "2021-08-09T17:28:09.032",
+  "ReqID": "2",
+  "Interval": "FIVE_MIN",
+  "CandleData": {
+    "StartDate": "20210809-18:25:00.000",
+    "First": {
+      "Bid": 1.3847,
+      "Offer": 1.3848
+    },
+    "Last": {
+      "Bid": 1.38478,
+      "Offer": 1.38488
+    },
+    "High": {
+      "Bid": 1.38481,
+      "Offer": 1.38491
+    },
+    "Low": {
+      "Bid": 1.38466,
+      "Offer": 1.38478
+    }
+  }
+}
+```
 
 ### Chart Data Request Reject
 
@@ -79,9 +125,9 @@ wss://iguspretrade.ig.com/pretrade
 |ReqID|y|Unique ID for the request|
 |SecurityID|y|Required by IG, Marketplace Assigned Identifier for the security as provided by IG|
 |SecurityIDSource|y|Required by IG, distinguishes the source of the SecurityID. Must be "MarketplaceAssignedIdentifier".|
-|Interval|y|The requested interval for the candle data. Valid intervals are: <ul><li>...</li><li>HOUR</li><li>...</li></ul>|
-|StartDate|y|The start date of the interval.|
-|EndDate|y|The end date of the interval|
+|Interval|y|The requested interval for the candle data. Valid intervals are: <ul><li>SECOND</li><li>FIVE_MIN</li><li>FIFTEEN_MIN</li><li>HOUR</li><li>DAY</li></ul>|
+|StartDate|y|The start date of the interval. Must be in format yyyyMMdd-HH:mm:ss.SSS in UTC timezone|
+|EndDate|y|The end date of the interval. Must be in format yyyyMMdd-HH:mm:ss.SSS in UTC timezone|
 
 Message Example:
 
@@ -90,14 +136,15 @@ This requests high, low, first and last bid and offer prices in 5 minute resolut
 ```json
 {
   "MsgType": "HistoricCandleRequest",
-  "SendingTime": "20190802-21:14:38.717",
+  "ApplVerID":"FIX50SP2",
+  "SendingTime": "2021-08-09T17:09:16.602",
   "CstmApplVerID": "IGUS/PriceHistory/V1",
   "ReqID":"24572562",
   "SecurityID":"CS.D.GBPUSD.CZD.IP",
   "SecurityIDSource":"MarketplaceAssignedIdentifier",
-  "Interval":"HOUR",
-  "StartDate":"20190801-09:00:00",
-  "EndDate":"20190802-21:14:00"
+  "Interval":"FIVE_MIN",
+  "StartDate":"20210809-09:00:00.000",
+  "EndDate":"20210809-12:00:00.000"
 }
 ```
 
@@ -125,15 +172,17 @@ Message Example:
 ```json
 {
   "MsgType": "HistoricCandleResponse",
+  "ApplVerID": "FIX50SP2",
   "CstmApplVerID": "IGUS/PriceHistory/V1",
-  "SendingTime": "20190802-21:14:38.717",
+  "SendingTime":"2021-08-09T17:09:17.602",
   "ReqID":"24572562",
   "SecurityID":"CS.D.GBPUSD.CZD.IP",
   "SecurityIDSource":"MarketplaceAssignedIdentifier",
   "CandleData":[
-    {"StartDate":"20190801-09:00:00","EndDate":"20190801-10:00:00", "First":20.0, "Last":20.0, "High":21.0, "Low": 19.0},
-    {"StartDate":"20190801-10:00:00","EndDate":"20190801-11:00:00", "First":20.0, "Last":20.0, "High":21.0, "Low": 19.0},
+    {"StartDate":"20210809-10:00:00.000","EndDate":"20210809-10:00:00.000","First":{"Bid":1.38569,"Offer":1.38579},"Last":{"Bid":1.38585,"Offer":1.38595},"High":{"Bid":1.38588,"Offer":1.38598},"Low":{"Bid":1.38552,"Offer":1.38564}},
+    {"StartDate":"20210809-10:00:00.000","EndDate":"20210809-10:05:00.000","First":{"Bid":1.38582,"Offer":1.38598},"Last":{"Bid":1.38725,"Offer":1.38741},"High":{"Bid":1.38729,"Offer":1.38742},"Low":{"Bid":1.3858,"Offer":1.38594}},
     ...
+    {"StartDate":"20210809-12:55:00.000","EndDate":"20210809-13:00:00.000","First":{"Bid":1.38744,"Offer":1.3876},"Last":{"Bid":1.38774,"Offer":1.38784},"High":{"Bid":1.38804,"Offer":1.38815},"Low":{"Bid":1.38734,"Offer":1.38744}}
   ],
   "LastMessage" : true,
   "Allowance": {
