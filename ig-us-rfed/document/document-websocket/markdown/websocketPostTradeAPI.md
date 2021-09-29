@@ -126,8 +126,8 @@ SubscriptionRequestType is not evaluated, logged on trading sessions are implici
 |---|---|---|
 |Standard Header|Y|MsgType = "RequestForPositions"|
 |PosReqID|Y|Unique identifier for the request as assigned by the submitter.|
-|PosReqType|Y|Identifies the type of request. Must be "Position".|
-|SubscriptionRequestType|N|Used to subscribe/unsubscribe. Defaults to False.<ul><li>Snapshot</li><li>SnapshotAndUpdates</li><li>DisablePreviousSnapshot</li></ul>|
+|PosReqType|Y|Identifies the type of request. Must be "Positions".|
+|SubscriptionRequestType|Y|Used to subscribe/unsubscribe. Valid values: <ul><li>Snapshot</li><li>SnapshotAndUpdates</li><li>DisablePreviousSnapshot</li></ul>|
 |Account|Y|Account ID.|
 |ClearingBusinessDate|Y|The Clearing Business Date covered by this request – must be current date. Should follow the format YYYMMDD|
 |TransactTime|Y|Time this request was initiated/released by the trader or trading system. Millisecond resolution is optional. Outgoing messages from IG will include Milliseconds.|
@@ -172,7 +172,7 @@ Note that field #OpenPrice is a custom field used by IG.
 |PosMaintRptID|Y|Unique identifier for this Position Report.|
 |PositionID|N|Unique identifier for this position entity.|
 |PosReqID|N|Unique identifier for the Request for Positions (AN) associated with this report. This field will not be provided if the report is unsolicited.|
-|PosReqType|N|Will be present with values: <ul><li>"Position" – for new or changed positions</li> <li>"BackoutMessage" – for deleted positions</li></ul>|
+|PosReqType|N|Will be present with value Positions|
 |TotalNumPosReports|N|Total number of Position Reports being returned.|
 |PosReqResult|N|Will be present in a response to a Request for Positions Request.|
 |UnsolicitedIndicator|N|Indicates whether or not message is being sent as a result of a subscription request or not.<ul><li>'N'	=	Message is being sent as a result of a prior request</li><li>'Y'	=	Message is being sent unsolicited</li></ul>|
