@@ -47,11 +47,11 @@
 
         grep -e fixr:fieldRef -e fixr:numInGroup target/generated-resources/xml/xslt/publishWithSessionLayer/OrchestraEP255.xml  |grep id |perl -ne '($id)=/id=\"(.*?)\"/; print "$id\n";'|sort -nu|while read field;do echo "or @id='$field'"; done
 
-    	(Another filter of fields will be required to remove Session Layer fields if the session layer is subsequently extracted.)
+        (Another filter of fields will be required to remove Session Layer fields if the session layer is subsequently extracted.)
 
     -->
-	<xsl:template match="fixr:fields/fixr:field[not(
-										   @id='1'
+    <xsl:template match="fixr:fields/fixr:field[not(
+                                           @id='1'
                                             or @id='6'
                                             or @id='7'
                                             or @id='8'
@@ -296,20 +296,20 @@
                                 @msgType='UA' ) ]" />
 
     <!-- filter out unsupported codeSets 
-    	I get the list by going in ig-orchestrations/ig-us-rfed/orchestration/target/generated-resources/xml/xslt
-    	
-    	and running 
-    	
-    	grep fixr:codeSet target/generated-resources/xml/xslt/publishWithSessionLayer/OrchestraEP255.xml |grep id|grep -f <(grep fixr:field target/generated-resources/xml/xslt/publishWithSessionLayer/OrchestraEP255.xml|grep type|perl -ne '($type)=/ type="(.*?)"/; print "name=\"$type\"\n"'|grep Set) | perl -ne '($id)=/id="(.*?)"/; print "or \@id='\''$id'\''\n"'
-    	
-    	after I have filtered out (or in) the fields I have excluded 
+        I get the list by going in ig-orchestrations/ig-us-rfed/orchestration/target/generated-resources/xml/xslt
+        
+        and running 
+        
+        grep fixr:codeSet target/generated-resources/xml/xslt/publishWithSessionLayer/OrchestraEP255.xml |grep id|grep -f <(grep fixr:field target/generated-resources/xml/xslt/publishWithSessionLayer/OrchestraEP255.xml|grep type|perl -ne '($type)=/ type="(.*?)"/; print "name=\"$type\"\n"'|grep Set) | perl -ne '($id)=/id="(.*?)"/; print "or \@id='\''$id'\''\n"'
+        
+        after I have filtered out (or in) the fields I have excluded 
 
-    	Another filtering of codeset will be required to remove Session Layer message code sets if the session layer is subsequently extracted.
+        Another filtering of codeset will be required to remove Session Layer message code sets if the session layer is subsequently extracted.
 
     -->
     <xsl:template
         match="fixr:codeSets/fixr:codeSet[not(
-										@id='22'
+                                        @id='22'
                                         or @id='35'
                                         or @id='39'
                                         or @id='40'
@@ -354,7 +354,7 @@
                                         or @id='1687'
                                         or @id='2594'
                                         or @id='10001')]">
-	</xsl:template>
+    </xsl:template>
     <!-- filter out unsupported codes for message types-->
     <xsl:template
         match="fixr:codeSets/fixr:codeSet[(@id='35')]/fixr:code[not(@value='0' or
@@ -365,6 +365,7 @@
                                                                     @value='5' or
                                                                     @value='8' or
                                                                     @value='9' or
+                                                                    @value='A' or
                                                                     @value='AF' or
                                                                     @value='AG' or
                                                                     @value='AN' or
@@ -412,30 +413,30 @@
     <!-- ExecRestatementReasonCodeSet -->
     <xsl:template
         match="fixr:codeSets/fixr:codeSet[(@name='ExecRestatementReasonCodeSet')]/fixr:code[not(@name='SystemStopLossSizeAdjustment' or
-                                                                      							@name='SystemTakeProfitSizeAdjustment' or
-                                                                      							@name='SystemTrailingStopAdjustment' or
-                                                                      							@name='SystemOTOContingentAdjustment' or
-                                                                      							@name='Other')]"/>
+                                                                                                @name='SystemTakeProfitSizeAdjustment' or
+                                                                                                @name='SystemTrailingStopAdjustment' or
+                                                                                                @name='SystemOTOContingentAdjustment' or
+                                                                                                @name='Other')]"/>
         
     <!-- ExecTypeCodeSet -->
     <xsl:template
         match="fixr:codeSets/fixr:codeSet[(@name='ExecTypeCodeSet')]/fixr:code[not(@name='New' or
-         																			@name='Canceled' or 
-         																			@name='Replaced' or 
-         																			@name='Rejected' or 
-        																			@name='Trade' or 
-         																			@name='Rejected' or 
-         																			@name='PendingCancel' or 
-         																			@name='PendingReplace' or
-         																			@name='Expired' or
-       																			    @name='Restated' or
-         																			@name='OrderStatus' or
-         																			@name='DoneForDay')]"/> 
+                                                                                    @name='Canceled' or 
+                                                                                    @name='Replaced' or 
+                                                                                    @name='Rejected' or 
+                                                                                    @name='Trade' or 
+                                                                                    @name='Rejected' or 
+                                                                                    @name='PendingCancel' or 
+                                                                                    @name='PendingReplace' or
+                                                                                    @name='Expired' or
+                                                                                    @name='Restated' or
+                                                                                    @name='OrderStatus' or
+                                                                                    @name='DoneForDay')]"/> 
         
     <!-- MarginAmtTypeCodeSet  -->
     <xsl:template
         match="fixr:codeSets/fixr:codeSet[(@name='MarginAmtTypeCodeSet')]/fixr:code[not(@name='ControlledRiskMargin' or
-        															  @name='TotalMargin' or
+                                                                      @name='TotalMargin' or
                                                                       @name='NonControlledRiskMargin')]"/>
                                                                      
     <!-- MassStatusReqTypeCodeSet  -->
@@ -445,30 +446,30 @@
     <!-- OrdRejReasonCodeSet  -->
     <xsl:template
         match="fixr:codeSets/fixr:codeSet[(@name='OrdRejReasonCodeSet')]/fixr:code[not(@name='OrderExceedsLimit' or
-        																					@name='UnknownOrder' or
-        																					@name='Other')]"/>
-        																					
-        																					
+                                                                                            @name='UnknownOrder' or
+                                                                                            @name='Other')]"/>
+                                                                                            
+                                                                                            
     <!-- OrdStatusCodeSet  -->
     <xsl:template
         match="fixr:codeSets/fixr:codeSet[(@name='OrdStatusCodeSet')]/fixr:code[not(@name='New' or
-        																					@name='PartiallyFilled' or
-        																					@name='Filled' or
-        																					@name='Replaced' or
-        																					@name='PendingCancel' or
-        																					@name='Rejected' or
-        																					@name='PendingNew' or
-        																					@name='PendingReplace' or
-        																					@name='Expired' or
-        																					@name='Canceled')]"/>
-        																					
+                                                                                            @name='PartiallyFilled' or
+                                                                                            @name='Filled' or
+                                                                                            @name='Replaced' or
+                                                                                            @name='PendingCancel' or
+                                                                                            @name='Rejected' or
+                                                                                            @name='PendingNew' or
+                                                                                            @name='PendingReplace' or
+                                                                                            @name='Expired' or
+                                                                                            @name='Canceled')]"/>
+                                                                                            
     <!-- OrdTypeCodeSet  -->
     <xsl:template
         match="fixr:codeSets/fixr:codeSet[(@name='OrdTypeCodeSet')]/fixr:code[not(@name='Market' or
-        																					@name='Limit' or
-        																					@name='Stop' or
-        																					@name='PreviouslyQuoted')]"/>
-        																					
+                                                                                            @name='Limit' or
+                                                                                            @name='Stop' or
+                                                                                            @name='PreviouslyQuoted')]"/>
+                                                                                            
     <!-- OrderAttributeTypeCodeSet  -->
     <xsl:template
         match="fixr:codeSets/fixr:codeSet[(@name='OrderAttributeTypeCodeSet')]/fixr:code[not(@name='AttachedOrder')]"/>
@@ -488,25 +489,25 @@
     <!-- PosReqStatusCodeSet  -->
     <xsl:template
         match="fixr:codeSets/fixr:codeSet[(@name='PosReqStatusCodeSet')]/fixr:code[not(@name='Completed' or
-        																				@name='Rejected')]"/>	
+                                                                                        @name='Rejected')]"/>   
     
     <!-- PosTypeCodeSet  -->
     <xsl:template
         match="fixr:codeSets/fixr:codeSet[(@name='PosTypeCodeSet')]/fixr:code[not(@name='TotalTransactionQty' or
-        																				@name='NetDeltaQty')]"/>
-        																				
+                                                                                        @name='NetDeltaQty')]"/>
+                                                                                        
     <!-- QuoteRequestRejectReasonCodeSet  -->
     <xsl:template
         match="fixr:codeSets/fixr:codeSet[(@name='QuoteRequestRejectReasonCodeSet')]/fixr:code[not(@name='UnknownSymbol' or
-        																							@name='Other' or
-        																							@name='NotAuthorizedToRequestQuote' or
-        																							@name='QuoteRequestExceedsLimit')]"/>
-        																							
+                                                                                                    @name='Other' or
+                                                                                                    @name='NotAuthorizedToRequestQuote' or
+                                                                                                    @name='QuoteRequestExceedsLimit')]"/>
+                                                                                                    
     <!-- QuoteTypeCodeSet  -->
     <xsl:template
         match="fixr:codeSets/fixr:codeSet[(@name='QuoteTypeCodeSet')]/fixr:code[not(@name='Indicative' or
-        																							@name='Tradeable')]"/>
-        																							
+                                                                                                    @name='Tradeable')]"/>
+                                                                                                    
     <!-- SecurityListRequestTypeCodeSet  -->
     <xsl:template
         match="fixr:codeSets/fixr:codeSet[(@name='SecurityListRequestTypeCodeSet')]/fixr:code[not(@name='AllSecurities')]"/>
@@ -514,19 +515,19 @@
     <!-- SideCodeSet  -->
     <xsl:template
         match="fixr:codeSets/fixr:codeSet[(@name='SideCodeSet')]/fixr:code[not(@name='Buy' or
-        																		@name='Undisclosed' or
-        																		@name='Sell')]"/>
-        																		
+                                                                                @name='Undisclosed' or
+                                                                                @name='Sell')]"/>
+                                                                                
     <!-- TimeInForceCodeSet  -->
     <xsl:template
         match="fixr:codeSets/fixr:codeSet[(@name='TimeInForceCodeSet')]/fixr:code[not(@name='GoodTillCancel' or
-        																		@name='Day' or
-        																		@name='AtTheClose' or
-																				@name='GoodTillCrossing' or
-																				@name='AtTheOpening' or
-        																		@name='ImmediateOrCancel' or
-        																		@name='FillOrKill' or
-        																		@name='GoodTillDate')]"/>
+                                                                                @name='Day' or
+                                                                                @name='AtTheClose' or
+                                                                                @name='GoodTillCrossing' or
+                                                                                @name='AtTheOpening' or
+                                                                                @name='ImmediateOrCancel' or
+                                                                                @name='FillOrKill' or
+                                                                                @name='GoodTillDate')]"/>
 
     <!-- InstrAttribTypeCodeSet  -->
     <xsl:template
@@ -707,16 +708,16 @@
         match="fixr:groups/fixr:group[(@id='2191')]/fixr:componentRef" />
     <xsl:template
         match="fixr:groups/fixr:group[(@id='2191')]/fixr:fieldRef[not( @id='1704'
-        															or @id='1706' )]" />
+                                                                    or @id='1706' )]" />
     <xsl:template
         match="fixr:groups/fixr:group[(@id='2191')]/fixr:groupRef" />
 
-	<!-- MarginAmountGrp -->
+    <!-- MarginAmountGrp -->
     <xsl:template
         match="fixr:groups/fixr:group[(@id='2177')]/fixr:componentRef" />
     <xsl:template
         match="fixr:groups/fixr:group[(@id='2177')]/fixr:fieldRef[not( @id='1645'
-        															or @id='1644' )]" />
+                                                                    or @id='1644' )]" />
     <xsl:template
         match="fixr:groups/fixr:group[(@id='2177')]/fixr:groupRef" />
 
@@ -1210,23 +1211,23 @@
                                                                                      @id='1003' )]" />
    <!--AccountSummaryReport-->
    <xsl:template match="fixr:message[@msgType='CQ']/fixr:structure/fixr:groupRef[not( @id='2177'
-																					  or @id='1012'	
-																					  or @id='2191' )]" />
+                                                                                      or @id='1012' 
+                                                                                      or @id='2191' )]" />
    <xsl:template match="fixr:message[@msgType='CQ']/fixr:structure/fixr:fieldRef[not( @id='1699'
-   																					  or @id='20105' 
-   																					  or @id='20106'
-   																					  or @id='715'
-   																					  or @id='15'
-   																					  or @id='900'
-   																					  or @id='60'
-   																					  or @id='58' )]"/>
+                                                                                      or @id='20105' 
+                                                                                      or @id='20106'
+                                                                                      or @id='715'
+                                                                                      or @id='15'
+                                                                                      or @id='900'
+                                                                                      or @id='60'
+                                                                                      or @id='58' )]"/>
    <xsl:template match="fixr:message[@msgType='CQ']/fixr:structure/fixr:componentRef[not(@id='1024' or
                                                                                      @id='1025')]" />
 
    <!--AccountSummaryReportRequest-->
    <xsl:template match="fixr:message[@msgType='UA']/fixr:structure/fixr:groupRef[not(@id='1012')]" />
    <xsl:template match="fixr:message[@msgType='UA']/fixr:structure/fixr:fieldRef[not( @id='20105' or
-   																					  @id='263' )]"/>
+                                                                                      @id='263' )]"/>
    <xsl:template match="fixr:message[@msgType='UA']/fixr:structure/fixr:componentRef[not(@id='1024' or
                                                                                      @id='1025')]" />
 
