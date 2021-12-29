@@ -371,7 +371,7 @@
 
 	<xsl:param name="addCodeSets">
 		<fixr:codeSet name="AccountSummaryReportRequestResultCodeSet" id="10001" type="int" added="IG">
-			<fixr:code name="Valid Request" id="10001001" value="0" sort="0" added="IG">
+			<fixr:code name="ValidRequest" id="10001001" value="0" sort="0" added="IG">
 				<fixr:annotation>
 					<fixr:documentation purpose="SYNOPSIS">
 					         Valid request
