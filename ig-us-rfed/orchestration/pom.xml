@@ -17,7 +17,7 @@
 <!-- 		</dependency> -->
 		<dependency>
 			<groupId>org.quickfixj</groupId>
-			<artifactId>quickfixj-orchestra</artifactId>
+			<artifactId>quickfixj-orchestration</artifactId>
 			<classifier>resources</classifier>
 		</dependency>
 	</dependencies>
@@ -39,7 +39,7 @@
 <!-- 									<groupId>io.fixprotocol.orchestrations</groupId> -->
 <!-- 									<artifactId>fix-standard</artifactId> -->
 									<groupId>org.quickfixj</groupId>
-									<artifactId>quickfixj-orchestra</artifactId>
+									<artifactId>quickfixj-orchestration</artifactId>
 									<classifier>resources</classifier>
 									<includes>**/Fix*.xml,**/Orchestra*.xml</includes>
                                     <outputDirectory>${project.build.directory}/dependency/repository</outputDirectory>

@@ -46,6 +46,7 @@
 		<module>json-schema</module>
 		<module>java-binding</module>
 		<module>quickfix-dictionary</module>
+		<module>quickfixj-messages-fixLatest</module>
 	</modules>
 	<build>
 	</build>
