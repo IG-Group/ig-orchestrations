@@ -48,6 +48,8 @@
         grep -e fixr:fieldRef -e fixr:numInGroup target/generated-resources/xml/xslt/publishWithSessionLayer/OrchestraEP255.xml  |grep id |perl -ne '($id)=/id=\"(.*?)\"/; print "$id\n";'|sort -nu|while read field;do echo "or @id='$field'"; done
 
         (Another filter of fields will be required to remove Session Layer fields if the session layer is subsequently extracted.)
+        
+        Some of the fields such as 370 are required by the QuickFIXJ build
 
     -->
     <xsl:template match="fixr:fields/fixr:field[not(
@@ -127,6 +129,7 @@
                                             or @id='325'
                                             or @id='354'
                                             or @id='355'
+                                            or @id='370'
                                             or @id='371'
                                             or @id='372'
                                             or @id='373'
@@ -988,12 +991,14 @@
     <xsl:template
         match="fixr:message[@msgType='G']/fixr:structure/fixr:fieldRef[not(@id='37' or
                                                                                  @id='11' or
+                                                                                 @id='22' or
                                                                                  @id='41' or
                                                                                  @id='1' or
                                                                                  @id='54' or
                                                                                  @id='60' or
                                                                                  @id='40' or
                                                                                  @id='44' or
+                                                                                 @id='48' or
                                                                                  @id='99' or
                                                                                  @id='59' or
                                                                                  @id='1080' or

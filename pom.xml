@@ -50,7 +50,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>11</java.version>
-		<fix-orchestration-repository.version>1.5.1</fix-orchestration-repository.version><!-- the standard FIX orchestra repository -->
+<!-- 		<fix-orchestration-repository.version>1.5.1</fix-orchestration-repository.version>the standard FIX orchestra repository -->
+		<fix-standard-orchestration.version>2.2.1-SNAPSHOT</fix-standard-orchestration.version>
 		<fix-orchestra.version>1.6.10</fix-orchestra.version><!-- the FIX orchestra tools and utilities -->
 	</properties>
 	
@@ -119,9 +120,12 @@
 				<version>${fix-orchestra.version}</version>
 			</dependency>			
 			<dependency>
-				<groupId>io.fixprotocol.orchestrations</groupId>
-				<artifactId>fix-standard</artifactId>
-				<version>${fix-orchestration-repository.version}</version>
+<!--			<groupId>io.fixprotocol.orchestrations</groupId> -->
+<!--			<artifactId>fix-standard</artifactId> -->
+				<groupId>org.quickfixj</groupId>
+				<artifactId>quickfixj-orchestra</artifactId>
+				<classifier>resources</classifier>
+				<version>${fix-standard-orchestration.version}</version>
 			</dependency>
 	        <dependency>
 	            <groupId>org.apache.commons</groupId>

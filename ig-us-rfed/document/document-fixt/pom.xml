@@ -59,7 +59,7 @@
 								<artifactItem>
 									<groupId>com.ig.orchestrations.us.rfed</groupId>
 									<artifactId>orchestration</artifactId>
-									<classifier>repository-plus-session-layer</classifier>
+									<classifier>repository-qfj</classifier>
 									<type>zip</type>
 									<outputDirectory>${project.build.directory}/dependency/repository</outputDirectory>
 								</artifactItem>
