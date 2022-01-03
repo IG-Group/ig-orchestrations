@@ -1,28 +1,28 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>com.ig.orchestrations.us.rfed</groupId>
-		<artifactId>parent</artifactId>
-		<version>0.4.9-SNAPSHOT</version>
-	</parent>
-	<artifactId>orchestration</artifactId>
-	<description>Generates humanly readable documentation of FIX standard versions</description>
-	<name>${project.groupId}:${project.artifactId}</name>
-	<packaging>pom</packaging>
-	<dependencies>
-<!-- 		<dependency> -->
-<!-- 				<groupId>io.fixprotocol.orchestrations</groupId> -->
-<!-- 				<artifactId>fix-standard</artifactId> -->
-<!-- 		</dependency> -->
-		<dependency>
-			<groupId>org.quickfixj</groupId>
-			<artifactId>quickfixj-orchestration</artifactId>
-			<classifier>resources</classifier>
-		</dependency>
-	</dependencies>
-	<build>
-		<plugins>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.ig.orchestrations.us.rfed</groupId>
+        <artifactId>parent</artifactId>
+        <version>0.4.9-SNAPSHOT</version>
+    </parent>
+    <artifactId>orchestration</artifactId>
+    <description>Generates humanly readable documentation of FIX standard versions</description>
+    <name>${project.groupId}:${project.artifactId}</name>
+    <packaging>pom</packaging>
+    <dependencies>
+<!--        <dependency> -->
+<!--                <groupId>io.fixprotocol.orchestrations</groupId> -->
+<!--                <artifactId>fix-standard</artifactId> -->
+<!--        </dependency> -->
+        <dependency>
+            <groupId>org.quickfixj</groupId>
+            <artifactId>quickfixj-orchestration</artifactId>
+            <classifier>resources</classifier>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -36,12 +36,12 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-<!-- 									<groupId>io.fixprotocol.orchestrations</groupId> -->
-<!-- 									<artifactId>fix-standard</artifactId> -->
-									<groupId>org.quickfixj</groupId>
-									<artifactId>quickfixj-orchestration</artifactId>
-									<classifier>resources</classifier>
-									<includes>**/Fix*.xml,**/Orchestra*.xml</includes>
+<!--                                    <groupId>io.fixprotocol.orchestrations</groupId> -->
+<!--                                    <artifactId>fix-standard</artifactId> -->
+                                    <groupId>org.quickfixj</groupId>
+                                    <artifactId>quickfixj-orchestration</artifactId>
+                                    <classifier>resources</classifier>
+                                    <includes>**/Fix*.xml,**/Orchestra*.xml</includes>
                                     <outputDirectory>${project.build.directory}/dependency/repository</outputDirectory>
                                 </artifactItem>            
                             </artifactItems>
@@ -49,93 +49,93 @@
                     </execution>
                 </executions>
             </plugin>
-			<plugin>
-		        <groupId>org.codehaus.mojo</groupId>
-		        <artifactId>xml-maven-plugin</artifactId>
-		        <executions>
-		          <execution>
-		            <goals>
-		              <goal>transform</goal>
-		            </goals>
-		          </execution>
-		        </executions>
-		        <configuration>
-		          <transformationSets>
-		            <transformationSet>
-		              <dir>${project.build.directory}/dependency/repository</dir>
-		              <outputDir>${project.build.directory}/generated-resources/xml/xslt/normalised</outputDir>
-		              <includes>
-		              	<include>${orchestra.file}</include>
-		              </includes>
-		              <stylesheet>${project.basedir}/src/main/xsl/normalise.xsl</stylesheet>
-		            </transformationSet>
-		            <transformationSet>
-		              <dir>${project.build.directory}/generated-resources/xml/xslt/normalised</dir>
-		              <outputDir>${project.build.directory}/generated-resources/xml/xslt/modified</outputDir>
-		              <includes>
-		              	<include>${orchestra.file}</include>
-		              </includes>
-		              <stylesheet>${project.basedir}/src/main/xsl/modify.xsl</stylesheet>
-		            </transformationSet>
-		            <transformationSet>
-		              <dir>${project.build.directory}/generated-resources/xml/xslt/modified</dir>
-		              <outputDir>${project.build.directory}/generated-resources/xml/xslt/appended</outputDir>
-		              <includes>
-		              	<include>${orchestra.file}</include>
-		              </includes>
-		              <stylesheet>${project.basedir}/src/main/xsl/addTypes.xsl</stylesheet>
-		            </transformationSet>
-					  <transformationSet>
-						  <dir>${project.build.directory}/generated-resources/xml/xslt/appended</dir>
-						  <outputDir>${project.build.directory}/generated-resources/xml/xslt/session-layer-unattached</outputDir>
-						  <includes>
-							  <include>${orchestra.file}</include>
-						  </includes>
-						  <stylesheet>${project.basedir}/src/main/xsl/extractSessionLayer.xsl</stylesheet>
-					  </transformationSet>
-		            <transformationSet>
-	                      <dir>${project.build.directory}/generated-resources/xml/xslt/session-layer-unattached</dir>
-			              <outputDir>${project.build.directory}/generated-resources/xml/xslt/publish</outputDir>
-			              <includes>
-			              	<include>${orchestra.file}</include>
-			              </includes>
-			              <stylesheet>${project.basedir}/src/main/xsl/extract.xsl</stylesheet>
-					</transformationSet>
-					  <transformationSet>
-						  <dir>${project.build.directory}/generated-resources/xml/xslt/appended</dir>
-						  <outputDir>${project.build.directory}/generated-resources/xml/xslt/session-layer-attached</outputDir>
-						  <includes>
-							  <include>${orchestra.file}</include>
-						  </includes>
-						  <stylesheet>${project.basedir}/src/main/xsl/extract.xsl</stylesheet>
-					  </transformationSet>
-					  <transformationSet>
-						  <dir>${project.build.directory}/generated-resources/xml/xslt/session-layer-attached</dir>
-						  <outputDir>${project.build.directory}/generated-resources/xml/xslt/publishForQFJ</outputDir>
-<!-- 						  <outputDir>${project.build.directory}/generated-resources/xml/xslt/publishWithSessionLayer</outputDir> -->
-						  <includes>
-							  <include>${orchestra.file}</include>
-						  </includes>
-						  <stylesheet>${project.basedir}/src/main/xsl/extractFromSessionMessages.xsl</stylesheet>
-					  </transformationSet>
-<!-- 					  <transformationSet> -->
-<!-- 						  <dir>${project.build.directory}/generated-resources/xml/xslt/publishWithSessionLayer</dir> -->
-<!-- 						  <outputDir>${project.build.directory}/generated-resources/xml/xslt/publishForQFJ</outputDir> -->
-<!-- 						  <includes> -->
-<!-- 							  <include>${orchestra.file}</include> -->
-<!-- 						  </includes> -->
-<!-- 						  <stylesheet>${project.basedir}/src/main/xsl/extractForQuickFIXJ.xsl</stylesheet> -->
-<!-- 					  </transformationSet> -->
-				  </transformationSets>
-		        </configuration>
-		      </plugin>		
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>xml-maven-plugin</artifactId>
+                <executions>
+                  <execution>
+                    <goals>
+                      <goal>transform</goal>
+                    </goals>
+                  </execution>
+                </executions>
+                <configuration>
+                  <transformationSets>
+                    <transformationSet>
+                      <dir>${project.build.directory}/dependency/repository</dir>
+                      <outputDir>${project.build.directory}/generated-resources/xml/xslt/normalised</outputDir>
+                      <includes>
+                        <include>${orchestra.file}</include>
+                      </includes>
+                      <stylesheet>${project.basedir}/src/main/xsl/normalise.xsl</stylesheet>
+                    </transformationSet>
+                    <transformationSet>
+                      <dir>${project.build.directory}/generated-resources/xml/xslt/normalised</dir>
+                      <outputDir>${project.build.directory}/generated-resources/xml/xslt/modified</outputDir>
+                      <includes>
+                        <include>${orchestra.file}</include>
+                      </includes>
+                      <stylesheet>${project.basedir}/src/main/xsl/modify.xsl</stylesheet>
+                    </transformationSet>
+                    <transformationSet>
+                      <dir>${project.build.directory}/generated-resources/xml/xslt/modified</dir>
+                      <outputDir>${project.build.directory}/generated-resources/xml/xslt/appended</outputDir>
+                      <includes>
+                        <include>${orchestra.file}</include>
+                      </includes>
+                      <stylesheet>${project.basedir}/src/main/xsl/addTypes.xsl</stylesheet>
+                    </transformationSet>
+                      <transformationSet>
+                          <dir>${project.build.directory}/generated-resources/xml/xslt/appended</dir>
+                          <outputDir>${project.build.directory}/generated-resources/xml/xslt/session-layer-unattached</outputDir>
+                          <includes>
+                              <include>${orchestra.file}</include>
+                          </includes>
+                          <stylesheet>${project.basedir}/src/main/xsl/extractSessionLayer.xsl</stylesheet>
+                      </transformationSet>
+                    <transformationSet>
+                          <dir>${project.build.directory}/generated-resources/xml/xslt/session-layer-unattached</dir>
+                          <outputDir>${project.build.directory}/generated-resources/xml/xslt/publish</outputDir>
+                          <includes>
+                            <include>${orchestra.file}</include>
+                          </includes>
+                          <stylesheet>${project.basedir}/src/main/xsl/extract.xsl</stylesheet>
+                    </transformationSet>
+                      <transformationSet>
+                          <dir>${project.build.directory}/generated-resources/xml/xslt/appended</dir>
+                          <outputDir>${project.build.directory}/generated-resources/xml/xslt/session-layer-attached</outputDir>
+                          <includes>
+                              <include>${orchestra.file}</include>
+                          </includes>
+                          <stylesheet>${project.basedir}/src/main/xsl/extract.xsl</stylesheet>
+                      </transformationSet>
+                      <transformationSet>
+                          <dir>${project.build.directory}/generated-resources/xml/xslt/session-layer-attached</dir>
+                          <outputDir>${project.build.directory}/generated-resources/xml/xslt/publishForQFJ</outputDir>
+<!--                          <outputDir>${project.build.directory}/generated-resources/xml/xslt/publishWithSessionLayer</outputDir> -->
+                          <includes>
+                              <include>${orchestra.file}</include>
+                          </includes>
+                          <stylesheet>${project.basedir}/src/main/xsl/extractFromSessionMessages.xsl</stylesheet>
+                      </transformationSet>
+<!--                      <transformationSet> -->
+<!--                          <dir>${project.build.directory}/generated-resources/xml/xslt/publishWithSessionLayer</dir> -->
+<!--                          <outputDir>${project.build.directory}/generated-resources/xml/xslt/publishForQFJ</outputDir> -->
+<!--                          <includes> -->
+<!--                              <include>${orchestra.file}</include> -->
+<!--                          </includes> -->
+<!--                          <stylesheet>${project.basedir}/src/main/xsl/extractForQuickFIXJ.xsl</stylesheet> -->
+<!--                      </transformationSet> -->
+                  </transformationSets>
+                </configuration>
+              </plugin>     
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <executions>
                     <execution>
-	                    <id>repository-distribution</id>
-	                    <phase>package</phase>
+                        <id>repository-distribution</id>
+                        <phase>package</phase>
                         <goals>
                           <goal>single</goal>
                         </goals>
@@ -146,8 +146,8 @@
                         </configuration>
                     </execution>
 <!--                     <execution> -->
-<!-- 	                    <id>repository-distribution2</id> -->
-<!-- 	                    <phase>package</phase> -->
+<!--                        <id>repository-distribution2</id> -->
+<!--                        <phase>package</phase> -->
 <!--                         <goals> -->
 <!--                           <goal>single</goal> -->
 <!--                         </goals> -->
@@ -157,20 +157,20 @@
 <!--                           </descriptors> -->
 <!--                         </configuration> -->
 <!--                     </execution> -->
-					<execution>
-						<id>repository-distribution3</id>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-						<configuration>
-							<descriptors>
-								<descriptor>${project.basedir}/src/main/assembly/repository-qfj-assembly.xml</descriptor>
-							</descriptors>
-						</configuration>
-					</execution>
+                    <execution>
+                        <id>repository-distribution3</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>${project.basedir}/src/main/assembly/repository-qfj-assembly.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>            
-		</plugins>
-	</build>
+        </plugins>
+    </build>
 </project>
