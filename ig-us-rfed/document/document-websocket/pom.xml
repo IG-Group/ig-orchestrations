@@ -88,28 +88,21 @@
 							<cleanupDaemonThreads>false</cleanupDaemonThreads>
 						</configuration>
 					</execution>
-				</executions>
-			</plugin>
-
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<executions>
 					<execution>
 						<id>generate-html</id>
 						<phase>prepare-package</phase>
 						<goals>
 							<goal>java</goal>
 						</goals>
+						<configuration>
+							<mainClass>io.fixprotocol.orchestra.docgen.DocGenerator</mainClass>
+							<arguments>
+								<argument>${project.build.directory}/dependency/repository/${orchestra.file}</argument>
+								<argument>${project.build.directory}/html</argument>
+							</arguments>
+						</configuration>
 					</execution>
 				</executions>
-				<configuration>
-					<mainClass>io.fixprotocol.orchestra.docgen.DocGenerator</mainClass>
-					<arguments>
-						<argument>${project.build.directory}/dependency/repository/${orchestra.file}</argument>
-						<argument>${project.build.directory}/html</argument>
-					</arguments>
-				</configuration>
 			</plugin>
 
 			<plugin>

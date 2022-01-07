@@ -11,10 +11,6 @@
     <name>${project.groupId}:${project.artifactId}</name>
     <packaging>pom</packaging>
     <dependencies>
-<!--        <dependency> -->
-<!--                <groupId>io.fixprotocol.orchestrations</groupId> -->
-<!--                <artifactId>fix-standard</artifactId> -->
-<!--        </dependency> -->
         <dependency>
             <groupId>org.quickfixj</groupId>
             <artifactId>quickfixj-orchestration</artifactId>
@@ -36,8 +32,6 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-<!--                                    <groupId>io.fixprotocol.orchestrations</groupId> -->
-<!--                                    <artifactId>fix-standard</artifactId> -->
                                     <groupId>org.quickfixj</groupId>
                                     <artifactId>quickfixj-orchestration</artifactId>
                                     <classifier>resources</classifier>
@@ -112,20 +106,11 @@
                       <transformationSet>
                           <dir>${project.build.directory}/generated-resources/xml/xslt/session-layer-attached</dir>
                           <outputDir>${project.build.directory}/generated-resources/xml/xslt/publishForQFJ</outputDir>
-<!--                          <outputDir>${project.build.directory}/generated-resources/xml/xslt/publishWithSessionLayer</outputDir> -->
                           <includes>
                               <include>${orchestra.file}</include>
                           </includes>
                           <stylesheet>${project.basedir}/src/main/xsl/extractFromSessionMessages.xsl</stylesheet>
                       </transformationSet>
-<!--                      <transformationSet> -->
-<!--                          <dir>${project.build.directory}/generated-resources/xml/xslt/publishWithSessionLayer</dir> -->
-<!--                          <outputDir>${project.build.directory}/generated-resources/xml/xslt/publishForQFJ</outputDir> -->
-<!--                          <includes> -->
-<!--                              <include>${orchestra.file}</include> -->
-<!--                          </includes> -->
-<!--                          <stylesheet>${project.basedir}/src/main/xsl/extractForQuickFIXJ.xsl</stylesheet> -->
-<!--                      </transformationSet> -->
                   </transformationSets>
                 </configuration>
               </plugin>     
@@ -145,20 +130,8 @@
                           </descriptors>
                         </configuration>
                     </execution>
-<!--                     <execution> -->
-<!--                        <id>repository-distribution2</id> -->
-<!--                        <phase>package</phase> -->
-<!--                         <goals> -->
-<!--                           <goal>single</goal> -->
-<!--                         </goals> -->
-<!--                         <configuration> -->
-<!--                           <descriptors> -->
-<!--                             <descriptor>${project.basedir}/src/main/assembly/repository-plus-session-layer-assembly.xml</descriptor> -->
-<!--                           </descriptors> -->
-<!--                         </configuration> -->
-<!--                     </execution> -->
                     <execution>
-                        <id>repository-distribution3</id>
+                        <id>repository-distribution2</id>
                         <phase>package</phase>
                         <goals>
                             <goal>single</goal>
