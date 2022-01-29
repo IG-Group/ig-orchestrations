@@ -16,7 +16,7 @@ The packaged assembly can be downloaded from the following locations:
 Each sub module contains the static Rules of Engagement Markdown documents and generates a Markdown document (called orchestration.md) from the orchestration. These documents are can be viewed without needing to download the packaged artifacts.
 
 * [WebSocket](./document-fixt/markdown/readme.md)
-* [FIX5.0SP2]((./document-websocket/markdown/readme.md))
+* [FIX5.0SP2](./document-websocket/markdown/readme.md)
 
 The roe markdown file is generated in the package phase but can be manually generated from the command line (enter either the document-fixt or document-websocket directory).
 
