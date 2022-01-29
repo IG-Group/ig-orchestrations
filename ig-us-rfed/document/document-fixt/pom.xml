@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.ig.orchestrations.us.rfed</groupId>
 		<artifactId>document</artifactId>
-		<version>0.4.11</version>
+		<version>0.4.12-SNAPSHOT</version>
     </parent>
 	<artifactId>document-fixt</artifactId>
 	<description>FIXT documentation module</description>
