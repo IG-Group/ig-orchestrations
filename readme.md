@@ -9,9 +9,11 @@ This project specialises the standard FIX orchestration to build IG Orchestratio
 
 ### IG US
 
-[WebSocket](https://github.com/IG-Group/ig-orchestrations/tree/master/ig-us-rfed/document/document-websocket/markdown/readme.md)
+* [IG US Document Parent](https://github.com/IG-Group/ig-orchestrations/tree/master/ig-us-rfed/document/readme.md)
 
-[FIX](https://github.com/IG-Group/ig-orchestrations/tree/master/ig-us-rfed/document/document-fixt/markdown/readme.md)
+    * [WebSocket](https://github.com/IG-Group/ig-orchestrations/tree/master/ig-us-rfed/document/document-websocket/markdown/readme.md)
+
+    * [FIX](https://github.com/IG-Group/ig-orchestrations/tree/master/ig-us-rfed/document/document-fixt/markdown/readme.md)
 
 ## Project Structure
 

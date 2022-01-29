@@ -1,6 +1,6 @@
 # IG US FIX API
 
-These are manually maintained documents for inclusion in the generated Rules of Engagement. See [here](../../readme.md) for the location of the packaged artifacts that include the full specification.
+These are manually maintained documents for inclusion in the generated Rules of Engagement. See **[Parent](../../readme.md)** for the location of the packaged artifacts that include the full specification and information about the build.
 
 * [Introduction](<01 FIXAPI Introduction.md>)
 * [PreTrade API](<02 FIXAPI PreTrade.md>)
