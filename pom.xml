@@ -60,7 +60,7 @@
 		<exec-maven-plugin-version>3.0.0</exec-maven-plugin-version>
 		<build-helper-maven-plugin-version>3.0.0</build-helper-maven-plugin-version>
 		<maven-source-plugin-version>3.0.1</maven-source-plugin-version>
-        <jaxb.version>2.3.3</jaxb.version>		
+        <jaxb.version>2.3.3</jaxb.version>
 	</properties>
 
 	<profiles>

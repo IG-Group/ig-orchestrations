@@ -64,27 +64,25 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>		
+            </plugin>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
+				<groupId>org.quickfixj</groupId>
+				<artifactId>repository-to-qfj-dictionary-maven-plugin</artifactId>
+				<version>${quickfixj.version}</version>
 				<executions>
 					<execution>
-						<phase>prepare-package</phase>
+						<phase>generate-resources</phase>
 						<goals>
-							<goal>java</goal>
+							<goal>dictionaryGeneration</goal>
 						</goals>
-						<id>fix50sp2</id>
+						<id>fixLatest</id>
 					</execution>
 				</executions>
 				<configuration>
-					<mainClass>io.fixprotocol.orchestra.quickfix.DataDictionaryGenerator</mainClass>
-					<arguments>
-						<argument>${project.build.directory}/dependency/repository/${orchestra.file}</argument>
-						<argument>${project.build.directory}/dictionary</argument>
-					</arguments>
+					<orchestration>${project.build.directory}/dependency/repository/${orchestra.file}</orchestration>
+					<outputDirectory>${project.build.directory}/dictionary</outputDirectory>
 				</configuration>
-			</plugin>
+			</plugin>            		
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
