@@ -135,7 +135,6 @@
 			<dependency>
 				<groupId>org.quickfixj</groupId>
 				<artifactId>quickfixj-orchestration</artifactId>
-				<classifier>resources</classifier>
 				<version>${quickfixj.version}</version>
 			</dependency>
 			<dependency>

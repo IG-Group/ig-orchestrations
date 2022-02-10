@@ -14,7 +14,6 @@
         <dependency>
             <groupId>org.quickfixj</groupId>
             <artifactId>quickfixj-orchestration</artifactId>
-            <classifier>resources</classifier>
         </dependency>
     </dependencies>
     <build>
@@ -34,7 +33,6 @@
                                 <artifactItem>
                                     <groupId>org.quickfixj</groupId>
                                     <artifactId>quickfixj-orchestration</artifactId>
-                                    <classifier>resources</classifier>
                                     <includes>**/Fix*.xml,**/Orchestra*.xml</includes>
                                     <outputDirectory>${project.build.directory}/dependency/repository</outputDirectory>
                                 </artifactItem>            
