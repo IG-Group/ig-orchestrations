@@ -75,22 +75,39 @@ IG supports the use of RefOrderID and RefOrderIDSource to identify Orders on whi
 ###	QuoteID
 IG supports the ‘Previously Quoted’ order type (D) for new orders. For orders of this type, clients must provide a QuoteID for the order. The QuoteID should be obtained from either the OfferID or BidID depending on the Side, from the Quote message on the Pre Trade API.
 
-### Orders Contingent on a Working Order
+### PegOffsetValue
+
+#### Examples : Orders Contingent on a Working Order
 
 PegOffsetValue is a signed value.
 If the working primary order is filled the value will be applied to the executed price to derive the prices of the contingent orders.
 
-|Working Order Side|Contingent Order Side|Primary (Working) Order Price|Order Type of Contingent Order|PegOffsetValue|Target Price|
+|Working Order Side|Contingent Order Side|Primary (Working) Order Price|Order Type of Contingent Order|PegOffsetValue|Resulting Price, if filled at 100|
 |---|---|---|---|---|---|
 |Buy|Sell|100|Stop order to stop losses|-15|100 – 15 = 85|
 |Buy|Sell|100|Limit order to take profit|25|100 + 25 = 125|
 |Sell|Buy|100|Stop order to stop losses|15|100 + 15 = 115|
 |Sell|Buy|100|Limit order to take profit|-25|100 – 25 = 75|
 
+#### Examples : Orders "Attached to" a Position
+
+|Position Side|Contingent Order Side|Position Opening Price|Current Market Price|Order Type of Contingent Order|Peg Offset Value|Resulting Price|
+|---|---|---|---|---|---|---|
+|Long|Sell|100|99|Stop order to stop losses|-15|100 – 15 = 85|
+|Long|Sell|100|145\*|Stop order to stop losses|30|100 + 30 = 130|
+|Long|Sell|100|99|Limit order to take profit|25|100 + 25 = 125|
+|Long|Sell|100|145\*|Limit order to take profit|60|100 + 60 = 160|
+|Short|Buy|100|101|Stop order to stop losses|15|100 + 15 = 115|
+|Short|Buy|100|60\*|Stop order to stop losses|-20|100 -20 = 80|
+|Short|Buy|100|101|Limit order to take profit|-25|100 – 25 = 75|
+|Short|Buy|100|60\*|Limit order to take profit|-50|100 – 50 = 50|
+
+\* These examples are of contingent orders placed on a position where the market has moved in favour of the position since the position was opened.
+
 ### Execution Restatement
 In some scenarios an Execution Restatement may be issued using an ExecutionReport.
 
-An open position may have one attached StopLoss order and/or one attached TakeProfit order for the security at any one time.
+An open position may have one attached order representing a StopLoss or TakeProfit order for the security at any one time.
 
 IG will automatically update the size of a StopLoss or TakeProfit order if the aggregate size of the position changes. In this case IG will send an order restatement for the StopLoss or TakeProfit with the updated OrderQty. This is custom behaviour of IG automatically adjusting StopLoss and TakeProfit orders.
 
