@@ -445,7 +445,7 @@
                                                                      
     <!-- MassStatusReqTypeCodeSet  -->
     <xsl:template
-        match="fixr:codeSets/fixr:codeSet[(@name='MassStatusReqTypeCodeSet')]/fixr:code[not(@name='StatusForOrdersForAPartyID')]"/>
+        match="fixr:codeSets/fixr:codeSet[(@name='MassStatusReqTypeCodeSet')]/fixr:code[not(@name='STATUS_FOR_ORDERS_FOR_A_PARTY_ID')]"/>
         
     <!-- OrdRejReasonCodeSet  -->
     <xsl:template
