@@ -42,7 +42,7 @@
 
 	<modules>
 		<module>orchestration</module>
-		<!-- module>document</module -->
+		<module>document</module>
 		<module>json-schema</module>
 		<module>java-binding</module>
 		<module>quickfix-dictionary</module>
