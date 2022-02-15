@@ -68,6 +68,7 @@
                                             or @id='22'
                                             or @id='31'
                                             or @id='32'
+                                            or @id='34'
                                             or @id='35'
                                             or @id='36'
                                             or @id='37'
@@ -151,6 +152,8 @@
                                             or @id='457'
                                             or @id='458'
                                             or @id='459'
+                                            or @id='553'
+                                            or @id='554'
                                             or @id='537'
                                             or @id='541'
                                             or @id='559'
@@ -319,11 +322,16 @@
                                         or @id='43'
                                         or @id='54'
                                         or @id='59'
+                                        or @id='98'
                                         or @id='102'
                                         or @id='103'
+                                        or @id='123'
+                                        or @id='141'
                                         or @id='150'
                                         or @id='263'
                                         or @id='325'
+                                        or @id='372'
+                                        or @id='373'
                                         or @id='378'
                                         or @id='380'
                                         or @id='394'
@@ -352,6 +360,7 @@
                                         or @id='1094'
                                         or @id='1128'
                                         or @id='1385'
+                                        or @id='1409'
                                         or @id='1644'
                                         or @id='1674'
                                         or @id='1585'
@@ -445,7 +454,7 @@
                                                                      
     <!-- MassStatusReqTypeCodeSet  -->
     <xsl:template
-        match="fixr:codeSets/fixr:codeSet[(@name='MassStatusReqTypeCodeSet')]/fixr:code[not(@name='StatusForOrdersForAPartyID')]"/>
+        match="fixr:codeSets/fixr:codeSet[(@name='MassStatusReqTypeCodeSet')]/fixr:code[not(@name='STATUS_FOR_ORDERS_FOR_A_PARTY_ID')]"/>
         
     <!-- OrdRejReasonCodeSet  -->
     <xsl:template
@@ -730,6 +739,7 @@
     <xsl:template
             match="fixr:components/fixr:component[@id='1024']/fixr:fieldRef[not(@id='8' or
                                                                                  @id='9' or
+                                                                                 @id='34' or
                                                                                  @id='35' or
                                                                                  @id='1128' or
                                                                                  @id='1129' or
@@ -739,10 +749,12 @@
                                                                                  @id='56' or
                                                                                  @id='91' or
                                                                                  @id='122' )]" />
-
     <!-- Header exclude HopGrp -->
     <xsl:template
         match="fixr:components/fixr:component[@id='1024']/fixr:groupRef[(@id='2085')]" />
+
+    <!-- Extract out standard trailer fields except checksum  -->
+    <xsl:template match="fixr:components/fixr:component[@id='1025']/fixr:fieldRef[not(@id='10')]" />
 
     <!-- PegInstructions Component -->
     <xsl:template

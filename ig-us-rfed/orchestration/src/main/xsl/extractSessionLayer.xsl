@@ -25,10 +25,10 @@
                              @msgType='A') ]" />
 
     <!-- filter out FIX Session Layer fields -->
-    <xsl:template match="fixr:fields/fixr:field[(
-                                                    @id='7'
+    <xsl:template match="fixr:fields/fixr:field[(   @id='7'
                                                     or @id='10'
                                                     or @id='16'
+                                                    or @id='34'
                                                     or @id='36'
                                                     or @id='45'
                                                     or @id='95'
@@ -67,9 +67,9 @@
     <!-- Extract standard header fields apart from the following tags -->
     <xsl:template
             match="fixr:components/fixr:component[@id='1024']/fixr:fieldRef[not(@id='35' or
-                                                                                 @id='1128' or
-                                                                                 @id='1129' or
-                                                                                 @id='52')]" />
+                                                                                @id='1128' or
+                                                                                @id='1129' or
+                                                                                @id='52')]" />
 
 
     <!-- Extract standard trailer component -->
