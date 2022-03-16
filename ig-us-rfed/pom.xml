@@ -37,13 +37,18 @@
 	</dependencyManagement>
 	<properties>
 		<target-package>com.ig.orchestrations.us.rfed</target-package>
+		<target-package-path>com/ig/orchestrations/us/rfed</target-package-path>
+		<target-package-version>v1</target-package-version>
+		<repository.fix.version>fix50sp2</repository.fix.version>
 		<orchestra.file>OrchestraEP255.xml</orchestra.file>
+		<generator.decimal>true</generator.decimal><!-- expressed in the the way QuickFIX/J expects -->
 	</properties>
 
 	<modules>
 		<module>orchestration</module>
 		<module>document</module>
 		<module>json-schema</module>
+		<module>avro</module>
 		<module>java-binding</module>
 		<module>quickfix-dictionary</module>
 	</modules>
