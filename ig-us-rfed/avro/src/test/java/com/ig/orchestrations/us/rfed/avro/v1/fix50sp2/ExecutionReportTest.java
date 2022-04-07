@@ -23,19 +23,15 @@ class ExecutionReportTest {
     String testFileName = "bid-responses.avro";
     File testFile = new File(testFileName);
 	
-	@BeforeEach 
-	public void before(){
-	}
-
 	@AfterEach
-	public void after() {// throws IOException{
+	public void after() {
 		if (this.testFile.exists()) {
 			this.testFile.delete();
 		}
 	}
 	
 	@Test
-	void test() throws IOException {
+	void testExecutionReportSerialisation() throws IOException {
 		SecAltIDGrpItem[] secAltIdGrpItems = new SecAltIDGrpItem[2];
 		secAltIdGrpItems[0] = ExecutionReportExample.createSecAltIDGrpItem("id-123");
 		secAltIdGrpItems[1] = ExecutionReportExample.createSecAltIDGrpItem("id-abc");
