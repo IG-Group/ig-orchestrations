@@ -10,7 +10,7 @@
     <fileSets>
         <fileSet>
             <directory>${project.build.directory}/generated-resources/avro</directory>
-            <outputDirectory>/</outputDirectory>
+            <outputDirectory>./</outputDirectory>
             <includes>
                 <include>**/**.avsc</include>
             </includes>

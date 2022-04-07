@@ -70,7 +70,7 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>io.fixprotocol.orchestra.avro</groupId>
+				<groupId>com.ig.orchestra.avro</groupId>
 				<artifactId>repository-to-avro-maven-plugin</artifactId>
 				<executions>
 					<execution>
@@ -84,7 +84,6 @@
 							<generateStringForDecimal>${generator.decimal}</generateStringForDecimal>
 							<namespace>${target-package}.${avro-qualifier}.${target-package-version}</namespace>
 							<appendRepoFixVersionToNamespace>true</appendRepoFixVersionToNamespace>
-							<!-- ormaliseComponents>true</normaliseComponents --><!-- uncomment to normalise components -->
 							<normaliseGroups>true</normaliseGroups>
 						</configuration>
 					</execution>

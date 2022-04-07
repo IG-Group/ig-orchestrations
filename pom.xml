@@ -54,7 +54,7 @@
 		<java.version>11</java.version>
 		<fix-orchestration-repository.version>1.5.1</fix-orchestration-repository.version><!-- the standard FIX orchestra repository -->
 		<fix-orchestra.version>1.6.10</fix-orchestra.version><!-- the FIX orchestra tools and utilities -->
-		<repository-to-avro.version>1.0.0-SNAPSHOT</repository-to-avro.version>
+		<repository-to-avro.version>1.0.5</repository-to-avro.version>
 		<avro.version>1.11.0</avro.version>
 		<io.fixprotocol.orchestra.repostory.version>1.6.8</io.fixprotocol.orchestra.repostory.version>
 		<junit.jupiter.version>5.6.1</junit.jupiter.version>
@@ -217,7 +217,7 @@
 			        </configuration>
 				</plugin>
 				<plugin>
-					<groupId>io.fixprotocol.orchestra.avro</groupId>
+					<groupId>com.ig.orchestra.avro</groupId>
 					<artifactId>repository-to-avro-maven-plugin</artifactId>
 					<version>${repository-to-avro.version}</version>
 				</plugin>
