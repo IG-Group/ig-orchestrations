@@ -7,4 +7,6 @@ The Avro schema artefact is published as a zip file with "schema" as a Maven co-
 * avro-\<version>\-schema.zip
 * avro-\<version>\.jar
 
-These Avro schemas represent the FIX messages which may be used to compose additional schemas.
+These Avro schemas correspond to the FIX messages. These schemas may be used to compose additional schemas.
+
+Please see [Fix Repository to Apache Avro](https://github.com/FIXTradingCommunity/fix-orchestra-avro) for additional information and examples.

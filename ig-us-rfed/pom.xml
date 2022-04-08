@@ -48,8 +48,8 @@
 		<module>orchestration</module>
 		<module>document</module>
 		<module>json-schema</module>
+		<module>json-java-binding</module>
 		<module>avro</module>
-		<module>java-binding</module>
 		<module>quickfix-dictionary</module>
 	</modules>
 	<build>

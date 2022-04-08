@@ -10,9 +10,6 @@
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>Parent project for IG Group Orchestra implementations</description>
 	<inceptionYear>2019</inceptionYear>
-	<prerequisites>
-		<maven>3.3.1</maven>
-	</prerequisites>
 
 	<organization>
 		<name>IG Group</name>
@@ -58,7 +55,9 @@
 		<avro.version>1.11.0</avro.version>
 		<io.fixprotocol.orchestra.repostory.version>1.6.8</io.fixprotocol.orchestra.repostory.version>
 		<junit.jupiter.version>5.6.1</junit.jupiter.version>
-		<maven-surefire-plugin-version>2.22.1</maven-surefire-plugin-version>	
+		<maven-surefire-plugin-version>2.22.1</maven-surefire-plugin-version>
+		<maven-source-plugin-version>3.0.1</maven-source-plugin-version>
+		<maven-javadoc-plugin-version>3.3.2</maven-javadoc-plugin-version>
 	</properties>
 
 	<profiles>
@@ -77,7 +76,6 @@
 							<autoReleaseAfterClose>true</autoReleaseAfterClose>
 						</configuration>
 					</plugin>
-
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
@@ -166,9 +164,33 @@
 	</dependencyManagement>
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>enforce-maven</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireMavenVersion>
+									<version>[3.6.3,)</version>
+								</requireMavenVersion>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 		<pluginManagement>
 			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-enforcer-plugin</artifactId>
+					<version>3.0.0</version>
+				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-release-plugin</artifactId>
@@ -235,6 +257,40 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-report-plugin</artifactId>
 					<version>${maven-surefire-plugin-version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${maven-source-plugin-version}</version>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<phase>package</phase>
+							<goals>
+								<goal>jar-no-fork</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${maven-javadoc-plugin-version}</version>
+					<executions>
+						<execution>
+							<id>attach-javadocs</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+							<configuration>
+								<detectOfflineLinks>false</detectOfflineLinks>
+								<includeDependencySources>false</includeDependencySources>
+								<additionalOptions>-Xdoclint:none</additionalOptions>
+								<maxmemory>3g</maxmemory>
+								<quiet>true</quiet>
+							</configuration>
+						</execution>
+					</executions>
 				</plugin>
 			</plugins>
 		</pluginManagement>
