@@ -54,8 +54,6 @@
 		<repository-to-avro.version>1.0.5</repository-to-avro.version>
 		<avro.version>1.11.0</avro.version>
 		<io.fixprotocol.orchestra.repostory.version>1.6.8</io.fixprotocol.orchestra.repostory.version>
-		<junit.jupiter.version>5.6.1</junit.jupiter.version>
-		<maven-surefire-plugin-version>2.22.1</maven-surefire-plugin-version>
 		<maven-source-plugin-version>3.0.1</maven-source-plugin-version>
 		<maven-javadoc-plugin-version>3.3.2</maven-javadoc-plugin-version>
 	</properties>
@@ -148,18 +146,6 @@
 				<artifactId>repository</artifactId>
 				<version>${io.fixprotocol.orchestra.repostory.version}</version>
 			</dependency>
-			<dependency>
-				<groupId>org.junit.jupiter</groupId>
-				<artifactId>junit-jupiter-engine</artifactId>
-				<version>${junit.jupiter.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.jupiter</groupId>
-				<artifactId>junit-jupiter-params</artifactId>
-				<version>${junit.jupiter.version}</version>
-				<scope>test</scope>
-			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<build>
@@ -250,16 +236,6 @@
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>${maven-surefire-plugin-version}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-report-plugin</artifactId>
-					<version>${maven-surefire-plugin-version}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-source-plugin</artifactId>
 					<version>${maven-source-plugin-version}</version>
 					<executions>
@@ -285,7 +261,7 @@
 							<configuration>
 								<detectOfflineLinks>false</detectOfflineLinks>
 								<includeDependencySources>false</includeDependencySources>
-								<additionalOptions>-Xdoclint:none</additionalOptions>
+								<doclint>none</doclint>
 								<maxmemory>3g</maxmemory>
 								<quiet>true</quiet>
 							</configuration>

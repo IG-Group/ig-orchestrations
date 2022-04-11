@@ -30,17 +30,7 @@
 			<artifactId>orchestration</artifactId>
 			<classifier>repository</classifier>
 			<version>${project.version}</version>
-			<type>zip</type>		
-		</dependency>		
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-params</artifactId>
-			<scope>test</scope>
+			<type>zip</type>
 		</dependency>
 	</dependencies>
 	<build>

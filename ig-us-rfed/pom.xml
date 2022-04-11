@@ -50,6 +50,7 @@
 		<module>json-schema</module>
 		<module>json-java-binding</module>
 		<module>avro</module>
+
 		<module>quickfix-dictionary</module>
 	</modules>
 	<build>
