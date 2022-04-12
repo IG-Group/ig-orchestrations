@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ig.orchestrations</groupId>
 	<artifactId>parent</artifactId>
@@ -8,9 +10,6 @@
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>Parent project for IG Group Orchestra implementations</description>
 	<inceptionYear>2019</inceptionYear>
-	<prerequisites>
-		<maven>3.3.1</maven>
-	</prerequisites>
 
 	<organization>
 		<name>IG Group</name>
@@ -30,12 +29,12 @@
 		</developer>
 	</developers>
 	<scm>
-		<!-- developerConnection has to be https otherwise the github action cannot push during a release-->
- 		<developerConnection>scm:git:https://github.com/IG-Group/ig-orchestrations</developerConnection> 
- 		<url>https://github.com/IG-Group/ig-orchestrations.git</url> 
-                <connection>scm:git:git://git@github.com/IG-Group/ig-orchestrations.git</connection>
-	  <tag>HEAD</tag>
-  </scm>
+		<!-- developerConnection has to be https otherwise the github action cannot push during a release -->
+		<developerConnection>scm:git:https://github.com/IG-Group/ig-orchestrations</developerConnection>
+		<url>https://github.com/IG-Group/ig-orchestrations.git</url>
+		<connection>scm:git:git://git@github.com/IG-Group/ig-orchestrations.git</connection>
+		<tag>HEAD</tag>
+	</scm>
 	<issueManagement>
 		<system>GitHub</system>
 		<url>https://github.com/IG-Group/ig-orchestrations/issues</url>
@@ -52,35 +51,39 @@
 		<java.version>11</java.version>
 		<fix-orchestration-repository.version>1.5.1</fix-orchestration-repository.version><!-- the standard FIX orchestra repository -->
 		<fix-orchestra.version>1.6.10</fix-orchestra.version><!-- the FIX orchestra tools and utilities -->
+		<repository-to-avro.version>1.0.5</repository-to-avro.version>
+		<avro.version>1.11.0</avro.version>
+		<io.fixprotocol.orchestra.repostory.version>1.6.8</io.fixprotocol.orchestra.repostory.version>
+		<maven-source-plugin-version>3.0.1</maven-source-plugin-version>
+		<maven-javadoc-plugin-version>3.3.2</maven-javadoc-plugin-version>
 	</properties>
-	
+
 	<profiles>
 		<profile>
 			<id>sonatype-oss-release</id>
 			<build>
 				<plugins>
-                            <plugin>
-			      <groupId>org.sonatype.plugins</groupId>
-			      <artifactId>nexus-staging-maven-plugin</artifactId>
-			      <version>1.6.7</version>
-			      <extensions>true</extensions>
-			      <configuration>
-			        <serverId>ossrh</serverId>
-			        <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-			        <autoReleaseAfterClose>true</autoReleaseAfterClose>
-			      </configuration>
-			    </plugin>
-
+					<plugin>
+						<groupId>org.sonatype.plugins</groupId>
+						<artifactId>nexus-staging-maven-plugin</artifactId>
+						<version>1.6.7</version>
+						<extensions>true</extensions>
+						<configuration>
+							<serverId>ossrh</serverId>
+							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+							<autoReleaseAfterClose>true</autoReleaseAfterClose>
+						</configuration>
+					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
 						<version>1.6</version>
 						<configuration>
-						  <gpgArguments>
-						      <arg>--pinentry-mode</arg>
-						      <arg>loopback</arg>
-						  </gpgArguments>
-						</configuration>						
+							<gpgArguments>
+								<arg>--pinentry-mode</arg>
+								<arg>loopback</arg>
+							</gpgArguments>
+						</configuration>
 						<executions>
 							<execution>
 								<id>sign-artifacts</id>
@@ -94,20 +97,20 @@
 				</plugins>
 			</build>
 			<distributionManagement>
-			  <snapshotRepository>
-			    <id>ossrh</id>
-			    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-			  </snapshotRepository>
-			  <repository>
-			    <id>ossrh</id>
-			    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-			  </repository>
+				<snapshotRepository>
+					<id>ossrh</id>
+					<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+				</snapshotRepository>
+				<repository>
+					<id>ossrh</id>
+					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+				</repository>
 			</distributionManagement>
 		</profile>
 	</profiles>
-	
+
 	<dependencyManagement>
-			<dependencies>
+		<dependencies>
 			<dependency>
 				<groupId>io.fixprotocol.orchestra</groupId>
 				<artifactId>repository-quickfix</artifactId>
@@ -117,30 +120,64 @@
 				<groupId>io.fixprotocol.orchestra</groupId>
 				<artifactId>orchestra2doc</artifactId>
 				<version>${fix-orchestra.version}</version>
-			</dependency>			
+			</dependency>
 			<dependency>
 				<groupId>io.fixprotocol.orchestrations</groupId>
 				<artifactId>fix-standard</artifactId>
 				<version>${fix-orchestration-repository.version}</version>
 			</dependency>
-	        <dependency>
-	            <groupId>org.apache.commons</groupId>
-	            <artifactId>commons-lang3</artifactId>
-	            <version>3.0</version>
-	        </dependency>
-	        <dependency>
-	            <groupId>com.fasterxml.jackson.core</groupId>
-	            <artifactId>jackson-databind</artifactId>
-	            <version>2.11.0</version>
-	        </dependency>  			
-        </dependencies>
-    </dependencyManagement>
-    <build>
-    	<plugins>
-    		    	</plugins>
-        <pluginManagement>
-            <plugins>
-	            <plugin>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.0</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>2.11.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.avro</groupId>
+				<artifactId>avro</artifactId>
+				<version>${avro.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.fixprotocol.orchestra</groupId>
+				<artifactId>repository</artifactId>
+				<version>${io.fixprotocol.orchestra.repostory.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>enforce-maven</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireMavenVersion>
+									<version>[3.6.3,)</version>
+								</requireMavenVersion>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-enforcer-plugin</artifactId>
+					<version>3.0.0</version>
+				</plugin>
+				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-release-plugin</artifactId>
 					<version>3.0.0-M1</version>
@@ -150,40 +187,88 @@
 					</configuration>
 				</plugin>
 				<plugin>
-				  <groupId>org.apache.maven.plugins</groupId>
-				  <artifactId>maven-deploy-plugin</artifactId>
-				  <version>3.0.0-M1</version>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>3.0.0-M1</version>
 				</plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-assembly-plugin</artifactId>
-                    <version>3.2.0</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>xml-maven-plugin</artifactId>
-                    <version>1.0.2</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>exec-maven-plugin</artifactId>
-                    <version>1.6.0</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.0.2</version>
-                </plugin>
-                <plugin>
-	                <groupId>org.jsonschema2pojo</groupId>
-	                <artifactId>jsonschema2pojo-maven-plugin</artifactId>
-	                <version>1.0.1</version>
-                </plugin>
-                <plugin>
-                	<groupId>org.apache.maven.plugins</groupId>
-		        	<artifactId>maven-compiler-plugin</artifactId>
-		        	<version>3.8.1</version>
-		        </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>3.2.0</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>xml-maven-plugin</artifactId>
+					<version>1.0.2</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>exec-maven-plugin</artifactId>
+					<version>1.6.0</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>3.0.2</version>
+				</plugin>
+				<plugin>
+					<groupId>org.jsonschema2pojo</groupId>
+					<artifactId>jsonschema2pojo-maven-plugin</artifactId>
+					<version>1.0.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.8.1</version>
+					<configuration>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+			        </configuration>
+				</plugin>
+				<plugin>
+					<groupId>com.ig.orchestra.avro</groupId>
+					<artifactId>repository-to-avro-maven-plugin</artifactId>
+					<version>${repository-to-avro.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.avro</groupId>
+					<artifactId>avro-maven-plugin</artifactId>
+					<version>${avro.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${maven-source-plugin-version}</version>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<phase>package</phase>
+							<goals>
+								<goal>jar-no-fork</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${maven-javadoc-plugin-version}</version>
+					<executions>
+						<execution>
+							<id>attach-javadocs</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+							<configuration>
+								<detectOfflineLinks>false</detectOfflineLinks>
+								<includeDependencySources>false</includeDependencySources>
+								<doclint>none</doclint>
+								<maxmemory>3g</maxmemory>
+								<quiet>true</quiet>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 </project>

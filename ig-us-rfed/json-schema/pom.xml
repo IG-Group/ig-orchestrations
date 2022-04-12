@@ -8,75 +8,72 @@
 	<artifactId>json-schema</artifactId>
 	<packaging>pom</packaging>
 	<name>${project.groupId}:${project.artifactId}</name>
-	
+	<properties>
+		<groovy-maven-plugin.version>2.1.1</groovy-maven-plugin.version>
+		<groovy.version>2.0.6</groovy.version>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>com.ig.orchestrations.us.rfed</groupId>
 			<artifactId>orchestration</artifactId>
 			<classifier>repository</classifier>
 			<version>${project.version}</version>
-			<type>zip</type>		
+			<type>zip</type>
 		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
-	          <groupId>org.codehaus.gmaven</groupId>
-	          <artifactId>groovy-maven-plugin</artifactId>
-	          <dependencies>
-	            <dependency>
-	              <groupId>org.codehaus.groovy</groupId>
-	              <artifactId>groovy-all</artifactId>
-	              <version>2.0.6</version>
-	            </dependency>
-	          </dependencies>
-	          <executions>
-	                <execution>
-	                    <id>setproperty</id>
-	                    <phase>initialize</phase>
-	                    <goals>
-	                        <goal>execute</goal>
-	                    </goals>
-	                    <configuration>
-	                    	<!-- project.basedir was used in following as project.build.directory does not seen to work -->
-	                        <source>
-	        project.properties['basedir-with-forward-slash']=project.basedir.getAbsolutePath().replace(File.separator,'/');
-	                        </source>
-	                    </configuration>
-	                </execution>
-	            </executions>
-        	</plugin>		
-            <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-dependency-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>unpack-dependencies</id>
-                            <phase>process-sources</phase>
-                            <goals>
-                                <goal>unpack</goal>
-                            </goals>
-                            <configuration>
-                                <artifactItems>
-                                    <artifactItem>
-										<groupId>${target-package}</groupId>
-										<artifactId>orchestration</artifactId>
-										<type>zip</type>
-										<classifier>repository</classifier>
-                                        <outputDirectory>${project.build.directory}/dependency/repository</outputDirectory>
-                                    </artifactItem>            
-<!--                                     <artifactItem> -->
-<!-- 										<groupId>io.fixprotocol.json</groupId> -->
-<!-- 										<artifactId>orchestra2json</artifactId> -->
-<!-- 										<classifier>xslt</classifier> -->
-<!-- 										<type>zip</type> -->
-<!--                                         <outputDirectory>${project.build.directory}/dependency/xslt</outputDirectory> -->
-<!--                                     </artifactItem>             -->
-                                </artifactItems>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>		
+				<groupId>org.codehaus.gmaven</groupId>
+				<artifactId>groovy-maven-plugin</artifactId>
+				<version>${groovy-maven-plugin.version}</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.codehaus.groovy</groupId>
+						<artifactId>groovy-all</artifactId>
+						<version>${groovy.version}</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>setproperty</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>execute</goal>
+						</goals>
+						<configuration>
+							<!-- project.basedir was used in following as project.build.directory does not seen to work -->
+							<source>
+								project.properties['basedir-with-forward-slash']=project.basedir.getAbsolutePath().replace(File.separator,'/');
+							</source>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>unpack-dependencies</id>
+						<phase>process-sources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>${target-package}</groupId>
+									<artifactId>orchestration</artifactId>
+									<type>zip</type>
+									<classifier>repository</classifier>
+									<outputDirectory>${project.build.directory}/dependency/repository</outputDirectory>
+								</artifactItem>            
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>xml-maven-plugin</artifactId>
@@ -89,12 +86,12 @@
 						<configuration>
 							<transformationSets>
 								<transformationSet>
-								    <dir>${project.build.directory}/dependency/repository</dir>
+									<dir>${project.build.directory}/dependency/repository</dir>
 									<stylesheet>${project.basedir}/src/main/xsl/AddJsonDatatypes.xslt</stylesheet>
  									<outputDir>${project.build.directory}/repositoryWithJsonDatatypes</outputDir>
 								</transformationSet>
 							</transformationSets>
-						</configuration>						
+						</configuration>
 					</execution>
 					<execution>
 						<id>orchestra2Json</id>
@@ -104,36 +101,33 @@
 						<configuration>
 							<transformationSets>
 								<transformationSet>
-<!-- 									<dir>${project.basedir}/src/test/resources</dir> -->
 									<dir>${project.build.directory}/repositoryWithJsonDatatypes</dir>
 									<stylesheet>${project.basedir}/src/main/xsl/OrchestraToJSONSchema.xslt</stylesheet>
-<!-- 									<stylesheet>${project.build.directory}/dependency/xslt/OrchestraToJSONSchema.xslt</stylesheet> -->
 									<parameters>
-						                <parameter>
-						                  <name>debug</name>
-						                  <value>false</value>
-						                </parameter>									
-						                <parameter>
-						                  <name>targetDirectory</name>
-						                  <value>file:///${basedir-with-forward-slash}/target/generated-resources/definitions</value>
-						                </parameter>
 										<parameter>
-						                  <name>javaPackageName</name>
-						                  <value>${target-package}</value>
+											<name>debug</name>
+											<value>false</value>
 										</parameter>
 										<parameter>
-						                  <name>useCodeNameForEnum</name>
-						                  <value>true</value>
-						                </parameter>
-						                <parameter>
-						                  <name>normaliseComponents</name>
-						                  <value>false</value>
-<!-- 						                  <value>true</value> -->
-						                </parameter>
-		              				</parameters>
+											<name>targetDirectory</name>
+											<value>file:///${basedir-with-forward-slash}/target/generated-resources/definitions</value>
+										</parameter>
+										<parameter>
+											<name>javaPackageName</name>
+											<value>${target-package}</value>
+										</parameter>
+										<parameter>
+											<name>useCodeNameForEnum</name>
+											<value>true</value>
+										</parameter>
+										<parameter>
+											<name>normaliseComponents</name>
+											<value>false</value>
+										</parameter>
+									</parameters>
 								</transformationSet>
 							</transformationSets>
-						</configuration>						
+						</configuration>
 					</execution>
 				</executions>
 				<dependencies>
@@ -145,23 +139,23 @@
 				</dependencies>
 			</plugin>
 			<plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <executions>
-                    <execution>
-	                    <id>json-distribution</id>
-	                    <phase>package</phase>
-	                        <goals>
-	                          <goal>single</goal>
-	                        </goals>
-	                        <configuration>
-	                          <descriptors>
-	                            <descriptor>${project.basedir}/src/main/assembly/json-schema-assembly.xml</descriptor>
-	                          </descriptors>
-	                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>    			
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>json-distribution</id>
+						<phase>package</phase>
+							<goals>
+								<goal>single</goal>
+							</goals>
+							<configuration>
+								<descriptors>
+									<descriptor>${project.basedir}/src/main/assembly/json-schema-assembly.xml</descriptor>
+								</descriptors>
+							</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 </project>
