@@ -38,5 +38,5 @@ jobs:
       # see https://blog.frankel.ch/github-actions-maven-releases/
       - id: install
         name: maven install
-        run: mvn --no-transfer-progress --batch-mode install
+        run: mvn -Djdk.xml.xpathExprGrpLimit=200 -Djdk.xml.xpathExprOpLimit=200 --no-transfer-progress --batch-mode install
         
