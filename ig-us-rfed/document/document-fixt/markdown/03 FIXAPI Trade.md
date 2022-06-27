@@ -24,18 +24,24 @@ Response messages supported are
 ##	High Message Rate Protection
 In order to protect both IG’s and our Clients’ systems, we have implemented a quota in the Trade API.
 For each session, we monitor the rate of incoming application messages (i.e. excluding admin messages such as heartbeats). If the number breaches a threshold subsequent orders will be rejected due to the quota breached.
-A quota is applied for each type of message. The available quota is refilled based on a refill interval and refill count.
+We are using a "greedy" algorithm to replenish quotas. A quota is applied for each type of message with an account id:
 
-|Message | Quota interval | Max Limit | Quota Refill Count (over interval) |
-|---|---|---|---|
-|NewOrderSingleMessage | 1m | 200 |100 |
-|NewOrderListMessage   | 1m | 100 |10 |
-|OrderCancelReplaceRequestMessage | 1m | 200 |100 |
-|OrderCancelRequestMessage | 1m | 200 |100 |
-|AccountSummaryReportRequestMessage | 1m | 10 |10 |
-|OrderStatusRequestMessage | 1m | 200 |10 |
-|OrderMassStatusRequestMessage | 1m | 10 |10 |
-|RequestForPositionsMessage | 1m | 10 |10 |
+| Quota interval | Max Limit | Burst interval | Burst limit |
+|----------------|-----------|----------------|-------------|
+| 1m             | 240       | 1s             | 20          |
+
+For brokers with multiple accounts we will use a session quota limit as well:
+
+| Message                            | Quota interval | Max Limit | Burst interval | Burst limit |
+|------------------------------------|----------------|-----------|----------------|-------------|
+| NewOrderSingleMessage              | 1m             | 10000     | 1s             | 500         |
+| NewOrderListMessage                | 1m             | 10000     | 1s             | 500         |
+| OrderCancelReplaceRequestMessage   | 1m             | 10000     | 1s             | 500         |
+| OrderCancelRequestMessage          | 1m             | 10000     | 1s             | 500         |
+| OrderStatusRequestMessage          | 1m             | 10000     | 1s             | 500         |
+| AccountSummaryReportRequestMessage | 1m             | 3500      | 1s             | 500         |
+| OrderMassStatusRequestMessage      | 1m             | 3500      | 1s             | 500         |
+| RequestForPositionsMessage         | 1m             | 3500      | 1s             | 500         |
 
 
 ## Fields and Constraints
