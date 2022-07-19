@@ -93,8 +93,22 @@ Account Summary Report Request messages must include client account details.  Th
 |---|---|---|
 |Standard Header|Y|MsgType = "AccountSummaryReportRequest"|
 |AccountSummaryReportRequestID|Y|Unique identifier of the request as assigned by institution.|
-|Parties Component Block|Y|An entry with Party Role "CustomerAccount" must be present. The PartyID for this entry will be the IG Account ID.|
+|Parties Component Block|Y|An entry with Party Role "CustomerAccount" must be present. The PartyID for this entry will be the IG Account ID. The PartyIDSrc field is not required or evaluated. |
 |SubscriptionRequestType|Y|<ul><li>"Snapshot" indicates that the requestor only wants a snapshot or the current status.</l1><li>"SnapshotAndUpdates" indicates that the requestor wants a snapshot (the current status) plus updates as the account balance changes.</li><li>"DisablePreviousSnapshot" indicates that the requestor wishes to cancel any pending snapshots or updates - this unsubscribes from account balance messages.</li></ul>|
+
+Example Request:
+```json
+{
+  "MsgType": "AccountSummaryReportRequest",
+  "SendingTime": "2022-07-08T14:32:49.405505",
+  "AccountSummaryReportRequestID": "accountReq+1657287169398",
+  "SubscriptionRequestType": "SnapshotAndUpdates",
+  "Parties": [
+    {"PartyRole": "CustomerAccount", "PartyID": "LUQS1"}
+  ],
+  "ApplVerID": "FIX50SP2"
+}
+```
 
 ### AccountSummaryReport
 
