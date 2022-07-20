@@ -160,7 +160,7 @@ The Request for Positions Ack message is returned by the holder of the position 
 |PosReqID|N|Unique identifier for the Request for Positions (AN) associated with this report. This field will not be provided if the report is unsolicited.|
 |PosReqResult|Y||
 |PosReqStatus|Y||
-|ClearingBusinessDate|N|The Clearing Business Date covered by this request – must be current date. Should follow the format YYYMMDD|
+|ClearingBusinessDate|N|The Clearing Business Date covered by this request – must be current date. Should follow the format YYYYMMDD|
 |Account|Y|IG Account ID. Will always be provided by IG|
 |TotalNumPosReports|Y| Total number of Position Reports being returned |
 |LastRptRequested|Y| Indicates whether this message is the last report message in response to a request message|                       
@@ -191,7 +191,7 @@ Note that field #OpenPrice is a custom field used by IG.
 |TotalNumPosReports|N|Total number of Position Reports being returned.|
 |PosReqResult|N|Will be present in a response to a Request for Positions Request.|
 |UnsolicitedIndicator|N|Indicates whether or not message is being sent as a result of a subscription request or not.<ul><li>'N'	=	Message is being sent as a result of a prior request</li><li>'Y'	=	Message is being sent unsolicited</li></ul>|
-|ClearingBusinessDate|Y|The Clearing Business Date covered by this request. Should follow the format YYYMMDD|
+|ClearingBusinessDate|Y|The Clearing Business Date covered by this request. Should follow the format YYYYMMDD|
 |Account|Y|Account ID|
 |SettlCurrency|N|Will be present on position closes|
 |MessageEventSource|N|Will be present to identify the event source for Position Changes. See MessageEventSource table below.|
