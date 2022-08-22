@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.ig.orchestrations.us.rfed</groupId>
 		<artifactId>document</artifactId>
-		<version>0.4.14-SNAPSHOT</version>
+		<version>0.4.14</version>
     </parent>
 	<artifactId>document-websocket</artifactId>
 	<description>Websocket documentation module</description>
