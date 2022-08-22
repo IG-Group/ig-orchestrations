@@ -120,17 +120,18 @@ The Account Summary Report message type is used by IG to provide account balance
 
 Request for Positions may be used to enquire about current open positions.
 
-SubscriptionRequestType is not evaluated, logged on trading sessions are implicitly subscribed to Position Reports for open positions.
+SubscriptionRequestType values supported are `SnapshotAndUpdates` and `DisablePreviousSnapshot`. 
+Use `SnapshotAndUpdates` to obtain a snapshot of open positions and to continue to automatically receive position updates and `DisablePreviousSnapshot` to unsubscribe.
 
-|Field/Component Name|Required?|Comments|
-|---|---|---|
-|Standard Header|Y|MsgType = "RequestForPositions"|
-|PosReqID|Y|Unique identifier for the request as assigned by the submitter.|
-|PosReqType|Y|Identifies the type of request. Must be "Positions".|
-|SubscriptionRequestType|Y|Used to subscribe/unsubscribe. Valid values: <ul><li>Snapshot</li><li>SnapshotAndUpdates</li><li>DisablePreviousSnapshot</li></ul>|
-|Account|Y|Account ID.|
-|ClearingBusinessDate|Y|The Clearing Business Date covered by this request – must be current date. Should follow the format YYYMMDD|
-|TransactTime|Y|Time this request was initiated/released by the trader or trading system. Millisecond resolution is optional. Outgoing messages from IG will include Milliseconds.|
+| Field/Component Name    | Required? | Comments                                                                                                                                                           |
+|-------------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Standard Header         | Y         | MsgType = "RequestForPositions"                                                                                                                                    |
+| PosReqID                | Y         | Unique identifier for the request as assigned by the submitter.                                                                                                    |
+| PosReqType              | Y         | Identifies the type of request. Must be "Positions".                                                                                                               |
+| SubscriptionRequestType | Y         | Used to subscribe/unsubscribe. Valid values: <li>SnapshotAndUpdates</li><li>DisablePreviousSnapshot</li></ul>                                                      |
+| Account                 | Y         | Account ID.                                                                                                                                                        |
+| ClearingBusinessDate    | Y         | The Clearing Business Date covered by this request – must be current date. Should follow the format YYYMMDD                                                        |
+| TransactTime            | Y         | Time this request was initiated/released by the trader or trading system. Millisecond resolution is optional. Outgoing messages from IG will include Milliseconds. |
 
 Response: (see FIX Position Report, Request for Positions Ack)
 

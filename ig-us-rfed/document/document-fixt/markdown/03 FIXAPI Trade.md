@@ -386,6 +386,8 @@ Unsubscribe to position updates:
 8=FIXT.1.1 | 9=175 | 35=AN | 34=5 | 49=IGClient | 52=20210330-12:54:40.227 | 56=IGUSTRADE | 1=LQ76J | 60=20210330-12:54:40.000 | 263=2 | 710=PosReqID+1617108879027 | 715=2021-03-30T12:54:40.000+0000 | 724=0 | 10=143 | 
 ```
 
+**Note:** Snapshot-only SubscriptionRequestType (263=0) is not supported and a subscription for snapshot and updates (263=1) should be used instead.
+
 ### Order Mass Status
 ```
 8=FIXT.1.1 | 9=119 | 35=AF | 34=8 | 49=IGClient | 52=20210330-12:52:30.610 | 56=IGUSTRADE | 1=LQ76J | 584=MassStatusReqID2+1617108750610 | 585=8 | 10=119 | 
