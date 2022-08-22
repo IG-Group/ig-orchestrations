@@ -42,7 +42,7 @@ jobs:
         name: release prepare
         env:
           MAVEN_GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
-        run: MAVEN_OPTS="-Djdk.xml.xpathExprGrpLimit=1000 -Djdk.xml.xpathExprOpLimit=1000 -Djdk.xml.xpathTotalOpLimit=1000" mvn --no-transfer-progress --batch-mode release:prepare
+        run: MAVEN_OPTS="-Djdk.xml.xpathExprGrpLimit=1000 -Djdk.xml.xpathExprOpLimit=1000" mvn --no-transfer-progress --batch-mode release:prepare
       - id: release-perform
         name: release perform
         env:
@@ -50,7 +50,7 @@ jobs:
           MAVEN_CENTRAL_TOKEN: ${{ secrets.OSSRH_TOKEN }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
         run: |
-            MAVEN_OPTS="-Djdk.xml.xpathExprGrpLimit=1000 -Djdk.xml.xpathExprOpLimit=1000 -Djdk.xml.xpathTotalOpLimit=1000" mvn \
+            MAVEN_OPTS="-Djdk.xml.xpathExprGrpLimit=1000 -Djdk.xml.xpathExprOpLimit=1000" mvn \
             --no-transfer-progress \
             --batch-mode \
             release:perform
