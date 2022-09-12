@@ -10,7 +10,7 @@ Fields and Messages supported by the implementation are documented. Messages tha
 
 The HistoricPrice WebSocket API is not based on FIX Protocol Application Messages.
 
-These WebSocket APIs also employ the Point-to-Point Session Protocol defined by the emerging [FIX Performanance Session Layer](https://github.com/FIXTradingCommunity/fixp-specification) (FIXP).
+These WebSocket APIs also employ the Point-to-Point Session Protocol defined by the emerging [FIX Performance Session Layer](https://github.com/FIXTradingCommunity/fixp-specification) (FIXP).
 The use of this protocol provides Session Negotiation including authentication, Session Establishment and Heartbeats. Please refer to the FIXP notes on the Point-to-Point protocol and WebSocket usage.
 
 The FIXP Flow Type supported by this implementation is "Unsequenced".

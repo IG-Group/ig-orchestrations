@@ -191,16 +191,16 @@ Example for a Quote Request message:
 ```json
 {
   "MsgType": "QuoteRequest",
-  "ApplVerID":"FIX50SP2",
+  "ApplVerID": "FIX50SP2",
   "CstmApplVerID": "IGUS/PreTrade/V1",
   "SendingTime": "2021-03-25T15:44:52.644",
-  "QuoteReqID":"12345",
-  "SubscriptionRequestType":"SnapshotAndUpdates",
-  "QuotReqGrp" : [
+  "QuoteReqID": "12345",
+  "SubscriptionRequestType": "SnapshotAndUpdates",
+  "QuotReqGrp": [
     {
-        "Symbol":"GBPUSD",
-    	"SecurityID":"CS.D.GBPUSD.CZD.IP",
-    	"SecurityIDSource":"MarketplaceAssignedIdentifier"
+      "Symbol": "GBPUSD",
+      "SecurityID": "CS.D.GBPUSD.CZD.IP",
+      "SecurityIDSource": "MarketplaceAssignedIdentifier"
     }
   ]
 }
