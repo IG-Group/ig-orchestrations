@@ -20,8 +20,8 @@ wss://iguspretrade.ig.com/pretrade
 
 |Field/Component Name|Required?|Comments|
 |---|---|---|
-|StartDate|y|Start Date of the reported interval. In format yyyyMMdd-HH:mm:ss.SSS in London/Europe timezone|
-|EndDate|c|End Date of the reported interval, present on Historic Candles. In format yyyyMMdd-HH:mm:ss.SSS in London/Europe timezone|
+|StartDate|y|Start Date of the reported interval. In format yyyy-MM-dd'T'HH:mm:ss.SSS in UTC timezone|
+|EndDate|c|End Date of the reported interval, present on Historic Candles. In format yyyy-MM-dd'T'HH:mm:ss.SSS in UTC timezone|
 |First|y|First Price in the reported interval|
 |Last|y|Last Price in the reported interval|
 |High|y|Highest Price in the reported interval|
@@ -74,7 +74,7 @@ Example Message
   "ReqID": "2",
   "Interval": "FIVE_MIN",
   "CandleData": {
-    "StartDate": "20210809-18:25:00.000",
+    "StartDate": "2021-08-09T18:25:00.000",
     "First": {
       "Bid": 1.3847,
       "Offer": 1.3848
@@ -126,8 +126,19 @@ Example Message
 |SecurityID|y|Required by IG, Marketplace Assigned Identifier for the security as provided by IG|
 |SecurityIDSource|y|Required by IG, distinguishes the source of the SecurityID. Must be "MarketplaceAssignedIdentifier".|
 |Interval|y|The requested interval for the candle data. Valid intervals are: <ul><li>SECOND</li><li>FIVE_MIN</li><li>FIFTEEN_MIN</li><li>HOUR</li><li>DAY</li></ul>|
-|StartDate|y|The start date of the interval. Must be in format yyyyMMdd-HH:mm:ss.SSS in UTC timezone|
-|EndDate|y|The end date of the interval. Must be in format yyyyMMdd-HH:mm:ss.SSS in UTC timezone|
+|StartDate|y|The start date of the interval. Must be in format yyyy-MM-dd'T'HH:mm:ss.SSS in UTC timezone|
+|EndDate|y|The end date of the interval. Must be in format yyyy-MM-dd'T'HH:mm:ss.SSS in UTC timezone|
+
+The maximum number of data points that can be requested is 10,000.
+
+| Interval        | Maximum History Available | Maximum Time Period since Current Time       |
+|-----------------|---------------------------|----------------------------------------------|
+| 1sec            | 2 days                    | 166 minutes                                  |
+| 1min            | 42 days                   | 166 hours                                    |
+| 5min            | 365 days                  | 833 hours                                    |
+| 15min           | 365 days                  | 2500 hours                                   |
+| 1hour           | 365 days                  | 10000 hours                                  |
+| 1day/week/month | unlimited                 | 240000 hours / 1680000 hours / 7300000 hours | 
 
 Message Example:
 
@@ -143,8 +154,8 @@ This requests high, low, first and last bid and offer prices in 5 minute resolut
   "SecurityID":"CS.D.GBPUSD.CZD.IP",
   "SecurityIDSource":"MarketplaceAssignedIdentifier",
   "Interval":"FIVE_MIN",
-  "StartDate":"20210809-09:00:00.000",
-  "EndDate":"20210809-12:00:00.000"
+  "StartDate":"2021-08-09T09:00:00.000",
+  "EndDate":"2021-08-09T12:00:00.000"
 }
 ```
 
@@ -179,16 +190,10 @@ Message Example:
   "SecurityID":"CS.D.GBPUSD.CZD.IP",
   "SecurityIDSource":"MarketplaceAssignedIdentifier",
   "CandleData":[
-    {"StartDate":"20210809-10:00:00.000","EndDate":"20210809-10:00:00.000","First":{"Bid":1.38569,"Offer":1.38579},"Last":{"Bid":1.38585,"Offer":1.38595},"High":{"Bid":1.38588,"Offer":1.38598},"Low":{"Bid":1.38552,"Offer":1.38564}},
-    {"StartDate":"20210809-10:00:00.000","EndDate":"20210809-10:05:00.000","First":{"Bid":1.38582,"Offer":1.38598},"Last":{"Bid":1.38725,"Offer":1.38741},"High":{"Bid":1.38729,"Offer":1.38742},"Low":{"Bid":1.3858,"Offer":1.38594}},
+    {"StartDate":"2021-08-09T10:00:00.000","EndDate":"2021-08-09T10:00:00.000","First":{"Bid":1.38569,"Offer":1.38579},"Last":{"Bid":1.38585,"Offer":1.38595},"High":{"Bid":1.38588,"Offer":1.38598},"Low":{"Bid":1.38552,"Offer":1.38564}},
+    {"StartDate":"2021-08-09T10:00:00.000","EndDate":"2021-08-09T10:05:00.000","First":{"Bid":1.38582,"Offer":1.38598},"Last":{"Bid":1.38725,"Offer":1.38741},"High":{"Bid":1.38729,"Offer":1.38742},"Low":{"Bid":1.3858,"Offer":1.38594}},
     ...
-    {"StartDate":"20210809-12:55:00.000","EndDate":"20210809-13:00:00.000","First":{"Bid":1.38744,"Offer":1.3876},"Last":{"Bid":1.38774,"Offer":1.38784},"High":{"Bid":1.38804,"Offer":1.38815},"Low":{"Bid":1.38734,"Offer":1.38744}}
-  ],
-  "LastMessage" : true,
-  "Allowance": {
-          "RemainingAllowance": 9970,
-          "TotalAllowance": 10000,
-          "AllowanceExpiry": 604225
-  }
+    {"StartDate":"2021-08-09T12:55:00.000","EndDate":"2021-08-09T13:00:00.000","First":{"Bid":1.38744,"Offer":1.3876},"Last":{"Bid":1.38774,"Offer":1.38784},"High":{"Bid":1.38804,"Offer":1.38815},"Low":{"Bid":1.38734,"Offer":1.38744}}
+  ]
 }
 ```

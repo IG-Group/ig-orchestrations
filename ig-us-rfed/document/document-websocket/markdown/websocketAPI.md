@@ -74,7 +74,7 @@ OAuth 2 is used for the initial HTTP request and the OAUTH token must be used in
     "MsgType": "NewOrderSingle",
     "ApplVerID":"FIX50SP2",
     "CstmApplVerID": "IGUS/Trade/V1",
-    "SendingTime": "20190802-21:14:38.717",
+    "SendingTime": "2019-08-02T21:14:38.717",
     ...
 }
 ```
@@ -201,3 +201,34 @@ For this purpose, IG has defined additional InstrAttribTypes :
 |---|---|---|
 |InstrAttrType|C|Required if the Group is present. Type of instrument attribute|
 |InstrAttrValue|C|Required if the Group is present. Value of instrument attribute, if applicable|
+
+
+## DateTime Formats
+The Websocket API supports the following datetime formats:
+
+### Time
+|Format|Example|
+|---|---|
+|yyyy-MM-dd'T'HH:mm:ss.SSSX|2023-01-10T12:00:00.000+0000|
+|yyyy-MM-dd'T'HH:mm:ss.SSS|2023-01-10T12:00:00.000|
+|EEE, dd MMM yyyy HH:mm:ss zzz|Tue, 10 Jan 2023 12:00:00 +01:00|
+
+### Date
+|Format|Example|
+|---|---|
+|yyyy-MM-dd|2023-01-10|
+
+### BusinessRejectMessage
+In the event of an invalid date time value or message, a business message reject will be sent.
+
+```json
+{
+  "RefMsgType": "SecurityListRequest",
+  "BusinessRejectRefID": "listReq+1616687620989",
+  "BusinessRejectReason": "Other",
+  "Text": "rejecting message (first 200 chars): {\"MsgType\":\"SecurityListRequest\",\"SendingTime\":\"20230110-12:00:00\",\"SecurityReqID\":\"listReq+1616687620989\",\"SubscriptionRequestType\":\"Snapshot\",\"ApplVerID\":\"FIX50SP2\",\"SecAltIDGrp\":[],\"SecurityListReq",
+  "MsgType": "BusinessMessageReject",
+  "ApplVerID": "FIX50SP2",
+  "SendingTime": "2023-01-18T16:13:06.242"
+}
+```

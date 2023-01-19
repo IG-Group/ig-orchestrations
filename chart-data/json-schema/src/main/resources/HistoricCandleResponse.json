@@ -30,24 +30,6 @@
       "$ref": "./Interval.json",
       "comment": "for some reason this gets inlined. I do not know why"
     },
-    "LastMessage": {
-      "type": "boolean"
-    },
-    "Allowance": {
-      "type": "object",
-      "id": "Allowance",
-      "properties": {
-        "RemainingAllowance": {
-          "type": "integer"
-        },
-        "TotalAllowance": {
-          "type": "integer"
-        },
-        "AllowanceExpiry": {
-          "type": "integer"
-        }
-      }
-    },
     "SendingTime": {
       "type": "string"
     },

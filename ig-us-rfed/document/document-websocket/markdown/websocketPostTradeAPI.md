@@ -100,7 +100,7 @@ Example Request:
 ```json
 {
   "MsgType": "AccountSummaryReportRequest",
-  "SendingTime": "2022-07-08T14:32:49.405505",
+  "SendingTime": "2022-07-08T14:32:49.405",
   "AccountSummaryReportRequestID": "accountReq+1657287169398",
   "SubscriptionRequestType": "SnapshotAndUpdates",
   "Parties": [

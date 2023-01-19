@@ -207,19 +207,19 @@ To place a single order for a single instrument, send a NewOrderSingle message:
   "MsgType": "NewOrderSingle",
   "ApplVerID": "FIX50SP2",
   "CstmApplVerID": "IGUS/Trade/V1",
-  "SendingTime": "20190802-21:14:38.717",
+  "SendingTime": "2019-08-02T21:14:38.717",
   "ClOrdID": "12345",
   "Account": "XXXXX",
   "SecurityID": "CS.D.GBPUSD.CZD.IP",
   "SecurityIDSource": "MarketplaceAssignedIdentifier",
   "Side": "Buy",
-  "TransactTime": "20190802-21:14:38.717",
+  "TransactTime": "2019-08-02T21:14:38.717",
   "OrderQty": "6",
-  "OrdTyp": "2",
+  "OrdType": "Limit",
   "Price": "1.15",
   "Currency": "USD",
   "TimeInForce": "GoodTillDate",
-  "ExpireTime": "20190802-17:00:00.000"
+  "ExpireTime": "2019-08-02T17:00:00.000"
 }
 ```
 
@@ -233,7 +233,7 @@ The response will be an ExecutionReport message:
   "MsgType": "ExecutionReport",
   "ApplVerID": "FIX50SP2",
   "CstmApplVerID": "IGUS/Trade/V1",
-  "SendingTime": "20190802-21:14:40.001",
+  "SendingTime": "2019-08-02T21:14:40.001",
   "OrderID": "DIAAAAJ63W4MKA4",
   "ClOrdID": "12345",
   "ExecID": "0997234657176",
@@ -244,17 +244,17 @@ The response will be an ExecutionReport message:
   "SecurityIDSource": "MarketplaceAssignedIdentifier",
   "Side": "Buy",
   "OrderQty": "6",
-  "OrdTyp": "Limit",
+  "OrdType": "Limit",
   "Price": "1.15",
   "TimeInForce": "GoodTillDate",
-  "ExpireTime": "20190802-17:00:00.000",
+  "ExpireTime": "2019-08-02T17:00:00.000",
   "Currency": "USD",
   "LastQty": "6",
   "LastPx": "1.15",
   "LeavesQty": "0",
   "CumQty": "6",
   "AvgPx": "1.15",
-  "TransactTime": "20190802-21:14:38.717"
+  "TransactTime": "2019-08-02T21:14:38.717"
 }
 ```
 
@@ -267,7 +267,7 @@ To cancel an order, send an OrderCancelRequest message:
   "Side": "Buy",
   "Account": "XXXXX",
   "OrderQty": "1",
-  "SendingTime": "2022-08-04T16:59:53.026534200",
+  "SendingTime": "2022-08-04T16:59:53.026",
   "OrdType": "Limit",
   "ApplVerID": "FIX50SP2",
   "ClOrdID": "orderCancelReq1+1659628793026",
@@ -275,7 +275,7 @@ To cancel an order, send an OrderCancelRequest message:
   "SecurityIDSource": "MarketplaceAssignedIdentifier",
   "MsgType": "OrderCancelRequest",
   "OrderID": "ORAAAAKGQFL2VAG",
-  "TransactTime": "2022-08-04T15:59:53.000+0000"
+  "TransactTime": "2022-08-04T15:59:53.000"
 }
 ```
 
@@ -308,7 +308,7 @@ The response will be an ExecutionReport message:
   "LeavesQty":1,
   "CumQty":0,
   "AvgPx":0,
-  "TransactTime": "2022-08-04T15:59:53.045+0000",
+  "TransactTime": "2022-08-04T15:59:53.045",
   "MsgType": "ExecutionReport",
   "ApplVerID": "FIX50SP2",
   "SendingTime": "2022-08-04T15:59:53.056"
@@ -320,14 +320,14 @@ To request a list of open positions and subscribe to position updates, send a Re
 ```json
 {
   "Account": "XXXXX",
-  "SendingTime": "2022-08-04T16:59:16.750469400",
+  "SendingTime": "2022-08-04T16:59:16.750",
   "PosReqID": "PosReqID+1659628756744",
   "SubscriptionRequestType": "SnapshotAndUpdates",
   "ApplVerID": "FIX50SP2",
-  "ClearingBusinessDate": "2022-08-04T15:59:16.000+0000",
+  "ClearingBusinessDate": "2022-08-04T15:59:16.000",
   "MsgType": "RequestForPositions",
   "PosReqType": "Positions",
-  "TransactTime": "2022-08-04T15:59:16.000+0000"
+  "TransactTime": "2022-08-04T15:59:16.000"
 }
 ```
 
@@ -359,7 +359,7 @@ PositionReport messages will be delivered for each open position:
   "LastRptRequested": "NotLastMessage",
   "PosReqResult": "ValidRequest",
   "UnsolicitedIndicator": "MessageIsBeingSentAsAResultOfAPriorRequest",
-  "ClearingBusinessDate": "20220803",
+  "ClearingBusinessDate": "2022-08-03",
   "Account": "XXXXX",
   "SecurityID": "CS.D.GBPUSD.CZD.IP",
   "SecurityIDSource": "MarketplaceAssignedIdentifier",
@@ -384,13 +384,13 @@ Finally, send a RequestForPositions message of type DisablePreviousSnapshot to u
 ```json
 {
   "Account": "XXXXX",
-  "SendingTime": "2022-08-04T16:59:17.988074",
+  "SendingTime": "2022-08-04T16:59:17",
   "PosReqID": "PosReqID+1659628756744",
   "SubscriptionRequestType": "DisablePreviousSnapshot",
   "ApplVerID": "FIX50SP2",
-  "ClearingBusinessDate": "2022-08-04T15:59:17.000+0000",
+  "ClearingBusinessDate": "2022-08-04T15:59:17.000",
   "MsgType": "RequestForPositions",
   "PosReqType": "Positions",
-  "TransactTime": "2022-08-04T15:59:17.000+0000"
+  "TransactTime": "2022-08-04T15:59:17.000"
 }
  ```

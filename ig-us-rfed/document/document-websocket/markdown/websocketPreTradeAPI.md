@@ -318,7 +318,7 @@ For QuoteRequestReject messages this Group contains the Instrument Component.
   "MsgType": "QuoteRequestReject",
   "ApplVerID":"FIX50SP2",
   "CstmApplVerID": "IGUS/PreTrade/V1",
-  "SendingTime": "20190802-21:14:38.717",
+  "SendingTime": "2019-08-02T21:14:38.717",
   "QuoteReqID":"12345",
   "QuoteRequestRejectReason":"UnknownSymbol",
   "QuotReqRjctGrp":[

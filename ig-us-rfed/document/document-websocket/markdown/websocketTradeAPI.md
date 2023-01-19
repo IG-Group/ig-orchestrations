@@ -151,19 +151,19 @@ Example for a “NewOrderSingle” message:
   "MsgType": "NewOrderSingle",
   "ApplVerID":"FIX50SP2",
   "CstmApplVerID": "IGUS/Trade/V1",
-  "SendingTime": "20190802-21:14:38.717",
+  "SendingTime": "2019-08-02T21:14:38.717",
   "ClOrdID":"12345",
   "Account":"PDKKL",
   "SecurityID":"CS.D.GBPUSD.CZD.IP",
   "SecurityIDSource":"MarketplaceAssignedIdentifier",
   "Side":"Buy",
-  "TransactTime":"20190802-21:14:38.717",
+  "TransactTime":"2019-08-02T21:14:38.717",
   "OrderQty":"6",
-  "OrdTyp":"2",
+  "OrdType":"Limit",
   "Price":"34.444",
   "Currency":"USD",
   "TimeInForce":"GoodTillDate",
-  "ExpireTime":"20190802-17:00:00.000"
+  "ExpireTime":"2019-08-02T17:00:00.000"
 }
 ```
 
@@ -319,7 +319,7 @@ Full Fill of an order to Buy 2 contracts of GBP/USD
   "MsgType": "ExecutionReport",
   "ApplVerID":"FIX50SP2",
   "CstmApplVerID": "IGUS/Trade/V1",
-  "SendingTime": "20190802-21:14:40.001",
+  "SendingTime": "2019-08-02T21:14:40.001",
   "OrderID":"12345",
   "ClOrdID":"12345",
   "ExecID":"0997234657176",
@@ -330,17 +330,17 @@ Full Fill of an order to Buy 2 contracts of GBP/USD
   "SecurityIDSource":"MarketplaceAssignedIdentifier",
   "Side":"Buy",
   "OrderQty":"6",
-  "OrdTyp":"Limit",
+  "OrdType":"Limit",
   "Price":"35.000",
   "TimeInForce":"GoodTillDate",
-  "ExpireTime":"20190802-17:00:00.000",
+  "ExpireTime":"2019-08-02T17:00:00.000",
   "Currency":"USD",
   "LastQty":"6",
   "LastPx":"35.000",
   "LeavesQty":"0",
   "CumQty":"6",
   "AvgPx":"35.000",
-  "TransactTime":"20190802-21:14:38.717"
+  "TransactTime":"2019-08-02T21:14:38.717"
 }
 ```
 
