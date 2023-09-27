@@ -388,6 +388,28 @@ Unsubscribe to position updates:
 
 **Note:** Snapshot-only SubscriptionRequestType (263=0) is not supported and a subscription for snapshot and updates (263=1) should be used instead.
 
+### Opposing Order closes positions and resulting Position Report indicates P&L realisation
+**Note** This scenario assumes that the client is already subscribed for positions, [See](#subscribe-to-position-reports)
+```
+Initial Position showing total LongQty(704) set to 2
+8=FIXT.1.1 | 9=266 | 35=AP | 34=6 | 49=IGUSTRADE | 52=20231004-15:49:33.879 | 56=IGClient | 1=TVFGJ | 15=GBP | 22=M | 48=CS.D.EURGBP.CZD.IP | 325=N | 710=PosReqID1+1696434570345 | 715=20231004 | 721=PRAAAALZMZFEVAV | 731=2 | 2618=OPAAAALZMZFEUAV | 20104=0.86578 | 702=2 | 703=TOT | 704=2 | 706=1 | 703=DLT | 704=2 | 706=1 | 10=105
+
+Opposing order to close the position
+8=FIXT.1.1 | 9=186 | 35=D | 34=4 | 49=IGClient | 52=20231004-15:49:40.317 | 56=IGUSTRADE | 1=TVFGJ | 11=marketOrder2+1696434580315 | 15=GBP | 22=M | 38=2 | 40=1 | 48=CS.D.EURGBP.CZD.IP | 54=2 | 59=4 | 60=20231004-15:49:40.000 | 10=227
+
+Position Report after opposing sell order - contains PositionAmountData group with tag 708 indicating P&L realisation. PositionQty component is supplied with two NoPosAmt (702) groups. The delta to the position long quantity is stated as -2 and the total position long quantity is now 0.
+PositionAmountData group is indicated by repeating group with tag 753 - indicates the number of position amount entries. There will be only one repeating group and will contain the actual profit and loss realization to the account.
+8=FIXT.1.1 | 9=344 | 35=AP | 34=9 | 49=IGUSTRADE | 52=20231004-15:49:40.439 | 56=IGClient | 1=TVFGJ | 15=GBP | 22=M | 48=CS.D.EURGBP.CZD.IP | 120=GBP | 155=1.215135 | 325=N | 710=PosReqID1+1696434570345 | 715=20231004 | 721=PRAAAALZMZFE4AV | 730=0.86562 | 731=1 | 2618=OPAAAALZMZFEKAV | 20104=0.86593 | 702=2 | 703=TOT | 704=0 | 706=1 | 703=DLT | 704=-2 | 706=1 | 753=1 | 707=SETL | 708=-75.33837000000 | 1055=USD | 10=145
+
+Optional fields SettlCurrency(120) and SettlCurrFxRate(155) are populated because the position currency(15=GBP) is different to the account currency(1055=USD).
+
+The P&L can be derived using the following forumula
+PosAmt(708) = (SettlPrice - OpenPrice) * |NetDeltaQty| * SettlCurrFxRate * ContractMultiplier
+            = (0.86562 - 0.86593) * 2 * 1.215135 * 100000
+            = -75.33837
+
+```
+
 ### Order Mass Status
 ```
 8=FIXT.1.1 | 9=119 | 35=AF | 34=8 | 49=IGClient | 52=20210330-12:52:30.610 | 56=IGUSTRADE | 1=LQ76J | 584=MassStatusReqID2+1617108750610 | 585=8 | 10=119 | 
