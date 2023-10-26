@@ -30,10 +30,12 @@
 		"$ref" : "./Interval.json"
     },
     "StartDate" : {
-      "type" : "date"
+      "type" : "string",
+      "format" : "date-time"
     },
     "EndDate" : {
-      "type" : "date"
+      "type" : "string",
+      "format" : "date-time"
     },
     "SendingTime" : {
       "type" : "string"

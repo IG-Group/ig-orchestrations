@@ -3,10 +3,12 @@
   "id" : "CandleData",
   "properties" : {
     "StartDate" : {
-      "type" : "date"
+      "type" : "string",
+      "format" : "date-time"
     },
     "EndDate" : {
-      "type" : "date"
+      "type" : "string",
+      "format" : "date-time"
     },
     "First" :{
 	  "type" : "object",
