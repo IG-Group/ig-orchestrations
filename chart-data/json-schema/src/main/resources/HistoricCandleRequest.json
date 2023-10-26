@@ -13,10 +13,12 @@
       "type" : "string"
     },
     "ReqID" : {
-      "type" : "string"
+      "type" : "string",
+      "required": true
     },
     "Symbol" : {
-      "type" : "string"
+      "type" : "string",
+      "required": true
     },
     "SecurityID": {
       "type": "string",
@@ -27,15 +29,18 @@
       "required": true
     },
     "Interval" : {
-		"$ref" : "./Interval.json"
+      "$ref" : "./Interval.json",
+      "required": true
     },
     "StartDate" : {
       "type" : "string",
-      "format" : "date-time"
+      "format" : "date-time",
+      "required": true
     },
     "EndDate" : {
       "type" : "string",
-      "format" : "date-time"
+      "format" : "date-time",
+      "required": true
     },
     "SendingTime" : {
       "type" : "string"
