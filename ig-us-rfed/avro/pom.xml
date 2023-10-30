@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.ig.orchestrations.us.rfed</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.4.23-SNAPSHOT</version>
+		<version>0.4.23</version>
 	</parent>
 
 	<artifactId>avro</artifactId>
