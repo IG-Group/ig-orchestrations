@@ -50,7 +50,7 @@
 		<fix-orchestration-repository.version>1.5.1</fix-orchestration-repository.version><!-- the standard FIX orchestra repository -->
 		<fix-orchestra.version>1.6.10</fix-orchestra.version><!-- the FIX orchestra tools and utilities -->
 		<repository-to-avro.version>1.0.5</repository-to-avro.version>
-		<avro.version>1.11.0</avro.version>
+		<avro.version>1.11.3</avro.version>
 		<io.fixprotocol.orchestra.repostory.version>1.6.8</io.fixprotocol.orchestra.repostory.version>
 		<maven-source-plugin-version>3.0.1</maven-source-plugin-version>
 		<maven-javadoc-plugin-version>3.3.2</maven-javadoc-plugin-version>
