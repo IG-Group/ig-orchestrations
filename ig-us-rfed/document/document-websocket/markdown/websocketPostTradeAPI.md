@@ -119,7 +119,7 @@ The Account Summary Report message type is used by IG to provide account balance
 |Standard Header|Y|MsgType = "AccountSummaryReport"|
 |AccountSummaryReportID|Y|Unique identifier of the Account Summary Report.|
 |AccountSummaryReportRequestID|N|Unique identifier of the request if applicable.|
-|AccountSummaryReportRequestResult|Y|<ul><li>"Valid Request"</li><li>"InvalidOrUnsupportedRequest"</li><li>"UnknownAccount"</li><li>"Unauthorised"</li><li>"NotSupported"</li><li>"Other"</li></ul>If "Other", Text field will be present.|
+|AccountSummaryReportRequestResult|Y|<ul><li>"ValidRequest"</li><li>"InvalidOrUnsupportedRequest"</li><li>"UnknownAccount"</li><li>"Unauthorised"</li><li>"NotSupported"</li><li>"Other"</li></ul>If "Other", Text field will be present.|
 |ClearingBusinessDate|Y|The Clearing Business Date covered by this request – must be current date.|
 |Currency|Y|Identifies the base reporting currency used in this report. Will be Account Base Currency.|
 |TotalNetValue|N|Used by IG to report Running Profit & Loss|
