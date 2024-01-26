@@ -365,6 +365,7 @@ PositionReport messages will be delivered for each open position:
   "SecurityIDSource": "MarketplaceAssignedIdentifier",
   "SecAltIDGrp": [],
   "Currency": "USD",
+  "TransactTime": "2022-08-03T15:53:03.610+0000",
   "PositionQty": [
     {
       "PosType": "TotalTransactionQty",
