@@ -2,5 +2,5 @@
 	  "id": "Interval",
       "type" : "string",
 	  "javaType" : "com.ig.orchestrations.chart.data.Interval",
-      "enum" : [ "SECOND","FIVE_MIN","FIFTEEN_MIN","HOUR", "DAY", "TICK" ]
+      "enum" : [ "SECOND", "MINUTE", "FIVE_MIN","FIFTEEN_MIN","HOUR", "DAY", "TICK" ]
 }
