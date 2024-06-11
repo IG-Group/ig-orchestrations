@@ -16,6 +16,10 @@
 			<artifactId>orchestra2md</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>io.fixprotocol.orchestra</groupId>
+			<artifactId>orchestra2doc</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>com.ig.orchestrations.us.rfed</groupId>
 			<artifactId>orchestration</artifactId>
 			<classifier>repository</classifier>
