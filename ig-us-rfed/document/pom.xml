@@ -22,6 +22,5 @@
 
 	<modules>
 		<module>document-fixt</module>
-		<module>document-websocket</module>
 	</modules>
 </project>
