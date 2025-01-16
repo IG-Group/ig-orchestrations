@@ -11,8 +11,6 @@ This project specialises the standard FIX orchestration to build IG Orchestratio
 
 * [IG US Document Parent](https://github.com/IG-Group/ig-orchestrations/tree/master/ig-us-rfed/document/readme.md)
 
-    * [WebSocket](https://github.com/IG-Group/ig-orchestrations/tree/master/ig-us-rfed/document/document-websocket/markdown/readme.md)
-
     * [FIX](https://github.com/IG-Group/ig-orchestrations/tree/master/ig-us-rfed/document/document-fixt/markdown/readme.md)
 
 ## Project Structure
@@ -27,7 +25,6 @@ This project specialises the standard FIX orchestration to build IG Orchestratio
 │   └───json-schema - Source code for the JSON schema.
 └───ig-us-rfed – Contains the FIX “orchestration” and supporting information for the IG US RFED API.
 │   |───document/
-│   |   └───document-websocket - Generates the Rules of Engagement in markdown and HTML for the WebSocket API.
 │   |   └───document-fixt - Generates the Rules of Engagement in markdown and HTML for the FIX50sp2/FIXT1.1 API.
 │   └───java-binding - Generates the Java/JSON bindings.
 │   └───json-schema – Generates the JSON Schema.
